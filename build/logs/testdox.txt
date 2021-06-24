@@ -1,0 +1,16 @@
+Foo (App\Library\Foo)
+ [x] Foo not bar
+
+User Model (App\Models\UserModel)
+ [x] Get user
+
+Util Model (App\Models\UtilModel)
+ [x] Get class from fullname
+
+Example Session
+ [x] Session simple
+
+Health
+ [x] Is defined app path
+ [x] Base url has been set
+
