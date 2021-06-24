@@ -11,19 +11,18 @@ class UtilModelTest extends CIUnitTestCase
 
     public function __construct(){
         parent::__construct();
-        $this->util_model =
+        $this->util_model = new UtilModel();
         
         
     }
 
     public function test_get_class_from_fullname()
     {
-        $util_model = new UtilModel();
-        $result1 = $util_model->get_class_from_fullname("\Apps\Test\MyClass");
-        $result2 = $util_model->get_class_from_fullname("\Apps\Test\MyClass");
+        $result1 = $this->util_model->get_class_from_fullname("\Apps\Test\MyClass");
+        $result2 = $this->util_model->get_class_from_fullname("Apps\Test\MyClass");
         
         $result             =   [ $result1, $result2 ];
-        $expectedResult     =   [ "MyClass" ];
+        $expectedResult     =   [ "MyClass", "MyClass" ];
 
         $this->assertSame($result,$expectedResult);
         
