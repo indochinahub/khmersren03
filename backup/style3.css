@@ -5,7 +5,8 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #edffe2;
+    color: #242423
 }
 
 p {
@@ -13,7 +14,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    ;
 }
 
 a,
@@ -29,7 +30,7 @@ a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -42,8 +43,8 @@ a:focus {
 .line {
     width: 100%;
     height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
+    border-bottom: 1px dashed #093c14;
+    margin: 10px 0 5px 0;
 }
 
 /* ---------------------------------------------------
@@ -182,7 +183,6 @@ a.article:hover {
 
 #content {
     width: 100%;
-    padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
