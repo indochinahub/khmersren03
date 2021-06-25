@@ -2,9 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Models\UtilModel;
+
 class MyController extends BaseController {
 
+	var $util_model;
+
+	public function __construct(){
+
+		$this->util_model = new UtilModel;
+	}    
+
 	public function _view($filename,$data){
+
 		echo view('section/010head',$data);
 		echo view('section/020sidebar',$data);
 		echo view('section/030jumbotron',$data);
