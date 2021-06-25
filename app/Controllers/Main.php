@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UtilModel;
 
-class Main extends BaseController
+class Main extends MyController
 {
 	var $util_model;
 
@@ -15,39 +15,10 @@ class Main extends BaseController
 
 	public function index()	{
 		
-		/*
-		$name = get_class($this);
-		var_dump($name);
-		echo "<hr>";
-
-		var_dump($name);
-		echo "<hr>";
-
-		$user_model =  new \App\Models\UserModel;
-		echo $user_model->get_num_user();
-		*/
 		$this->_view("index",[]);
 
 	}
 
-	public function _view($filename,$data){
-		echo view('section/010head',$data);
-		echo view('section/020sidebar',$data);
-		echo view('section/030jumbotron',$data);
-		echo view('section/040navbar',$data);
-		echo view('section/050breadcrumb',$data);
-		echo view( $this->get_controller_name().'/'.$filename,$data);
-		echo view('section/070noticebox',$data);
-		echo view('section/080footer',$data);
-		echo view('section/090javascript',$data);
-	}
-
-	public function get_controller_name(){
-		$router = service('router'); 
-		$full_controller_name  = $router->controllerName(); 
-		$controller_name = $this->util_model->get_class_from_fullname($full_controller_name);
-		return $controller_name;
-	}
 
 
 }
