@@ -14,7 +14,7 @@
             <ul class="list-unstyled components">
                 <div class="sidebar_section">section 1</div>
                 <li class="active">
-                    <a href="#"><i class="fas fa-angle-double-right"></i> Login</a>
+                    <a href="<?php echo base_url(["User","login"]);?>"><i class="fas fa-angle-double-right"></i> Login</a>
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>

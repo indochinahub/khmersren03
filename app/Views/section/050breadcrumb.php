@@ -1,8 +1,20 @@
-<div style="display:flex;justify-content: space-between;padding:10px">
-    <div>
-        <h3>หัวข้อของหน้า</h3>
-    </div>
-    <div>
-        [ <a href="http://www.google.com">ลิงก์กลับไป</a> ] 
+
+<?php if( $page_title != FALSE && $page_link != FALSE){ ?>
+
+    <div style="display:flex;justify-content: space-between;padding:10px">
+        <div>
+            <?php if( $page_title != FALSE ){ ?>
+                <h3>
+                    <?php echo $page_title;?>
+                </h3>
+            <?php } ?>
+        </div>
+        <div>
+            <?php if($page_link != FALSE ){ ?>
+                [ <a href="<?php echo $page_link[1];?>"><?php echo $page_link[0];?></a> ] 
+            <?php } ?>
+            
         </div>                
-</div>
+    </div>
+    
+<?php } ?>

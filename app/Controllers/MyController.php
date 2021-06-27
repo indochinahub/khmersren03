@@ -7,16 +7,34 @@ use App\Models\UtilModel;
 class MyController extends BaseController {
 
 	var $util_model;
+	var $validation;
 
-	public function __construct(){
+  	public function __construct(){
 
 		$this->util_model = new UtilModel;
+		
 	}    
 
 	public function _view($filename,$data){
 
+		// Controller Name
 		$data["controller_name"] = $this->_get_controller_name();
 
+		// Page Title 
+		if( isset($data["page_title"]) && trim($data["page_title"])){
+			$data["page_title"] = $data["page_title"];
+		}else{
+			$data["page_title"] = FALSE;
+		}
+
+		// Page Link
+		if( isset($data["page_link"]) && (count($data["page_link"]) === 2) ){
+			$data["page_link"] = $data["page_link"];
+		}else{
+			$data["page_link"] = FALSE;
+		}
+
+		// Show Views
 		echo view('section/010head',$data);
 		echo view('section/020sidebar',$data);
 		echo view('section/030jumbotron',$data);
