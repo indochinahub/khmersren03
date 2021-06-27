@@ -15,6 +15,8 @@ class MyController extends BaseController {
 
 	public function _view($filename,$data){
 
+		$data["controller_name"] = $this->_get_controller_name();
+
 		echo view('section/010head',$data);
 		echo view('section/020sidebar',$data);
 		echo view('section/030jumbotron',$data);

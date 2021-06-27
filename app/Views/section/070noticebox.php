@@ -1,5 +1,4 @@
 
 <div style="background-color:yellow;padding:10px">
-    Notice Box <br>
-    Notice Box 
+    Controller :: <?php echo $controller_name;?><br>
 </div>            

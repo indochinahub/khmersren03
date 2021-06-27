@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\UtilModel;
-
 class Main extends MyController
 {
 
