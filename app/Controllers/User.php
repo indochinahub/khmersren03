@@ -13,7 +13,6 @@ class User extends MyController
 			$validattion_rules = 	[		'username' => 'required',
 											'password' => 'required'
 									];
-
 			if( $this->validate($validattion_rules) ){
 				$data["task"] = "update_data";
 
@@ -50,10 +49,7 @@ class User extends MyController
 
 	public function test(){
 
-
 	}
-
-
 
 }
 

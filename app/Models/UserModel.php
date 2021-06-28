@@ -4,24 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class UserModel extends BaseModel
 {
-    var $db;
 
     public function __construct(){
         parent::__construct();
-        //$this->db = \Config\Database::connect();
-
+        $this->table = "user";
+        $this->table_name = "user";
     }
 
-    public function get_num_user(){
 
-        
-        $query = $this->db->query(" SELECT * FROM user WHERE 1");
-
-        return count($query->getResult());
-
-    }
 
 }
 

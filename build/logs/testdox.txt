@@ -1,6 +1,9 @@
 Foo (App\Library\Foo)
  [x] Foo not bar
 
+Base Model (App\Models\BaseModel)
+ [x] Delete
+
 User Model (App\Models\UserModel)
  [x] Get user
 
