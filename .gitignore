@@ -1,5 +1,5 @@
 asset/
-build/logs/
+build/logs/*
 
 
 
@@ -95,3 +95,6 @@ _modules/*
 /phpunit*.xml
 /.phpunit.*.cache
 
+build/logs/testdox.txt
+build/logs/testdox.html
+build/logs/testdox.txt
