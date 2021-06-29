@@ -176,6 +176,113 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    // return Array
+    public function test_get_property_value_Of_many_objects_as_array(){
+
+        $myObj1 = new \stdClass();
+        $myObj1->my_id = "01";
+        $myObj1->my_name = "Wittaya";
+
+        $myObj2 = new \stdClass();
+        $myObj2->my_id = "02";
+        $myObj2->my_name = "Wichai";
+
+        $myObj3 = new \stdClass();
+        $myObj3->my_id = "03";
+        $myObj3->my_name = "Sathit";
+
+        $result01 =  $this->util_model->get_property_value_Of_many_objects_as_array(
+                                        $array_of_objects =[$myObj1,$myObj2,$myObj3],
+                                        $property = "my_id" );
+
+        $result02 =  $this->util_model->get_property_value_Of_many_objects_as_array(
+                                        $array_of_objects =[$myObj1,$myObj2,$myObj3],
+                                        $property = "my_name" );
+
+        $result         =   [   $result01,
+                                $result02,
+                            ];
+
+        $expectedResult =   [   ["01","02","03"] ,
+                                ["Wittaya","Wichai","Sathit"]
+                            ];
+
+        $this->assertSame($result,$expectedResult);
+
+    }
+    
+    public function test_get_property_values_of_one_object_as_array(){
+        $obj            = new \stdClass();
+        $obj->name      = "Wittaya";
+        $obj->surname   = "Wijit";
+        $result01 =  $this->util_model->get_property_values_of_one_object_as_array($object_name = $obj);
+
+        $obj            = new \stdClass();
+        $result02 =  $this->util_model->get_property_values_of_one_object_as_array($object_name = $obj);
+
+        $result         =   [   $result01,
+                                $result02,
+                            ];
+
+        $expectedResult =   [   ["Wittaya","Wijit"],
+                                [],
+                            ];
+        $this->assertSame($result,$expectedResult);                            
+
+    }
+
+    // Return array of ojbect
+    public function test_sort_array_of_object_by_the_property(){
+
+        $user1          = new \stdClass();
+        $user1->id      = 11;
+        $user1->name    = "Wittaya";
+        $user1->age     = 45;
+
+        $user2          = new \stdClass();
+        $user2->id      = 12;
+        $user2->name    = "Sawitree";
+        $user2->age     = 42;
+
+        $user3          = new \stdClass();
+        $user3->id      = 13;
+        $user3->name    = "Somrudee";
+        $user3->age     = 30;
+
+        $objects = [$user1, $user2, $user3];
+
+        $result01 =  $this->util_model->sort_array_of_object_by_the_property( 
+                                $objects = $objects,     
+                                $sorted_property = "id", 
+                                $order_by="asc"
+                            );
+
+        $result02 =  $this->util_model->sort_array_of_object_by_the_property( 
+                                $objects = $objects,     
+                                $sorted_property = "id", 
+                                $order_by="desc"
+                            );
+
+        $result03 =  $this->util_model->sort_array_of_object_by_the_property( 
+                                $objects = $objects,     
+                                $sorted_property = "age", 
+                                $order_by="asc"
+                            );                            
+
+        $result         =   [   [$result01[0]->id, $result01[1]->id,$result01[2]->id],
+                                [$result02[0]->id, $result02[1]->id,$result02[2]->id],
+                                [$result03[0]->id, $result03[1]->id,$result03[2]->id],
+                            ];
+
+        $expectedResult =   [   [11, 12, 13],
+                                [13, 12, 11],
+                                [13, 12, 11],
+                            ];
+
+        $this->assertSame($result,$expectedResult);
+
+
+    }
 
 
 

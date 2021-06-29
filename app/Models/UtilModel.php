@@ -100,6 +100,54 @@ class UtilModel
         return $property_names;
     }
 
+    //  return Array 
+    public function get_property_value_Of_many_objects_as_array($array_of_objects,$property){
+
+        $array_of_object_property = [];
+        foreach($array_of_objects as $object){
+            array_push($array_of_object_property, $object->$property);
+        }
+
+        return $array_of_object_property;
+    }    
+
+    //  return Array 
+    public function get_property_values_of_one_object_as_array($object_name){
+        $property_value_assocs = get_object_vars($object_name);
+
+        $property_values = [];
+        foreach($property_value_assocs as $property=>$value){
+            array_push($property_values,$value);
+        }
+
+        return $property_values;
+    }
+
+    // Return array of ojbect
+    public function sort_array_of_object_by_the_property( $objects, $sorted_property, $order_by ="asc"){
+        $i = 0 ;
+        $object_key_and_object_assoc = [];
+        $object_key_and_sorted_property_assoc = [];
+        foreach($objects as $object){
+            $object_key_and_object_assoc[$i] = $object;
+            $object_key_and_sorted_property_assoc[$i] = $object->$sorted_property;
+            $i++;
+        }
+
+        if($order_by === "asc"){
+            asort($object_key_and_sorted_property_assoc);    
+        }elseif($order_by === "desc") {
+            arsort($object_key_and_sorted_property_assoc);    
+        }
+        
+        $sorted_objects = [];
+        foreach($object_key_and_sorted_property_assoc as $key=>$value){
+            array_push($sorted_objects,$object_key_and_object_assoc[$key] );
+        }
+
+        return $sorted_objects;
+    }
+
 
 
 
