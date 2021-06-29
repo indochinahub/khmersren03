@@ -12,7 +12,8 @@ class UtilModel
     }
 
     // Return Object or False
-    public function get_object_from_arr_object_with_pointer_by_key_id($arr_object, $key_column, $key_id){
+    public function get_object_from_arr_object_with_pointer_by_key_id(
+                                    $arr_object, $key_column, $key_id){
 
         if( ($arr_object == FALSE) || ($key_column == FALSE) || ($key_id == FALSE) ){return FALSE;}
 
@@ -39,6 +40,23 @@ class UtilModel
         return $new_arr_object[$key_id];  
     }
 	
+    // Return Array Of Object
+    public function get_object_from_arr_object_that_match_property_condition(
+                        $origin_arr_object, $property_name, $text_to_compare, $operator = "=="){
+
+        $arr_result_object = [];
+        foreach($origin_arr_object as $object){
+
+            if( $operator === "=="){
+                if( $object->$property_name == $text_to_compare){   
+                    array_push($arr_result_object,$object);
+                }
+            }
+        }
+
+        return $arr_result_object;
+    }
+
     // Return Array
     public function get_assoc_from_array_of_object($arr_object, $key_property) {
 
