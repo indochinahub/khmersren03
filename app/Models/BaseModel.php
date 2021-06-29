@@ -35,7 +35,6 @@ class BaseModel extends Model
         }elseif( $rows = $this->find($ids) ){
             return $rows;
         }
-
     }
 
     // return AffectedRows

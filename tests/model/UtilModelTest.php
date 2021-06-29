@@ -12,8 +12,6 @@ class UtilModelTest extends CIUnitTestCase
     public function __construct(){
         parent::__construct();
         $this->util_model = new UtilModel();
-        
-        
     }
 
     public function test_get_class_from_fullname()
@@ -28,69 +26,7 @@ class UtilModelTest extends CIUnitTestCase
         
     }
 
-    public function test_get_assoc_from_array_of_object(){
-
-        $student1 = new \stdClass;
-        $student1->id = 1;
-        $student1->name = "Wittaya";
-
-        $student2 = new \stdClass;
-        $student2->id = 2;
-        $student2->name = "Wicha";
-
-        $student3 = new \stdClass;
-        $student3->id = 3;
-        $student3->name = "Arun"; 
-
-        $arr_student = [$student1, $student2, $student3];
-
-        $result01 =  $this->util_model->get_assoc_from_array_of_object(
-                        $arr_object = $arr_student, 
-                        $key_property = "id"
-                    );
-
-        $result         =   [   count($result01),
-                                is_object($result01["1"]),
-                                $result01["1"]->name,
-                            ];
-
-        $expectedResult =   [   3,
-                                TRUE,
-                                "Wittaya",
-                            ];                                
-
-        $this->assertSame($result,$expectedResult);
-    }
-
     public function test_get_object_from_arr_object_with_pointer_by_key_id(){
-
-
-        /*
-
-
-                        
-        $result         =   [   $result01,
-                                $result02,
-                                $result03,
-                                $result04->previous_id, //id = 1
-                                $result04->next_id,
-                                $result05->previous_id, //id = 2
-                                $result05->next_id,
-                                $result06->previous_id, //id = 3
-                                $result06->next_id,                                                                
-                            ];
-
-        $expectedResult =   [   FALSE,
-                                FALSE,
-                                FALSE,
-                                FALSE,  //id = 1
-                                2,
-                                1,  //id = 2
-                                3,
-                                2,  //id = 3
-                                FALSE,                                                                
-                            ];                        
-        */
 
         $student1 = new \stdClass;
         $student1->id = 1;
@@ -161,6 +97,88 @@ class UtilModelTest extends CIUnitTestCase
                             ];                                
 
         $this->assertSame($result,$expectedResult);                        
-
     }
+
+    public function test_get_assoc_from_array_of_object(){
+
+        $student1 = new \stdClass;
+        $student1->id = 1;
+        $student1->name = "Wittaya";
+
+        $student2 = new \stdClass;
+        $student2->id = 2;
+        $student2->name = "Wicha";
+
+        $student3 = new \stdClass;
+        $student3->id = 3;
+        $student3->name = "Arun"; 
+
+        $arr_student = [$student1, $student2, $student3];
+
+        $result01 =  $this->util_model->get_assoc_from_array_of_object(
+                        $arr_object = $arr_student, 
+                        $key_property = "id"
+                    );
+
+        $result         =   [   count($result01),
+                                is_object($result01["1"]),
+                                $result01["1"]->name,
+                            ];
+
+        $expectedResult =   [   3,
+                                TRUE,
+                                "Wittaya",
+                            ];                                
+
+        $this->assertSame($result,$expectedResult);
+    }
+
+    public function test_get_line_of_text_with_saparator_from_array(){
+
+        $arrs = ["text1","text2","text3"];
+        $saparator = "---";
+        $result01 =  $this->util_model->get_line_of_text_with_saparator_from_array($arrs, $saparator);
+
+        $arrs = [];
+        $saparator = "---";
+        $result02 =  $this->util_model->get_line_of_text_with_saparator_from_array($arrs, $saparator);
+
+        $result         =   [   $result01,
+                                $result02,
+                            ];
+
+        $expectedResult =   [   "text1---text2---text3",
+                                "",
+                            ];
+
+        $this->assertSame($result,$expectedResult);                        
+    }
+
+    //  return Array 
+    public function test_get_property_names_of_one_object_as_array(){
+
+        $obj            = new \stdClass();
+        $obj->name      = "Wittaya";
+        $obj->surname   = "Wijit";
+        $result01 =  $this->util_model->get_property_names_of_one_object_as_array($object_name = $obj);
+
+        $obj            = new \stdClass();
+        $result02 =  $this->util_model->get_property_names_of_one_object_as_array($object_name = $obj);        
+
+        $result         =   [   $result01,
+                                $result02,
+                            ];
+
+        $expectedResult =   [   ["name","surname"],
+                                [],
+                            ];
+
+        $this->assertSame($result,$expectedResult);
+    }
+
+
+
+
+
+    
 }
