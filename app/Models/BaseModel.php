@@ -28,7 +28,7 @@ class BaseModel extends Model
     }
 
     // return Array Of Object Or Blank Array
-    public function find_by_ids( array $ids){
+    public function get_by_ids( array $ids){
 
         if( $ids === [] ){
             return [];
@@ -46,6 +46,11 @@ class BaseModel extends Model
             $this->delete($id);
             return $this->affectedRows();
         }
+    }
+
+    public function delete_by_ids(array $ids){
+        
+
     }
 
 

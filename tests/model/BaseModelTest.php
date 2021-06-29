@@ -38,15 +38,13 @@ class BaseModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);               
 
     }    
-
-
     
     // return Array ofj Objects or Blank Array
-    public function test_find_by_ids(){
+    public function test_get_by_ids(){
 
-        $result1 = $this->user_model->find_by_ids($ids = []);
-        $result2 = $this->user_model->find_by_ids($ids = [1,2]);
-        $result3 = $this->user_model->find_by_ids($ids = [0,1,2]);
+        $result1 = $this->user_model->get_by_ids($ids = []);
+        $result2 = $this->user_model->get_by_ids($ids = [1,2]);
+        $result3 = $this->user_model->get_by_ids($ids = [0,1,2]);
 
         $result         =   [ 
                                 count($result1),
