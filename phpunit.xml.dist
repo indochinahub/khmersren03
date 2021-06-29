@@ -25,7 +25,7 @@
 		</whitelist>
 	</filter>
 
-	<logging>
+	<!--  <logging> -->
 		<!-- <log type="coverage-html" target="build/logs/html"/> -->
 		<!-- <log type="coverage-clover" target="build/logs/clover.xml"/> -->
 		<!-- <log type="coverage-php" target="build/logs/coverage.serialized"/> -->
@@ -33,7 +33,7 @@
 		<!-- <log type="testdox-html" target="build/logs/testdox.html"/> -->
 		<!-- <log type="testdox-text" target="build/logs/testdox.txt"/> -->
 		<!-- <log type="junit" target="build/logs/logfile.xml"/> -->
-	</logging>
+	<!-- </logging> -->
 
 	<php>
 		<server name="app.baseURL" value="http://127.0.0.1/ci4/"/>
