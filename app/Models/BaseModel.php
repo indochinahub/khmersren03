@@ -17,7 +17,7 @@ class BaseModel extends Model
     }
 
     // return Object Or False
-    public function find_by_id(int $id){
+    public function get_by_id(int $id){
 
         if( $row = $this->find($id) ){
             return $row;
@@ -40,7 +40,7 @@ class BaseModel extends Model
     // return AffectedRows
     public function delete_by_id(int $id){
 
-        if( $this->find_by_id($id) === false) { 
+        if( $this->get_by_id($id) === false) { 
             return 0;
         }else{
             $this->delete($id);

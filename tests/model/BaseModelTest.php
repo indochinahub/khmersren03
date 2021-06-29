@@ -21,10 +21,10 @@ class BaseModelTest extends CIUnitTestCase
     }    
 
     // return Object or FALSE
-    public function test_find_by_id(){
+    public function test_get_by_id(){
         
-        $result1 = $this->user_model->find_by_id($id = 0);
-        $result2 = $this->user_model->find_by_id($id = 1);
+        $result1 = $this->user_model->get_by_id($id = 0);
+        $result2 = $this->user_model->get_by_id($id = 1);
 
         $result         =   [ 
                                 $result1,
