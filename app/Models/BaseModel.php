@@ -48,8 +48,20 @@ class BaseModel extends Model
         }
     }
 
+
+    // return AffectedRows
     public function delete_by_ids(array $ids){
+        $util_model = new UtilModel();
         
+        if($rows = $this->get_by_ids($ids)){
+            $arr_id = $util_model->get_property_value_Of_many_objects_as_array($rows, $this->primaryKey);
+            $this->delete($arr_id);
+            return $this->affectedRows();
+            
+        }else{
+            return 0;
+        }
+
 
     }
 
