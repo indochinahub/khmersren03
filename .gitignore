@@ -1,7 +1,4 @@
 asset/
-build/logs/*
-
-
 
 #-------------------------
 # Operating Specific Junk Files
@@ -95,6 +92,5 @@ _modules/*
 /phpunit*.xml
 /.phpunit.*.cache
 
-build/logs/testdox.txt
+build/logs/
 build/logs/testdox.html
-build/logs/testdox.txt

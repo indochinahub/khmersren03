@@ -6,31 +6,27 @@ use CodeIgniter\Model;
 
 class BaseModel extends Model
 {
-    protected $table_name;
+    protected $table      ;
+    protected $primaryKey ;
+    protected $useAutoIncrement = true;
+    protected $returnType     = 'object';
 
     public function __construct(){
         parent::__construct();
+
     }
 
-    public function _delete($where_clause = ""){
+    // return Object Or False
+    public function find_by_id(int $id){
 
-        $sql = " DELETE FROM ".$this->get_table_name() ;
-        if($where_clause === ""){
-            die("Need where_clause!");
+        if( $row = $this->find($id) ){
+            return $row;
+
         }else{
-            $sql .= " $where_clause ";
+            return false;
         }
-
-        $this->query($sql);
-        return $this->affectedRows();
     }
 
-    public function get_table_name(){
-        return $this->table_name;
-    }
-        
-
-    
 
 }
 
