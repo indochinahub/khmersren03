@@ -27,6 +27,17 @@ class BaseModel extends Model
         }
     }
 
+    // return Array Of Object Or Blank Array
+    public function find_by_ids( array $ids){
+
+        if( $ids === [] ){
+            return [];
+        }elseif( $rows = $this->find($ids) ){
+            return $rows;
+        }
+
+    }
+
 
 }
 

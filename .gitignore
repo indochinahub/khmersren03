@@ -93,4 +93,3 @@ _modules/*
 /.phpunit.*.cache
 
 build/logs/
-build/logs/testdox.html

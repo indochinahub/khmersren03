@@ -21,6 +21,7 @@ class BaseModelTest extends CIUnitTestCase
 
     }    
 
+    // return Object or FALSE
     public function test_find_by_id(){
         
         $result1 = $this->user_model->find_by_id($id = 0);
@@ -38,6 +39,32 @@ class BaseModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);               
 
     }    
+
+
+    
+    // return Array ofj Objects or Blank Array
+    public function test_find_by_ids(){
+
+        $result1 = $this->user_model->find_by_ids($ids = []);
+        $result2 = $this->user_model->find_by_ids($ids = [1,2]);
+        $result3 = $this->user_model->find_by_ids($ids = [0,1,2]);
+
+        $result         =   [ 
+                                count($result1),
+                                count($result2),
+                                count($result3)
+                            ];
+
+        $expectedResult =   [ 
+                                0,
+                                2,
+                                2
+                            ];
+
+        $this->assertSame($expectedResult, $result);                       
+
+    }
+
 
     /*
     public function test_delete() {
