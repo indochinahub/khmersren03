@@ -11,19 +11,6 @@ class UtilModel
         return end($arr_name);
     }
 
-    // Return Array
-    public function get_assoc_from_array_of_object($arr_object, $key_property) {
-
-        if($arr_object === []){ return []; }
-
-        $assoc_object = [];
-        foreach( $arr_object as $obj){
-            $assoc_object[$obj->$key_property] = $obj;
-            
-        }
-        return $assoc_object;
-    }
-
     // Return Object or False
     public function get_object_from_arr_object_with_pointer_by_key_id($arr_object, $key_column, $key_id){
 
@@ -52,7 +39,18 @@ class UtilModel
         return $new_arr_object[$key_id];  
     }
 	
+    // Return Array
+    public function get_assoc_from_array_of_object($arr_object, $key_property) {
 
+        if($arr_object === []){ return []; }
+
+        $assoc_object = [];
+        foreach( $arr_object as $obj){
+            $assoc_object[$obj->$key_property] = $obj;
+            
+        }
+        return $assoc_object;
+    }
 
 
 }
