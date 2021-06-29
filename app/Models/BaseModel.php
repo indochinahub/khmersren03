@@ -43,11 +43,9 @@ class BaseModel extends Model
 
         if( $this->find_by_id($id) === false) { 
             return 0;
-
         }else{
             $this->delete($id);
             return $this->affectedRows();
-            
         }
     }
 
