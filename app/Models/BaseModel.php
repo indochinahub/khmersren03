@@ -38,6 +38,19 @@ class BaseModel extends Model
 
     }
 
+    // return AffectedRows
+    public function delete_by_id(int $id){
+
+        if( $this->find_by_id($id) === false) { 
+            return 0;
+
+        }else{
+            $this->delete($id);
+            return $this->affectedRows();
+            
+        }
+    }
+
 
 }
 

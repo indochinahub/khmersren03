@@ -13,11 +13,10 @@ class BaseModelTest extends CIUnitTestCase
         parent::setUp();
         $this->user_model = new UserModel();
 
-        /*
         // Delete the row to make sure that the table is cleared.
         $sql = " DELETE FROM user WHERE user_id = 7 ";
         $this->user_model->query($sql);        
-        */
+
 
     }    
 
@@ -65,25 +64,32 @@ class BaseModelTest extends CIUnitTestCase
 
     }
 
+    // return AffectedRows
+    public function test_delete_by_id(){
 
-    /*
-    public function test_delete() {
         // Create the row to delete
         $sql = " INSERT INTO user(user_id, user_username) VALUES (7, 'test_user') ";
         $this->user_model->query($sql);
 
-        $where_clause = " WHERE user_id = 7 ";
-        $result1 = $this->user_model->_delete($where_clause);
+        $result1 = $this->user_model->delete_by_id($id = 0);
+        $result2 = $this->user_model->delete_by_id($id = 7);
 
-        $result         =   [ $result1 ];
-        $expectedResult =   [ 1 ];
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
 
-        $this->assertSame($expectedResult, $result);       
-        
+        $expectedResult =   [ 
+                                0,
+                                1,
+                            ];
+
+        $this->assertSame($expectedResult, $result);                               
+
         // Delete the row to make sure that the table is cleared.
         $sql = " DELETE FROM user WHERE user_id = 7 ";
-        $this->user_model->query($sql);        
+        $this->user_model->query($sql);          
+
     }
-    */
-    
+
 }
