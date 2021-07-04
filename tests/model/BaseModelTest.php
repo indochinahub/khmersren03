@@ -140,7 +140,6 @@ class BaseModelTest extends CIUnitTestCase
                             ];
 
         $this->assertSame($expectedResult, $result);              
-
     }
 
     // return Assoc array Or Blank
@@ -159,5 +158,26 @@ class BaseModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);              
 
     }
+
+    // Return Array Of Properties
+    public function test_get_fields(){
+
+        $result1 = $this->user_model->get_fields();
+        $result =           [   
+                                $result1[0],
+                                $result1[1],
+                                $result1[2],
+                                $result1[3]
+                            ];
+
+        $expectedResult =   [ 
+                                'user_id',
+                                'user_display_name',
+                                'user_username',
+                                'user_password',
+                            ];
+        $this->assertSame($expectedResult, $result);              
+    }
+    
 
 }

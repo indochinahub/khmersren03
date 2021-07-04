@@ -42,6 +42,12 @@ class BaseModel extends Model
         return $this->findAll();
     }
 
+    // Return Array Of Properties
+    public function get_fields(){
+        return $this->getFieldNames($this->table);
+
+    }
+            
     // return Assoc array Or Blank Array
     public function get_all_rows_as_assoc(){
         $arr_row = $this->get_all_row();
