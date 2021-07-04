@@ -47,6 +47,13 @@ class BaseModel extends Model
         return $this->getFieldNames($this->table);
 
     }
+
+    // return Int
+    public function get_num_row(){
+        $this->get_all_row();
+        return $this->countAll();
+
+    }
             
     // return Assoc array Or Blank Array
     public function get_all_rows_as_assoc(){

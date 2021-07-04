@@ -161,7 +161,6 @@ class BaseModelTest extends CIUnitTestCase
 
     // Return Array Of Properties
     public function test_get_fields(){
-
         $result1 = $this->user_model->get_fields();
         $result =           [   
                                 $result1[0],
@@ -176,8 +175,25 @@ class BaseModelTest extends CIUnitTestCase
                                 'user_username',
                                 'user_password',
                             ];
-        $this->assertSame($expectedResult, $result);              
+        $this->assertSame($expectedResult, $result);    
     }
+
+
+    // return Int
+    public function test_get_num_row(){
+        $result1 = $this->user_model->get_num_row();
+
+        $result =           [   
+                                $result1 > 0
+                            ];
+
+        $expectedResult =   [ 
+                                true
+                            ];
+        $this->assertSame($expectedResult, $result);
+    }
+
+
     
 
 }
