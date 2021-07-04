@@ -11,7 +11,6 @@ class UserModel extends BaseModel
         parent::__construct();
         $this->table = "user";
         $this->primaryKey = $this->table."_id";
-
     }
 
 

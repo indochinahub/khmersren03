@@ -10,7 +10,6 @@ class MyController extends BaseController {
 	var $validation;
 
   	public function __construct(){
-
 		$this->util_model = new UtilModel;
 		
 	}    

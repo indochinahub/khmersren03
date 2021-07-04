@@ -37,6 +37,11 @@ class BaseModel extends Model
         }
     }
 
+    // return Array Of Object
+    public function get_all_row(){
+        return $this->findAll();
+    }
+
     // return AffectedRows
     public function delete_by_id(int $id){
 
@@ -47,7 +52,6 @@ class BaseModel extends Model
             return $this->affectedRows();
         }
     }
-
 
     // return AffectedRows
     public function delete_by_ids(array $ids){
@@ -64,6 +68,9 @@ class BaseModel extends Model
 
 
     }
+
+
+
 
 
 }

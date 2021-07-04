@@ -92,7 +92,6 @@ class BaseModelTest extends CIUnitTestCase
 
     }
 
-
     // return AffectedRows
     public function test_delete_by_ids(){
 
@@ -125,9 +124,23 @@ class BaseModelTest extends CIUnitTestCase
         $this->user_model->query($sql);
         $sql = " DELETE FROM user WHERE user_id = 8 ";
         $this->user_model->query($sql);          
-
-
         
+    }
+
+    // return Array Of Object
+    public function test_get_all_row(){
+
+        $result01 = $this->user_model->get_all_row();
+
+        $result =           [ 
+                                count($result01) > 900,
+                            ];
+        $expectedResult =   [ 
+                                true,
+                            ];
+
+        $this->assertSame($expectedResult, $result);              
+
     }
 
 }
