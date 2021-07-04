@@ -42,6 +42,18 @@ class BaseModel extends Model
         return $this->findAll();
     }
 
+    // return Assoc array Or Blank Array
+    public function get_all_rows_as_assoc(){
+        $arr_row = $this->get_all_row();
+        $util_model = new UtilModel();
+
+        return $util_model->get_assoc_from_array_of_object(
+                        $arr_object = $arr_row, 
+                        $key_property = $this->table."_id"
+                );
+
+    }
+
     // return AffectedRows
     public function delete_by_id(int $id){
 

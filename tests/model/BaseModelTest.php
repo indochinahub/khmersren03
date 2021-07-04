@@ -143,4 +143,21 @@ class BaseModelTest extends CIUnitTestCase
 
     }
 
+    // return Assoc array Or Blank
+    public function test_get_all_rows_as_assoc(){
+
+        $result1 = $this->user_model->get_all_rows_as_assoc();
+
+        $result =           [ 
+                                count($result1) > 0,
+                                $result1["1"]->user_id, 
+                            ];
+        $expectedResult =   [ 
+                                true,
+                                "1",
+                            ];
+        $this->assertSame($expectedResult, $result);              
+
+    }
+
 }
