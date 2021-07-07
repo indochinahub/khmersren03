@@ -211,6 +211,38 @@ class BaseModelTest extends CIUnitTestCase
                             ];
         $this->assertSame($expectedResult, $result);
     }
+
+    // return AffectedRow
+    public function test_delete_where(){
+
+        // Create the row to delete
+        $sql = " INSERT INTO user(user_id, user_username) VALUES (7, 'test_user') ";
+        $this->user_model->query($sql);
+        
+        $where_clause = " WHERE user_id = 7 ";
+        $result1 = $this->user_model->delete_where($where_clause);
+
+
+        $where_clause = " WHERE user_id = 0 ";
+        $result2 = $this->user_model->delete_where($where_clause);
+
+        $result         =   [   
+                                $result1,
+                                $result2,
+                            ];
+        $expectedResult =   [
+                                1,
+                                0,
+                            ];
+        $this->assertSame($expectedResult, $result);
+
+        // Delete the row to make sure that the table is cleared.
+        $sql = " DELETE FROM user WHERE user_id = 7 ";
+        $this->user_model->query($sql);          
+
+
+    }
+        
         
     
 

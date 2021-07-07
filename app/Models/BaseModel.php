@@ -107,6 +107,24 @@ class BaseModel extends Model
 
     }
 
+    // return AffectedRows
+    public function delete_where($where_clause){
+
+        $sql = " DELETE FROM ".$this->table;
+        if($where_clause === ""){
+            die(" Need where_clause! in BaseModel::delete_where() ");
+        }else{
+            $sql .= " $where_clause ";
+        }
+
+        $this->db->query($sql);
+        
+        return $this->db->affectedRows();     
+
+    }
+
+
+
 
 
 
