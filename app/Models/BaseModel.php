@@ -52,7 +52,6 @@ class BaseModel extends Model
     public function get_num_row(){
         $this->get_all_row();
         return $this->countAll();
-
     }
             
     // return Assoc array Or Blank Array
@@ -65,6 +64,20 @@ class BaseModel extends Model
                         $key_property = $this->table."_id"
                 );
 
+    }
+
+    //return Array of Object
+    public function get_where($where_clause){
+
+        $sql = " SELECT * FROM ".$this->table ;
+        if($where_clause === ""){
+            $sql .= " WHERE 1 ";
+        }else{
+            $sql .= " $where_clause ";
+        }
+        $query = $this->query($sql);
+
+        return $query->getResult();
     }
 
     // return AffectedRows

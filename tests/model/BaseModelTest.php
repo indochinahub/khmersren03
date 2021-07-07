@@ -178,7 +178,6 @@ class BaseModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);    
     }
 
-
     // return Int
     public function test_get_num_row(){
         $result1 = $this->user_model->get_num_row();
@@ -193,7 +192,26 @@ class BaseModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);
     }
 
+    //return Array of Object
+    public function test_get_where(){    
+        
+        $where_clause = " WHERE user_username = 'user01' ";
+        $result1 = $this->user_model->get_where($where_clause);
 
+        $where_clause = " WHERE user_username = 'xxxx' ";
+        $result2 = $this->user_model->get_where($where_clause);        
+
+        $result         =   [   
+                                count($result1),
+                                $result2,
+                            ];
+        $expectedResult =   [
+                                1,
+                                [],
+                            ];
+        $this->assertSame($expectedResult, $result);
+    }
+        
     
 
 }
