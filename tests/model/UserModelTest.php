@@ -6,11 +6,40 @@ use CodeIgniter\Test\CIUnitTestCase;
 
 class UserModelTest extends CIUnitTestCase
 {
-    public function test_get_user()
+
+    public function setUp(): void
     {
-        //$user_model = new UserModel();
-        //$user_model->get_num_user();
-        $this->assertEquals(1,1);
-        
+        parent::setUp();
+        $this->user_model = new UserModel();
+
+    }    
+
+    // return UserObject Or False
+    public function test_get_validated_user(){
+
+        $result1 = $this->user_model->get_validated_user(
+                                $username = "user01" ,
+                                $password = "1234"
+                            );
+
+        $result2 = $this->user_model->get_validated_user(
+                                $username = "" ,
+                                $password = ""
+                            );
+
+
+        $result         =   [ 
+                                is_object($result1),
+                                $result2,
+
+                            ];
+        $expectedResult =   [ 
+                                true,
+                                false,
+                            ];
+
+        $this->assertSame($expectedResult, $result);                               
+
     }
+    
 }

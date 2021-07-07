@@ -118,12 +118,10 @@ class BaseModel extends Model
         $this->db->query($sql);
         
         return $this->db->affectedRows();     
-
     }
 
     // Return affected row
     public function update_by_id(int $id, $detail){
-        
         
         if( $this->get_by_id($id) === false  ){
             return 0;
