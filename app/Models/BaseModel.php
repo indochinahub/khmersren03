@@ -103,8 +103,6 @@ class BaseModel extends Model
         }else{
             return 0;
         }
-
-
     }
 
     // return AffectedRows
@@ -122,6 +120,22 @@ class BaseModel extends Model
         return $this->db->affectedRows();     
 
     }
+
+    // Return affected row
+    public function update_by_id(int $id, $detail){
+        
+        
+        if( $this->get_by_id($id) === false  ){
+            return 0;
+
+        }else{
+            $this->protect(false);
+            $this->update([$id], $detail);
+
+            return $this->affectedRows();     
+        }
+    }
+
 
 
 

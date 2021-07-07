@@ -235,13 +235,42 @@ class BaseModelTest extends CIUnitTestCase
                                 0,
                             ];
         $this->assertSame($expectedResult, $result);
-
+                
         // Delete the row to make sure that the table is cleared.
         $sql = " DELETE FROM user WHERE user_id = 7 ";
         $this->user_model->query($sql);          
 
+    }
+
+    // Return affected row
+    public function test_update_by_id(){
+
+        // Create the row to delete
+        $sql = " INSERT INTO user(user_id, user_username) VALUES (7, 'test_user') ";
+        $this->user_model->query($sql);
+
+        $result1 = $this->user_model->update_by_id($id = 7, $detail = [ "user_username"=>"xxxxx"]);    
+        $result2 = $this->user_model->update_by_id($id = 0, $detail = [ "user_username"=>"xxxxx"]);    
+        
+        $result         =   [   
+                                $result1,
+                                $result2,
+                            ];
+
+        $expectedResult =   [
+                                1,
+                                0,
+                            ];
+        $this->assertSame($expectedResult, $result);
+               
+        // Delete the row to make sure that the table is cleared.
+        $sql = " DELETE FROM user WHERE user_id = 7 ";
+        $this->user_model->query($sql);          
 
     }
+
+        
+
         
         
     
