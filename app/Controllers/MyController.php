@@ -8,9 +8,13 @@ class MyController extends BaseController {
 
 	var $util_model;
 	var $validation;
+	var $request;
+	var $session;
 
   	public function __construct(){
 		$this->util_model = new UtilModel;
+		$this->request = service('request');
+		$this->session = service('session');
 		
 	}    
 
