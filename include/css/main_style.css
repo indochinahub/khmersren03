@@ -30,7 +30,6 @@ p {
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -285,14 +284,18 @@ a.article:hover {
 }
 
 
-
-
 /* ---------------------------------------------------
     Form Error
 ----------------------------------------------------- */
 .form-error{
     color:#dc3545;
     margin-top:5px;
+}
+
+.two_flex_column {
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 

@@ -43,7 +43,15 @@ class MyController extends BaseController {
 		echo view('section/030jumbotron',$data);
 		echo view('section/040navbar',$data);
 		echo view('section/050breadcrumb',$data);
-		echo view( $this->_get_controller_name().'/'.$filename,$data);
+
+		if( $filename === "warn"){
+			echo view( 'section/210warn', $data);
+
+		}else{
+			echo view( $this->_get_controller_name().'/'.$filename,$data);
+
+		}
+
 		echo view('section/070noticebox',$data);
 		echo view('section/080footer',$data);
 		echo view('section/090javascript',$data);
@@ -54,6 +62,27 @@ class MyController extends BaseController {
 		$full_controller_name  = $router->controllerName(); 
 		$controller_name = $this->util_model->get_class_from_fullname($full_controller_name);
 		return $controller_name;
+	}
+
+	public function _warn($data){
+
+
+		if  (   isset($data["page_title"]) && isset($data["what_happened"]) && isset($data["what_todo"])
+                &&isset($data["btnText_toGo"]) && isset($data["btnLink_toGo"])
+            ){
+            
+			$this->_view("warn",$data);
+            
+        }else{
+            
+            die("There is not enought data to show Error;");
+        }  
+
+
+	}
+
+	public function _needConfirm(){
+
 	}
 
 

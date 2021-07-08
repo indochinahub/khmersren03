@@ -31,6 +31,7 @@ class User extends MyController
 
 		// Do the task
 		if($data["task"] === "form_blank"){
+
 			$data["username"]  = "";
 
 			$data["page_title"] = 	"Login";
@@ -54,10 +55,18 @@ class User extends MyController
 			if( $user = $user_model->get_validated_user($username, $password)){
 
 				$this->session->set('id', $user->user_id);
-				die("found user");
+
+				return redirect()->to(base_url());
 
 			}else{
-				die("invalid username and password");
+								
+				$data	= [     "page_title"=>"รหัสผ่านไม่ถูกต้อง",
+								"what_happened"=>"ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+								"what_todo" => "กรุณาตรวจสอบชื่อผู้ใช้และรหัสผ่านใหม่และเข้าสู่ระบบอีกครั้ง",
+								"btnText_toGo" => "Back",
+								"btnLink_toGo" => base_url(["User", "login"])
+						];
+				$this->_warn($data);
 			}
 			
 		}
