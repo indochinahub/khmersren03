@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends BaseModel
+class UserModel extends MyModel
 {
 
     public function __construct(){
