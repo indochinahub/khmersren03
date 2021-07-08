@@ -70,6 +70,14 @@
                 <div class="card-info card-info_body">This is Body</div>
             </div>
 
+            <div class="card-warning">
+                <div class="card-warning card-warning_header">This is Headdrr</div>
+                <div class="card-warning card-warning_body">This is Body</div>
+                <div class="card-warning card-warning_body">This is Body</div>
+                <div class="card-warning card-warning_body">This is Body</div>
+            </div>
+
+
             <div class="card-danger">
                 <div class="card-danger card-danger_header">This is Headdrr</div>
                 <div class="card-danger card-danger_body">This is Body</div>
