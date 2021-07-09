@@ -29,6 +29,22 @@ class UserModel extends MyModel
 
     }
 
+    //return Object or false
+    public function get_user_by_id($user_id){
+
+        if( $user = $this->get_by_id( $user_id )){
+
+            if( $user->user_display_name ){
+                $user->displayname = $user->user_display_name;
+            }else{
+                $user->displayname = $user->user_username;    
+            }
+            return $user;
+        }else{
+            return false;
+        }
+    }
+
 
 
 }
