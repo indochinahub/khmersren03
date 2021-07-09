@@ -17,7 +17,7 @@
                     <a href="<?php echo base_url(["User","login"]);?>"><i class="fas fa-angle-double-right"></i> Login</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>
+                    <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> Logout</a>
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>

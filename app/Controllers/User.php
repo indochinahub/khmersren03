@@ -32,6 +32,9 @@ class User extends MyController
 		// Do the task
 		if($data["task"] === "form_blank"){
 
+			// Clear session
+			$this->session->remove('uid');			
+
 			$data["username"]  = "";
 
 			$data["page_title"] = 	"Login";
@@ -70,6 +73,13 @@ class User extends MyController
 			}
 			
 		}
+	}
+
+	public function logout(){
+
+		$this->session->remove('uid');
+		return redirect()->to(base_url(["User","login"]));		
+
 	}
 
 }
