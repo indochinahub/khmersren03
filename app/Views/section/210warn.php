@@ -7,9 +7,10 @@
 
     <div class="two_flex_column">
         <div>
+            <a href="<?php echo $btnLink_toGo;?>" class="btn btn-danger"><?php echo $btnText_toGo;?></a>
         </div>
         <div>
-            <a href="<?php echo $btnLink_toGo;?>" class="btn btn-sm btn-primary"><?php echo $btnText_toGo;?></a>
+            <a href="<?php echo $btnLink_toGo;?>" class="btn btn-primary"><?php echo $btnText_toGo;?></a>
         </div>
     </div>
 
