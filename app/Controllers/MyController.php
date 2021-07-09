@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\UtilModel;
+use App\Models\UserModel;
 
 class MyController extends BaseController {
 
@@ -20,7 +21,7 @@ class MyController extends BaseController {
  
 		$this->uid = 0;
 		if( $uid = $this->session->get("uid") ){
-			$this->uid = $uid;
+			$this->uid = (int) $uid;
 		}
 
 	}    
@@ -32,6 +33,7 @@ class MyController extends BaseController {
 
 		// Controller Name
 		$data["controller_name"] = $this->_get_controller_name();
+		$data["user"] = $this->_get_loggedin_user();
 
 		// Page Title 
 		if( isset($data["page_title"]) && trim($data["page_title"])){
@@ -111,6 +113,16 @@ class MyController extends BaseController {
 			die("There is not enought data to show Confirm;");
 
         }
+	}
+
+	public function _get_loggedin_user(){
+		$user_model = new UserModel();
+
+		if( $this->uid === 0  ){
+			return false;
+		}else{
+			return $user_model->get_by_id($this->uid);
+		}
 	}
 
 
