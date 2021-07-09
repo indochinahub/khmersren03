@@ -121,7 +121,7 @@ class MyController extends BaseController {
 		if( $this->uid === 0  ){
 			return false;
 		}else{
-			return $user_model->get_by_id($this->uid);
+			return $user_model->get_user_by_id($this->uid);
 		}
 	}
 
