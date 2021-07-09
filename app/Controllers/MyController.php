@@ -44,12 +44,12 @@ class MyController extends BaseController {
 		echo view('section/040navbar',$data);
 		echo view('section/050breadcrumb',$data);
 
-		if( $filename === "warn"){
+		if( $filename === "warn" ){
 			echo view( 'section/210warn', $data);
-
+		}elseif( $filename === "confirm" ){
+			echo view( 'section/220confirm', $data);
 		}else{
 			echo view( $this->_get_controller_name().'/'.$filename,$data);
-
 		}
 
 		echo view('section/070noticebox',$data);
@@ -65,24 +65,42 @@ class MyController extends BaseController {
 	}
 
 	public function _warn($data){
-
-
 		if  (   isset($data["page_title"]) && isset($data["what_happened"]) && isset($data["what_todo"])
                 &&isset($data["btnText_toGo"]) && isset($data["btnLink_toGo"])
             ){
-            
 			$this->_view("warn",$data);
             
         }else{
             
             die("There is not enought data to show Error;");
         }  
-
-
 	}
 
-	public function _needConfirm(){
+	public function _confirm($data){
 
+        if  (   isset($data["page_title"]) && isset($data["what_happened"]) && isset($data["what_todo"])
+                &&isset($data["btnText_toConfirm"]) && isset($data["btnLink_toConfirm"])
+                &&isset($data["btnText_toCancle"]) && isset($data["btnLink_toCancle"])
+            ){
+
+				/*
+				$data    =  [   "page_title"=>"ยืนยันการชุดบัตรคำ",
+								"what_happened"=>"นี่คือสิ่งที่คุณได้ดำเนินการ ",
+								"what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+								"btnText_toConfirm" => "ยืนยัน",
+								"btnLink_toConfirm" => base_url(),
+								"btnText_toCancle" => "ยกเลิก",
+								"btnLink_toCancle" => base_url(),
+							];  		
+				*/
+
+				$this->_view("confirm",$data);
+            
+        }else{
+
+			die("There is not enought data to show Confirm;");
+
+        }
 	}
 
 

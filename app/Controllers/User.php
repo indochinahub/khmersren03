@@ -72,11 +72,5 @@ class User extends MyController
 		}
 	}
 
-	
-
-	public function test(){
-
-	}
-
 }
 
