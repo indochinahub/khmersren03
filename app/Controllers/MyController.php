@@ -10,15 +10,25 @@ class MyController extends BaseController {
 	var $validation;
 	var $request;
 	var $session;
+	var $uid; 
 
   	public function __construct(){
+
 		$this->util_model = new UtilModel;
 		$this->request = service('request');
 		$this->session = service('session');
-		
+ 
+		$this->uid = 0;
+		if( $uid = $this->session->get("uid") ){
+			$this->uid = $uid;
+		}
+
 	}    
 
 	public function _view($filename,$data){
+
+		// Pass some vars to View
+			$data["uid"] = $this->uid;
 
 		// Controller Name
 		$data["controller_name"] = $this->_get_controller_name();

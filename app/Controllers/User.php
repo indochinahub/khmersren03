@@ -54,7 +54,7 @@ class User extends MyController
 
 			if( $user = $user_model->get_validated_user($username, $password)){
 
-				$this->session->set('id', $user->user_id);
+				$this->session->set('uid', $user->user_id);
 
 				return redirect()->to(base_url());
 
