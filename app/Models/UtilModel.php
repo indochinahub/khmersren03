@@ -148,6 +148,24 @@ class UtilModel
     }
 
 
+    // Return text
+    function add_leading_zero_to_number( $text, $num_required_digit){
+
+        $text = strval($text);
+        $zero_string_to_add = (int)$num_required_digit - strlen($text) ;
+    
+        if($zero_string_to_add <= 0){ return $text;}
+    
+        for($i = 1; $i <= $zero_string_to_add;$i++ ){
+            $text = "0".$text;
+        }
+    
+        return $text; 
+
+
+    }
+
+
 
 
 

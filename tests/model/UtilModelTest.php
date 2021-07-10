@@ -281,8 +281,43 @@ class UtilModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);
 
+    }
+
+    // Return text
+    public function test_add_leading_zero_to_number(){
+
+        $result1 =  $this->util_model->add_leading_zero_to_number( 
+                                $text = 200, 
+                                $num_required_digit = 1);
+        $result2 =  $this->util_model->add_leading_zero_to_number( 
+                                $text = 200,
+                                $num_required_digit = 3);
+        $result3 =  $this->util_model->add_leading_zero_to_number(
+                                $text = 200, 
+                                $num_required_digit = 4);
+        $result4 =  $this->util_model->add_leading_zero_to_number( 
+                                $text = 200, 
+                                $num_required_digit = 6);
+
+        $result         =   [
+                                $result1,
+                                $result2,
+                                $result3,
+                                $result4,
+                            ];
+
+        $expectedResult =   [   
+                                "200",
+                                "200",
+                                "0200",
+                                "000200",
+                            ];
+
+        $this->assertSame($result,$expectedResult);
 
     }
+    
+
 
 
 
