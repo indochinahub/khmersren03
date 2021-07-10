@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\UtilModel;
 namespace App\Models;
 
 class UtilModel
