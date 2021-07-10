@@ -65,6 +65,25 @@ class UserModelTest extends CIUnitTestCase
 
         $this->assertSame($expectedResult, $result);                               
     }
+
+    //return URL 
+    public function test_get_avarta_url(){
+
+        $result1 = $this->user_model->get_avarta_url($user_id = 6);
+        $result2 = $this->user_model->get_avarta_url($user_id = 0);
+
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
+
+        $expectedResult =   [ 
+                                "http://127.0.0.1/khmersren03/asset/avatar/000061.jpg",
+                                "http://127.0.0.1/khmersren03/asset/avatar/anonymous.jpg"
+                            ];
+
+        $this->assertSame($expectedResult, $result);                                       
+    }
     
     
 }
