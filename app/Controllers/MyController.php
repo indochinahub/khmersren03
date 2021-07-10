@@ -8,6 +8,8 @@ use App\Models\UserModel;
 class MyController extends BaseController {
 
 	var $util_model;
+	var $user_model;
+
 	var $validation;
 	var $request;
 	var $session;
@@ -16,6 +18,8 @@ class MyController extends BaseController {
   	public function __construct(){
 
 		$this->util_model = new UtilModel;
+		$this->user_model = new UserModel;
+
 		$this->request = service('request');
 		$this->session = service('session');
  
@@ -33,7 +37,16 @@ class MyController extends BaseController {
 
 		// Controller Name
 		$data["controller_name"] = $this->_get_controller_name();
-		$data["user"] = $this->_get_loggedin_user();
+
+		// Pass user object
+		if( $data["user"] = $this->_get_loggedin_user() ){
+			$data["avatar_url"] = $this->user_model->get_avarta_url($data["user"]->user_id);
+
+		}else{
+			$data["avatar_url"] = $this->user_model->get_avarta_url(0);
+
+		}
+		
 
 		// Page Title 
 		if( isset($data["page_title"]) && trim($data["page_title"])){
