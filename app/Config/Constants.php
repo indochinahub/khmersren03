@@ -1,5 +1,9 @@
 <?php
 
+// My Constant
+define("ASSETPATH", ROOTPATH."asset/");
+
+
 /*
  | --------------------------------------------------------------------
  | App Namespace
