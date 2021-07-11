@@ -14,10 +14,9 @@ class FileModelTest extends CIUnitTestCase
     public function setUp(): void
     {
         $this->file_model = new FileModel;
-        $this->assetPath = "f:/xampp/htdocs/khmersren03/asset";
 
-        if(file_exists($this->assetPath."/test/001create_file/test.txt")){
-            unlink( $this->assetPath."/test/001create_file/test.txt" );
+        if(file_exists(ASSETPATH."/test/001create_file/test.txt")){
+            unlink(ASSETPATH."/test/001create_file/test.txt" );
         }
 
 
@@ -26,7 +25,7 @@ class FileModelTest extends CIUnitTestCase
     //create_file($fullpathname)
     public function test_create_file(){
 
-        $result1 = $this->file_model->create_file( $this->assetPath."/test/001create_file/test.txt" );
+        $result1 = $this->file_model->create_file( ASSETPATH."/test/001create_file/test.txt" );
 
         $result             =   [ $result1 ];
         $expectedResult     =   [ true ];
