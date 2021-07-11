@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
-
 class UserModel extends MyModel
 {
 
@@ -65,7 +63,6 @@ class UserModel extends MyModel
         }
 
     }
-
 
 
 }
