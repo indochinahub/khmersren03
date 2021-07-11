@@ -33,7 +33,10 @@ class User extends MyController
 		if($data["task"] === "form_blank"){
 
 			// Clear session
-			$this->session->remove('uid');			
+			$this->session->remove('uid');
+			if( isset($_COOKIE["uid"])){
+				setcookie('uid', $_COOKIE["uid"], time() - (86400 * 7), "/");
+			}			
 
 			$data["username"]  = "";
 
@@ -78,6 +81,9 @@ class User extends MyController
 	public function logout(){
 
 		$this->session->remove('uid');
+		if( isset($_COOKIE["uid"])){
+            setcookie('uid', $_COOKIE["uid"], time() - (86400 * 7), "/");
+        }
 		return redirect()->to(base_url(["User","login"]));		
 
 	}
