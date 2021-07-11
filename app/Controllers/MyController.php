@@ -23,9 +23,18 @@ class MyController extends BaseController {
 		$this->request = service('request');
 		$this->session = service('session');
  
-		$this->uid = 0;
+		
+		// Set User Id
 		if( $uid = $this->session->get("uid") ){
 			$this->uid = (int) $uid;
+			setcookie('uid', $this->uid, time() + (86400 * 7), "/");
+
+		}elseif( isset($_COOKIE["uid"]) ){
+			$this->uid = (int) $_COOKIE["uid"];
+			$this->session->set('uid', $this->uid);
+
+		}else{
+			$this->uid = 0;
 		}
 
 	}    
