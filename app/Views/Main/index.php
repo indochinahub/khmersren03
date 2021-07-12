@@ -77,10 +77,88 @@
                 <div class="card-warning card-warning_body">This is Body</div>
             </div>
 
-
             <div class="card-danger">
                 <div class="card-danger card-danger_header">This is Headdrr</div>
                 <div class="card-danger card-danger_body">This is Body</div>
                 <div class="card-danger card-danger_body">This is Body</div>
                 <div class="card-danger card-danger_body">This is Body</div>
             </div>            
+
+            <div class="card-info">
+                <div class="card-info card-info_header">ภาษาเขมร</div>
+                <div class="card-info card-info_body">
+
+                    <div class="icon_row">
+                        
+                        <div class="course_icon">
+                            <div class="course_icon-thumbnail">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/2">
+                                    <img src="http://127.0.0.1/khmersren02/assets/course/course_thumbnail.jpg" width="100%">
+                                </a>
+                            </div>
+                            <div class="course_icon-title" style="">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/2">
+                                    <strong>KH103T</strong><br>
+                                    เรียนภาษาเขมรจากโฆษณา                    </a>                        
+                            </div>		
+                        </div>		
+                        
+                        <div class="course_icon">
+                            <div class="course_icon-thumbnail">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/3">
+                                    <img src="http://127.0.0.1/khmersren02/assets/course/course_thumbnail.jpg" width="100%">
+                                </a>
+                            </div>
+                            <div class="course_icon-title" style="">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/3">
+                                    <strong>KH104T</strong><br>
+                                    เรียนภาษาเขมรจากเพลง </a>                        
+                            </div>		
+                        </div>		
+                        
+        
+        
+
+        
+                        
+
+                    </div>
+                    <div class="icon_row">
+                        
+                        <div class="course_icon">
+                            <div class="course_icon-thumbnail">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/2">
+                                    <img src="http://127.0.0.1/khmersren02/assets/course/course_thumbnail.jpg" width="100%">
+                                </a>
+                            </div>
+                            <div class="course_icon-title" style="">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/2">
+                                    <strong>KH103T</strong><br>
+                                    เรียนภาษาเขมรจากโฆษณา                    </a>                        
+                            </div>		
+                        </div>		
+                        
+                        <div class="course_icon">
+                            <div class="course_icon-thumbnail">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/3">
+                                    <img src="http://127.0.0.1/khmersren02/assets/course/course_thumbnail.jpg" width="100%">
+                                </a>
+                            </div>
+                            <div class="course_icon-title" style="">
+                                <a href="http://127.0.0.1/khmersren02/Course/show/3">
+                                    <strong>KH104T</strong><br>
+                                    เรียนภาษาเขมรจากเพลง </a>                        
+                            </div>		
+                        </div>		
+                        
+        
+        
+
+        
+                        
+
+                    </div>
+
+
+                </div>
+            </div>

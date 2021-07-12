@@ -283,6 +283,32 @@ a.article:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+/* ---------------------------------------------------
+    Course Icon
+----------------------------------------------------- */
+
+.icon_row {
+    padding:5px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.course_icon {
+    width:49%;
+	background-color:white;
+	border-style: solid;
+	border-color:black;
+	margin: 0 0 10px 0;
+
+}
+
+.course_icon .course_icon-title {
+	background-color:black;
+	padding:5px;
+	color:white
+}
 
 /* ---------------------------------------------------
     Form Error
@@ -297,5 +323,3 @@ a.article:hover {
     display: flex;
     justify-content: space-between;
 }
-
-
