@@ -316,6 +316,40 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
 
     }
+
+    //return array of pair values
+    function test_separate_array_to_pair_value(){
+
+
+        $origin_arr = [];
+        $result1 = $this->util_model->separate_array_to_pair_value($origin_arr);
+
+        $origin_arr = [ "one", "two", "three", "four"];
+        $result2 = $this->util_model->separate_array_to_pair_value($origin_arr);        
+
+        $origin_arr = [ "one", "two", "three"];
+        $result3 = $this->util_model->separate_array_to_pair_value($origin_arr);        
+
+        echo "\n";
+        var_dump($result2);
+        echo "\n";
+
+
+        $result         =   [
+                                $result1,
+                                $result2,
+                                $result3,
+                            ];
+
+        $expectedResult =   [   
+                                [],
+                                [ ["one","two"], ["three","four"] ],
+                                [ ["one","two"], ["three", false] ],
+                            ];
+
+        $this->assertSame($result,$expectedResult);
+
+    }
     
 
 

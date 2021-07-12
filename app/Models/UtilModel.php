@@ -147,7 +147,6 @@ class UtilModel
         return $sorted_objects;
     }
 
-
     // Return text
     function add_leading_zero_to_number( $text, $num_required_digit){
 
@@ -162,6 +161,26 @@ class UtilModel
     
         return $text; 
 
+
+    }
+
+    //return array of pair values
+    function separate_array_to_pair_value($origin_arr){
+
+        if( count($origin_arr) === 0){ return [];}
+
+        $new_arr = [];
+        do {
+            if( count($origin_arr) > 1  ){  
+                array_push( $new_arr , [ array_shift($origin_arr),  array_shift($origin_arr)] );
+            }else{
+                array_push( $new_arr , [ array_shift($origin_arr),  false] );
+
+            }
+            
+        } while (count($origin_arr) > 0);
+
+        return $new_arr;
 
     }
 
