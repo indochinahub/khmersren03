@@ -12,7 +12,7 @@
             </div>
 
             <ul class="list-unstyled components">
-                <div class="sidebar_section">section 1</div>
+                <div class="sidebar_section">เมนูส่วนตัว</div>
                 <li>                
                     <?php if( $user === false ){ ?>
 
@@ -34,15 +34,9 @@
                 <li>
                     <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>
                 </li>
-                <div class="sidebar_section">section 1</div>
+                <div class="sidebar_section">เมนูของเว็บ</div>
                 <li>
-                    <a href="#">Contact</a>
-                </li>
-                <li  class="active">
-                    <a href="#">Contact</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
+                    <a href="<?php echo base_url(["Course","showAll"]);?>"><i class="fas fa-angle-double-right"></i> วิชาทั้งหมด</a>
                 </li>
             </ul>
         </nav>
