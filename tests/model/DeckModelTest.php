@@ -35,21 +35,26 @@ class DeckModelTest extends CIUnitTestCase
     }
 
     //get_by_cardgroup_id($cardgroup_id){
-
-    /*
     public function test_get_by_course_id(){
-        $this->deck_model->get_by_course_id($course_id = 1);
+
+        $result1 = $this->deck_model->get_by_course_id($course_id = 1);
+        $result2 = $this->deck_model->get_by_course_id($course_id = 0);
 
         $result             =   [ 
-                                    0
+                                    count($result1),
+                                    $result1[0]->deck_name,
+                                    $result2
+
                                 ];
         $expectedResult     =   [ 
-                                    1
+                                    3,
+                                    "Practice 01",
+                                    []
                                 ];
 
         $this->assertSame($result,$expectedResult);        
     }
-    */
+
     
 
     
