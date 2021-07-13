@@ -293,11 +293,12 @@ a.article:hover {
     flex-direction:row;
     flex-wrap:wrap;
     justify-content:space-between;
+    
 }
 
 .course_icon {
     width:49%;
-	background-color:white;
+	background-color:black;
 	border-style: solid;
 	border-color:black;
 	margin: 0 0 10px 0;

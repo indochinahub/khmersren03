@@ -10,8 +10,8 @@
                         </a>
                     </div>
                     <div style="padding:10px 0 0 20px;">
-                            <h2>Khmersren.com</h2>
-                            <h4>เทคโนโลยีดิจิตัลเพื่อการเรียนรู้</h4>
+                            <h2>Khmersren</h2>
+                            <h4>เทคโนโลยีเพื่อการเรียนรู้</h4>
                     </div>
 
                 <?php }else{ ?>
