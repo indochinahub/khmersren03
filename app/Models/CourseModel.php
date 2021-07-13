@@ -14,7 +14,7 @@ class CourseModel extends MyModel
     // return URL text
     public function get_icon_url($course_obj){
 
-        if(file_exists(ASSETPATH."/course/T001/course_thumbnail.jpg")){
+        if(file_exists(ASSETPATH."/course/".$course_obj->course_code."/course_thumbnail.jpg")){
             return base_url(["asset","course",$course_obj->course_code,"course_thumbnail.jpg"]);    
 
         }else{

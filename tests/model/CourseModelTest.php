@@ -39,9 +39,5 @@ class CourseModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);
     }
-        
-        
-
-    
     
 }
