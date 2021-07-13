@@ -7,7 +7,6 @@ use CodeIgniter\Test\CIUnitTestCase;
 class FileModelTest extends CIUnitTestCase
 {
 
-    var $assetPath;
     var $file_model;
 
 
@@ -33,7 +32,5 @@ class FileModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
 
     }
-
-
     
 }

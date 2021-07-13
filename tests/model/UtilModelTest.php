@@ -330,10 +330,6 @@ class UtilModelTest extends CIUnitTestCase
         $origin_arr = [ "one", "two", "three"];
         $result3 = $this->util_model->separate_array_to_pair_value($origin_arr);        
 
-        echo "\n";
-        var_dump($result2);
-        echo "\n";
-
 
         $result         =   [
                                 $result1,
