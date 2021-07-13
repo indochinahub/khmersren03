@@ -110,6 +110,17 @@ class MyController extends BaseController {
         }  
 	}
 
+	public function _needLogin(){
+		$data	= [     "page_title"=>"กรุณาเข้าสู่ระบบ",
+						"what_happened"=>"หน้านี้สำหรับสมาชิกเท่านั้น",
+						"what_todo" => "กรุณาเข้าสู่ระบบ โดยคลิ๊กที่ปุ่ม <bold>Go</bold>",
+						"btnText_toGo" => "Go",
+						"btnLink_toGo" => base_url(["User", "login"])
+				];
+		$this->_warn($data);
+	}
+
+
 	public function _confirm($data){
 
         if  (   isset($data["page_title"]) && isset($data["what_happened"]) && isset($data["what_todo"])
