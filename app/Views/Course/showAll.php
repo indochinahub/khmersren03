@@ -1,0 +1,59 @@
+<div class="card-info">
+
+    <?php foreach( $arr_coursetype as $coursetype){ ?>
+        <div class="card-info card-info_header">
+            <?php echo $coursetype->coursetype_name;?>
+        </div>
+
+        <div class="card-info card-info_body">
+
+            <?php foreach( $coursetype->arr_course_as_row as $row ){ ?>
+
+                <div class="icon_row">
+                    <div class="course_icon">
+                        <div class="course_icon-thumbnail">
+                            <a href="<?php echo base_Url(["Course","show", $row[0]->course_id]);?>">
+                                <img src="<?php echo $row[0]->icon_url;?>" width="100%">
+                            </a>
+                        </div>
+                        <div class="course_icon-title" style="">
+                            <a href="<?php echo base_Url(["Course","show", $row[0]->course_id]);?>">
+                                <strong><?php echo $row[0]->course_code;?></strong><br>
+                                <?php echo $row[0]->course_name;?>
+                            </a>
+                        </div>		
+                    </div>		
+                    
+                    <?php if( $row[1] !== false ){ ?>
+                        <div class="course_icon">
+                            <div class="course_icon-thumbnail">
+                                <a href="<?php echo base_Url(["Course","show", $row[1]->course_id]);?>">
+                                    <img src="<?php echo $row[1]->icon_url;?>" width="100%">
+                                </a>
+                            </div>
+                            <div class="course_icon-title" style="">
+                                <a href="<?php echo base_Url(["Course","show", $row[1]->course_id]);?>">
+                                    <strong><?php echo $row[1]->course_code;?></strong><br>
+                                    <?php echo $row[1]->course_name;?>
+                                </a>
+                            </div>		
+                        </div>		
+                    <?php }else{ ?>
+                        <div>
+                        </div>		                        
+                        
+                    <?php } ?>
+
+                </div>
+
+            <?php } ?>                
+                
+
+            
+            
+        </div>
+    <?php } ?>
+
+
+    
+</div>
