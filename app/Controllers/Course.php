@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\CourseTypeModel;
 use App\Models\CourseModel;
 use App\Models\UtilModel;
+use App\Models\DeckModel;
+
 class Course extends MyController
 {
 
@@ -48,8 +50,6 @@ class Course extends MyController
                 array_push($data["arr_coursetype"],$coursetype);
             }
     
-            
-
         }
 
 
@@ -66,7 +66,24 @@ class Course extends MyController
 
 
     public function show($course_id){
-        echo "Course id : $course_id";
+
+        $course_model = new CourseModel;
+        $deck_model = new DeckModel;
+
+        if( $data["loggedin_user"] = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        $data["course"] = $course_model->get_by_id($course_id);
+        $data["arr_deck"] = $deck_model->get_by_course_id($course_id);
+
+        
+        $data["page_title"] = 	"วิชา ".$data["course"]->course_code." ".$data["course"]->course_name;
+        $data["page_link"] 	= 	[ "All Courses", base_url(["Course","showAll"])];	        
+        $this->_view("show",$data);
+        
 
     }
 
