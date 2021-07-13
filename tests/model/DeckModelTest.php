@@ -47,7 +47,7 @@ class DeckModelTest extends CIUnitTestCase
 
                                 ];
         $expectedResult     =   [ 
-                                    3,
+                                    5,
                                     "Practice 01",
                                     []
                                 ];
