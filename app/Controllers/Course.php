@@ -84,6 +84,7 @@ class Course extends MyController
         foreach( $arr_deck as $deck){
 
             $deck->num_all_card = count($card_model->get_by_deck_id($deck->deck_id));
+            $deck->num_user_card = count($card_model->get_card_id_by_deck_id_user_id($deck->deck_id, $data["user"]->user_id));
             array_push( $data["arr_deck"], $deck);
         }
 
