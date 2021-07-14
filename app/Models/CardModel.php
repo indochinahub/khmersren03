@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\UtilModel;
+use App\Models\DeckModel;
 
 class CardModel extends MyModel
 {
@@ -26,6 +27,20 @@ class CardModel extends MyModel
                         $operator = "==" );
 
         return $arr_card;
+    }
+
+    // return array Of object Or blank array
+    public function get_by_deck_id($deck_id){
+        $deck_model = new DeckModel();
+
+        if( $deck = $deck_model->get_by_id($deck_id) ){
+            $arr_card = $this->get_by_cardgroup_id($deck->id_cardgroup);
+            return $arr_card;
+
+        }else{
+            return [];
+        }
+
 
     }
 

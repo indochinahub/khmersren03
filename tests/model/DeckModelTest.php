@@ -4,6 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Test\CIUnitTestCase;
 
+
 class DeckModelTest extends CIUnitTestCase
 {
     var $deck_model;
@@ -52,11 +53,7 @@ class DeckModelTest extends CIUnitTestCase
                                     []
                                 ];
 
-        $this->assertSame($result,$expectedResult);        
+        $this->assertSame($result,$expectedResult);
     }
-
-    
-
-    
     
 }
