@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\UtilModel;
 use App\Models\DeckModel;
+use App\Models\PracticeModel;
 
 class CardModel extends MyModel
 {
@@ -40,8 +41,17 @@ class CardModel extends MyModel
         }else{
             return [];
         }
+    }
 
+    // return arrary 
+    public function get_card_id_by_deck_id_user_id($deck_id, $user_id){
+        $practice_model = new PracticeModel;
+        $util_model = new UtilModel();
 
+        $arr_practice = $practice_model->get_by_deck_id_user_id($deck_id, $user_id);
+        $arr_card_id = $util_model->get_property_value_Of_many_objects_as_array($arr_practice,"id_card");
+
+        return $arr_card_id;
     }
 
 }

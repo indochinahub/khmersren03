@@ -53,6 +53,24 @@ class CardModelTest extends CIUnitTestCase
 
     }    
     
+    // return arrary 
+    public function test_get_card_id_by_deck_id_user_id(){
+
+        $result1 = $this->card_model->get_card_id_by_deck_id_user_id($deck_id = 1, $user_id = 1);
+        $result2 = $this->card_model->get_card_id_by_deck_id_user_id($deck_id = 0, $user_id = 0);
+
+        $result             =   [ 
+                                    count($result1),
+                                    $result2,
+                                ];
+
+        $expectedResult     =   [ 
+                                    12,
+                                    [],
+                                ];
+
+        $this->assertSame($result,$expectedResult);            
+    }    
 
     
 }
