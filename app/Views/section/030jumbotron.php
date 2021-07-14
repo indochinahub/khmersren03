@@ -2,7 +2,7 @@
         <div id="content">
             <div style="display: flex;padding:10px;background-color:#e6a510;">
 
-                <?php if( $user === false){ ?>
+                <?php if( $loggedin_user === false){ ?>
 
                     <div>
                         <a href="<?php echo base_url();?>">
@@ -22,7 +22,7 @@
                         </a>
                     </div>
                     <div style="padding:10px 0 0 20px;">
-                            <h2><?php echo $user->displayname;?></h2>
+                            <h2><?php echo $loggedin_user->displayname;?></h2>
                             <h4>xxxxxxx</h4>
                     </div>
 

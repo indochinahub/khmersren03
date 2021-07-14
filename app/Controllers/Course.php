@@ -70,11 +70,12 @@ class Course extends MyController
         $course_model = new CourseModel;
         $deck_model = new DeckModel;
 
-        if( $data["loggedin_user"] = $this->_get_loggedin_user() ){
+        if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
             return;
         }
+
 
         $data["course"] = $course_model->get_by_id($course_id);
         $data["arr_deck"] = $deck_model->get_by_course_id($course_id);

@@ -48,8 +48,8 @@ class MyController extends BaseController {
 		$data["controller_name"] = $this->_get_controller_name();
 
 		// Pass user object
-		if( $data["user"] = $this->_get_loggedin_user() ){
-			$data["avatar_url"] = $this->user_model->get_avarta_url($data["user"]->user_id);
+		if( $data["loggedin_user"] = $this->_get_loggedin_user() ){
+			$data["avatar_url"] = $this->user_model->get_avarta_url($data["loggedin_user"]->user_id);
 
 		}else{
 			$data["avatar_url"] = $this->user_model->get_avarta_url(0);

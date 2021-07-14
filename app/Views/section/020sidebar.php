@@ -14,7 +14,7 @@
             <ul class="list-unstyled components">
                 <div class="sidebar_section">เมนูส่วนตัว</div>
                 <li>                
-                    <?php if( $user === false ){ ?>
+                    <?php if( $loggedin_user === false ){ ?>
 
                             <a href="<?php echo base_url(["User","login"]);?>"><i class="fas fa-angle-double-right"></i> Login</a>
                         
