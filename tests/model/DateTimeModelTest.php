@@ -17,10 +17,10 @@ class DateTimeModelTest extends CIUnitTestCase
     // return Int
     public function test_get_unix_timestamp(){
 
-        $result1 = $this->datetime_model->get_unix_timestamp($next_day = 0);
-        $result2 = $this->datetime_model->get_unix_timestamp($next_day = 1);
-        $result3 = $this->datetime_model->get_unix_timestamp($next_day = -1);
-        $result4 = $this->datetime_model->get_unix_timestamp();
+        $result1 = $this->datetime_model->get_unix_timestamp(time(), $next_day = 0);
+        $result2 = $this->datetime_model->get_unix_timestamp(time(), $next_day = 1);
+        $result3 = $this->datetime_model->get_unix_timestamp(time(), $next_day = -1);
+        $result4 = $this->datetime_model->get_unix_timestamp(time());
 
         $result             =   [ 
                                     $result1 > 0,
