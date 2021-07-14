@@ -39,6 +39,23 @@ class DateTimeModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);   
 
     }
+
+    // return sql_timestamp
+    public function test_unix_timestamp_to_sql_timestamp(){
+
+        // unix_timestamp : 1626262031 :: "2021-07-14 18:27:11"
+        $result1 = $this->datetime_model->unix_timestamp_to_sql_timestamp(1626262031);
+        
+        $result             =   [ 
+                                    $result1,
+                                ];
+
+        $expectedResult     =   [ 
+                                    "2021-07-14 18:27:11",
+                                ];
+
+        $this->assertSame($result,$expectedResult);   
+    }
     
 
     
