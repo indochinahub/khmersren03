@@ -56,7 +56,47 @@ class DateTimeModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);   
     }
-    
+
+    // return date_part text
+    function test_get_date_part_from_sql_timestamp(){
+
+        $result1 = $this->datetime_model->get_date_part_from_sql_timestamp(
+                                $sql_timestamp = "2021-01-24 14:15:01"
+                                );
+
+        $result             =   [ 
+                                    $result1,
+                                ];
+
+        $expectedResult     =   [ 
+                                    "2021-01-24",
+                                ];
+
+        $this->assertSame($result,$expectedResult);                   
+    }
+
+
+
+
+
+
+    // return int
+    public function get_unix_timestamp_at_midnight(){
+        // unix_timestamp : 1626262031 :: "2021-07-14 18:27:11"
+        $result1 = $this->datetime_model->get_unix_timestamp_at_midnight(
+                                    $unix_timestamp = 1626262031
+                                );
+        
+        $result             =   [ 
+                                    0,
+                                ];
+
+        $expectedResult     =   [ 
+                                    1,
+                                    ];
+
+        $this->assertSame($result,$expectedResult);           
+    }
 
     
 }
