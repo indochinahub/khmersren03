@@ -6,7 +6,7 @@ use App\Models\CourseTypeModel;
 use App\Models\CourseModel;
 use App\Models\UtilModel;
 use App\Models\DeckModel;
-
+use App\Models\CardModel;
 class Course extends MyController
 {
 
@@ -69,6 +69,7 @@ class Course extends MyController
 
         $course_model = new CourseModel;
         $deck_model = new DeckModel;
+        $card_model = new CardModel;
 
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
@@ -76,9 +77,15 @@ class Course extends MyController
             return;
         }
 
-
         $data["course"] = $course_model->get_by_id($course_id);
-        $data["arr_deck"] = $deck_model->get_by_course_id($course_id);
+        $arr_deck = $deck_model->get_by_course_id($course_id);
+
+        $data["arr_deck"] = [];
+        foreach( $arr_deck as $deck){
+
+            $deck->num_all_card = count($card_model->get_by_deck_id($deck->deck_id));
+            array_push( $data["arr_deck"], $deck);
+        }
 
         
         $data["page_title"] = 	"วิชา ".$data["course"]->course_code." ".$data["course"]->course_name;

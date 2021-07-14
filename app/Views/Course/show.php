@@ -20,7 +20,8 @@
         <div class="card-info card-info_body">
             <div style="display:flex;justify-content:space-between;">
                 <div>ชุดบัตรคำ ::<strong><?php echo $course->course_code."-".$deck->deck_name;?></strong><br>
-                    จำนวนบัตรคำ :: xxx/yyy<br>
+
+                    จำนวนบัตรคำ :: <?php echo "xxx/".$deck->num_all_card;?><br>
                     บัตรคำรอทบทวนวันนี้/พรุ่งนี้ :: bbb/ccc<br>
                     ระยะเวลาเฉลี่ย :: iii<br>
                 </div>
