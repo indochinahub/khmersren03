@@ -14,14 +14,26 @@ class DateTimeModelTest extends CIUnitTestCase
         $this->datetime_model = new DateTimeModel();
     }
 
-    public function test_test(){
+    // return Int
+    public function test_get_unix_timestamp(){
+
+        $result1 = $this->datetime_model->get_unix_timestamp($next_day = 0);
+        $result2 = $this->datetime_model->get_unix_timestamp($next_day = 1);
+        $result3 = $this->datetime_model->get_unix_timestamp($next_day = -1);
+        $result4 = $this->datetime_model->get_unix_timestamp();
 
         $result             =   [ 
-                                    1
+                                    $result1 > 0,
+                                    ($result2 - $result1) === (60*60*24*1), 
+                                    ($result1 - $result3) === (60*60*24*1), 
+                                    $result4 > 0,
                                 ];
 
         $expectedResult     =   [ 
-                                    1
+                                    true,
+                                    true,
+                                    true,
+                                    true,
                                 ];
 
         $this->assertSame($result,$expectedResult);   
