@@ -51,17 +51,6 @@ class CardModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);        
 
-        /*
-        $result01 =  $this->card_model->get_by_deck_id($deck_id = 1);
-        $result02 =  $this->card_model->get_by_deck_id($deck_id = 0);
-
-        $result         =   [   count($result01) ,
-                                count($result02)
-                            ];
-        $expectedResult =   [   15,
-                                0
-                            ];
-        */
     }    
     
 
