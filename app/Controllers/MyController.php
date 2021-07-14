@@ -17,6 +17,8 @@ class MyController extends BaseController {
 
   	public function __construct(){
 
+		helper(["my"]);
+
 		$this->util_model = new UtilModel;
 		$this->user_model = new UserModel;
 
