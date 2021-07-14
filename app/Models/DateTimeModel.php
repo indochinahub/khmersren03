@@ -22,16 +22,12 @@ class DateTimeModel
             die( "text of sql_time_stamp should be 19 charactors");
         }
     }
-
-    /*
+    
     // return unix_timestamp
     public function sql_timestamp_to_unix_timestamp($sql_timestamp){
-        $dateTime = new \DateTime($sqltimestamp);
+        $dateTime = new \DateTime($sql_timestamp);
         return $dateTime->getTimestamp(); 
-
     }
-    */
-
 
     // return int
     public function get_unix_timestamp_at_midnight($unix_timestamp){
