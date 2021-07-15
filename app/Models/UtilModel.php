@@ -170,6 +170,20 @@ class UtilModel
         return $sorted_objects;
     }
 
+    // return int or zero
+    public function get_average_property_of_arr_object( $arr_object, $property){
+        if( $arr_object === []){ return [];}
+
+        $num_object = count($arr_object);
+        $sum = 0;
+        foreach( $arr_object as $object ){
+            $sum = $sum + ((float) $object->$property);
+        }
+
+        return $sum/$num_object;
+    }
+
+
     // Return text
     function add_leading_zero_to_number( $text, $num_required_digit){
 
@@ -206,6 +220,8 @@ class UtilModel
         return $new_arr;
 
     }
+
+
 
 
 
