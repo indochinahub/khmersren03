@@ -44,6 +44,25 @@ class CardModel extends MyModel
     }
 
 
+    // return id int
+    public function get_next_card_id_to_review($deck_id, $user_id, $unix_timestamp){
+        $practice_model = new PracticeModel;
+
+        $arr_practice = $practice_model->get_to_review(
+                                                            $deck_id, 
+                                                            $user_id, 
+                                                            $unix_timestamp, 
+                                                            $next_day = 0);
+        if( $arr_practice ){
+            return (int) $arr_practice[0]->id_card;
+        }else{
+            return false;
+        }
+
+
+    }
+
+
 }
 
 

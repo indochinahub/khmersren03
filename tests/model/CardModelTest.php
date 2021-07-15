@@ -51,6 +51,34 @@ class CardModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);        
 
-    }    
+    }
+
+    // return id int
+    public function test_get_next_card_id_to_review(){
+
+        // sqlTimeStamp = '2020-02-25 01:00:00'
+        $result1 = $this->card_model->get_next_card_id_to_review(
+                                    $deck_id = 1, 
+                                    $user_id = 1, 
+                                    $unix_timestamp= 1582567200
+                                );
+
+        $result2 = $this->card_model->get_next_card_id_to_review(
+                                    $deck_id = 0, 
+                                    $user_id = 1, 
+                                    $unix_timestamp= 1582567200
+                                );
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2,
+                                ];
+        $expectedResult     =   [ 
+                                    3,
+                                    false,
+                                ];
+        $this->assertSame($result,$expectedResult);    
+        
+    }
     
 }
