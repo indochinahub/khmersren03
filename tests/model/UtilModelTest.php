@@ -488,7 +488,7 @@ class UtilModelTest extends CIUnitTestCase
                 
     }
 
-    // return int or zero
+    // return float or zero
     public function test_get_average_property_of_arr_object(){
 
         $result1 = $this->util_model->get_average_property_of_arr_object(
@@ -535,7 +535,7 @@ class UtilModelTest extends CIUnitTestCase
                         $arr_object = $arr_student, 
                         $property = "age");
 
-    /********************************************* */                                                
+    /**********************************************/
 
         $result         =  [
                                 $result1,
@@ -550,10 +550,76 @@ class UtilModelTest extends CIUnitTestCase
                             ];
 
         $this->assertSame($result,$expectedResult);
-
-
-
     }
+
+    // return float or zero
+    public function test_get_sum_property_of_arr_object(){
+        
+        $result1 = $this->util_model->get_sum_property_of_arr_object( 
+                            $arr_object = [], 
+                            $property = "age"
+                        );
+    /**********************************************/        
+
+        $student1 = new \stdClass;
+        $student1->id = 1;
+        $student1->name = "Wittaya";
+        $student1->age = 30;
+
+        $student2 = new \stdClass;
+        $student2->id = 2;
+        $student2->age = 31;
+
+        $student3 = new \stdClass;
+        $student3->id = 3;
+        $student3->age = 32;
+
+        $arr_student = [ $student1, $student2, $student3];            
+        
+        $result2 = $this->util_model->get_sum_property_of_arr_object( 
+                                $arr_object = $arr_student, 
+                                $property = "age"
+                            );
+
+        /**********************************************/
+
+        $student1 = new \stdClass;
+        $student1->id = 1;
+        $student1->name = "Wittaya";
+        $student1->age = "";
+
+        $student2 = new \stdClass;
+        $student2->id = 2;
+        $student2->age = 31;
+
+        $student3 = new \stdClass;
+        $student3->id = 3;
+        $student3->age = 32;
+
+        $arr_student = [ $student1, $student2, $student3];            
+        
+        $result3 = $this->util_model->get_sum_property_of_arr_object( 
+                                $arr_object = $arr_student, 
+                                $property = "age"
+                            );
+
+        /**********************************************/        
+        $result         =   [
+                                $result1,
+                                (int) $result2,
+                                (int) $result3,
+                            ];
+
+        $expectedResult =   [   
+                                [],
+                                93,
+                                63
+
+                            ];
+
+        $this->assertSame($result,$expectedResult);                    
+    }
+    
 
 
 

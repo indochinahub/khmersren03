@@ -183,6 +183,19 @@ class UtilModel
         return $sum/$num_object;
     }
 
+    // return float or zero
+    public function get_sum_property_of_arr_object( $arr_object, $property){
+        if( $arr_object === []){ return [];}
+
+        $sum = 0;
+        foreach( $arr_object as $object ){
+            $sum = $sum + ((float) $object->$property);
+        }
+
+        return $sum;
+        
+    }
+
 
     // Return text
     function add_leading_zero_to_number( $text, $num_required_digit){
