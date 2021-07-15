@@ -144,6 +144,9 @@ class UtilModel
 
     // Return array of ojbect
     public function sort_array_of_object_by_the_property( $objects, $sorted_property, $order_by ="asc"){
+
+        if( $objects == []){ return [];}
+
         $i = 0 ;
         $object_key_and_object_assoc = [];
         $object_key_and_sorted_property_assoc = [];

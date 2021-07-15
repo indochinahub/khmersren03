@@ -269,14 +269,23 @@ class UtilModelTest extends CIUnitTestCase
                                 $order_by="asc"
                             );                            
 
+        $result04 =  $this->util_model->sort_array_of_object_by_the_property( 
+                                $objects = [],     
+                                $sorted_property = "", 
+                                $order_by=""
+                            );                            
+
+
         $result         =   [   [$result01[0]->id, $result01[1]->id,$result01[2]->id],
                                 [$result02[0]->id, $result02[1]->id,$result02[2]->id],
                                 [$result03[0]->id, $result03[1]->id,$result03[2]->id],
+                                $result04,
                             ];
 
         $expectedResult =   [   [11, 12, 13],
                                 [13, 12, 11],
                                 [13, 12, 11],
+                                [],
                             ];
 
         $this->assertSame($result,$expectedResult);
