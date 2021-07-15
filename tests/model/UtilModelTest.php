@@ -346,7 +346,139 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
 
     }
-    
+
+
+    // Return Array Of Object
+    public function test_get_object_from_arr_object_that_match_property_condition(){
+
+        $util_model = new UtilModel();
+
+        $student1 = new \stdClass;
+        $student1->id = 1;
+        $student1->name = "Wittaya";
+
+        $student2 = new \stdClass;
+        $student2->id = 2;
+        $student2->name = "Wicha";
+
+        $student3 = new \stdClass;
+        $student3->id = 3;
+        $student3->name = "Arun";         
+
+        $arr_student = [$student1, $student2, $student3];
+            
+        // "=="
+        $result01 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = [],
+                                    $property_name = "id",
+                                    $text_to_compare = 2,
+                                    $operator = "=="
+                                );
+
+        $result02 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "id",
+                                    $text_to_compare = 2,
+                                    $operator = "=="
+                                );
+
+        $result03 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "id",
+                                    $text_to_compare = "2", // It's OK to use 2 or "2"
+                                    $operator = "=="
+                                );
+
+        $result04 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "name",
+                                    $text_to_compare = "Arun",
+                                    $operator = "=="
+                                );
+
+        // ">"
+        $result05 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "id",
+                                    $text_to_compare = "2",
+                                    $operator = ">"
+                                );                                
+
+        // ">="
+        $result06 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "id",
+                                    $text_to_compare = "2",
+                                    $operator = ">="
+                                );                                                                
+        // "<"
+        $result07 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "id",
+                                    $text_to_compare = "2",
+                                    $operator = "<"
+                                );                                                                
+        // "<="
+        $result08 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "id",
+                                    $text_to_compare = "2",
+                                    $operator = "<="
+                                );                                                                
+        // "!="
+        $result09 = $util_model->get_object_from_arr_object_that_match_property_condition(
+                                    $origin_arr_object = $arr_student,
+                                    $property_name = "id",
+                                    $text_to_compare = "2",
+                                    $operator = "!="
+                                );                                                                
+
+        $result         =   [   // "=="
+                                $result01,
+                                $result02[0]->name,
+                                $result03[0]->name,
+                                $result04[0]->name,
+                                // ">"
+                                $result05[0]->name,
+                                // ">="
+                                $result06[0]->name,
+                                count($result06),
+                                // "<"
+                                $result07[0]->name,
+                                count($result07),
+                                // "<="
+                                $result08[0]->name,
+                                count($result08),
+                                // "!="
+                                $result09[0]->name,
+                                count($result09),
+
+                            ];
+
+        $expectedResult =   [               // "=="
+                                [],
+                                "Wicha",
+                                "Wicha",
+                                "Arun",
+                                            // ">"
+                                "Arun",
+                                            // ">="
+                                "Wicha",
+                                2,
+                                            // "<"
+                                "Wittaya",
+                                1,
+                                            // "<="
+                                "Wittaya",
+                                2,
+                                            // "!="
+                                "Wittaya",
+                                2,
+                            ];
+
+        $this->assertSame($result,$expectedResult);
+                
+    }
 
 
 

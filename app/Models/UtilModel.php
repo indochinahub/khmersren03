@@ -50,6 +50,26 @@ class UtilModel
                 if( $object->$property_name == $text_to_compare){   
                     array_push($arr_result_object,$object);
                 }
+            }elseif( $operator === ">" ){
+                if( $object->$property_name > $text_to_compare){   
+                    array_push($arr_result_object,$object);
+                }
+            }elseif( $operator === ">=" ){
+                if( $object->$property_name >= $text_to_compare){   
+                    array_push($arr_result_object,$object);
+                }
+            }elseif( $operator === "<" ){
+                if( $object->$property_name < $text_to_compare){   
+                    array_push($arr_result_object,$object);
+                }
+            }elseif( $operator === "<=" ){
+                if( $object->$property_name <= $text_to_compare){   
+                    array_push($arr_result_object,$object);
+                }
+            }elseif( $operator === "!=" ){
+                if( $object->$property_name != $text_to_compare){   
+                    array_push($arr_result_object,$object);
+                }
             }
         }
 

@@ -8,10 +8,6 @@ class Test extends MyController
 
 	public function index()	{
 		
-        
-		
-        echo get_name();
-
 	}
 
 }

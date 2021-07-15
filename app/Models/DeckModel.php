@@ -43,9 +43,6 @@ class DeckModel extends MyModel
         $arr_origin_deck = $deck_model->get_all_row();
         $arr_cardgroup = $cardgroup_model->get_by_course_id($course_id);
 
-        
-        
-
         $arr_deck = [];
         foreach( $arr_cardgroup as $cardgroup ){
             $arr_deck_of_cardgroup = $util_model->get_object_from_arr_object_that_match_property_condition(
