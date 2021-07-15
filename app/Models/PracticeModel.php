@@ -47,23 +47,7 @@ class PracticeModel extends MyModel
         $unix_timestamp = $datetime_model->get_unix_timestamp($unix_timestamp, $next_day);
         $sql_time_stamp = $datetime_model->unix_timestamp_to_sql_timestamp($unix_timestamp);
 
-        $arr_practice = $this->get_all_row();
-
-        // filter by user_id
-        $arr_practice = $util_model->get_object_from_arr_object_that_match_property_condition(
-                            $origin_arr_object = $arr_practice, 
-                            $property_name = "id_user", 
-                            $text_to_compare = $user_id, 
-                            $operator = "=="
-                        );
-
-        // filter by deck_id                        
-        $arr_practice = $util_model->get_object_from_arr_object_that_match_property_condition(
-                            $origin_arr_object = $arr_practice, 
-                            $property_name = "id_deck", 
-                            $text_to_compare = $deck_id, 
-                            $operator = "=="
-                        ); 
+        $arr_practice = $this->get_by_deck_id_user_id($deck_id, $user_id);
 
         // filter by date
         $arr_practice = $util_model->get_object_from_arr_object_that_match_property_condition(
@@ -80,25 +64,6 @@ class PracticeModel extends MyModel
                             $order_by ="desc");
 
         return $arr_practice;
-
-
-
-
-
-
-
-
-        /*
-
-        $sql_time_stamp     =   get_sqltimeStamp_of_the_time_for_next_num_day($unix_timestamp, $next_day);
-
-        $where_clause       =   " WHERE id_deck = ".$deck_id." AND id_user = ".$user_id;
-        $where_clause       .=  " AND practice_nextVisitDate < '$sql_time_stamp' " ;
-        $where_clause       .=  " ORDER BY practice_intervalDay DESC ";
-
-        return $this->_get($where_clause);
-        */
-
 
     }
 
