@@ -43,16 +43,6 @@ class CardModel extends MyModel
         }
     }
 
-    // return arrary 
-    public function get_card_id_by_deck_id_user_id($deck_id, $user_id){
-        $practice_model = new PracticeModel;
-        $util_model = new UtilModel();
-
-        $arr_practice = $practice_model->get_by_deck_id_user_id($deck_id, $user_id);
-        $arr_card_id = $util_model->get_property_value_Of_many_objects_as_array($arr_practice,"id_card");
-
-        return $arr_card_id;
-    }
 
 }
 

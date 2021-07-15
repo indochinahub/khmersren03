@@ -86,7 +86,12 @@ class Course extends MyController
         foreach( $arr_deck as $deck){
 
             $deck->num_all_card = count($card_model->get_by_deck_id($deck->deck_id));
-            $deck->num_user_card = count($card_model->get_card_id_by_deck_id_user_id($deck->deck_id, $data["user"]->user_id));
+
+
+            $deck->num_user_card = count($practice_model->get_by_deck_id_user_id(
+                                            $deck->deck_id, 
+                                            $data["user"]->user_id)
+                                        );
             $deck->card_to_review_today = count(    $practice_model->get_to_review(
                                                         $deck_id = $deck->deck_id, 
                                                         $user_id = $data["user"]->user_id, 
@@ -98,7 +103,10 @@ class Course extends MyController
                                                     $user_id = $data["user"]->user_id, 
                                                     $unix_timestamp = time(), 
                                                     $next_day = 1)
-                                                );                                                
+                                                );  
+            
+            
+                                                
             array_push( $data["arr_deck"], $deck);
         }
 
