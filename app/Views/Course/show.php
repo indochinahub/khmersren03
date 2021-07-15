@@ -34,8 +34,6 @@
         
     <?php } ?>
 
-
-
     <div class="card-info card-info_header">บทเรียน</div>
     <div class="card-info card-info_body">This is Body</div>
 

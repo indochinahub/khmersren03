@@ -39,29 +39,17 @@ class Course extends MyController
 
                 $arr_course_as_row = $this->util_model->separate_array_to_pair_value($arr_course_of_coursetype);
 
-                /*
-                echo "coursetype id :: $coursetype->coursetype_id <br>";
-                echo "num of course :: ".count($arr_course_of_coursetype)."<br>";
-                echo "<hr>";
-                var_dump($arr_course_as_row);
-                echo "<hr>";
-                */
-
                 $coursetype->arr_course_as_row = $arr_course_as_row;
                 array_push($data["arr_coursetype"],$coursetype);
             }
     
         }
 
-
         $data["page_title"] = 	"วิชาทั้งหมด";
         $data["page_link"] 	= 	[	"Home",
                                     base_url()
                                 ];	        
         $this->_view("showAll",$data);
-
-
-		
 
 	}
 
