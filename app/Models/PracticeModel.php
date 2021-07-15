@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\UtilModel;
 use App\Models\DeckModel;
+use App\Models\DateTimeModel;
 
 class PracticeModel extends MyModel
 {
@@ -35,6 +36,70 @@ class PracticeModel extends MyModel
                             $operator = "==" );
     
         return $arr_practice;
+    }
+
+    // return array of object
+    public function get_to_review($deck_id, $user_id, $unix_timestamp, $next_day){
+
+        $datetime_model = new DateTimeModel();
+        $util_model = new UtilModel();
+
+        $unix_timestamp = $datetime_model->get_unix_timestamp($unix_timestamp, $next_day);
+        $sql_time_stamp = $datetime_model->unix_timestamp_to_sql_timestamp($unix_timestamp);
+
+        $arr_practice = $this->get_all_row();
+
+        // filter by user_id
+        $arr_practice = $util_model->get_object_from_arr_object_that_match_property_condition(
+                            $origin_arr_object = $arr_practice, 
+                            $property_name = "id_user", 
+                            $text_to_compare = $user_id, 
+                            $operator = "=="
+                        );
+
+        // filter by deck_id                        
+        $arr_practice = $util_model->get_object_from_arr_object_that_match_property_condition(
+                            $origin_arr_object = $arr_practice, 
+                            $property_name = "id_deck", 
+                            $text_to_compare = $deck_id, 
+                            $operator = "=="
+                        ); 
+
+        // filter by date
+        $arr_practice = $util_model->get_object_from_arr_object_that_match_property_condition(
+                            $origin_arr_object = $arr_practice, 
+                            $property_name = "practice_nextVisitDate", 
+                            $text_to_compare = $sql_time_stamp, 
+                            $operator = "<"
+                        ); 
+
+        // Sort
+        $arr_practice = $util_model->sort_array_of_object_by_the_property( 
+                            $objects = $arr_practice, 
+                            $sorted_property = "practice_intervalDay", 
+                            $order_by ="desc");
+
+        return $arr_practice;
+
+
+
+
+
+
+
+
+        /*
+
+        $sql_time_stamp     =   get_sqltimeStamp_of_the_time_for_next_num_day($unix_timestamp, $next_day);
+
+        $where_clause       =   " WHERE id_deck = ".$deck_id." AND id_user = ".$user_id;
+        $where_clause       .=  " AND practice_nextVisitDate < '$sql_time_stamp' " ;
+        $where_clause       .=  " ORDER BY practice_intervalDay DESC ";
+
+        return $this->_get($where_clause);
+        */
+
+
     }
 
 }

@@ -35,5 +35,44 @@ class PracticeModelTest extends CIUnitTestCase
 
     }
 
+    // return array of object
+    public function test_get_to_review(){
+        $result1 =  $this->practice_model->get_to_review(
+                                    $deck_id = 1, 
+                                    $user_id = 1, 
+                                    $unix_timestamp = 1582567200, // sqlTimeStamp = '2020-02-25 01:00:00'
+                                    $next_day = 0
+                                );
+
+        $result2 =  $this->practice_model->get_to_review(
+                                    $user_id = 1,
+                                    $deck_id = 1,
+                                    $unix_timestamp = time(), // now
+                                    $next_day= 0    
+                                );
+                                
+        $result3 =  $this->practice_model->get_to_review(
+                                    $user_id = 0,
+                                    $deck_id = 0,
+                                    $unix_timestamp = time(),
+                                    $next_day= 0    
+                                );
+
+
+        $result         =   [ 
+                                count($result1),
+                                count($result2),
+                                count($result3),
+                            ];
+
+        $expectedResult =   [ 
+                                9, 
+                                12,
+                                0,
+                            ];
+
+        $this->assertSame($expectedResult, $result);    
+    }
+
     
 }
