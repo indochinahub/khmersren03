@@ -72,6 +72,7 @@ class Course extends MyController
         $deck_model = new DeckModel;
         $card_model = new CardModel;
         $practice_model = new PracticeModel;
+        $util_model = new UtilModel;
 
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
@@ -87,11 +88,11 @@ class Course extends MyController
 
             $deck->num_all_card = count($card_model->get_by_deck_id($deck->deck_id));
 
+            $arr_practice = $practice_model->get_by_deck_id_user_id(
+                                                    $deck->deck_id, 
+                                                    $data["user"]->user_id);
+            $deck->num_user_card = count( $arr_practice );
 
-            $deck->num_user_card = count($practice_model->get_by_deck_id_user_id(
-                                            $deck->deck_id, 
-                                            $data["user"]->user_id)
-                                        );
             $deck->card_to_review_today = count(    $practice_model->get_to_review(
                                                         $deck_id = $deck->deck_id, 
                                                         $user_id = $data["user"]->user_id, 
@@ -104,6 +105,13 @@ class Course extends MyController
                                                     $unix_timestamp = time(), 
                                                     $next_day = 1)
                                                 );  
+
+            $deck->avarage_card_interval = (int) $util_model->get_average_property_of_arr_object( 
+                                                    $arr_object = $arr_practice, 
+                                                    $property = "practice_intervalDay"
+                                                );
+            
+                                                             
             
             
                                                 

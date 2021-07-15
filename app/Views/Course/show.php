@@ -22,7 +22,8 @@
                 <div>ชุดบัตรคำ ::<strong><?php echo $course->course_code."-".$deck->deck_name;?></strong><br>
                     จำนวนบัตรคำ :: <?php echo $deck->num_user_card."/".$deck->num_all_card;?><br>
                     บัตรคำรอทบทวนวันนี้/พรุ่งนี้ :: <?php echo $deck->card_to_review_today."/".$deck->card_to_review_tomorrow;?><br>
-                    ระยะเวลาเฉลี่ย :: iii<br>
+                    ระยะเวลาเฉลี่ย :: <?php echo $deck->avarage_card_interval;?><br>
+                    
                 </div>
                 <div>
                     <a href="<?php echo base_url(["Deck","show",$deck->deck_id]);?>" class="btn btn-primary">ไป</a>
