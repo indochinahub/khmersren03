@@ -110,8 +110,41 @@ class CardModelTest extends CIUnitTestCase
                                 ];
 
         $this->assertSame($result,$expectedResult);    
+    }
 
+    // return int of false
+    public function test_get_next_card_id(){
 
+        $result1 = $this->card_model->get_next_card_id(
+                                $deck_id = 1,
+                                $user_id = 1,
+                                $unix_timestamp = time()
+                                );
+
+        $result             =   [ 
+                                    $result1,
+                                ];
+
+        $expectedResult     =   [ 
+                                    3,
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+
+        /*
+        $result01 =  $this->card_model->get_next_card_id_to_review_or_get_new($deck_id = 1 , $user_id = 1, time() );
+
+        $result         =   [   $result01,
+
+                            ];
+
+        $expectedResult =   [   3,
+
+                            ];
+
+        $this->unit->run($result, $expectedResult, $testName, $note);    
+
+        */
     }
 
     

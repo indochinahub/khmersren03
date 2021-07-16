@@ -36,7 +36,7 @@ class CardModel extends MyModel
         }
     }
 
-    // return id int
+    // return id int or false
     public function get_next_card_id_to_review($deck_id, $user_id, $unix_timestamp){
         $practice_model = new PracticeModel;
 
@@ -52,7 +52,7 @@ class CardModel extends MyModel
         }
     }
 
-    // return id int
+    // return id int or false
     public function get_new_card_id_to_learn($deck_id, $user_id, $unix_timestamp){
 
         $util_model = new UtilModel;
@@ -80,7 +80,17 @@ class CardModel extends MyModel
 
     }
 
-            
+    // return int of false
+    public function  get_next_card_id($deck_id, $user_id, $unix_timestamp){
+
+        if( $next_card_id = $this->get_next_card_id_to_review($deck_id,$user_id,  $unix_timestamp) ){
+        }elseif( $next_card_id = $this->get_new_card_id_to_learn($deck_id, $user_id, $unix_timestamp) ) {
+        }else{
+            $next_card_id = false;
+        }
+
+        return $next_card_id;
+    }
 
 
 }
