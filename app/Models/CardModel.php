@@ -41,10 +41,10 @@ class CardModel extends MyModel
         $practice_model = new PracticeModel;
 
         $arr_practice = $practice_model->get_to_review(
-                                                            $deck_id, 
-                                                            $user_id, 
-                                                            $unix_timestamp, 
-                                                            $next_day = 0);
+                                            $deck_id, 
+                                            $user_id, 
+                                            $unix_timestamp, 
+                                            $next_day = 0);
         if( $arr_practice ){
             return (int) $arr_practice[0]->id_card;
         }else{
@@ -62,56 +62,21 @@ class CardModel extends MyModel
         $arr_card_id    = $util_model->get_property_value_Of_many_objects_as_array(
                                     $arr_card,
                                     "card_id"
-                                );
+                                    );
 
-        echo "\n";
-        echo $this->db->getLastQuery();
-        echo "\n";
-                        
-        $arr_practice = $practice_model->get_to_review(
-                                $deck_id, 
-                                $user_id, 
-                                $unix_timestamp, 
-                                $next_day = 0
-                            );
+        $arr_practice = $practice_model->get_by_deck_id_user_id($deck_id, $user_id);
+        $arr_learned_card_id = $util_model->get_property_value_Of_many_objects_as_array(
+                                    $arr_practice,
+                                    "id_card"
+                                    );
 
-        echo "\n";
-        echo $this->db->getLastQuery();
-        echo "\n";
-        
-
-        $arr_learned_card_id    = $util_model->get_property_value_Of_many_objects_as_array(
-                                $arr_practice,
-                                "id_card"
-                            );
-
-                            
-        /*                            
-        if( $arr_new_card_id = array_values(array_diff($arr_card_id,$arr_learned_card_id))){
-            echo "\n";
-            var_dump($arr_new_card_id);
-            echo "\n";                            
-            return (int)$arr_new_card_id[0];
-        }else{
-            return FALSE;
-        } 
-        */       
-
-    /*
-        $this->load->model("practice_model");
-
-        $all_card_ids = $this->get_card_ids_by_deck_id($deck_id);
-
-        $practices = $this->practice_model->get_by_deck_id_and_user_id($deck_id, $user_id);
-
-        $practiced_card_ids = $this->util_model->get_property_value_Of_many_objects_as_array($array_of_objects = $practices, $property = "id_card");
-
-        if( $new_card_ids = array_values(array_diff($all_card_ids,$practiced_card_ids))){
+        if( $new_card_ids = array_values(array_diff($arr_card_id,$arr_learned_card_id))){
             return (int)$new_card_ids[0];
+
         }else{
-            return FALSE;
-        }    
-    */
+            return false;
+
+        }
 
     }
 

@@ -82,45 +82,35 @@ class CardModelTest extends CIUnitTestCase
 
     }
 
-    // return id int
-    public function get_new_card_id_to_learn(){
+    // return id int or false
+    public function test_get_new_card_id_to_learn(){
 
-        // sqlTimeStamp = '2020-02-25 01:00:00'
-        $this->card_model->get_new_card_id_to_learn(
-                            $deck_id = 1, 
-                            $user_id = 1, 
-                            $unix_timestamp = 1582567200
-                        );
+        // sqlTimeStamp = '2020-02-25 01:00:00' :: unix_timestamp 1582567200
+        $result1 = $this->card_model->get_new_card_id_to_learn(
+                                    $deck_id = 1, 
+                                    $user_id = 1, 
+                                    $unix_timestamp = 1582567200
+                                );
+
+        // sqlTimeStamp = '2020-02-25 01:00:00' :: unix_timestamp 1582567200
+        $result2 = $this->card_model->get_new_card_id_to_learn(
+                                    $deck_id = 0, 
+                                    $user_id = 0, 
+                                    $unix_timestamp = 1582567200
+                                );                                
 
         $result             =   [ 
-                                    0,
+                                    $result1,
+                                    $result2,
                                 ];
 
         $expectedResult     =   [ 
-                                    1,
+                                    13,
+                                    false,
                                 ];
 
         $this->assertSame($result,$expectedResult);    
 
-        /*
-        
-
-        // sqlTimeStamp = '2020-02-25 01:00:00'
-        $result01 =  $this->card_model->get_new_card_id_to_learn($user_id = 1, $deck_id = 1, $unix_timestamp = 1582567200);
-
-        // sqlTimeStamp = '2020-02-25 01:00:00'
-        $result02 =  $this->card_model->get_new_card_id_to_learn($user_id = 0, $deck_id = 0, $unix_timestamp = 1582567200);
-
-        $result         =   [   $result01,
-                                $result02,
-                            ];
-
-        $expectedResult =   [   13,
-                                FALSE
-                            ];
-
-
-        */
 
     }
 
