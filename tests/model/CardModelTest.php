@@ -8,11 +8,16 @@ use App\Models\CardModel;
 class CardModelTest extends CIUnitTestCase
 {
     var $card_model;
+    var $card_sample;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->card_model = new CardModel();
+
+        $card_sample = new \stdClass;
+
+
     }
 
     // return array of card or blank array
@@ -127,6 +132,59 @@ class CardModelTest extends CIUnitTestCase
 
         $expectedResult     =   [ 
                                     3,
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+    }
+
+    // return 
+    public function test_get_card_command(){
+
+        // Complete parameters
+        $deck = new \stdClass;
+        $deck->deck_command1_col = "card_text1";
+        $deck->deck_command2_col = "card_text2";
+        $deck->deck_command3_col = "card_text3";
+        $deck->deck_command4_col = "card_text4";
+
+        $card = new \stdClass;
+        $card->card_text1 = "This is Text1";
+        $card->card_text2 = "This is Text2";
+        $card->card_text3 = "This is Text3";
+        $card->card_text4 = "This is Text4";
+
+        $course = new \stdClass;
+        $course->course_code = "EN006";
+    
+        $result1  = $this->card_model->get_card_command($card, $course, $deck);
+    /**************************************************************************************/
+        // With Null parameter
+        $deck = new \stdClass;
+        $deck->deck_command1_col = "card_text1";
+        $deck->deck_command2_col = "card_text2";
+        $deck->deck_command3_col = "card_text3";
+        $deck->deck_command4_col = null;
+
+        $result2  = $this->card_model->get_card_command($card, $course, $deck);
+    /**************************************************************************************/        
+        // With not complete parameter
+        // There is no deck_command3_col and deck_command4_col
+        $deck = new \stdClass;
+        $deck->deck_command1_col = "card_text1";
+        $deck->deck_command2_col = "card_text2";
+
+        $result3  = $this->card_model->get_card_command($card, $course, $deck);
+    /**************************************************************************************/            
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2,
+                                    $result3,
+                                ];
+        $expectedResult     =   [ 
+                                    ["This is Text1", "This is Text2", "This is Text3", "This is Text4"],
+                                    ["This is Text1", "This is Text2", "This is Text3", false],
+                                    ["This is Text1", "This is Text2", false, false],
                                 ];
 
         $this->assertSame($result,$expectedResult);

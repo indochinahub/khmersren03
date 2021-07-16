@@ -92,6 +92,31 @@ class CardModel extends MyModel
         return $next_card_id;
     }
 
+    //return object
+    public function get_card_command($card, $course, $deck){
+
+        $arr_deck_property =    [   "deck_command1_col",
+                                    "deck_command2_col",
+                                    "deck_command3_col",
+                                    "deck_command4_col",
+                                ];
+
+        $arr_command = [];
+        foreach( $arr_deck_property as $deck_property ){
+
+            if(  isset($deck->$deck_property) && ($card_property = $deck->$deck_property) ){
+                $command = $card->$card_property;
+
+            }else{
+                $command = false;
+
+            }            
+            array_push($arr_command, $command);
+        }
+
+        return $arr_command;
+    }
+
 
 }
 
