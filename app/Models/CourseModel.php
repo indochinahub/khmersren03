@@ -38,27 +38,15 @@ class CourseModel extends MyModel
         return $course;
     }
 
-
-
-
     // return object or false
     public function get_by_deck_id($deck_id){
         $deck_model = new DeckModel;
         $course_model = new CourseModel;
+
         if( !( $deck = $deck_model->get_by_id($deck_id) )){ return false;}
-
-    /*
-    // return Object Or FALSE
-    public function get_by_deck_id($deck_id){
-        $this->load->model("deck_model");
-        //$this->load->model("deck_model");
-
-        if( !($deck = $this->deck_model->get_by_id($deck_id))){return FALSE;}
-        if( !($course = $this->get_by_cardgroup_id($deck->id_cardgroup))){return FALSE;}
+        if( !( $course = $this->get_by_cardgroup_id($deck->id_cardgroup))){return false;}
 
         return $course;
-    }    
-    */    
     }
 
 
