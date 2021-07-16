@@ -92,6 +92,8 @@ class CardModel extends MyModel
         return $next_card_id;
     }
 
+    //return html text
+
     //return object
     public function get_card_command($card, $course, $deck){
 
