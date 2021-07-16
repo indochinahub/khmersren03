@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\DeckModel;
+use App\Models\CourseModel;
+use App\Models\CardgroupModel;
+
 class CourseModel extends MyModel
 {
 
@@ -21,6 +25,42 @@ class CourseModel extends MyModel
             return base_url(["asset","course","course_thumbnail.jpg"]);    
         }
     }
+
+    // return Object Or FALSE
+    public function get_by_cardgroup_id($cardgroup_id){
+
+        $cardgroup_model = new CardgroupModel;
+        $course_model = new CourseModel;
+
+        if( !($cardgroup = $cardgroup_model->get_by_id($cardgroup_id))){return false;}
+        if( !( $course = $this->get_by_id($cardgroup->id_course))){return false;}
+
+        return $course;
+    }
+
+
+
+
+    // return object or false
+    public function get_by_deck_id($deck_id){
+        $deck_model = new DeckModel;
+        $course_model = new CourseModel;
+        if( !( $deck = $deck_model->get_by_id($deck_id) )){ return false;}
+
+    /*
+    // return Object Or FALSE
+    public function get_by_deck_id($deck_id){
+        $this->load->model("deck_model");
+        //$this->load->model("deck_model");
+
+        if( !($deck = $this->deck_model->get_by_id($deck_id))){return FALSE;}
+        if( !($course = $this->get_by_cardgroup_id($deck->id_cardgroup))){return FALSE;}
+
+        return $course;
+    }    
+    */    
+    }
+
 
 }
 

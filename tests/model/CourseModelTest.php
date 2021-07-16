@@ -39,5 +39,52 @@ class CourseModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);
     }
+
+    // return Object Or false
+    public function test_get_by_cardgroup_id(){
+
+        $result1 = $this->course_model->get_by_cardgroup_id($cardgroup_id = 0);
+        $result2 = $this->course_model->get_by_cardgroup_id($cardgroup_id = 1);
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2->course_code,
+                                ];
+
+        $expectedResult     =   [   
+                                    false,
+                                    "T001",
+                                ];
+
+        $this->assertSame($result,$expectedResult);        
+    }
+
+
+    // return object or false
+    public function get_by_deck_id(){
+
+        $result1 = $this->course_model->get_by_deck_id($deck_id = 0);
+
+        $result             =   [ 
+                                    $result1,
+                                ];
+
+        $expectedResult     =   [ 
+                                    false,
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+
+        /*
+        $result01 =  $this->course_model->get_by_deck_id($deck_id = 1);
+        $result         =   [   $result01->course_code,
+                            ];
+
+        $expectedResult =   [   "T001",
+                            ];        
+        */
+
+    }
+
     
 }
