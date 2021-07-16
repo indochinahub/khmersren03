@@ -12,7 +12,6 @@ class MyHelperTest extends CIUnitTestCase
         helper(["my"]);
     }    
 
-
     public function test_get_text_of_minute_and_hour_by_second(){
 
         $result1 = get_text_of_minute_and_hour_by_second($second= 45);
@@ -37,4 +36,26 @@ class MyHelperTest extends CIUnitTestCase
                                 ];
         $this->assertSame($result,$expectedResult);    
     }
+
+    // return text
+    function test_get_userlevel_text(){
+
+        $result01 = get_userlevel_text($user_level = 1);
+        $result02 = get_userlevel_text($user_level = 2);
+        $result03 = get_userlevel_text($user_level = 3);
+
+        $result             =   [ 
+                                    $result01,
+                                    $result02,
+                                    $result03,
+                                ];
+        $expectedResult     =   [ 
+                                    "ผู้เรียน",
+                                    "ครู",
+                                    "ผู้ดูแลระบบ",
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+    }    
+
 }
