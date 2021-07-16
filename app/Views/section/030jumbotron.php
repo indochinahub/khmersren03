@@ -23,7 +23,8 @@
                     </div>
                     <div style="padding:10px 0 0 20px;">
                             <h2><?php echo $loggedin_user->displayname;?></h2>
-                            <h4>xxxxxxx</h4>
+                            <h4><?php echo get_userlevel_text($loggedin_user->user_level);?></h4>
+
                     </div>
 
 
