@@ -26,6 +26,14 @@ class Deck extends MyController
         }
 
         $data["deck"] = $deck_model->get_by_id($deck_id);
+
+        // Practicing the card
+        $data["next_card_id"] = $card_model->get_next_card_id(
+                                                $deck_id, 
+                                                $data["user"]->user_id, 
+                                                time());
+
+        // Statistic Part
         $data["num_all_card"] = count($card_model->get_by_deck_id($deck_id));
 
         $arr_practice = $practice_model->get_by_deck_id_user_id(

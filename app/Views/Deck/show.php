@@ -14,7 +14,7 @@
             <div><strong>เพิ่ม/ทบทวนบัตรคำ</strong>
             </div>
             <div>
-                <a href="#" class="btn btn-primary">ไป</a>
+                <a href="<?php echo base_url(["Card","show","a",$next_card_id,$deck->deck_id]);?>" class="btn btn-primary">ไป</a>
             </div>
         </div>
     </div>
@@ -38,7 +38,6 @@
             </div>
         </div>
     </div>    
-
 
     <div class="card-info card-info_header">
         สถิติ
