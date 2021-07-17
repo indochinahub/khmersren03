@@ -93,6 +93,47 @@ class CardModel extends MyModel
     }
 
     //return html text
+    public function get_card_value_in_html($course,$card_property,$card_value){
+
+        $html = false;
+        if( "card_text" == substr($card_property, 0, 9) ){
+            $html = $card_value;
+
+        }elseif( "card_youtube" == substr($card_property, 0, 12) ){
+            $html = "<div class='embed-responsive embed-responsive-16by9'>";
+            $html .= "<iframe class='embed-responsive-item' src='https://www.youtube.com/embed/".$card_value."' allowfullscreen></iframe>";
+            $html .= "</div>";
+
+        }elseif( "card_sound" == substr( $card_property, 0, 10) ){
+            $url     =  base_url(["asset","course",$course->course_code,"sound",$card_value]);
+                        
+            $html    =  "<audio controls>";
+            $html   .=  "<source src='$url' type='audio/mpeg'>";
+            $html   .=  "</audio>";
+            $html   .=  "<br><a href='$url'>[ Listen Directly ]</a>";
+
+        }elseif( "card_picture" == substr( $card_property, 0, 12)){
+            
+            $full_pathname = ASSETPATH."course/".$course->course_code."/image/".$card_value;
+
+            if( file_exists ($full_pathname)){
+                $url  =  base_url(["asset","course",$course->course_code,"image",$card_value]);
+
+                $html = "<div>";
+                $html .= "<img src='$url' class='img-fluid'>";
+                $html .= "</div>";
+
+            }else{
+                $html = "<div>Picture is not found : $full_pathname </div>";
+
+            }                            
+
+        }else{
+            $html = false;
+        }
+
+        return $html;
+    }
 
     //return object
     public function get_card_command($card, $course, $deck){

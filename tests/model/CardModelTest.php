@@ -137,7 +137,70 @@ class CardModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
-    // return 
+    //return html text
+    public function test_get_card_value_in_html(){
+
+        // Complete parameters
+        $course = new \stdClass;
+        $course->course_code = "T001";        
+
+        // there is not valid card_property
+        $result01 = $this->card_model->get_card_value_in_html(
+                                $course,
+                                $card_property = "xxxxx",
+                                $card_value = "This is text1." );
+
+        // For card_text..[]..
+        $result02 = $this->card_model->get_card_value_in_html(
+                                $course,
+                                $card_property = "card_text1",
+                                $card_value = "This is text1." );
+        // For card_youtube..[]..
+        $result03 = $this->card_model->get_card_value_in_html(
+                                $course,
+                                $card_property = "card_youtube",
+                                $card_value = "AmKZUZ9clKs" );
+        // For card_sound..[]..
+        $result04 = $this->card_model->get_card_value_in_html(
+                                $course,
+                                $card_property = "card_sound1",
+                                $card_value = "card_sound1.mp3" );
+
+        // For card_picture..[]..
+        $result05 = $this->card_model->get_card_value_in_html(
+                                $course,
+                                $card_property = "card_picture1",
+                                $card_value = "card_picture1.jpg" );
+
+        $result06 = $this->card_model->get_card_value_in_html(
+                                $course,
+                                $card_property = "card_picture1",
+                                $card_value = "vvvvv.jpg" );                                
+
+        
+        $result             =   [ 
+                                    $result01,
+                                    $result02,
+                                    $result03,
+                                    $result04,
+                                    $result05,
+                                    $result06,
+                                ];
+
+        $expectedResult     =   [ 
+                                    false,
+                                    "This is text1.",
+                                    "<div class='embed-responsive embed-responsive-16by9'><iframe class='embed-responsive-item' src='https://www.youtube.com/embed/AmKZUZ9clKs' allowfullscreen></iframe></div>",
+                                    "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
+                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                    "<div>Picture is not found : F:\\xampp\htdocs\khmersren03\asset/course/T001/image/vvvvv.jpg </div>",
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+
+    }    
+
+    // return array
     public function test_get_card_command(){
 
         // Complete parameters
