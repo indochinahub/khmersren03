@@ -148,7 +148,8 @@ class CardModel extends MyModel
         foreach( $arr_deck_property as $deck_property ){
 
             if(  isset($deck->$deck_property) && ($card_property = $deck->$deck_property) ){
-                $command = $card->$card_property;
+
+                $command = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
 
             }else{
                 $command = false;

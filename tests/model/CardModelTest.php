@@ -204,6 +204,10 @@ class CardModelTest extends CIUnitTestCase
     public function test_get_card_command(){
 
         // Complete parameters
+
+        $course = new \stdClass;
+        $course->course_code = "T001";
+
         $deck = new \stdClass;
         $deck->deck_command1_col = "card_text1";
         $deck->deck_command2_col = "card_text2";
@@ -216,9 +220,6 @@ class CardModelTest extends CIUnitTestCase
         $card->card_text3 = "This is Text3";
         $card->card_text4 = "This is Text4";
 
-        $course = new \stdClass;
-        $course->course_code = "EN006";
-    
         $result1  = $this->card_model->get_card_command($card, $course, $deck);
     /**************************************************************************************/
         // With Null parameter
@@ -239,15 +240,41 @@ class CardModelTest extends CIUnitTestCase
         $result3  = $this->card_model->get_card_command($card, $course, $deck);
     /**************************************************************************************/            
 
+        // With not complete parameter
+        // There is no deck_command3_col and deck_command4_col
+        // The values is sound and picture media
+        $course = new \stdClass;
+        $course->course_code = "T001";
+
+        $deck = new \stdClass;
+        $deck->deck_command1_col = "card_picture1";
+        $deck->deck_command2_col = "card_sound1";    
+
+        $card = new \stdClass;
+        $card->card_picture1 = "card_picture1.jpg";
+        $card->card_sound1 = "card_sound1.mp3";
+        
+        $result4  = $this->card_model->get_card_command($card, $course, $deck);
+
+        /**************************************************************************************/            
+
         $result             =   [ 
                                     $result1,
                                     $result2,
                                     $result3,
+                                    $result4,
                                 ];
         $expectedResult     =   [ 
                                     ["This is Text1", "This is Text2", "This is Text3", "This is Text4"],
                                     ["This is Text1", "This is Text2", "This is Text3", false],
                                     ["This is Text1", "This is Text2", false, false],
+
+                                    [
+                                        "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                        "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
+                                        false,
+                                        false,
+                                    ]
                                 ];
 
         $this->assertSame($result,$expectedResult);
