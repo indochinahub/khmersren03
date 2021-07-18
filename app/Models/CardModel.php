@@ -135,7 +135,7 @@ class CardModel extends MyModel
         return $html;
     }
 
-    //return object
+    //return array of object
     public function get_card_command($card, $course, $deck){
 
         $arr_deck_property =    [   "deck_command1_col",
@@ -161,7 +161,63 @@ class CardModel extends MyModel
         return $arr_command;
     }
 
+    //return array of object
+    public function get_card_choice($card, $course, $deck, $key_of_choices){
+
+        $util_model = new UtilModel;
+
+        // Convert to html
+        $arr_deck_property =    [   "choice1a", "choice1b", "choice1c", "choice1d",
+                                    "choice2a", "choice2b", "choice2c", "choice2d",
+                                    "choice3a", "choice3b", "choice3c", "choice3d",
+                                    "choice4a", "choice4b", "choice4c", "choice4d",
+                                ];
+        $arr_choice_html = [];
+        foreach( $arr_deck_property as $deck_property ){
+            if(  isset($deck->$deck_property) && ($card_property = $deck->$deck_property) ){
+                $arr_choice_html[$deck_property] = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+            }else{
+            }
+        }
+
+        // Set Html to Object
+        $obj0 = new \stdClass;
+        $obj0->a = $arr_choice_html["choice1a"];
+        $obj0->b = $arr_choice_html["choice1b"];
+        $obj0->c = $arr_choice_html["choice1c"];
+        $obj0->d = $arr_choice_html["choice1d"];
+        $obj0->key = 0;
+
+        $obj1 = new \stdClass;
+        $obj1->a = $arr_choice_html["choice2a"];
+        $obj1->b = $arr_choice_html["choice2b"];
+        $obj1->c = $arr_choice_html["choice2c"];
+        $obj1->d = $arr_choice_html["choice2d"];
+        $obj1->key = 1;        
+
+        $obj2 = new \stdClass;
+        $obj2->a = $arr_choice_html["choice3a"];
+        $obj2->b = $arr_choice_html["choice3b"];
+        $obj2->c = $arr_choice_html["choice3c"];
+        $obj2->d = $arr_choice_html["choice3d"];
+        $obj2->key = 2;        
+
+        $obj3 = new \stdClass;
+        $obj3->a = $arr_choice_html["choice4a"];
+        $obj3->b = $arr_choice_html["choice4b"];
+        $obj3->c = $arr_choice_html["choice4c"];
+        $obj3->d = $arr_choice_html["choice4d"];
+        $obj3->key = 3;        
+        
+        $arr_choice = [ $obj0, $obj1, $obj2, $obj3 ];
+
+        //shuffle the choice
+        $arr_shuffled_choice = [];
+        foreach( $key_of_choices as $key ){
+            array_push( $arr_shuffled_choice, $arr_choice[$key]);
+        }
+
+        return $arr_shuffled_choice;
+    }
 
 }
-
-

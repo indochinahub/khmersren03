@@ -280,5 +280,67 @@ class CardModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    //return array of object
+    public function test_get_card_choice(){
+
+        // Complete parameters
+        $course = new \stdClass;
+        $course->course_code = "T001";
+
+        $deck = new \stdClass;
+        $deck->choice1a = "card_text1";
+        $deck->choice1b = "card_text2";
+        $deck->choice1c = "card_text3";
+        $deck->choice1d = "card_text4";
+        $deck->choice2a = "card_text5";
+        $deck->choice2b = "card_text6";
+        $deck->choice2c = "card_text7";
+        $deck->choice2d = "card_text8";
+        $deck->choice3a = "card_text9";
+        $deck->choice3b = "card_text10";
+        $deck->choice3c = "card_text11";
+        $deck->choice3d = "card_text12";
+        $deck->choice4a = "card_text13";
+        $deck->choice4b = "card_text14";
+        $deck->choice4c = "card_text15";
+        $deck->choice4d = "card_text16";
+
+        $card = new \stdClass;
+        $card->card_text1 = "This is Text1";
+        $card->card_text2 = "This is Text2";
+        $card->card_text3 = "This is Text3";
+        $card->card_text4 = "This is Text4";
+        $card->card_text5 = "This is Text5";
+        $card->card_text6 = "This is Text6";
+        $card->card_text7 = "This is Text7";
+        $card->card_text8 = "This is Text8";
+        $card->card_text9 = "This is Text9";
+        $card->card_text10 = "This is Text10";
+        $card->card_text11 = "This is Text11";
+        $card->card_text12 = "This is Text12";
+        $card->card_text13 = "This is Text13";
+        $card->card_text14 = "This is Text14";
+        $card->card_text15 = "This is Text15";        
+        $card->card_text16 = "This is Text16";  
+        
+        $key_of_choices = [ 3, 0, 1, 2];
+
+        //
+        $this->card_model->get_card_choice(
+                            $card, 
+                            $course, 
+                            $deck, 
+                            $key_of_choices
+                        );
+
+        $result             =   [ 
+                                    0,
+                                ];
+        $expectedResult     =   [
+                                    1,
+                                ];
+        $this->assertSame($result,$expectedResult);        
+    }
+
     
 }
