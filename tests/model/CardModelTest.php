@@ -256,7 +256,7 @@ class CardModelTest extends CIUnitTestCase
         
         $result4  = $this->card_model->get_card_command($card, $course, $deck);
 
-        /**************************************************************************************/            
+    /**************************************************************************************/            
 
         $result             =   [ 
                                     $result1,
@@ -288,8 +288,9 @@ class CardModelTest extends CIUnitTestCase
         $course->course_code = "T001";
 
         $deck = new \stdClass;
-        $deck->choice1a = "card_text1";
-        $deck->choice1b = "card_text2";
+        $deck->choice1a = "card_picture1";
+        $deck->choice1b = "card_sound1";
+
         $deck->choice1c = "card_text3";
         $deck->choice1d = "card_text4";
         $deck->choice2a = "card_text5";
@@ -306,8 +307,9 @@ class CardModelTest extends CIUnitTestCase
         $deck->choice4d = "card_text16";
 
         $card = new \stdClass;
-        $card->card_text1 = "This is Text1";
-        $card->card_text2 = "This is Text2";
+        $card->card_picture1    = "card_picture1.jpg";
+        $card->card_sound1      = "card_sound1.mp3";
+
         $card->card_text3 = "This is Text3";
         $card->card_text4 = "This is Text4";
         $card->card_text5 = "This is Text5";
@@ -326,7 +328,7 @@ class CardModelTest extends CIUnitTestCase
         $key_of_choices = [ 3, 0, 1, 2];
 
         //
-        $this->card_model->get_card_choice(
+        $result1 = $this->card_model->get_card_choice(
                             $card, 
                             $course, 
                             $deck, 
@@ -334,10 +336,12 @@ class CardModelTest extends CIUnitTestCase
                         );
 
         $result             =   [ 
-                                    0,
+                                    $result1[1]->a,
+                                    $result1[1]->b,
                                 ];
         $expectedResult     =   [
-                                    1,
+                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                    "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
                                 ];
         $this->assertSame($result,$expectedResult);        
     }
