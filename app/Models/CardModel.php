@@ -172,25 +172,17 @@ class CardModel extends MyModel
                                     "deck_choice3a_col", "deck_choice3b_col", "deck_choice3c_col", "deck_choice3d_col",
                                     "deck_choice4a_col", "deck_choice4b_col", "deck_choice4c_col", "deck_choice4d_col",
                                 ];
-        //var_dump($deck);
-        //echo "<hr>";
 
         $arr_choice_html = [];
         foreach( $arr_deck_property as $deck_property ){
 
             if(  isset($deck->$deck_property) && ($card_property = $deck->$deck_property) ){
-                //echo $deck_property." is set";
-                //echo "<hr>";
                 $arr_choice_html[$deck_property] = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
 
             }else{
-                //echo $deck_property." is not set";
-                //echo "<hr>";
                 $arr_choice_html[$deck_property] = false;
             }
         }
-
-        //die();
 
         // Set Html to Object
         $obj0 = new \stdClass;
