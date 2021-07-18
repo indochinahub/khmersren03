@@ -5,7 +5,7 @@
         <p><?php echo $what_todo;?></p>
     </div>
 
-    <div class="two_flex_column">
+    <div class="two_flex_column" style="padding:10px">
         <div>
         </div>
         <div>
