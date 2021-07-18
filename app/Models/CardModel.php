@@ -167,46 +167,58 @@ class CardModel extends MyModel
         $util_model = new UtilModel;
 
         // Convert to html
-        $arr_deck_property =    [   "choice1a", "choice1b", "choice1c", "choice1d",
-                                    "choice2a", "choice2b", "choice2c", "choice2d",
-                                    "choice3a", "choice3b", "choice3c", "choice3d",
-                                    "choice4a", "choice4b", "choice4c", "choice4d",
+        $arr_deck_property =    [   "deck_choice1a_col", "deck_choice1b_col", "deck_choice1c_col", "deck_choice1d_col",
+                                    "deck_choice2a_col", "deck_choice2b_col", "deck_choice2c_col", "deck_choice2d_col",
+                                    "deck_choice3a_col", "deck_choice3b_col", "deck_choice3c_col", "deck_choice3d_col",
+                                    "deck_choice4a_col", "deck_choice4b_col", "deck_choice4c_col", "deck_choice4d_col",
                                 ];
+        //var_dump($deck);
+        //echo "<hr>";
+
         $arr_choice_html = [];
         foreach( $arr_deck_property as $deck_property ){
+
             if(  isset($deck->$deck_property) && ($card_property = $deck->$deck_property) ){
+                //echo $deck_property." is set";
+                //echo "<hr>";
                 $arr_choice_html[$deck_property] = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+
             }else{
+                //echo $deck_property." is not set";
+                //echo "<hr>";
+                $arr_choice_html[$deck_property] = false;
             }
         }
 
+        //die();
+
         // Set Html to Object
         $obj0 = new \stdClass;
-        $obj0->a = $arr_choice_html["choice1a"];
-        $obj0->b = $arr_choice_html["choice1b"];
-        $obj0->c = $arr_choice_html["choice1c"];
-        $obj0->d = $arr_choice_html["choice1d"];
+        $obj0->a = $arr_choice_html["deck_choice1a_col"];
+        $obj0->b = $arr_choice_html["deck_choice1b_col"];
+        $obj0->c = $arr_choice_html["deck_choice1c_col"];
+        $obj0->d = $arr_choice_html["deck_choice1d_col"];
         $obj0->key = 0;
 
         $obj1 = new \stdClass;
-        $obj1->a = $arr_choice_html["choice2a"];
-        $obj1->b = $arr_choice_html["choice2b"];
-        $obj1->c = $arr_choice_html["choice2c"];
-        $obj1->d = $arr_choice_html["choice2d"];
+        $obj1->a = $arr_choice_html["deck_choice2a_col"];
+        $obj1->b = $arr_choice_html["deck_choice2b_col"];
+        $obj1->c = $arr_choice_html["deck_choice2c_col"];
+        $obj1->d = $arr_choice_html["deck_choice2d_col"];
         $obj1->key = 1;        
 
         $obj2 = new \stdClass;
-        $obj2->a = $arr_choice_html["choice3a"];
-        $obj2->b = $arr_choice_html["choice3b"];
-        $obj2->c = $arr_choice_html["choice3c"];
-        $obj2->d = $arr_choice_html["choice3d"];
+        $obj2->a = $arr_choice_html["deck_choice3a_col"];
+        $obj2->b = $arr_choice_html["deck_choice3b_col"];
+        $obj2->c = $arr_choice_html["deck_choice3c_col"];
+        $obj2->d = $arr_choice_html["deck_choice3d_col"];
         $obj2->key = 2;        
 
         $obj3 = new \stdClass;
-        $obj3->a = $arr_choice_html["choice4a"];
-        $obj3->b = $arr_choice_html["choice4b"];
-        $obj3->c = $arr_choice_html["choice4c"];
-        $obj3->d = $arr_choice_html["choice4d"];
+        $obj3->a = $arr_choice_html["deck_choice4a_col"];
+        $obj3->b = $arr_choice_html["deck_choice4b_col"];
+        $obj3->c = $arr_choice_html["deck_choice4c_col"];
+        $obj3->d = $arr_choice_html["deck_choice4d_col"];
         $obj3->key = 3;        
         
         $arr_choice = [ $obj0, $obj1, $obj2, $obj3 ];

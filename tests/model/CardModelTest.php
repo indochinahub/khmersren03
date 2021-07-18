@@ -288,23 +288,23 @@ class CardModelTest extends CIUnitTestCase
         $course->course_code = "T001";
 
         $deck = new \stdClass;
-        $deck->choice1a = "card_picture1";
-        $deck->choice1b = "card_sound1";
+        $deck->deck_choice1a_col = "card_picture1";
+        $deck->deck_choice1b_col = "card_sound1";
 
-        $deck->choice1c = "card_text3";
-        $deck->choice1d = "card_text4";
-        $deck->choice2a = "card_text5";
-        $deck->choice2b = "card_text6";
-        $deck->choice2c = "card_text7";
-        $deck->choice2d = "card_text8";
-        $deck->choice3a = "card_text9";
-        $deck->choice3b = "card_text10";
-        $deck->choice3c = "card_text11";
-        $deck->choice3d = "card_text12";
-        $deck->choice4a = "card_text13";
-        $deck->choice4b = "card_text14";
-        $deck->choice4c = "card_text15";
-        $deck->choice4d = "card_text16";
+        $deck->deck_choice1c_col = "card_text3";
+        $deck->deck_choice1d_col = "card_text4";
+        $deck->deck_choice2a_col = "card_text5";
+        $deck->deck_choice2b_col = "card_text6";
+        $deck->deck_choice2c_col = "card_text7";
+        $deck->deck_choice2d_col = "card_text8";
+        $deck->deck_choice3a_col = "card_text9";
+        $deck->deck_choice3b_col = "card_text10";
+        $deck->deck_choice3c_col = "card_text11";
+        $deck->deck_choice3d_col = "card_text12";
+        $deck->deck_choice4a_col = "card_text13";
+        $deck->deck_choice4b_col = "card_text14";
+        $deck->deck_choice4c_col = "card_text15";
+        $deck->deck_choice4d_col = "card_text16";
 
         $card = new \stdClass;
         $card->card_picture1    = "card_picture1.jpg";
@@ -334,7 +334,7 @@ class CardModelTest extends CIUnitTestCase
                             $deck, 
                             $key_of_choices
                         );
-
+    
         $result             =   [ 
                                     $result1[1]->a,
                                     $result1[1]->b,
