@@ -13,6 +13,7 @@ class MyController extends BaseController {
 	var $validation;
 	var $request;
 	var $session;
+	var $uri;
 	var $uid; 
 
   	public function __construct(){
@@ -24,7 +25,7 @@ class MyController extends BaseController {
 
 		$this->request = service('request');
 		$this->session = service('session');
- 
+		$this->uri = service('uri');
 		
 		// Set User Id
 		if( $uid = $this->session->get("uid") ){
