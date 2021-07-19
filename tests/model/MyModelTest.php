@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Test\CIUnitTestCase;
 
-class BaseModelTest extends CIUnitTestCase
+class MyModelTest extends CIUnitTestCase
 {
     var $user_model;
 
