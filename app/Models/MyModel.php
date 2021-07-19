@@ -13,6 +13,7 @@ class MyModel extends Model
 
     public function __construct(){
         parent::__construct();
+        $this->protect(false);
 
     }
 
@@ -127,7 +128,7 @@ class MyModel extends Model
             return 0;
 
         }else{
-            $this->protect(false);
+            
             $this->update([$id], $detail);
 
             return $this->affectedRows();     
