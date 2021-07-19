@@ -74,5 +74,33 @@ class PracticeModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);    
     }
 
+    // return object or false
+    public function test_get_by_card_id_deck_id_user_id(){    
+
+        $result1 = $this->practice_model->get_by_card_id_deck_id_user_id(
+                                                $card_id = 1, 
+                                                $deck_id = 1, 
+                                                $user_id = 1
+                                            );
+
+        $result2 = $this->practice_model->get_by_card_id_deck_id_user_id(
+                                                $card_id = 0, 
+                                                $deck_id = 0, 
+                                                $user_id = 0
+                                            );
+
+        $result         =   [ 
+                                $result1->practice_id,
+                                $result2
+                            ];
+        $expectedResult =   [ 
+                                "1",
+                                false
+                            ];
+
+        $this->assertSame($expectedResult, $result);
+
+    }
+
     
 }

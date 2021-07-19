@@ -43,6 +43,21 @@ class PracticeModel extends MyModel
         return  $this->get_where($where_clause);
     }
 
+    // return object or false
+    public function get_by_card_id_deck_id_user_id($card_id, $deck_id, $user_id){
+
+        $where_clause = " WHERE id_deck = $deck_id AND id_user = $user_id AND id_card = $card_id "; 
+
+        if( $arr_practice = $this->get_where($where_clause) ){
+            return $arr_practice[0];
+
+        }else{
+            return false;
+
+        }
+    }
+
+
 }
 
 
