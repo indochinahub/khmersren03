@@ -48,23 +48,48 @@
     <?php } ?>
 <div>
 
-<div class="card-success">
-    <div class="card-success card-success_header">
-        ผล
-    </div>
-    <div class="card-success card-success_body">
-        <strong>คำตอบถูกต้อง</strong>
-    </div>
-</div>
 
-<div class="card-danger">
-    <div class="card-danger card-danger_header">
-        This is Headdrr
-    </div>
-    <div class="card-danger card-danger_body">
-        This is Body
-    </div>
-</div>
+<?php if( $page === "b" && ($selected_choice === 0)){ ?>
+
+    <div class="card-success">
+        <div class="card-success card-success_header">
+            ผล
+        </div>
+        <div class="card-success card-success_body">
+            <div>คำตอบ<strrong>ถูกต้อง</strong></div>
+            <div class="two_flex_column">
+                <div>
+                </div>
+                <div>
+                    <a href="<?php echo base_url(["Card","show","a", $next_card_id, $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+<?php }elseif( $page === "b" ){ ?>
+
+    <div class="card-danger">
+        <div class="card-danger card-danger_header">
+            ผล
+        </div>
+        <div class="card-danger card-danger_body">
+            <div>คำตอบ<strrong>ไม่ถูกต้อง</strong></div>
+            <div class="two_flex_column">
+                <div>
+                </div>
+                <div>
+                <a href="<?php echo base_url(["Card","show","a", $next_card_id, $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+<?php } ?>
+
+
+
+
     
 <div class="card-info">
 

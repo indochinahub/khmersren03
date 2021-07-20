@@ -75,8 +75,6 @@ class UserModel extends MyModel
                 ];
 
         return $this->update_by_id($user_id, $detail);
-        
-
     }    
 
 
