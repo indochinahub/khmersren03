@@ -31,6 +31,7 @@ class MyController extends BaseController {
 		if( $uid = $this->session->get("uid") ){
 			$this->uid = (int) $uid;
 			setcookie('uid', $this->uid, time() + (86400 * 7), "/");
+			$this->user_model->update_visit_time($uid);
 
 		}elseif( isset($_COOKIE["uid"]) ){
 			$this->uid = (int) $_COOKIE["uid"];
