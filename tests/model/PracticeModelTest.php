@@ -102,5 +102,30 @@ class PracticeModelTest extends CIUnitTestCase
 
     }
 
+    // return object or false
+    public function test_get_last_by_user_id(){
+
+        // Today :: 2021-03-24
+        // unixtime 1616582552 :: 2021-03-24 17:42:32
+
+        $result1 =  $this->practice_model->get_last_by_user_id($user_id = 2 );
+        $result2 =  $this->practice_model->get_last_by_user_id($user_id = 0 );
+
+        $result         =   [ 
+                                $result1->practice_id,
+                                is_object($result1),
+                                $result2,
+                            ];
+        $expectedResult =   [ 
+                                "29727",
+                                true,
+                                false,
+                            ];
+
+        $this->assertSame($expectedResult, $result);
+
+
+    }
+
     
 }

@@ -53,9 +53,27 @@ class PracticeModel extends MyModel
 
         }else{
             return false;
+        }
+    }
+
+    // return object or false
+    public function get_last_by_user_id($user_id){
+
+        $where_clause  = " WHERE id_user = $user_id ";
+        $where_clause .= " ORDER BY practice_lastVisitDate desc ";
+        $where_clause .= " LIMIT 0,1 ";
+
+        if( $arr_practice = $query = $this->get_where($where_clause)){
+            return $arr_practice[0]; 
+
+        }else{
+            return false;
 
         }
     }
+
+
+
 
 
 }
