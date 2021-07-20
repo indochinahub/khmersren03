@@ -82,7 +82,23 @@ class UserModelTest extends CIUnitTestCase
                                 "http://127.0.0.1/khmersren03/asset/avatar/anonymous.jpg"
                             ];
 
-        $this->assertSame($expectedResult, $result);                                       
+        $this->assertSame($expectedResult, $result);
+    }
+
+    // return affected rows
+    public function test_update_visit_time(){
+
+        $result1 = $this->user_model->update_visit_time($user_id = 1);
+
+        $result         =   [ 
+                                $result1
+                            ];
+
+        $expectedResult =   [ 
+                                1
+                            ];
+
+        $this->assertSame($expectedResult, $result);        
     }
     
     

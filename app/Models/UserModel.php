@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\DateTimeModel;
 
 class UserModel extends MyModel
 {
@@ -63,6 +64,20 @@ class UserModel extends MyModel
         }
 
     }
+
+    // return affected rows
+    public function update_visit_time($user_id){
+
+        $datetime_model = new DateTimeModel;
+
+        $detail = [ 
+                "user_visit_time" => $datetime_model->unix_timestamp_to_sql_timestamp(time()) 
+                ];
+
+        return $this->update_by_id($user_id, $detail);
+        
+
+    }    
 
 
 }

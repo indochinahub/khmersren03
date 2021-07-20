@@ -131,7 +131,7 @@ class MyModel extends Model
             
             $this->update([$id], $detail);
 
-            return $this->affectedRows();     
+            return $this->affectedRows();
         }
     }
 
