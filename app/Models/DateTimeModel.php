@@ -40,6 +40,18 @@ class DateTimeModel
 
     }
 
+    // return int
+    function get_iterval_num_day( $current_interval, $interval_constant){
+        if($current_interval < 2){
+            return 2;
+        }else{
+            $new_interval = floor( $current_interval * $interval_constant );
+            if($new_interval >= 10000){$new_interval = 10000;}
+            return intval($new_interval);
+        }
+    }
+    
+
 
 
 

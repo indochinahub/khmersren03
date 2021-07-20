@@ -113,5 +113,53 @@ class DateTimeModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);           
     }
 
+    // return int
+    function test_get_iterval_num_day(){
+
+        $result1 = $this->datetime_model->get_iterval_num_day( 
+                                $current_interval = 1, 
+                                $interval_constant= 4
+                            );
+        $result2 = $this->datetime_model->get_iterval_num_day( 
+                                $current_interval = 2, 
+                                $interval_constant= 4
+                            );
+        $result3 = $this->datetime_model->get_iterval_num_day( 
+                                $current_interval = 3, 
+                                $interval_constant= 4
+                            );
+        $result4 = $this->datetime_model->get_iterval_num_day( 
+                                $current_interval = 10, 
+                                $interval_constant= 4
+                            );
+        $result5 = $this->datetime_model->get_iterval_num_day( 
+                                $current_interval = 2000, 
+                                $interval_constant= 4
+                            );
+        $result6 = $this->datetime_model->get_iterval_num_day( 
+                                $current_interval = 5000, 
+                                $interval_constant= 4
+                            );
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2,
+                                    $result3,
+                                    $result4,
+                                    $result5,
+                                    $result6,
+                                ];
+        $expectedResult     =   [ 
+                                    2,
+                                    8,
+                                    12,
+                                    40,
+                                    8000,
+                                    10000,
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+    }
+
     
 }
