@@ -101,13 +101,20 @@ class DateTimeModelTest extends CIUnitTestCase
         $result1 = $this->datetime_model->get_unix_timestamp_at_midnight(
                                     $unix_timestamp = 1626262031
                                 );
-        
+
+        $result2 = $this->datetime_model->get_unix_timestamp_at_midnight(
+                                    $unix_timestamp = 1626262031,
+                                    $next_day = 5
+                                );
+
         $result             =   [ 
                                     $result1,
+                                    $result2,
                                 ];
 
         $expectedResult     =   [ 
-                                    1626195600,
+                                    1626195600, //  2021-07-14 00:00:00
+                                    1626627600, //  2021-07-19 00:00:00
                                 ];
 
         $this->assertSame($result,$expectedResult);           

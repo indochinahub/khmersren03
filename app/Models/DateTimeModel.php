@@ -30,8 +30,9 @@ class DateTimeModel
     }
 
     // return int
-    public function get_unix_timestamp_at_midnight($unix_timestamp){
+    public function get_unix_timestamp_at_midnight($unix_timestamp, $next_day = 0){
 
+        $unix_timestamp = $unix_timestamp + ( 60 * 60 * 24 * $next_day   );
         $sql_timestamp = $this->unix_timestamp_to_sql_timestamp($unix_timestamp);
         $sql_timestamp_date_part = $this->get_date_part_from_sql_timestamp($sql_timestamp);
         $sql_timestamp_midnight = $sql_timestamp_date_part." 00:00:00" ;
