@@ -104,7 +104,8 @@
                 จำนวนบัตรคำ    
             </div>
             <div>
-                2061/2061            </div>
+                <?php echo $num_user_card."/".$num_all_card;?>
+            </div>
         </div>
 
         <div class="two_flex_column">
@@ -112,27 +113,30 @@
                 <strong>บัตรคำรอทบทวนวันนี้/พรุ่งนี้</strong>
             </div>
             <div>
-                <strong>26/37</strong>
+                <strong><?php echo $card_to_review_today."/".$card_to_review_tomorrow;?></strong>
             </div>
         </div>
 
-        <div class="two_flex_column">
-            <div>
-                ระยะเวลาเฉลี่ย 
+        <?php if($practice){ ?>
+            <div class="two_flex_column">
+                <div>
+                    ระยะเวลาเฉลี่ย 
+                </div>
+                <div>
+                    <?php echo $card_interval;?> วัน
+                </div>
             </div>
-            <div>
-                592 วัน
-            </div>
-        </div>
 
-        <div class="two_flex_column">
-            <div>
-                จำนวนครั้งที่เข้าเยี่ยมชม
+            <div class="two_flex_column">
+                <div>
+                    เวลาทบทวนครั้งถัดไป
+                </div>
+                <div>
+                    <?php echo $next_visit_date;?>
+                </div>
             </div>
-            <div>
-                11508 ครั้ง
-            </div>
-        </div>
+        <?php } ?>
+
         
     </div>
 

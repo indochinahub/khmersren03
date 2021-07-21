@@ -19,8 +19,11 @@ class Card extends MyController
         $card_model = new CardModel;
         $practice_model = new PracticeModel;
         $datetime_model = new DateTimeModel;
+        $util_model = new UtilModel;
 
-        // Get Login User
+/*******************************************************/
+// Do something in general
+/*******************************************************/
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
@@ -31,19 +34,24 @@ class Card extends MyController
         $data["course"] = $course_model->get_by_deck_id($deck_id);
         $data["card"]   = $card_model->get_by_id($card_id);
         $data["page"] = $page;
-        $practice = $practice_model->get_by_card_id_deck_id_user_id(
+        $data["practice"] = $practice_model->get_by_card_id_deck_id_user_id(
                                 $card_id, 
                                 $deck_id, 
                                 $data["user"]->user_id
                             );
-
-        // Command Section
+        
+/*******************************************************/
+// Command Section
+/*******************************************************/        
         $data["arr_command"] = $card_model->get_card_command(
                                             $data["card"], 
                                             $data["course"], 
                                             $data["deck"]
                                         );
         
+/*******************************************************/
+// Choice Section
+/*******************************************************/
         if( $data["page"] === "a"){
             $data["key_of_choices"] = [ 0, 1, 2, 3];
             shuffle( $data["key_of_choices"] );
@@ -59,7 +67,6 @@ class Card extends MyController
             $data["selected_choice"] =  (int) $arr_segment[9] ;
         }
 
-        // Choice Section
         $data["arr_choice"] = $card_model->get_card_choice(
                                         $data["card"], 
                                         $data["course"], 
@@ -67,8 +74,10 @@ class Card extends MyController
                                         $data["key_of_choices"]
                                     );
 
-
-        // Some Value abou time
+/*******************************************************/
+// Get some value about Time
+/*******************************************************/
+                      
         $next_midnight_unix_timestamp =  $datetime_model->get_unix_timestamp_at_midnight( 
                     $datetime_model->get_unix_timestamp( time(), $next_day = 1)
                 );
@@ -81,13 +90,10 @@ class Card extends MyController
         
         $today_date = $datetime_model->get_date_part_from_sql_timestamp($now_sql_timestamp);
 
-        $last_visit_date = $datetime_model->get_date_part_from_sql_timestamp(
-                                                $practice->practice_lastVisitDate
-                                            );                    
-        
+/*******************************************************/
+// Check if there is the practice
+/*******************************************************/
 
-        
-        // If there is no practice, add the practice
         if( ($data["page"] === "b") && ($practice === false) ){
 
             $detail =   [       "id_deck"=>$deck_id,
@@ -98,22 +104,26 @@ class Card extends MyController
             $practice_id = $practice_model->insert($detail);
 
             $practice = $practice_model->get_by_id($practice_id);;
-
-        // If there is existing Practice, get time, 
-        }elseif( $data["page"] === "b"){
-
-
-
         }
 
+/*******************************************************/
+// Get Page "b" 
+// Update Practice
+/*******************************************************/
+        if( $data["page"] === "b"){
+            $last_visit_date = $datetime_model->get_date_part_from_sql_timestamp(
+                                    $practice->practice_lastVisitDate
+                                );             
+        }
 
-        // New card or the card which is redone in the same day
+        // for New card or the card which is redone in the same day
+        // Only update lastVisitDate
         if( ($data["page"] === "b") && ($today_date === $last_visit_date) ){
             $detail =   [       
                             "practice_lastVisitDate"=>$now_sql_timestamp
                         ];
 
-        // Select the right answer
+        //for the correct answer
         }elseif(  ($data["page"] === "b") && $data["selected_choice"] === 0){
             
             $iterval_num_day = $datetime_model->get_iterval_num_day( 
@@ -128,14 +138,14 @@ class Card extends MyController
                                 );
             
             $detail = [   
-                "practice_intervalDay"=>$iterval_num_day,
-                "practice_lastVisitDate"=>$now_sql_timestamp ,
-                "practice_nextVisitDate"=>$next_visit_date ,
-                "practice_counter"=> $practice->practice_counter + 1,
-                "practice_timespent"=>0,
+                        "practice_intervalDay"=>$iterval_num_day,
+                        "practice_lastVisitDate"=>$now_sql_timestamp ,
+                        "practice_nextVisitDate"=>$next_visit_date ,
+                        "practice_counter"=> $practice->practice_counter + 1,
+                        "practice_timespent"=>0,
             ];            
 
-        // Select the wrong answer 
+        // for the wrong answer
         }elseif( ($data["page"] === "b") && $data["selected_choice"] !== 0 ){
 
             $iterval_num_day = 2;
@@ -145,7 +155,6 @@ class Card extends MyController
                                             1
                                         )
                                     );
-
             $detail = [   
                 "practice_intervalDay"=>$iterval_num_day = $iterval_num_day,
                 "practice_lastVisitDate"=>$now_sql_timestamp,
@@ -154,45 +163,72 @@ class Card extends MyController
                 "practice_timespent"=>0,
                 
             ];              
-
         }
 
-        // Update
+        // Update Practice
         if( $data["page"] === "b" ){
             $practice_model->update_by_id(  $practice->practice_id,
                                             $detail
                                         );
         }
 
+/*******************************************************/
+// Get NextCard
+/*******************************************************/
 
-
-
-
-
-        
-
-                // Result Section
         $data["next_card_id"] = $card_model->get_next_card_id(
                                         $data["deck"]->deck_id, 
                                         $data["user"]->user_id, 
                                         time()
                                     );  
 
+/*******************************************************/
+// Statistic Section
+/*******************************************************/
+
+        $data["num_all_card"]   =   count($card_model->get_by_deck_id($deck_id));
+        $arr_practice           =   $practice_model->get_by_deck_id_user_id(
+                                                    $deck_id, 
+                                                    $data["user"]->user_id);
+        $data["num_user_card"]  =   count( $arr_practice );
+
+        $data["card_to_review_today"]   = count(  $practice_model->get_to_review(
+                                                        $deck_id, 
+                                                        $data["user"]->user_id, 
+                                                        time(), 
+                                                        $next_day = 0 
+                                                  )
+                                                );
+        $data["card_to_review_tomorrow"] = count(  $practice_model->get_to_review(
+                                                        $deck_id, 
+                                                        $data["user"]->user_id, 
+                                                        time(), 
+                                                        $next_day = 1)
+                                                   );  
+        if( $data["practice"] ){
+            $data["card_interval"]      =   $data["practice"]->practice_intervalDay;    
+
+            $data["next_visit_date"]    =   $datetime_model->get_thai_date_from_sql_timestamp(
+                                                    $datetime_model->get_date_part_from_sql_timestamp(
+                                                        $data["practice"]->practice_nextVisitDate
+                                                    )
+                                                );
+            
+
+
+                                                        
+       }
+
+
+/*******************************************************/
+// View Section
+/*******************************************************/
         
-
-
-
-
-
-
-
-        // View Section
         $data["page_title"] = 	"xxxxx";
         $data["page_link"] 	= 	[ "Deck", "#"];	        
         $this->_view("show",$data);        
 
     }
-
 
 }
 
