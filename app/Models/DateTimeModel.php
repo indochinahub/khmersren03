@@ -82,8 +82,16 @@ class DateTimeModel
         $thai_year = substr($sql_timestamp, 0, 4) + 543 ;  
         
         return "$thai_date $thai_month $thai_year";
-
     }
+
+    // return text
+    function get_thai_datetime_from_sql_timestamp($sql_timestamp){
+
+        $thai_date_month_year = $this->get_thai_date_from_sql_timestamp($sql_timestamp);
+        $time = substr($sql_timestamp,11,5);
+        
+        return "$thai_date_month_year $time น.";
+    }    
 
 
 
