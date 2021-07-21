@@ -21,9 +21,9 @@ class Card extends MyController
         $datetime_model = new DateTimeModel;
         $util_model = new UtilModel;
 
-/*******************************************************/
-// Do something in general
-/*******************************************************/
+    /*******************************************************/
+    // Do something in general
+    /*******************************************************/
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
@@ -40,18 +40,18 @@ class Card extends MyController
                                 $data["user"]->user_id
                             );
         
-/*******************************************************/
-// Command Section
-/*******************************************************/        
+    /*******************************************************/
+    // Command Section
+    /*******************************************************/        
         $data["arr_command"] = $card_model->get_card_command(
                                             $data["card"], 
                                             $data["course"], 
                                             $data["deck"]
                                         );
         
-/*******************************************************/
-// Choice Section
-/*******************************************************/
+    /*******************************************************/
+    // Choice Section
+    /*******************************************************/
         if( $data["page"] === "a"){
             $data["key_of_choices"] = [ 0, 1, 2, 3];
             shuffle( $data["key_of_choices"] );
@@ -74,9 +74,9 @@ class Card extends MyController
                                         $data["key_of_choices"]
                                     );
 
-/*******************************************************/
-// Get some value about Time
-/*******************************************************/
+    /*******************************************************/
+    // Get some value about Time
+    /*******************************************************/
                       
         $next_midnight_unix_timestamp =  $datetime_model->get_unix_timestamp_at_midnight( 
                     $datetime_model->get_unix_timestamp( time(), $next_day = 1)
@@ -90,9 +90,9 @@ class Card extends MyController
         
         $today_date = $datetime_model->get_date_part_from_sql_timestamp($now_sql_timestamp);
 
-/*******************************************************/
-// Check if there is the practice
-/*******************************************************/
+    /*******************************************************/
+    // Check if there is the practice
+    /*******************************************************/
 
         if( ($data["page"] === "b") && ($practice === false) ){
 
@@ -106,10 +106,10 @@ class Card extends MyController
             $practice = $practice_model->get_by_id($practice_id);;
         }
 
-/*******************************************************/
-// Get Page "b" 
-// Update Practice
-/*******************************************************/
+    /*******************************************************/
+    // Get Page "b" 
+    // Update Practice
+    /*******************************************************/
         if( $data["page"] === "b"){
             $last_visit_date = $datetime_model->get_date_part_from_sql_timestamp(
                                     $practice->practice_lastVisitDate
@@ -172,9 +172,9 @@ class Card extends MyController
                                         );
         }
 
-/*******************************************************/
-// Get NextCard
-/*******************************************************/
+    /*******************************************************/
+    // Get NextCard
+    /*******************************************************/
 
         $data["next_card_id"] = $card_model->get_next_card_id(
                                         $data["deck"]->deck_id, 
@@ -182,9 +182,9 @@ class Card extends MyController
                                         time()
                                     );  
 
-/*******************************************************/
-// Statistic Section
-/*******************************************************/
+    /*******************************************************/
+    // Statistic Section
+    /*******************************************************/
 
         $data["num_all_card"]   =   count($card_model->get_by_deck_id($deck_id));
         $arr_practice           =   $practice_model->get_by_deck_id_user_id(
@@ -213,19 +213,18 @@ class Card extends MyController
                                                         $data["practice"]->practice_nextVisitDate
                                                     )
                                                 );
-            
+      }
 
-
-                                                        
-       }
-
-
-/*******************************************************/
-// View Section
-/*******************************************************/
+    /*******************************************************/
+    // View Section
+    /*******************************************************/
         
-        $data["page_title"] = 	"xxxxx";
-        $data["page_link"] 	= 	[ "Deck", "#"];	        
+        $data["page_title"] = 	"บัตรคำ ".$data["card"]->card_sort;
+        $data["page_link"] 	= 	[ 
+                                    "ชุดบัตรคำ ".$data["course"]->course_code."-".$data["deck"]->deck_name , 
+                                    base_url(["Deck","show", $deck_id])
+                                    
+                                ];	        
         $this->_view("show",$data);        
 
     }
