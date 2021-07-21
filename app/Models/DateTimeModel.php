@@ -51,9 +51,39 @@ class DateTimeModel
             return intval($new_interval);
         }
     }
-    
 
+    // return text
+    function get_thai_date_from_sql_timestamp($sql_timestamp){
+        // echo "All :: $sql_time_stamp <br>";
+        // echo "Thai Year :: ".substr($sql_time_stamp,0,4)."<br>";
+        // echo "Thai Month :: ".substr($sql_time_stamp,5,2)."<br>";
+        // echo "Thai Date :: ".substr($sql_time_stamp,8,2)."<br>";
+        // echo "Time :: ".substr($sql_time_stamp,11,5)."<br>";
+        // echo "<hr>";
 
+        // Get date
+        $thai_date = substr($sql_timestamp,8,2);
+
+        // Get month
+        if( substr($sql_timestamp,5,2)     == "01"){ $thai_month = "ม.ค.";}
+        elseif(substr($sql_timestamp,5,2)  == "02"){ $thai_month = "ก.พ.";}
+        elseif(substr($sql_timestamp,5,2) == "03"){  $thai_month = "มี.ค.";}
+        elseif(substr($sql_timestamp,5,2) == "04"){  $thai_month = "เม.ย.";}
+        elseif(substr($sql_timestamp,5,2) == "05"){  $thai_month = "พ.ค.";}
+        elseif(substr($sql_timestamp,5,2) == "06"){  $thai_month = "มิ.ย.";}
+        elseif(substr($sql_timestamp,5,2) == "07"){  $thai_month = "ก.ค.";}
+        elseif(substr($sql_timestamp,5,2) == "08"){  $thai_month = "ส.ค.";}
+        elseif(substr($sql_timestamp,5,2) == "09"){  $thai_month = "ก.ย.";}
+        elseif(substr($sql_timestamp,5,2) == "10"){  $thai_month = "ต.ค.";}
+        elseif(substr($sql_timestamp,5,2) == "11"){  $thai_month = "พ.ย.";}
+        elseif(substr($sql_timestamp,5,2) == "12"){  $thai_month = "ธ.ค.";}
+
+        // Get thai year
+        $thai_year = substr($sql_timestamp, 0, 4) + 543 ;  
+        
+        return "$thai_date $thai_month $thai_year";
+
+    }
 
 
 

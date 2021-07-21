@@ -168,5 +168,23 @@ class DateTimeModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+
+    // return text
+    function test_get_thai_date_from_sql_timestamp(){
+
+        $result1 = $this->datetime_model->get_thai_date_from_sql_timestamp(
+                                $sql_timestamp = "2021-01-28 09:39:42"
+                            );
+    
+        $result         =   [   
+                                $result1
+                            ];
+
+        $expectedResult =   [
+                                "28 ม.ค. 2564"
+                            ];
+        $this->assertSame($expectedResult, $result);
+    }
+
     
 }
