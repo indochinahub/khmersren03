@@ -27,13 +27,14 @@ class Deck extends MyController
 
         $data["deck"] = $deck_model->get_by_id($deck_id);
 
-        // Practicing the card
         $data["next_card_id"] = $card_model->get_next_card_id(
                                                 $deck_id, 
                                                 $data["user"]->user_id, 
                                                 time());
 
-        // Statistic Part
+        /*******************************************************/
+        // Statistic Section
+        /*******************************************************/
         $data["num_all_card"] = count($card_model->get_by_deck_id($deck_id));
 
         $arr_practice = $practice_model->get_by_deck_id_user_id(
@@ -53,10 +54,15 @@ class Deck extends MyController
                                     time(), 
                                     $next_day = 1)
                                 );  
-        $data["avarage_card_interval"] = (int) $util_model->get_average_property_of_arr_object( 
-                                        $arr_object = $arr_practice, 
-                                        $property = "practice_intervalDay"
+        $data["avarage_card_interval"] = $practice_model->get_average_interval(
+                                            $deck_id,
+                                            $data["user"]->user_id
+                                        );
+        $data["sum_visit_time"] = $practice_model->get_sum_visit_time(
+                                        $deck_id, 
+                                        $data["user"]->user_id
                                     );
+
 
         $data["page_title"] = 	"ชุตบัตรคำ ";
         $data["page_link"] 	= 	[	"Home",
