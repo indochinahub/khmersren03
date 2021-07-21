@@ -42,19 +42,8 @@ class DeckModel extends MyModel
 
     }
 
-    // return Int Or Zero
-    public function get_average_interval($deck_id,$user_id){
 
-        $sql = "SELECT AVG(practice_intervalDay) as average from practice WHERE id_deck = ".$deck_id." AND id_user = ".$user_id ;
-        $query = $this->query($sql);
 
-        if( $avarage = $query->getResult()[0]->average ){
-            return intval(floor($avarage));
-
-        }else{
-            return 0;
-        }
-    }
 
 
 }

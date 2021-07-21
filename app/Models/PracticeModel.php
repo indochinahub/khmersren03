@@ -72,6 +72,38 @@ class PracticeModel extends MyModel
         }
     }
 
+    // return int
+    public function get_sum_visit_time($deck_id, $user_id){
+
+        $sql    =       " SELECT SUM(practice_counter)  as 'number'  ";
+        $sql    .=      " FROM practice ";
+        $sql    .=      " WHERE id_deck = ".$deck_id." AND id_user = ".$user_id;                
+        $query = $this->query($sql);
+
+        if(  $time = $query->getResult()[0]->number){
+            return (int) $time;
+
+        }else{
+            return 0;
+        }
+
+    }
+
+    // return Int Or Zero
+    public function get_average_interval($deck_id,$user_id){
+
+        $sql = "SELECT AVG(practice_intervalDay) as average from practice WHERE id_deck = ".$deck_id." AND id_user = ".$user_id ;
+        $query = $this->query($sql);
+
+        if( $avarage = $query->getResult()[0]->average ){
+            return intval(floor($avarage));
+
+        }else{
+            return 0;
+        }
+    }    
+
+
 
 
 

@@ -123,9 +123,60 @@ class PracticeModelTest extends CIUnitTestCase
                             ];
 
         $this->assertSame($expectedResult, $result);
-
-
     }
+
+    // return Int Or Zero
+    public function test_get_average_interval(){
+        
+        $result1 = $this->practice_model->get_average_interval(
+                                    $deck_id = 0,
+                                    $user_id = 0
+                                );
+        $result2 = $this->practice_model->get_average_interval(
+                                    $deck_id = 1,
+                                    $user_id = 1
+                                );
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2,
+                                ];
+        $expectedResult     =   [ 
+                                    0,
+                                    1,
+                                ];
+
+        $this->assertSame($result,$expectedResult);        
+    }
+
+    // return int or zero
+    public function test_get_sum_visit_time(){
+
+        $result1 = $this->practice_model->get_sum_visit_time(
+                                        $deck_id = 0, 
+                                        $user_id = 0
+                                    );
+        
+        $result2 = $this->practice_model->get_sum_visit_time(
+                                        $deck_id = 1, 
+                                        $user_id = 1
+                                    );
+                            
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2,
+                                ];
+
+        $expectedResult     =   [ 
+                                    0,
+                                    14,
+                                ];
+
+        $this->assertSame($result,$expectedResult);                
+
+    }    
+
 
     
 }
