@@ -64,7 +64,7 @@
 
         <div class="two_flex_column">
             <div>
-                ระยะเวลาเฉลี่ย 
+                ช่วงเวลา
             </div>
             <div>
                 <?php echo $avarage_card_interval;?> วัน
