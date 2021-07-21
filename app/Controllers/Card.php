@@ -30,15 +30,24 @@ class Card extends MyController
             return;
         }
 
-        $data["deck"]   = $deck_model->get_by_id($deck_id);
-        $data["course"] = $course_model->get_by_deck_id($deck_id);
-        $data["card"]   = $card_model->get_by_id($card_id);
-        $data["page"] = $page;
-        $data["practice"] = $practice_model->get_by_card_id_deck_id_user_id(
-                                $card_id, 
-                                $deck_id, 
-                                $data["user"]->user_id
-                            );
+        $data["deck"]           = $deck_model->get_by_id($deck_id);
+        $data["course"]         = $course_model->get_by_deck_id($deck_id);
+        $data["card"]           = $card_model->get_by_id($card_id);
+        $data["page"]           = $page;
+        $data["practice"]       = $practice_model->get_by_card_id_deck_id_user_id(
+                                        $card_id, 
+                                        $deck_id, 
+                                        $data["user"]->user_id
+                                    );
+
+        if( $last_visit_practice = $practice_model->get_last_by_user_id($data["user"]->user_id) ){
+            $last_card_visit_unix_timestamp  =    $datetime_model->sql_timestamp_to_unix_timestamp(
+                                                $last_visit_practice->practice_lastVisitDate  
+                                            );
+        }else{
+            $last_card_visit_unix_timestamp  = time() - 20; 
+        }
+
         
     /*******************************************************/
     // Command Section
@@ -94,7 +103,7 @@ class Card extends MyController
     // Check if there is the practice
     /*******************************************************/
 
-        if( ($data["page"] === "b") && ($practice === false) ){
+        if( ($data["page"] === "b") && ($data["practice"] === false) ){
 
             $detail =   [       "id_deck"=>$deck_id,
                                 "id_card"=>$card_id,
@@ -103,7 +112,7 @@ class Card extends MyController
                         ];
             $practice_id = $practice_model->insert($detail);
 
-            $practice = $practice_model->get_by_id($practice_id);;
+            $data["practice"] = $practice_model->get_by_id($practice_id);;
         }
 
     /*******************************************************/
@@ -111,9 +120,17 @@ class Card extends MyController
     // Update Practice
     /*******************************************************/
         if( $data["page"] === "b"){
+
+            // Get the time value
             $last_visit_date = $datetime_model->get_date_part_from_sql_timestamp(
-                                    $practice->practice_lastVisitDate
-                                );             
+                                    $data["practice"]->practice_lastVisitDate
+                                );
+
+            $time_spent = time() - $last_card_visit_unix_timestamp;
+            if( $time_spent > 180 ){
+                $time_spent = 20;
+            }
+
         }
 
         // for New card or the card which is redone in the same day
@@ -127,7 +144,7 @@ class Card extends MyController
         }elseif(  ($data["page"] === "b") && $data["selected_choice"] === 0){
             
             $iterval_num_day = $datetime_model->get_iterval_num_day( 
-                                        $practice->practice_intervalDay, 
+                                        $data["practice"]->practice_intervalDay, 
                                         $data["deck"]->deck_intervalconstant
                                     );
             $next_visit_date = $datetime_model->unix_timestamp_to_sql_timestamp(
@@ -141,8 +158,8 @@ class Card extends MyController
                         "practice_intervalDay"=>$iterval_num_day,
                         "practice_lastVisitDate"=>$now_sql_timestamp ,
                         "practice_nextVisitDate"=>$next_visit_date ,
-                        "practice_counter"=> $practice->practice_counter + 1,
-                        "practice_timespent"=>0,
+                        "practice_counter"=> $data["practice"]->practice_counter + 1,
+                        "practice_timespent"=>$time_spent,
             ];            
 
         // for the wrong answer
@@ -159,17 +176,18 @@ class Card extends MyController
                 "practice_intervalDay"=>$iterval_num_day = $iterval_num_day,
                 "practice_lastVisitDate"=>$now_sql_timestamp,
                 "practice_nextVisitDate"=>$next_visit_date,
-                "practice_counter"=> $practice->practice_counter + 1,
-                "practice_timespent"=>0,
+                "practice_counter"=> $data["practice"]->practice_counter + 1,
+                "practice_timespent"=>$time_spent,
                 
             ];              
         }
 
         // Update Practice
         if( $data["page"] === "b" ){
-            $practice_model->update_by_id(  $practice->practice_id,
+            $practice_model->update_by_id(  $data["practice"]->practice_id,
                                             $detail
                                         );
+            $data["practice"] = $practice_model->get_by_id( $data["practice"]->practice_id );
         }
 
     /*******************************************************/
@@ -213,6 +231,7 @@ class Card extends MyController
                                                         $data["practice"]->practice_nextVisitDate
                                                     )
                                                 );
+            $data["time_spent"]         =   $data["practice"]->practice_timespent;
       }
 
     /*******************************************************/

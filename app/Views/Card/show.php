@@ -88,8 +88,6 @@
 <?php } ?>
 
 
-
-
     
 <div class="card-info">
 
@@ -120,7 +118,7 @@
         <?php if($practice){ ?>
             <div class="two_flex_column">
                 <div>
-                    ระยะเวลาเฉลี่ย 
+                    ช่วงเวลา
                 </div>
                 <div>
                     <?php echo $card_interval;?> วัน
@@ -135,6 +133,23 @@
                     <?php echo $next_visit_date;?>
                 </div>
             </div>
+
+            <?php if( $page === "b" ){ ?>
+
+                <div class="two_flex_column">
+                    <div>
+                        เวลาที่ใช้
+                    </div>
+                    <div>
+                        <?php echo $time_spent;?>
+                    </div>
+                </div>                
+
+            <?php } ?>
+
+
+
+
         <?php } ?>
 
         
