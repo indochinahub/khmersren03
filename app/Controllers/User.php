@@ -3,6 +3,12 @@
 namespace App\Controllers;
 
 use \App\Models\UserModel;
+use \App\Models\DeckModel;
+use \App\Models\CourseModel;
+use \App\Models\PracticeModel;
+use \App\Models\CardModel;
+use \App\Models\StatisticModel;
+use \App\Models\DateTimeModel;
 
 class User extends MyController
 {
@@ -87,6 +93,74 @@ class User extends MyController
 		return redirect()->to(base_url(["User","login"]));		
 
 	}
+
+	public function myDeck(){
+
+		$deck_model 	 = new DeckModel;
+		$course_model 	 = new CourseModel;
+		$card_model 	 = new CardModel;
+		$practice_model  = new PracticeModel;
+		$statistic_model = new StatisticModel;
+		$datetime_model  = new DateTimeModel;
+
+
+        if( $data["user"] = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+		$arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
+		$data["arr_deck"] = [];
+		foreach( $arr_deck as $deck ){
+
+			$deck->course 			= $course_model->get_by_deck_id($deck->deck_id);
+			array_push( $data["arr_deck"], $deck );
+
+			$deck->num_all_card		=   count($card_model->get_by_deck_id($deck->deck_id));
+
+			$arr_practice			= 	$practice_model->get_by_deck_id_user_id(
+														$deck->deck_id, 
+														$data["user"]->user_id);
+			$deck->num_user_card  	=   count( $arr_practice );
+
+			$deck->card_to_review_today   = count(  $practice_model->get_to_review(
+															$deck->deck_id, 
+															$data["user"]->user_id, 
+															time(), 
+															$next_day = 0 
+													)
+												);
+			$deck->card_to_review_tomorrow   = count(  $practice_model->get_to_review(
+															$deck->deck_id, 
+															$data["user"]->user_id, 
+															time(), 
+															$next_day = 1 
+														)
+													);
+			$deck->average_card_interval =  $practice_model->get_average_interval(
+															$deck->deck_id,
+															$data["user"]->user_id
+													);
+
+			$deck->timespent 			 = 	$datetime_model->get_second_in_minute_and_hour(
+													$statistic_model->get_sum_spenttime_by_user_id_and_deck_id(
+														$data["user"]->user_id,
+														$deck->deck_id
+													)				
+												);
+
+		}
+
+        $data["page_title"] = 	"บัตรคำของฉัน";
+        $data["page_link"] 	= 	[	"Home",
+                                    base_url()
+                                ];	        
+        $this->_view("myDeck",$data);      		
+
+
+	}
+
 
 }
 

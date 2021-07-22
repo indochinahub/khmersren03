@@ -24,11 +24,6 @@ class StatisticModel extends MyModel
            return 0;
        }
 
-      
-
-
-
-
     }
 
 
