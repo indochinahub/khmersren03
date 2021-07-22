@@ -56,6 +56,24 @@ class DeckModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    // return array of object
+    public function test_get_by_user_id(){
+
+        $result1 = $this->deck_model->get_by_user_id($user_id = 1);
+        $result2 = $this->deck_model->get_by_user_id($user_id = 0);
+
+        $result             =   [ 
+                                    count( $result1 ),
+                                    $result2
+                                ];
+        $expectedResult     =   [ 
+                                    3,
+                                    []
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+    }
+
 
     
 }

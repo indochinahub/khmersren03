@@ -15,7 +15,6 @@ class DeckModel extends MyModel
         $this->primaryKey = $this->table."_id";
     }
 
-
     // return Array Of Object
     public function get_by_cardgroup_id($cardgroup_id){
 
@@ -42,8 +41,24 @@ class DeckModel extends MyModel
 
     }
 
+    // return array of object
+    public function get_by_user_id($user_id){
 
+        $util_model = new UtilModel;
 
+        $sql = " SELECT DISTINCT id_deck FROM practice WHERE id_user = $user_id " ;
+        $query = $this->query($sql); 
+        $arr_practice = $query->getResult();
+
+        $arr_deck_id = $util_model->get_property_value_Of_many_objects_as_array(
+                            $array_of_objects = $arr_practice,
+                            $property = "id_deck"
+                        );
+        $arr_deck = $this->get_by_ids( $arr_deck_id );
+
+        return $arr_deck;
+
+    }
 
 
 }
