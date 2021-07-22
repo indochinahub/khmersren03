@@ -1,10 +1,10 @@
 
 <?php if( $page_title != FALSE && $page_link != FALSE){ ?>
 
-    <div style="display:flex;justify-content: space-between;padding:10px">
+    <div style="padding:10px">
         <div>
             <?php if( $page_title != FALSE ){ ?>
-                <h3>
+                <h3 style="margin-bottom: 0px;">
                     <?php echo $page_title;?>
                 </h3>
             <?php } ?>

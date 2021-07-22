@@ -13,17 +13,26 @@
 
             <ul class="list-unstyled components">
                 <div class="sidebar_section">เมนูส่วนตัว</div>
-                <li>                
+                
                     <?php if( $loggedin_user === false ){ ?>
 
+                        <li>                
                             <a href="<?php echo base_url(["User","login"]);?>"><i class="fas fa-angle-double-right"></i> Login</a>
-                        
+                        </li>                
+
                     <?php }else{ ?>
 
+                        <li>                
                             <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> Logout</a>
-                            
+                        </li>
+
+                        <li>                
+                            <a href="<?php echo base_url(["User","myDeck"]);?>"><i class="fas fa-angle-double-right"></i> My Deck</a>
+                        </li>                
+                        
+
                     <?php } ?>
-                </li>                
+                
 
                 <li>
                     <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>
