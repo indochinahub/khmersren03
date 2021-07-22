@@ -14,7 +14,12 @@
             <div><strong>เพิ่ม/ทบทวนบัตรคำ</strong>
             </div>
             <div>
-                <a href="<?php echo base_url(["Card","show","a",$next_card_id,$deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+
+                <a href="<?php echo base_url(["Card","show","a",$next_card_id,$deck->deck_id]);?>" 
+                class="btn btn-primary  <?php if( $next_card_id === false){ echo "disabled";} ?> ">
+                    ไป
+                </a>
+
             </div>
         </div>
     </div>
