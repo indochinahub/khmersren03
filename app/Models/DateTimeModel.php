@@ -91,8 +91,24 @@ class DateTimeModel
         $time = substr($sql_timestamp,11,5);
         
         return "$thai_date_month_year $time น.";
-    }    
+    }   
+    
+    // return text
+    function get_second_in_minute_and_hour( $second ){
 
+        if( $second < 60){
+            return $second." วินาที";
+
+        }elseif( $second < 3600){
+            $minute = round ($second/60 , $precision = 0 ) ;
+            return $minute." นาที"; 
+
+        }else{
+            $hour = round ($second/3600 , $precision = 2 ) ;
+            return $hour." ชั่วโมง";
+
+        }
+    }
 
 
 }

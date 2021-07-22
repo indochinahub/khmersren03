@@ -201,5 +201,34 @@ class DateTimeModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);        
 
     }
+
+    // return text
+    function test_get_second_in_minute_and_hour(){
+
+        $result1 = $this->datetime_model->get_second_in_minute_and_hour($second = 45);
+        $result2 = $this->datetime_model->get_second_in_minute_and_hour($second = 60);
+        $result3 = $this->datetime_model->get_second_in_minute_and_hour($second = 85);
+        $result4 = $this->datetime_model->get_second_in_minute_and_hour($second = 3600);
+        $result5 = $this->datetime_model->get_second_in_minute_and_hour($second = 3750);
+
+        $result         =   [   
+                                $result1,
+                                $result2,
+                                $result3,
+                                $result4,
+                                $result5,
+                            ];
+
+        $expectedResult =   [
+                                "45 วินาที",
+                                "1 นาที",                                
+                                "1 นาที",
+                                "1 ชั่วโมง",
+                                "1.04 ชั่วโมง",
+                            ];
+
+        $this->assertSame($expectedResult, $result);        
+
+    }
     
 }
