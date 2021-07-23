@@ -7,8 +7,18 @@
                 <i class="fas fa-arrow-left"></i>
             </div>
 
-            <div class="sidebar-header">
-                Avatar
+            <div class="sidebar-header" style="display: flex;">
+                <div>
+                    <a href="<?php echo base_url();?>">
+                        <img class="image_border" src="<?php echo $avatar_url;?>" width="50" height="50" alt="User Avatar">
+                    </a>
+                </div>
+
+                <div style="padding:10px 0 0 20px;">
+                    <a href="<?php echo base_url();?>">
+                        โปรไฟล์
+                    </a>
+                </div>
             </div>
 
             <ul class="list-unstyled components">
@@ -17,20 +27,19 @@
                     <?php if( $loggedin_user === false ){ ?>
 
                         <li>                
-                            <a href="<?php echo base_url(["User","login"]);?>"><i class="fas fa-angle-double-right"></i> Login</a>
+                            <a href="<?php echo base_url(["User","login"]);?>"><i class="fas fa-angle-double-right"></i> เข้าสู่ระบบ</a>
                         </li>                
 
                     <?php }else{ ?>
 
                         <li>                
-                            <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> Logout</a>
+                            <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> ออกจากระบบ</a>
                         </li>
 
                         <li>                
                             <a href="<?php echo base_url(["User","myDeck"]);?>"><i class="fas fa-angle-double-right"></i> บัตรคำของฉัน</a>
                         </li>                
                         
-
                     <?php } ?>
                 
 
@@ -43,7 +52,13 @@
                 <li>
                     <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>
                 </li>
+
                 <div class="sidebar_section">เมนูของเว็บ</div>
+
+                <li>
+                    <a href="<?php echo base_url();?>"><i class="fas fa-angle-double-right"></i> หน้าแรก</a>
+                </li>
+
                 <li>
                     <a href="<?php echo base_url(["Course","showAll"]);?>"><i class="fas fa-angle-double-right"></i> วิชาทั้งหมด</a>
                 </li>

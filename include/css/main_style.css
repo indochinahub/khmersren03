@@ -57,7 +57,7 @@ p {
     left: -200px;
     height: 100vh;
     z-index: 999;
-    background: #28a745;
+    background: #3d4a40;
     color: #fff;
     transition: all 0.3s;
     overflow-y: scroll;
@@ -104,7 +104,7 @@ p {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    padding: 5px 5px 5px 10px;
     background: #2a2b2c;
 }
 
