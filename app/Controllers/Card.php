@@ -84,6 +84,18 @@ class Card extends MyController
                                     );
 
     /*******************************************************/
+    // Answers Section
+    /*******************************************************/                                    
+        $data["arr_answer"]  = $card_model->get_card_answer(
+                                        $data["card"], 
+                                        $data["course"], 
+                                        $data["deck"],
+                                        $data["key_of_choices"]
+                                    );
+        //var_dump($data["arr_answer"]);
+        //die();
+
+    /*******************************************************/
     // Get some value about Time
     /*******************************************************/
                       

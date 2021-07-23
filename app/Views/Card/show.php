@@ -58,6 +58,32 @@
 <div>
 
 
+<?php if( $arr_answer[0] || $arr_answer[1] || $arr_answer[2] ){ ?>
+    <div class="accordion" id="accordionExample">
+        <div class="card-warning">
+            <div class="card-warning card-warning_header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-block text-center" type="button" data-toggle="collapse" 
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                    style="color:white;font-size:1rem">
+                        [ คลิ๊กเพื่อตรวจคำตอบ ]
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-warning card-warning_body">
+
+                    <?php if($arr_answer[0]){ echo $arr_answer[0];}?>
+                    <?php if($arr_answer[1]){ echo $arr_answer[1];}?>
+                    <?php if($arr_answer[2]){ echo $arr_answer[2];}?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
 <?php if( $page === "b" && ($selected_choice === 0)){ ?>
 
     <div class="card-success">
