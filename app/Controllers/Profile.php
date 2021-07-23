@@ -75,64 +75,28 @@ class Profile extends MyController
                                                     $deck->deck_id
                                                 )				
                                             );
-    }       
+        }       
 
-    $data["arr_deck"] = $util_model->sort_array_of_object_by_the_property( 
-                                            $objects = $arr_deck, 
-                                            $sorted_property = "card_to_review_today" , 
-                                            $order_by ="desc"
-                                        );		
-    $data["arr_deck"] = array_slice( $data["arr_deck"], 0, 3);
-        
+        $data["arr_deck"] = $util_model->sort_array_of_object_by_the_property( 
+                                                $objects = $arr_deck, 
+                                                $sorted_property = "card_to_review_today" , 
+                                                $order_by ="desc"
+                                            );		
+        $data["arr_deck"] = array_slice( $data["arr_deck"], 0, 3);
+            
 
-
-
-
-
-
-
-
-
-       /*
-
-
-
-
-
-
-
-       */
-
-
-
-
-
-
-
-
-
-
-
-       if( $data["if_user_view_own_profile"] ){
+        if( $data["if_user_view_own_profile"] ){
             $data["page_title"] = 	"โปรไฟล์ของฉัน ";
 
-       }else{
+        }else{
             $data["page_title"] = 	"โปรไฟล์ของ ".$data["member"]->displayname ;
             
-       }
+        }
 
-       $data["page_link"] 	= 	[	"หน้าแรก",
-                                   base_url()
-                               ];	        
-       $this->_view("member",$data);               
-
-
-
-
-
-
-
-
+        $data["page_link"] 	= 	[	"หน้าแรก",
+                                    base_url()
+                                ];	        
+        $this->_view("member",$data);               
     }
 
 }
