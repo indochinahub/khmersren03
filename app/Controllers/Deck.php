@@ -65,7 +65,7 @@ class Deck extends MyController
 
 
         $data["page_title"] = 	"ชุตบัตรคำ ";
-        $data["page_link"] 	= 	[	"Home",
+        $data["page_link"] 	= 	[	"หน้าแรก",
                                     base_url()
                                 ];	        
         $this->_view("show",$data);        

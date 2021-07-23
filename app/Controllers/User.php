@@ -103,7 +103,6 @@ class User extends MyController
 		$statistic_model = new StatisticModel;
 		$datetime_model  = new DateTimeModel;
 
-
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
