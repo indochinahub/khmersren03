@@ -6,7 +6,7 @@
         <strong><?php echo $arr_command[0];?></strong>
             <?php if($arr_command[1]){ echo "<br>".$arr_command[1];}?>
             <?php if($arr_command[2]){ echo "<br>".$arr_command[2];}?>
-            <?php if($arr_command[3]){ echo "<br>".$arr_command[3];}?>
+           <?php  if($arr_command[3]){ echo "<br>".$arr_command[3];}?>
     </div>
 
     <div class="card-info card-info_header">
@@ -26,25 +26,32 @@
                         }
             ?>
 
-            <div class="card-info card-info_body" style="<?php if($page === "b"){echo $style;}?>">
-                <div>
-                    <?php if($choice->a){ echo $choice->a;}?>
-                    <?php if($choice->b){ echo "<br>".$choice->b;}?>
-                    <?php if($choice->c){ echo "<br>".$choice->c;}?>
-                    <?php if($choice->d){ echo "<br>".$choice->d;}?>
+            
+            <?php if( $choice->a ){  ?>
+
+                <div class="card-info card-info_body" style="<?php if($page === "b"){echo $style;}?>">
+                    <div>
+                        <?php if($choice->a){ echo $choice->a;}?>
+                        <?php if($choice->b){ echo "<br>".$choice->b;}?>
+                        <?php if($choice->c){ echo "<br>".$choice->c;}?>
+                        <?php if($choice->d){ echo "<br>".$choice->d;}?>
+                    </div>
+
+                    <?php if( $page === "a" ){ ?>
+                        <div class="two_flex_column">
+                            <div>
+                            </div>
+                            <div>
+                                <a href="<?php echo base_url(array_merge( ["Card","show","b",$card->card_id, $deck->deck_id], $key_of_choices,[$choice->key]));?>" class="btn btn-primary">เลือก</a>
+                            </div>
+                        </div>        
+                    <?php } ?>                    
                 </div>
 
-                <?php if( $page === "a" ){ ?>
-                    <div class="two_flex_column">
-                        <div>
-                        </div>
-                        <div>
-                            <a href="<?php echo base_url(array_merge( ["Card","show","b",$card->card_id, $deck->deck_id], $key_of_choices,[$choice->key]));?>" class="btn btn-primary">เลือก</a>
-                        </div>
-                    </div>        
-                <?php } ?>                    
+            <?php } ?>
 
-            </div>
+
+
         <?php } ?>
 
     <?php } ?>

@@ -147,7 +147,10 @@ class CardModel extends MyModel
         $arr_command = [];
         foreach( $arr_deck_property as $deck_property ){
 
-            if(  isset($deck->$deck_property) && ($card_property = $deck->$deck_property) ){
+            if(     isset($deck->$deck_property) 
+                    && ($card_property = $deck->$deck_property) 
+                    && $card->$card_property)
+            {
 
                 $command = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
 
@@ -176,7 +179,11 @@ class CardModel extends MyModel
         $arr_choice_html = [];
         foreach( $arr_deck_property as $deck_property ){
 
-            if(  isset($deck->$deck_property) && ($card_property = $deck->$deck_property) ){
+            if(     isset($deck->$deck_property) 
+                    && ($card_property = $deck->$deck_property) 
+                    && $card->$card_property
+            )
+            {
                 $arr_choice_html[$deck_property] = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
 
             }else{
