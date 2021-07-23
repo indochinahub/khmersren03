@@ -16,7 +16,7 @@
 
                 <div style="padding:10px 0 0 20px;">
                     <a href="<?php echo base_url();?>">
-                        โปรไฟล์
+                        โปรไฟล์ของฉัน
                     </a>
                 </div>
             </div>
@@ -33,11 +33,11 @@
                     <?php }else{ ?>
 
                         <li>                
-                            <a href="<?php echo base_url(["Profile","member", $loggedin_user->user_id ]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์</a>
+                            <a href="<?php echo base_url(["Profile","member", $loggedin_user->user_id ]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์ของฉัน</a>
                         </li>                
 
                         <li>                
-                            <a href="<?php echo base_url(["User","myDeck"]);?>"><i class="fas fa-angle-double-right"></i> บัตรคำของฉัน</a>
+                            <a href="<?php echo base_url(["User","deck"]);?>"><i class="fas fa-angle-double-right"></i> บัตรคำของฉัน</a>
                         </li>                
 
                         <li>                

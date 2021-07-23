@@ -95,7 +95,7 @@ class User extends MyController
 
 	}
 
-	public function myDeck(){
+	public function deck(){
 
 		$deck_model 	 = new DeckModel;
 		$course_model 	 = new CourseModel;
