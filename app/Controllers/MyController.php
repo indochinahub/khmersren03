@@ -65,12 +65,10 @@ class MyController extends BaseController {
 			$data["member_avatar_url"] = $this->user_model->get_avarta_url($data["member"]->user_id);
 
 		}else{ // get anonymous avatar
+			$data["member"] = false;
 			$data["member_avatar_url"] = $this->user_model->get_avarta_url(0);
 
 		}
-
-
-
 
 		// Page Title 
 		if( isset($data["page_title"]) && trim($data["page_title"])){
