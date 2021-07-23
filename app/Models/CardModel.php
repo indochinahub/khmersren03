@@ -164,6 +164,36 @@ class CardModel extends MyModel
         return $arr_command;
     }
 
+
+    //return array of object
+    public function get_card_answer($card, $course, $deck){
+
+        $arr_deck_property =    [
+                                       	"deck_answer1_col",
+                                        "deck_answer2_col",
+                                        "deck_answer3_col"
+                                ];
+
+        $arr_command = [];
+        foreach( $arr_deck_property as $deck_property ){
+
+            if(     isset($deck->$deck_property) 
+                    && ($card_property = $deck->$deck_property) 
+                    && $card->$card_property)
+            {
+
+                $command = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+
+            }else{
+                $command = false;
+
+            }            
+            array_push($arr_command, $command);
+        }
+
+        return $arr_command;
+    }
+
     //return array of object
     public function get_card_choice($card, $course, $deck, $key_of_choices){
 

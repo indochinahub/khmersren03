@@ -346,5 +346,66 @@ class CardModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);        
     }
 
+    //return array of object
+    public function test_get_card_answer(){
+
+        // Complete parameters
+        $course = new \stdClass;
+        $course->course_code = "T001";
+
+        $deck = new \stdClass;
+        $deck->deck_choice1a_col = "card_picture1";
+        $deck->deck_choice1b_col = "card_sound1";
+
+        $deck->deck_answer1_col = "card_text1";
+        $deck->deck_answer2_col = "card_picture1";
+        $deck->deck_answer3_col = "card_sound1";
+
+        $card = new \stdClass;
+        $card->card_text1       = "This is Text1";
+        $card->card_picture1    = "card_picture1.jpg";
+        $card->card_sound1      = "card_sound1.mp3";
+
+        $result1 =  $this->card_model->get_card_answer(
+                            $card, 
+                            $course, 
+                            $deck
+                        );
+
+        // In case some card values are emty
+        $card = new \stdClass;
+        $card->card_text1       = "";
+        $card->card_picture1    = "";
+        $card->card_sound1      = "";
+
+        $result2 =  $this->card_model->get_card_answer(
+                        $card, 
+                        $course, 
+                        $deck
+                    );
+
+        $result             =   [ 
+                                    $result1[0],
+                                    $result1[1],
+                                    $result1[2],
+
+                                    $result2[0],
+                                    $result2[1],
+                                    $result2[2],
+
+                                ];
+        $expectedResult     =   [
+                                    "This is Text1",
+                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                    "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
+
+                                    false,
+                                    false,
+                                    false,
+                                    
+                                ];
+        $this->assertSame($result,$expectedResult);                
+    }    
+
     
 }
