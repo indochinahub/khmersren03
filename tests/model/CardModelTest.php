@@ -327,8 +327,23 @@ class CardModelTest extends CIUnitTestCase
         
         $key_of_choices = [ 3, 0, 1, 2];
 
-        //
         $result1 = $this->card_model->get_card_choice(
+                            $card, 
+                            $course, 
+                            $deck, 
+                            $key_of_choices
+                        );
+
+        // In case some values in card are empty
+        $deck = new \stdClass;
+        $deck->deck_choice1a_col = "card_picture1";
+        $deck->deck_choice1b_col = "card_sound1";
+
+        $card = new \stdClass;
+        $card->card_picture1    = "card_picture1.jpg";
+        $card->card_sound1      = "";
+
+        $result2 = $this->card_model->get_card_choice(
                             $card, 
                             $course, 
                             $deck, 
@@ -338,10 +353,18 @@ class CardModelTest extends CIUnitTestCase
         $result             =   [ 
                                     $result1[1]->a,
                                     $result1[1]->b,
+
+                                    $result2[1]->a,
+                                    $result2[1]->b,
                                 ];
         $expectedResult     =   [
                                     "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
                                     "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
+
+                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                    false,
+
+                                    
                                 ];
         $this->assertSame($result,$expectedResult);        
     }
