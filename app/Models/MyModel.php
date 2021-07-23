@@ -88,7 +88,7 @@ class MyModel extends Model
             return 0;
         }else{
             $this->delete($id);
-            return $this->affectedRows();
+            return $this->db->affectedRows();
         }
     }
 
@@ -99,7 +99,7 @@ class MyModel extends Model
         if($rows = $this->get_by_ids($ids)){
             $arr_id = $util_model->get_property_value_Of_many_objects_as_array($rows, $this->primaryKey);
             $this->delete($arr_id);
-            return $this->affectedRows();
+            return $this->db->affectedRows();
             
         }else{
             return 0;
@@ -131,7 +131,7 @@ class MyModel extends Model
             
             $this->update([$id], $detail);
 
-            return $this->affectedRows();
+            return $this->db->affectedRows();
         }
     }
 
