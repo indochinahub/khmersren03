@@ -29,7 +29,7 @@
             <div>ดูบัตรคำทั้งหมด
             </div>
             <div>
-                <a href="#" class="btn btn-primary">ไป</a>
+                <a href="<?php echo base_url(["Deck","showAllCard",$deck->deck_id]);?>" class="btn btn-primary">ไป</a>
             </div>
         </div>
     </div>

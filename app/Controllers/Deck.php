@@ -14,10 +14,12 @@ class Deck extends MyController
 
     public function show($deck_id){
 
-        $deck_model = new DeckModel;
-        $card_model = new CardModel;
+        $deck_model     = new DeckModel;
+        $card_model     = new CardModel;
         $practice_model = new PracticeModel;
-        $util_model = new UtilModel;
+        $util_model     = new UtilModel;
+        $course_model   = new CourseModel;
+
 
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
@@ -26,6 +28,7 @@ class Deck extends MyController
         }
 
         $data["deck"] = $deck_model->get_by_id($deck_id);
+        $data["course"] = $course_model->get_by_deck_id($deck_id);
 
         $data["next_card_id"] = $card_model->get_next_card_id(
                                                 $deck_id, 
@@ -63,13 +66,35 @@ class Deck extends MyController
                                         $data["user"]->user_id
                                     );
 
-
-        $data["page_title"] = 	"ชุตบัตรคำ ";
-        $data["page_link"] 	= 	[	"หน้าแรก",
-                                    base_url()
-                                ];	        
+        $data["page_title"] = 	"ชุตบัตรคำ ".$data["course"]->course_code."-".$data["deck"]->deck_name; 
+        $data["page_link"] 	= 	[	"วิชา ".$data["course"]->course_code,
+                                    base_url( ["Course","show", $data["course"]->course_id] )
+                               ];	        
         $this->_view("show",$data);        
+    }
 
+    public function showAllCard($deck_id){
+
+        $card_model = new CardModel;
+        $deck_model = new DeckModel;
+
+        if( $data["user"] = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        $data["deck"] = $deck_model->get_by_id($deck_id);
+
+        $arr_card = $card_model->get_by_deck_id($deck_id);
+
+        
+
+        $data["page_title"] = 	"บัตรคำทั้งหมดของชุด "; 
+        $data["page_link"] 	= 	[	"วิชา ",
+                                    base_url()
+                               ];	        
+        $this->_view("showAllCard",$data);        
     }
 
 
