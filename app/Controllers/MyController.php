@@ -53,13 +53,24 @@ class MyController extends BaseController {
 
 		// Pass user object
 		if( $data["loggedin_user"] = $this->_get_loggedin_user() ){
-			$data["avatar_url"] = $this->user_model->get_avarta_url($data["loggedin_user"]->user_id);
+			$data["user_avatar_url"] = $this->user_model->get_avarta_url($data["loggedin_user"]->user_id);
 
-		}else{
-			$data["avatar_url"] = $this->user_model->get_avarta_url(0);
+		}else{  // get anonymous avatar
+			$data["user_avatar_url"] = $this->user_model->get_avarta_url(0);
 
 		}
-		
+
+		// Pass member object
+		if( isset($data["member"] ) && ( $data["member"] !== false ) ){
+			$data["member_avatar_url"] = $this->user_model->get_avarta_url($data["member"]->user_id);
+
+		}else{ // get anonymous avatar
+			$data["member_avatar_url"] = $this->user_model->get_avarta_url(0);
+
+		}
+
+
+
 
 		// Page Title 
 		if( isset($data["page_title"]) && trim($data["page_title"])){

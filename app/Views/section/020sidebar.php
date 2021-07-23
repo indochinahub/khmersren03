@@ -10,7 +10,7 @@
             <div class="sidebar-header" style="display: flex;">
                 <div>
                     <a href="<?php echo base_url();?>">
-                        <img class="image_border" src="<?php echo $avatar_url;?>" width="50" height="50" alt="User Avatar">
+                        <img class="image_border" src="<?php echo $user_avatar_url;?>" width="50" height="50" alt="User Avatar">
                     </a>
                 </div>
 
@@ -33,12 +33,16 @@
                     <?php }else{ ?>
 
                         <li>                
-                            <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> ออกจากระบบ</a>
-                        </li>
+                            <a href="<?php echo base_url(["Profile","member", $loggedin_user->user_id ]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์</a>
+                        </li>                
 
                         <li>                
                             <a href="<?php echo base_url(["User","myDeck"]);?>"><i class="fas fa-angle-double-right"></i> บัตรคำของฉัน</a>
                         </li>                
+
+                        <li>                
+                            <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> ออกจากระบบ</a>
+                        </li>
                         
                     <?php } ?>
                 
