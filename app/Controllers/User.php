@@ -9,6 +9,7 @@ use \App\Models\PracticeModel;
 use \App\Models\CardModel;
 use \App\Models\StatisticModel;
 use \App\Models\DateTimeModel;
+use \App\Models\UtilModel;
 
 class User extends MyController
 {
@@ -102,6 +103,7 @@ class User extends MyController
 		$practice_model  = new PracticeModel;
 		$statistic_model = new StatisticModel;
 		$datetime_model  = new DateTimeModel;
+		$util_model  	 = new UtilModel;
 
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
@@ -110,6 +112,7 @@ class User extends MyController
         }
 
 		$arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
+
 		$data["arr_deck"] = [];
 		foreach( $arr_deck as $deck ){
 
@@ -148,8 +151,13 @@ class User extends MyController
 														$deck->deck_id
 													)				
 												);
-
 		}
+
+		$data["arr_deck"] = $util_model->sort_array_of_object_by_the_property( 
+										$objects = $arr_deck, 
+										$sorted_property = "card_to_review_today" , 
+										$order_by ="desc"
+									);		
 
         $data["page_title"] = 	"บัตรคำของฉัน";
         $data["page_link"] 	= 	[	"Home",
