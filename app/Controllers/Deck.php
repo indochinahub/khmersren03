@@ -75,8 +75,11 @@ class Deck extends MyController
 
     public function showAllCard($deck_id){
 
-        $card_model = new CardModel;
-        $deck_model = new DeckModel;
+        $card_model     = new CardModel;
+        $deck_model     = new DeckModel;
+        $course_model   = new CourseModel;
+
+        $pager = service('pager');
 
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
@@ -85,15 +88,14 @@ class Deck extends MyController
         }
 
         $data["deck"] = $deck_model->get_by_id($deck_id);
+        $data["course"] = $course_model->get_by_deck_id($deck_id);
+        $data["arr_card"] = $card_model->get_by_deck_id($deck_id);
 
-        $arr_card = $card_model->get_by_deck_id($deck_id);
-
-        
-
-        $data["page_title"] = 	"บัตรคำทั้งหมดของชุด "; 
-        $data["page_link"] 	= 	[	"วิชา ",
-                                    base_url()
-                               ];	        
+        $data["page_title"] = 	"บัตรคำทั้งหมดในชุด ".$data["course"]->course_code."-".$data["deck"]->deck_name; 
+        $data["page_link"] 	= 	[   "ชุดบัตรคำ ".$data["course"]->course_code."-".$data["deck"]->deck_name,
+                                    base_url(["Deck","show", $deck_id])
+                               ];
+                               
         $this->_view("showAllCard",$data);        
     }
 
