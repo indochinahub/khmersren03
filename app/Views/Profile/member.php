@@ -63,7 +63,7 @@
         
         <div class="two_flex_column">
             <div>
-                <strong>ดูบัตรคำทั้งหมดของ xxx</strong>
+                <h5>ดูบัตรคำทั้งหมดของ xxx</h5>
             </div>
             <div>
                 <a href="<?php echo base_url(["User","deck"]);?>" class="btn btn-primary">ไป</a>
