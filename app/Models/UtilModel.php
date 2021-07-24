@@ -198,7 +198,7 @@ class UtilModel
 
 
     // Return text
-    function add_leading_zero_to_number( $text, $num_required_digit){
+    public function add_leading_zero_to_number( $text, $num_required_digit){
 
         $text = strval($text);
         $zero_string_to_add = (int)$num_required_digit - strlen($text) ;
@@ -215,7 +215,7 @@ class UtilModel
     }
 
     //return array of pair values
-    function separate_array_to_pair_value($origin_arr){
+    public function separate_array_to_pair_value($origin_arr){
 
         if( count($origin_arr) === 0){ return [];}
 
@@ -232,6 +232,11 @@ class UtilModel
 
         return $new_arr;
 
+    }
+
+    // return int
+    public function get_start_item_for_pagination( $current_page, $per_page){
+        return ( $current_page - 1 ) * $per_page;
     }
 
 
