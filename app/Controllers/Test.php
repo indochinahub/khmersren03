@@ -8,7 +8,7 @@ use App\Models\UtilModel;
 class Test extends MyController
 {
 
-	public function testPagination()	{
+	public function testPaginationP()	{
 
 		$user_model = new UserModel;
 		$util_model = new UtilModel;

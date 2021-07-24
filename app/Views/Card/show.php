@@ -25,7 +25,6 @@
                             $style = "";
                         }
             ?>
-
             
             <?php if( $choice->a ){  ?>
 
