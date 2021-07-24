@@ -6,9 +6,18 @@ class Main extends MyController
 {
 
 
-	public function index()	{
-		
-		$this->_view("index",[]);
+	public function PaginationExample()	{
+
+	/******************************* */
+	// Pagination
+	/******************************* */
+
+		$pager = service("pager");
+		$perPage = 5;
+		$total = 33;
+		$data["pagination"]  = $pager->makeLinks( $page = 3 , $perPage , $total);
+
+		$this->_view("index",$data);
 
 	}
 
