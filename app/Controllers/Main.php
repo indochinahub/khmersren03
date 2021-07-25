@@ -2,8 +2,32 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+use App\Models\PaginationModel;
+
 class Main extends MyController
 {
+
+
+	public function index(){
+
+	/******************************* */
+	// Pagination
+	/******************************* */
+
+	$pager = service("pager");
+	$perPage = 5;
+	$total = 33;
+	$data["pagination"]  = $pager->makeLinks( $page = 3 , $perPage , $total);
+
+	$this->_view("index",$data);
+
+
+
+
+
+
+	}
 
 
 	public function PaginationExample()	{
