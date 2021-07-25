@@ -234,16 +234,6 @@ class UtilModel
 
     }
 
-    // return int
-    public function get_start_item_for_pagination( $current_page, $per_page){
-        return ( $current_page - 1 ) * $per_page;
-    }
-
-
-
-
-
-
 
 }
 

@@ -619,38 +619,4 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);                    
     }
 
-
-    // return int
-    public function test_get_start_item_for_pagination(){
-
-        $result1 = $this->util_model->get_start_item_for_pagination( 
-                                $current_page = 1 , 
-                                $per_page  = 5     
-                            );
-        $result2 = $this->util_model->get_start_item_for_pagination( 
-                                $current_page = 2 , 
-                                $per_page  = 5     
-                            );
-        $result3 = $this->util_model->get_start_item_for_pagination( 
-                                $current_page = 3 , 
-                                $per_page  = 5     
-                            );
- 
-
- 
-        $result         =   [
-                                $result1, 
-                                $result2,
-                                $result3,  
-                            ];
-
-        $expectedResult =   [   
-                                0,
-                                5,
-                                10,
-                            ];
-
-        $this->assertSame($result,$expectedResult);                            
-    }
-    
 }
