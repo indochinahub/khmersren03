@@ -4,9 +4,9 @@
     </div>
     <div class="card-info card-info_body">
         <strong><?php echo $arr_command[0];?></strong>
-            <?php if($arr_command[1]){ echo "<br>".$arr_command[1];}?>
-            <?php if($arr_command[2]){ echo "<br>".$arr_command[2];}?>
-           <?php  if($arr_command[3]){ echo "<br>".$arr_command[3];}?>
+        <?php if($arr_command[1]){ echo "<br>".$arr_command[1];}?>
+        <?php if($arr_command[2]){ echo "<br>".$arr_command[2];}?>
+        <?php  if($arr_command[3]){ echo "<br>".$arr_command[3];}?>
     </div>
 
     <div class="card-info card-info_header">

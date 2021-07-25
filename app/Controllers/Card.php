@@ -90,7 +90,6 @@ class Card extends MyController
                                         $data["card"], 
                                         $data["course"], 
                                         $data["deck"],
-                                        $data["key_of_choices"]
                                     );
         //var_dump($data["arr_answer"]);
         //die();
