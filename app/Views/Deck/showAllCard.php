@@ -1,3 +1,4 @@
+<?php echo $pagination_link;?>
 
 <?php foreach( $arr_card as $card ){ ?>
 
@@ -13,29 +14,37 @@
             คำสั่ง
         </div>
         <div class="card-info card-info_body">
-            รายละเอียดคำสั่ง
+            <strong><?php echo $card->arr_command[0];?></strong>
+            <?php if($card->arr_command[1]){ echo "<br>".$card->arr_command[1];}?>
+            <?php if($card->arr_command[2]){ echo "<br>".$card->arr_command[2];}?>
+            <?php if($card->arr_command[3]){ echo "<br>".$card->arr_command[3];}?>
         </div>
-        <div class="card-info card-info_header">
-            คำตอบ
-        </div>
-        <div class="card-info card-info_body">
-            รายละเอียดคำตอบ
-        </div>
+
         <div class="card-info card-info_header">
             ตัวเลือก
         </div>
-        <div class="card-info card-info_body">
-            ตัวเลือก 1
-        </div>    
-        <div class="card-info card-info_body">
-            ตัวเลือก 2
-        </div>            
-        <div class="card-info card-info_body">
-            ตัวเลือก 3
-        </div>    
-        <div class="card-info card-info_body">
-            ตัวเลือก 4
-        </div>        
+
+            <?php foreach( $card->arr_choice as $choice ){ ?>
+                <?php if( $choice->a ){ ?>
+                    <div class="card-info card-info_body">
+                        <?php if($choice->a){ echo $choice->a;}?>
+                        <?php if($choice->b){ echo "<br>".$choice->b;}?>
+                        <?php if($choice->c){ echo "<br>".$choice->c;}?>
+                        <?php if($choice->d){ echo "<br>".$choice->d;}?>
+                    </div>    
+                <?php } ?>
+            <?php }?>
+
+        <?php if( $card->arr_answer[0] || $card->arr_answer[1] || $card->arr_answer[2] ){ ?>
+            <div class="card-info card-info_header">
+                คำตอบ
+            </div>
+            <div class="card-info card-info_body">
+                <?php if($card->arr_answer[0]){ echo $card->arr_answer[0];}?>
+                <?php if($card->arr_answer[1]){ echo $card->arr_answer[1];}?>
+                <?php if($card->arr_answer[2]){ echo $card->arr_answer[2];}?>
+            </div>
+        <?php } ?>
 
     </div>
 <?php } ?>

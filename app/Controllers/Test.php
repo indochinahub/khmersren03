@@ -22,7 +22,6 @@ class Test extends MyController
 		$arr_user = $user_model->get_all_row();
 		$arr_user = array_slice( $arr_user, 0,100);
 
-
 		if( ! ($page = $this->request->getGet('page')) ){
 			$page = 1;
 		}

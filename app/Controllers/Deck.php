@@ -8,6 +8,7 @@ use App\Models\UtilModel;
 use App\Models\DeckModel;
 use App\Models\CardModel;
 use App\Models\PracticeModel;
+use App\Models\PaginationModel;
 
 class Deck extends MyController
 {
@@ -78,6 +79,7 @@ class Deck extends MyController
         $card_model     = new CardModel;
         $deck_model     = new DeckModel;
         $course_model   = new CourseModel;
+        $pagination_model = new PaginationModel;
 
         $pager = service('pager');
 
@@ -89,7 +91,46 @@ class Deck extends MyController
 
         $data["deck"] = $deck_model->get_by_id($deck_id);
         $data["course"] = $course_model->get_by_deck_id($deck_id);
-        $data["arr_card"] = $card_model->get_by_deck_id($deck_id);
+        $arr_card = $card_model->get_by_deck_id($deck_id);
+
+
+		if( ! ($page = $this->request->getGet('page')) ){
+			$page = 1;
+		}
+		$pagination = $pagination_model->get_pagination( 
+                                        $arr_card, 
+                                        $current_page = $page , 
+                                        $per_page = 20
+                                    );
+		$data["pagination_link"] = $pagination->link;
+        $arr_card = $pagination->arr_row;        
+
+        $data["arr_card"] = [];
+        foreach( $arr_card as $card){
+
+            $card->arr_command = $card_model->get_card_command(
+                                                    $card, 
+                                                    $data["course"], 
+                                                    $data["deck"]
+                                                );
+
+            $card->arr_choice   = $card_model->get_card_choice(
+                                                    $card, 
+                                                    $data["course"], 
+                                                    $data["deck"],
+                                                    [0,1,2,3]
+                                                );
+
+            $card->arr_answer   = $card_model->get_card_answer(
+                                                    $card, 
+                                                    $data["course"], 
+                                                    $data["deck"]
+                                                );                                                
+
+            array_push($data["arr_card"], $card);
+
+
+        }
 
         $data["page_title"] = 	"บัตรคำทั้งหมดในชุด ".$data["course"]->course_code."-".$data["deck"]->deck_name; 
         $data["page_link"] 	= 	[   "ชุดบัตรคำ ".$data["course"]->course_code."-".$data["deck"]->deck_name,
