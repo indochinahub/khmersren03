@@ -163,9 +163,7 @@ class User extends MyController
         $data["page_link"] 	= 	[	"Home",
                                     base_url()
                                 ];	        
-        $this->_view("myDeck",$data);      		
-
-
+        $this->_view("myDeck",$data);
 	}
 
 

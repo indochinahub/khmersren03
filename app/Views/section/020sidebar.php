@@ -66,5 +66,10 @@
                 <li>
                     <a href="<?php echo base_url(["Course","showAll"]);?>"><i class="fas fa-angle-double-right"></i> วิชาทั้งหมด</a>
                 </li>
+
+                <li>
+                    <a href="<?php echo base_url(["CardComment","showAll"]);?>"><i class="fas fa-angle-double-right"></i> ความเห็นต่อบัตรคำ</a>
+                </li>                
+
             </ul>
         </nav>
