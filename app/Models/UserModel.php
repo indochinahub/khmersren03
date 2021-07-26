@@ -45,7 +45,7 @@ class UserModel extends MyModel
     }
 
     // return text
-    public function get_username($obj_user){
+    public function get_user_displayname($obj_user){
 
         if( trim($obj_user->user_display_name) ){
             return $obj_user->user_display_name;

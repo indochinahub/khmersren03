@@ -102,17 +102,17 @@ class UserModelTest extends CIUnitTestCase
     }
 
     // return text
-    public function test_get_username(){
+    public function test_get_user_displayname(){
         $user = new \stdClass;
         $user->user_display_name = "Displayname";
         $user->user_username = "Username" ;
 
-        $result1 = $this->user_model->get_username($obj_user = $user );
+        $result1 = $this->user_model->get_user_displayname($obj_user = $user );
 
         $user->user_display_name = "";
         $user->user_username = "Username" ;
 
-        $result2 = $this->user_model->get_username($obj_user = $user );
+        $result2 = $this->user_model->get_user_displayname($obj_user = $user );
 
         $result         =   [ 
                                 $result1,
