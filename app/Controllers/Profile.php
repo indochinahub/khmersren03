@@ -31,7 +31,6 @@ class Profile extends MyController
 
         if( $data["user"]->user_id === $data["member"]->user_id ){
             $data["if_user_view_own_profile"] = true;
-
        }else{
             $data["if_user_view_own_profile"] = false;
        }

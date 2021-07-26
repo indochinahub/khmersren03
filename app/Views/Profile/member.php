@@ -1,6 +1,7 @@
 <div class="card-info">
     <div class="card-info card-info_header">
-        บัตรคำของ xxxx 
+        บัตรคำของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
+        
     </div>
         
     <?php foreach( $arr_deck as $deck ){ ?>
@@ -12,7 +13,9 @@
                         <h5>ชุดบัตรคำ <?php echo $deck->course->course_code."-".$deck->deck_name;?></h5>
                     </div>
                     <div>
-                        <a href="<?php echo base_url(["Deck","show", $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                        <?php if( $if_user_view_own_profile === true ){ ?>
+                            <a href="<?php echo base_url(["Deck","show", $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                        <?php } ?>
                     </div>
             </div>
 
@@ -63,11 +66,10 @@
         
         <div class="two_flex_column">
             <div>
-                <h5>ดูบัตรคำทั้งหมดของ xxx</h5>
+                <h5>ดูบัตรคำทั้งหมดของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?></h5>
             </div>
             <div>
                 <a href="<?php echo base_url(["User","deck"]);?>" class="btn btn-primary">ไป</a>
-                
             </div>
         </div>
 
