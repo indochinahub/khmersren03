@@ -20,6 +20,15 @@ class CardcommentModel extends MyModel
 
     }
 
+    // return array of object
+    public function get_by_card_id_and_deck_id($card_id, $deck_id){
+
+        $where_clause = " WHERE id_card = ".$card_id." AND id_deck = ".$deck_id;
+        return $this->get_where($where_clause);
+
+    }
+
+
 }
 
 
