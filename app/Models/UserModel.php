@@ -44,6 +44,19 @@ class UserModel extends MyModel
         }
     }
 
+    // return text
+    public function get_username($obj_user){
+
+        if( trim($obj_user->user_display_name) ){
+            return $obj_user->user_display_name;
+
+        }else{
+            return $obj_user->user_username;    
+
+        }
+
+    }
+
     //return URL 
     public function get_avarta_url($user_id){
         $util_model = new UtilModel();

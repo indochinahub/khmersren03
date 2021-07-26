@@ -100,6 +100,33 @@ class UserModelTest extends CIUnitTestCase
 
         $this->assertSame($expectedResult, $result);        
     }
+
+    // return text
+    public function test_get_username(){
+        $user = new \stdClass;
+        $user->user_display_name = "Displayname";
+        $user->user_username = "Username" ;
+
+        $result1 = $this->user_model->get_username($obj_user = $user );
+
+        $user->user_display_name = "";
+        $user->user_username = "Username" ;
+
+        $result2 = $this->user_model->get_username($obj_user = $user );
+
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
+
+        $expectedResult =   [ 
+                                "Displayname",
+                                "Username"
+                            ];
+
+        $this->assertSame($expectedResult, $result);        
+
+    }
     
     
 }
