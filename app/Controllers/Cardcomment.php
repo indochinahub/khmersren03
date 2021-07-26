@@ -27,9 +27,7 @@ class Cardcomment extends MyController
         $datetime_model     = new DateTimeModel;
         
         $assoc_deck     =  $deck_model->get_all_rows_as_assoc();
-        $assoc_card     =  $card_model->get_all_rows_as_assoc();
         $assoc_user      =  $user_model->get_all_rows_as_assoc();
-
 
         $arr_cardcomment = $cardcomment_model->get_all_row();
         $arr_cardcomment = $util_model->sort_array_of_object_by_the_property( 
@@ -55,7 +53,7 @@ class Cardcomment extends MyController
 
             $cardcomment->course                = $course_model->get_by_deck_id($cardcomment->id_deck);
             $cardcomment->deck                  = $assoc_deck[$cardcomment->id_deck];
-            $cardcomment->card                  = $assoc_card[$cardcomment->id_card];
+            $cardcomment->card                  = $card_model->get_by_id($cardcomment->id_card);
             $cardcomment->user                  = $assoc_user[$cardcomment->id_user];
             $cardcomment->user->display_name    = $this->user_model->get_user_displayname($cardcomment->user);
             $cardcomment->visited_time          = $datetime_model->get_thai_datetime_from_sql_timestamp(
