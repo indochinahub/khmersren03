@@ -32,8 +32,8 @@
                     <div>
                         <?php if($choice->a){ echo $choice->a;}?>
                         <?php if($choice->b){ echo "<br>".$choice->b;}?>
-                        <?php if($choice->c){ echo "<br>".$choice->c;}?>
-                        <?php if($choice->d){ echo "<br>".$choice->d;}?>
+                        <?php if(($choice->c) && ($page === "b") ){ echo "<br>".$choice->c;}?>
+                        <?php if(($choice->d) && ($page === "b") ){ echo "<br>".$choice->d;}?>
                     </div>
 
                     <?php if( $page === "a" ){ ?>
