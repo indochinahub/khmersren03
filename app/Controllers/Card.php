@@ -89,7 +89,7 @@ class Card extends MyController
         $data["arr_answer"]  = $card_model->get_card_answer(
                                         $data["card"], 
                                         $data["course"], 
-                                        $data["deck"],
+                                        $data["deck"]
                                     );
         //var_dump($data["arr_answer"]);
         //die();
