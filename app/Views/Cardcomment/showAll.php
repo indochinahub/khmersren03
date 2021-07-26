@@ -1,0 +1,26 @@
+<?php echo $pagination_link;?>
+
+<div class="card-info">
+
+    <?php foreach( $arr_cardcomment as $cardcomment){ ?>
+    
+        <div class="card-info card-info_body">
+                <div>
+                    Cardcomment Id :: <?php echo $cardcomment->cardcomment_id;?><br>
+                    <strong>ชุดบัตรคำ :: <?php echo $cardcomment->course->course_code."-".$cardcomment->deck->deck_name;?></strong><br>
+                    <strong>ลำดับ :: <?php echo $cardcomment->card->card_sort;?></strong><br>
+                    วิชาเรียน :: [ <?php echo $cardcomment->course->course_code." ".$cardcomment->course->course_name;?> ]<br>
+                    โดย :: [ <strong><?php echo $cardcomment->user->display_name;?></strong> ] เมื่อ <?php echo $cardcomment->visited_time;?><br>
+                    
+                </div>
+                <div class="two_flex_column">
+                        <div>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-primary">ไป</a>
+                        </div>
+                </div>
+        </div>
+
+    <?php } ?>
+</div>
