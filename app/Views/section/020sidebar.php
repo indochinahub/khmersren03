@@ -68,7 +68,7 @@
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url(["CardComment","showAll"]);?>"><i class="fas fa-angle-double-right"></i> ความเห็นทั้งหมด</a>
+                    <a href="<?php echo base_url(["Cardcomment","showAll"]);?>"><i class="fas fa-angle-double-right"></i> ความเห็นทั้งหมด</a>
                 </li>                
 
             </ul>
