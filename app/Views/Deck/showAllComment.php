@@ -6,7 +6,7 @@
         
         <div class="card-info card-info_body">
                 <div>
-                    <strong>ชุดบัตรคำ :: <?php echo $course->course_code."-".$cardcomment->deck->deck_name;?></strong><br>
+                    <strong>ชุดบัตรคำ :: <?php echo $course->course_code."-".$deck->deck_name;?></strong><br>
                     <strong>ลำดับ :: <?php echo $cardcomment->card->card_sort;?></strong><br>
                     วิชาเรียน :: [ <?php echo $course->course_code." ".$course->course_name;?> ]<br>
                     โดย :: [ <strong><?php echo $cardcomment->user->display_name;?></strong> ] เมื่อ <?php echo $cardcomment->visited_time;?><br>

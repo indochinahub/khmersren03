@@ -39,7 +39,7 @@
             <div>ดูความคิดเห็นทั้งหมด
             </div>
             <div>
-                <a href="#" class="btn btn-primary">ไป</a>
+                <a href="<?php echo base_url(["Deck","showAllComment",$deck->deck_id]);?>" class="btn btn-primary">ไป</a>
             </div>
         </div>
     </div>    
