@@ -33,11 +33,11 @@
                     <?php }else{ ?>
 
                         <li>                
-                            <a href="<?php echo base_url(["Profile","member", $loggedin_user->user_id ]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์ของฉัน</a>
+                            <a href="<?php echo base_url(["Profile","member", $loggedin_user->user_id]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์ของฉัน</a>
                         </li>                
 
                         <li>                
-                            <a href="<?php echo base_url(["User","deck"]);?>"><i class="fas fa-angle-double-right"></i> บัตรคำของฉัน</a>
+                            <a href="<?php echo base_url(["Profile","deck", $loggedin_user->user_id]);?>"><i class="fas fa-angle-double-right"></i> บัตรคำของฉัน</a>
                         </li>                
 
                         <li>                
