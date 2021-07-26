@@ -15,14 +15,13 @@ class CardcommentModelTest extends CIUnitTestCase
     }    
 
     // return One
-    public function test_returnOne(){
+    public function test_dummy(){
 
-        $this->cardcomment_model->returnOne();
+        //$this->cardcomment_model->returnOne();
 
         $result         =   [ 
-                                0,
+                                1,
                             ];
-
         $expectedResult =   [ 
                                 1
                             ];

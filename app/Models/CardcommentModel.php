@@ -12,14 +12,6 @@ class CardcommentModel extends MyModel
         $this->primaryKey = $this->table."_id";
     }
 
-    // return One
-    public function returnOne(){
-
-        return 1;
-
-    }
-
-
 }
 
 
