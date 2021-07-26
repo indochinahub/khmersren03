@@ -12,22 +12,24 @@ class CardcommentModelTest extends CIUnitTestCase
         parent::setUp();
         $this->cardcomment_model = new CardcommentModel();
 
-    }    
+    }
+    
+    // return array of object
+    public function test_get_by_deck_id(){
 
-    // return One
-    public function test_dummy(){
-
-        //$this->cardcomment_model->returnOne();
+        $result1 = $this->cardcomment_model->get_by_deck_id($deck_id = 1);
+        $result2 = $this->cardcomment_model->get_by_deck_id($deck_id = 0);
 
         $result         =   [ 
-                                1,
+                                count($result1),
+                                count($result2),
                             ];
         $expectedResult =   [ 
-                                1
+                                6,
+                                0,
                             ];
 
         $this->assertSame($expectedResult, $result);   
-    }
-        
+    }    
     
 }

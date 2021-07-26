@@ -12,6 +12,17 @@ class CardcommentModel extends MyModel
         $this->primaryKey = $this->table."_id";
     }
 
+    // return array of object
+    public function get_by_deck_id($deck_id){
+
+        $where_clause = " WHERE  id_deck = ".$deck_id;
+        return $this->get_where($where_clause);
+
+    }
+
 }
+
+
+
 
 
