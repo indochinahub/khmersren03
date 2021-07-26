@@ -25,8 +25,6 @@ class Cardcomment extends MyController
         $card_model         = new CardModel;
         $user_model         = new UserModel;
         $datetime_model     = new DateTimeModel;
-
-
         
         $assoc_deck     =  $deck_model->get_all_rows_as_assoc();
         $assoc_card     =  $card_model->get_all_rows_as_assoc();
@@ -63,22 +61,9 @@ class Cardcomment extends MyController
             $cardcomment->visited_time          = $datetime_model->get_thai_datetime_from_sql_timestamp(
                                                             $cardcomment->cardcomment_createtime
                                                         );
-            
-            
-
-            
-
             array_push($data["arr_cardcomment"], $cardcomment);
 
         }
-                        
-
-                                
-
-
-
-
-        $data["arr_cardcomment"] = $arr_cardcomment;
 
         $data["page_title"] = 	"ความเห็นต่อบัตรคำทั้งหมด";
         $data["page_link"] 	= 	[	"หน้าแรก",
