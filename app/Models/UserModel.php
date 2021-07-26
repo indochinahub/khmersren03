@@ -33,12 +33,10 @@ class UserModel extends MyModel
 
         if( $user = $this->get_by_id( $user_id )){
 
-            if( $user->user_display_name ){
-                $user->displayname = $user->user_display_name;
-            }else{
-                $user->displayname = $user->user_username;    
-            }
+            $user->displayname = $this->get_user_displayname($user);
+
             return $user;
+            
         }else{
             return false;
         }
