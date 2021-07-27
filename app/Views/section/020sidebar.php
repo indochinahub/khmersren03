@@ -22,7 +22,7 @@
             </div>
 
             <ul class="list-unstyled components">
-                <div class="sidebar_section">เมนูส่วนตัว</div>
+                
                 
                     <?php if( $loggedin_user === false ){ ?>
 
@@ -31,6 +31,8 @@
                         </li>                
 
                     <?php }else{ ?>
+
+                        <div class="sidebar_section">เมนูส่วนตัว</div>
 
                         <li>                
                             <a href="<?php echo base_url(["Profile","member", $loggedin_user->user_id]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์ของฉัน</a>
@@ -45,17 +47,6 @@
                         </li>
                         
                     <?php } ?>
-                
-
-                <li>
-                    <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fas fa-angle-double-right"></i> Contact</a>
-                </li>
 
                 <div class="sidebar_section">เมนูของเว็บ</div>
 
@@ -69,7 +60,26 @@
 
                 <li>
                     <a href="<?php echo base_url(["Cardcomment","showAll"]);?>"><i class="fas fa-angle-double-right"></i> ความเห็นทั้งหมด</a>
-                </li>                
+                </li>
+
+                <?php if( ($loggedin_user) && ($loggedin_user->user_level >= 3) ){ ?>
+
+                    <div class="sidebar_section"> เมนูผู้ดูแลระบบ </div>
+                    <li>
+                        <a href="<?php echo base_url(["Admin","dashboard"]);?>"><i class="fas fa-angle-double-right"></i> แดชบอร์ด </a>
+                    </li>                
+                    <li>
+                        <a href="<?php echo base_url(["Admin","exportCardgroup"]);?>"><i class="fas fa-angle-double-right"></i> ส่งออกกลุ่มบัตรคำ </a>
+                    </li>                
+
+
+
+                <?php } ?>                        
+
+                
+
+
+                
 
             </ul>
         </nav>
