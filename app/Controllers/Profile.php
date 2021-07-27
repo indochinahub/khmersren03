@@ -177,8 +177,9 @@ class Profile extends MyController
                                             );       
 
         $data["page_title"] = 	"บัตรคำของฉัน";
-        $data["page_link"] 	= 	[	"Home",
-                                    base_url()
+        $data["page_link"] 	= 	[	"โปรไฟล์ของ xxxx ",
+                                    base_url( ["Profile","member", $data["member"]->user_id] )
+                                    
                                 ];	        
         $this->_view("deck",$data);
 

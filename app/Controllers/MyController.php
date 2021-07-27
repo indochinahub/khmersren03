@@ -133,7 +133,6 @@ class MyController extends BaseController {
 		$this->_warn($data);
 	}
 
-
 	public function _confirm($data){
 
         if  (   isset($data["page_title"]) && isset($data["what_happened"]) && isset($data["what_todo"])
