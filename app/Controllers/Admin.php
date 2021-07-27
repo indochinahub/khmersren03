@@ -66,9 +66,8 @@ class Admin extends MyController
             $txt_deck = substr($txt_deck, 0, -1);
             $cardgroup->txt_deck = $txt_deck;
 
-            //$cardgroup->num_card = count($card_model->get_by_cardgroup_id($cardgroup->cardgroup_id));
-            $cardgroup->num_card = 55;
-            
+            $cardgroup->num_card = $card_model->get_num_by_cardgroup_id($cardgroup->cardgroup_id);
+            ////$cardgroup->num_card = 55;
 
             array_push( $data["arr_cardgroup"], $cardgroup );
 

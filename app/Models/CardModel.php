@@ -36,14 +36,6 @@ class CardModel extends MyModel
         }else{
             return 0;
         }
-
-        echo "\n";
-        var_dump(  );
-        echo "\n";        
-
-
-
-        
     }
 
     // return array Of object Or blank array
