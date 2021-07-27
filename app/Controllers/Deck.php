@@ -201,6 +201,51 @@ class Deck extends MyController
         $this->_view("showAllComment",$data);                
     }
 
+    public function clearAllCard($deck_id, $confirm = "0"){
+
+        $deck_model     = new DeckModel;
+        $course_model   = new CourseModel;
+        $practice_model = new PracticeModel;
+        $util_model     = new UtilModel;
+
+        if( $user = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }        
+
+        $deck = $deck_model->get_by_id($deck_id);
+        $course = $course_model->get_by_deck_id($deck_id);
+
+        if( $confirm === "0"){
+
+            $data    =  [   "page_title"=>"ยืนยันการล้างบัตรคำ",
+                            "what_happened"=>"คุณกำลังล้างบัตรคำในชุดบัตรคำ <strong>".$course->course_code."-".$deck->deck_name."</strong> จำนวน ". "ข้อ",
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Deck","clearAllCard",$deck_id, 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => base_url(["Deck","show",$deck_id]),
+                        ];  		
+
+            $this->_confirm($data);            
+
+        }elseif(  $confirm === "1" ){
+            $arr_practice = $practice_model->get_by_deck_id_user_id(
+                                                    $deck_id, 
+                                                    $user->user_id
+                                                );
+            $arr_practice_id = $util_model->get_property_value_Of_many_objects_as_array(
+                                                    $arr_practice,
+                                                    "practice_id"
+                                                );
+            $practice_model->delete_by_ids( $arr_practice_id );
+
+            return redirect()->to(base_url( ["Deck","show",$deck_id] ));		
+        }
+
+    }
+
 
 }
 

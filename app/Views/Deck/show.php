@@ -44,49 +44,79 @@
         </div>
     </div>    
 
-    <div class="card-info card-info_header">
-        สถิติ
-    </div>
-    <div class="card-info card-info_body">
-    
-        <div class="two_flex_column">
-            <div>
-                จำนวนบัตรคำ    
-            </div>
-            <div>
-                <?php echo $num_user_card."/".$num_all_card;?>
-            </div>
-        </div>
 
-        <div class="two_flex_column">
-            <div>
-                <strong>บัตรคำรอทบทวนวันนี้/พรุ่งนี้</strong>
-            </div>
-            <div>
-                <strong><?php echo $card_to_review_today."/".$card_to_review_tomorrow;?></strong>
-            </div>
-        </div>
 
-        <div class="two_flex_column">
-            <div>
-                ช่วงเวลา
-            </div>
-            <div>
-                <?php echo $avarage_card_interval;?> วัน
-            </div>
-        </div>
 
-        <div class="two_flex_column">
-            <div>
-                จำนวนครั้งที่เข้าเยี่ยมชม
-            </div>
-            <div>
-                <?php echo $sum_visit_time;?> ครั้ง
-            </div>
+
+    <?php if( $num_user_card > 0  ){ ?>
+
+        <div class="card-info card-info_header">
+            สถิติ
         </div>
+        <div class="card-info card-info_body">
         
-    </div>
+            <div class="two_flex_column">
+                <div>
+                    จำนวนบัตรคำ    
+                </div>
+                <div>
+                    <?php echo $num_user_card."/".$num_all_card;?>
+                </div>
+            </div>
 
+            <div class="two_flex_column">
+                <div>
+                    <strong>บัตรคำรอทบทวนวันนี้/พรุ่งนี้</strong>
+                </div>
+                <div>
+                    <strong><?php echo $card_to_review_today."/".$card_to_review_tomorrow;?></strong>
+                </div>
+            </div>
 
+            <div class="two_flex_column">
+                <div>
+                    ช่วงเวลา
+                </div>
+                <div>
+                    <?php echo $avarage_card_interval;?> วัน
+                </div>
+            </div>
+
+            <div class="two_flex_column">
+                <div>
+                    จำนวนครั้งที่เข้าเยี่ยมชม
+                </div>
+                <div>
+                    <?php echo $sum_visit_time;?> ครั้ง
+                </div>
+            </div>
+            
+        </div>
+
+    <?php } ?>
 
 </div>
+
+<?php if( $num_user_card > 0  ){ ?>
+
+    <div class="card-info">
+        <div class="card-info card-info_header">ส่วนจัดการบัตรคำ</div>
+    </div>
+    <div class="card-warning">
+        <div class="card-warning card-warning_body">
+
+            <div class="two_flex_column" style="margin-bottom:5px;">
+                <div>
+                    ล้างบัตรคำ :: <strong> <?php echo $num_user_card."/".$num_all_card;?> </strong>
+                </div>
+                <div>
+                    <a href="<?php echo base_url(["Deck","clearAllCard",$deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+<?php } ?>
+
+
