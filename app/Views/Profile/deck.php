@@ -12,7 +12,9 @@
                         <h5>ชุดบัตรคำ <?php echo $deck->course->course_code."-".$deck->deck_name;?></h5>
                     </div>
                     <div>
-                        <a href="<?php echo base_url(["Deck","show", $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                        <?php if( $if_user_view_own_profile === true){ ?>
+                            <a href="<?php echo base_url(["Deck","show", $deck->deck_id]);?>" class="btn btn-primary">ไป</a>    
+                        <?php } ?>                        
                     </div>
             </div>
 
