@@ -22,7 +22,29 @@ class CardModel extends MyModel
         return $this->get_where($where_clause);
     }
 
-    
+    // return int
+    public function get_num_by_cardgroup_id($cardgroup_id){
+
+        $sql =  " SELECT COUNT(card_id) AS num_card FROM card ";
+        $sql .= " WHERE id_cardgroup = $cardgroup_id ";
+
+        $query = $this->query($sql);
+
+        if( $result = $query->getResult() ){
+            return (int) $result[0]->num_card;
+
+        }else{
+            return 0;
+        }
+
+        echo "\n";
+        var_dump(  );
+        echo "\n";        
+
+
+
+        
+    }
 
     // return array Of object Or blank array
     public function get_by_deck_id($deck_id){

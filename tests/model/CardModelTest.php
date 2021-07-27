@@ -38,6 +38,23 @@ class CardModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);                
     }
 
+    // return int
+    public function test_get_num_by_cardgroup_id(){
+
+        $result1 = $this->card_model->get_num_by_cardgroup_id($cardgroup_id = 1);
+        $result2 = $this->card_model->get_num_by_cardgroup_id($cardgroup_id = 0);
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
+        $expectedResult =   [
+                                15,
+                                0,
+                            ];
+        $this->assertSame($result,$expectedResult);                
+
+    }    
+
     // return array Of object Or blank array
     public function test_get_by_deck_id(){
         $card_model = new CardModel();
@@ -428,7 +445,7 @@ class CardModelTest extends CIUnitTestCase
                                     
                                 ];
         $this->assertSame($result,$expectedResult);                
-    }    
+    }
 
     
 }
