@@ -176,11 +176,21 @@ class Profile extends MyController
                                                 $order_by ="desc"
                                             );       
 
-        $data["page_title"] = 	"บัตรคำของฉัน";
-        $data["page_link"] 	= 	[	"โปรไฟล์ของ xxxx ",
-                                    base_url( ["Profile","member", $data["member"]->user_id] )
-                                    
-                                ];	        
+        // View Section
+        
+        if( $data["if_user_view_own_profile"] === true ){
+            $data["page_title"] = 	"บัตรคำของฉัน";        
+            $data["page_link"] 	= 	[	"โปรไฟล์ของฉัน ",
+                                        base_url( ["Profile","member", $data["member"]->user_id] )
+                                    ];
+
+        }elseif( $data["if_user_view_own_profile"] === false ){
+            $data["page_title"] = 	"บัตรคำของ ".$data["member"]->displayname;        
+            $data["page_link"] 	= 	[	"โปรไฟล์ของ ".$data["member"]->displayname,
+                                        base_url( ["Profile","member", $data["member"]->user_id] )
+                                    ];
+        }
+
         $this->_view("deck",$data);
 
     }
