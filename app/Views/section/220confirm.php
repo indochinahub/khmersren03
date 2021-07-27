@@ -5,7 +5,7 @@
         <p><?php echo $what_todo;?></p>
     </div>
 
-    <div class="two_flex_column">
+    <div class="two_flex_column" style="padding:10px">
         <div>
             <a href="<?php echo $btnLink_toConfirm;?>" class="btn btn-danger"><?php echo $btnText_toConfirm;?></a>        
         </div>
