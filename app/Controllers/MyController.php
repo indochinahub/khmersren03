@@ -126,12 +126,24 @@ class MyController extends BaseController {
 	public function _needLogin(){
 		$data	= [     "page_title"=>"กรุณาเข้าสู่ระบบ",
 						"what_happened"=>"หน้านี้สำหรับสมาชิกเท่านั้น",
-						"what_todo" => "กรุณาเข้าสู่ระบบ โดยคลิ๊กที่ปุ่ม <bold>Go</bold>",
-						"btnText_toGo" => "Go",
+						"what_todo" => "กรุณาเข้าสู่ระบบ โดยคลิ๊กที่ปุ่ม <bold>ไป</bold>",
+						"btnText_toGo" => "ไป",
 						"btnLink_toGo" => base_url(["User", "login"])
 				];
 		$this->_warn($data);
 	}
+
+	public function _needToBeAdmin(){
+		$data	= [     "page_title"=>"ต้องการสิทธิ์ผู้ดูแลระบบ",
+						"what_happened"=>"หน้านี้สำหรับผู้ดูแลระบบเท่านั้น",
+						"what_todo" => "กรุณาเข้าสู่ระบบ หรือใช้บัญชีที่มีสิทธิ์ <bold>ไป</bold>",
+						"btnText_toGo" => "ไป",
+						"btnLink_toGo" => base_url(["User", "login"])
+				];
+		$this->_warn($data);
+	}
+
+
 
 	public function _confirm($data){
 
@@ -169,9 +181,6 @@ class MyController extends BaseController {
 			return $user_model->get_user_by_id($this->uid);
 		}
 	}
-
-
-
 
 
 }
