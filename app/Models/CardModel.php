@@ -20,8 +20,9 @@ class CardModel extends MyModel
 
         $where_clause = " WHERE id_cardgroup = ".$cardgroup_id;
         return $this->get_where($where_clause);
-
     }
+
+    
 
     // return array Of object Or blank array
     public function get_by_deck_id($deck_id){

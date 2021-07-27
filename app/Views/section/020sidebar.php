@@ -69,7 +69,7 @@
                         <a href="<?php echo base_url(["Admin","dashboard"]);?>"><i class="fas fa-angle-double-right"></i> แดชบอร์ด </a>
                     </li>                
                     <li>
-                        <a href="<?php echo base_url(["Admin","exportCardgroup"]);?>"><i class="fas fa-angle-double-right"></i> ส่งออกกลุ่มบัตรคำ </a>
+                        <a href="<?php echo base_url(["Admin","manageCardgroup"]);?>"><i class="fas fa-angle-double-right"></i> จัดการกลุ่มบัตรคำ </a>
                     </li>                
 
 
