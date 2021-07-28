@@ -159,9 +159,9 @@ class MyModelTest extends CIUnitTestCase
 
     }
 
-    // Return Array Of Properties
-    public function test_get_fields(){
-        $result1 = $this->user_model->get_fields();
+    // Return Array Of column
+    public function test_get_column(){
+        $result1 = $this->user_model->get_column();
         $result =           [   
                                 $result1[0],
                                 $result1[1],

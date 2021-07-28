@@ -43,8 +43,8 @@ class MyModel extends Model
         return $this->findAll();
     }
 
-    // Return Array Of Properties
-    public function get_fields(){
+    // Return Array Of column
+    public function get_column(){
         return $this->getFieldNames($this->table);
 
     }
