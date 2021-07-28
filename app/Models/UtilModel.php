@@ -234,6 +234,22 @@ class UtilModel
 
     }
 
+    // return array_of_text
+    public function get_line_of_text_from_array ($arr_text, $saparator ){
+
+        if( $arr_text == [] || $saparator == ""){
+            return "";
+        }
+
+        $line = "";
+        foreach( $arr_text as $text ){
+            $line = $line.$text.$saparator;
+        }
+
+        return substr($line,0,-1);
+
+    }
+
 
 }
 

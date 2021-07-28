@@ -619,4 +619,41 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);                    
     }
 
+    // return array_of_text
+    public function test_get_line_of_text_from_array (){
+
+        // Blank text array
+        $arr_text = [];
+        $result1 = $this->util_model->get_line_of_text_from_array ($arr_text, $saparator = "\t");
+
+        // Blank sapator
+        $arr_text = [ "text1", "text2", "text3"];
+        $result2 = $this->util_model->get_line_of_text_from_array ($arr_text, $saparator = "");
+
+        // with parameters
+        $arr_text = [ "text1", "text2", "text3"];
+        $result3 = $this->util_model->get_line_of_text_from_array ($arr_text, $saparator = ",");
+
+        // with parameters
+        $arr_text = [ "text1", "text2", "text3"];
+        $result4 = $this->util_model->get_line_of_text_from_array ($arr_text, $saparator = "\t");        
+
+        $result         =   [
+                                $result1,
+                                $result2,
+                                $result3,
+                                $result4,
+                            ];
+
+        $expectedResult =   [   
+                                "",
+                                "",
+                                "text1,text2,text3",
+                                "text1\ttext2\ttext3"
+
+                            ];
+        $this->assertSame($result,$expectedResult);                    
+
+    }
+
 }
