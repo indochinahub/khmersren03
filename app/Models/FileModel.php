@@ -19,6 +19,22 @@ class FileModel
         }
     }
 
+    // return true or false
+    public function write_to_file( $full_pathname, $text ){
+
+        if( file_exists($full_pathname)){
+
+            if( $my_file = fopen($full_pathname, "w") ){
+                fwrite($my_file, trim($text));
+                fclose($my_file);
+                return TRUE;
+                
+            }
+        }else{
+            return false;
+        }        
+
+    }
 
 }
 
