@@ -656,4 +656,66 @@ class UtilModelTest extends CIUnitTestCase
 
     }
 
+    // return text
+    public function test_get_text_data_from_array_of_object(){
+
+        $result1 = $this->util_model->get_text_data_from_array_of_object(
+                                    [],
+                                    "xxx"
+                                );    
+
+        $result2 = $this->util_model->get_text_data_from_array_of_object(
+                                    "xxx",
+                                    []
+                                );        
+        
+        // complete data
+        $student1               = new \stdClass;
+        $student1->firstname    = "Wittaya";
+        $student1->lastname     = "Wijit";
+
+        $student2               = new \stdClass;
+        $student2->firstname    = "Winai";
+        $student2->lastname     = "Meechai";        
+
+        $arr_object = [$student1 , $student2];
+        $arr_column = [ "firstname","lastname"];
+        
+        $result3 = $this->util_model->get_text_data_from_array_of_object(
+                                    $arr_object,
+                                    $arr_column
+                                ); 
+
+        // with blank data
+        $student1               = new \stdClass;
+        $student1->firstname    = "Wittaya";
+        $student1->lastname     = "Wijit";
+
+        $student2               = new \stdClass;
+        $student2->firstname    = "Winai";
+        $student2->lastname     = "";        
+
+        $arr_object = [$student1 , $student2];
+        $arr_column = [ "firstname","lastname"];
+        
+        $result4 = $this->util_model->get_text_data_from_array_of_object(
+                                    $arr_object,
+                                    $arr_column
+                                ); 
+
+        $result         =   [
+                                $result1,
+                                $result2,
+                                $result3,
+                                $result4,
+                            ];
+        $expectedResult =   [   
+                                "",
+                                "",
+                                "Wittaya\tWijit\nWinai\tMeechai",
+                                "Wittaya\tWijit\nWinai\tNULL",
+                            ];
+        $this->assertSame($result,$expectedResult);
+    }
+
 }

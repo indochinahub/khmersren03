@@ -247,7 +247,30 @@ class UtilModel
         }
 
         return substr($line,0,-1);
+    }
 
+    // return text
+    public function get_text_data_from_array_of_object($arr_object,$arr_column){
+        //$arr_object,
+        if( ($arr_object === []) || ( $arr_column === []) ){return "";}
+
+        $txt_data  = "";
+        foreach( $arr_object as $obj ){
+    
+            $line_row = "";
+            foreach( $arr_column as $column ){
+                if( $obj->$column){
+                    $line_row = $line_row.$obj->$column."\t";
+                }else{
+                    $line_row = $line_row."NULL"."\t";
+                }
+            }
+            // remove "\t"
+            $line_row = substr( $line_row,0,-1 )."\n";
+            $txt_data  = $txt_data.$line_row ;
+        }
+
+        return trim($txt_data);
     }
 
 
