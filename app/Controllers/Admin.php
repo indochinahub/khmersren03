@@ -12,6 +12,7 @@ use App\Models\UserModel;
 use App\Models\StatisticModel;
 use App\Models\DateTimeModel;
 use App\Models\CardgroupModel;
+use App\Models\FileModel;
 
 
 class Admin extends MyController
@@ -82,7 +83,80 @@ class Admin extends MyController
 
     }
 
-    
+
+    public function exportCardgroup($cardgroup_id, $confirm = "0"){
+
+        $cardgroup_model= new CardgroupModel;
+        $card_model     = new CardModel;
+        $util_moddel    = new UtilModel;
+        $file_model     = new FileModel;
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        // Get Some Data
+        $cardgroup  = $cardgroup_model->get_by_id( $cardgroup_id );
+        $arr_card   = $card_model->get_by_cardgroup_id($cardgroup_id);
+        $num_card   = count($card_model->get_by_cardgroup_id($cardgroup_id));
+        $arr_column = $card_model->get_column();
+
+        if( $confirm === "0" ){
+
+            $data    =  [   "page_title"=>"ยืนยันการส่งออกชุดบัตรคำ",
+                            "what_happened"=>"ท่านกำลังส่งออกชุดบัตรคำหมายเลข $cardgroup_id จำนวน $num_card ข้อ ",
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Admin","exportCardgroup", $cardgroup_id, 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => base_url(["Admin","manageCardgroup"]),
+                        ];  		
+
+            $this->_view("confirm",$data);    
+
+        }else{
+
+            // Get Line of Column
+            $line_column    = $util_moddel->get_line_of_text_from_array (
+                                        $arr_column, 
+                                        "\t" 
+                                    );
+            // Get text of data
+            $txt_data  = "";
+            foreach( $arr_card as $card ){
+
+                $line_row = "";
+                foreach( $arr_column as $column ){
+                    if( $card->$column){
+                        $line_row = $line_row.$card->$column."\t";
+                    }else{
+                        $line_row = $line_row."NULL"."\t";
+                    }
+                }
+                $line_row = substr( $line_row,0,-1 )."\n";
+                $txt_data  = $txt_data.$line_row ;
+            }
+
+            // Write to file
+            $file_model->create_file( ASSETPATH."01get_text_file_from_cardgroup/export.txt");
+            $file_model->write_to_file( ASSETPATH."01get_text_file_from_cardgroup/export.txt", 
+                                        $line_column."\n".$txt_data );
+            $what_happened =  "ท่านกำลังส่งออกชุดบัตรคำหมายเลข $cardgroup_id จำนวน $num_card ข้อ <br>";
+            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."01get_text_file_from_cardgroup/export.txt";
+            $data	=  [    "page_title"=>"บัตรคำได้ส่งออกเรียบร้อยแล้ว",
+                            "what_happened"=>$what_happened,
+                            "what_todo" => "กรุณาดาวน์โหลดเพื่อนำไปใช้งานต่อไป",
+                            "btnText_toGo" => "ไป",
+                            "btnLink_toGo" => base_url(["Admin", "manageCardgroup"])
+                        ];
+            $this->_warn($data);
+        }
+
+    }
 
 }
 

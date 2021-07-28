@@ -11,7 +11,8 @@
                         จำนวน :: <?php echo $cardgroup->num_card;?>
                     </div>
                     <div>
-                        <a href="http://127.0.0.1/khmersren03/Deck/show/5" class="btn btn-primary">Export</a>
+                        <a href="<?php echo base_url(["Admin", "exportCardgroup", $cardgroup->cardgroup_id]);?>" class="btn btn-primary">Export</a>
+                        
                     </div>
             </div>
 
