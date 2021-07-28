@@ -32,7 +32,7 @@ class Admin extends MyController
         $cardgroup_model = new CardgroupModel;  
         $course_model    = new CourseModel;
         $deck_model      = new DeckModel;
-        $util_moddel     = new UtilModel;
+        $util_model     = new UtilModel;
         $card_model     = new CardModel;
         
         if( ($data["user"] = $this->_get_loggedin_user())
@@ -52,7 +52,7 @@ class Admin extends MyController
 
             $cardgroup->course = $assoc_course[$cardgroup->id_course];
 
-            $arr_deck_of_cardgroup       =   $util_moddel->get_object_from_arr_object_that_match_property_condition(
+            $arr_deck_of_cardgroup       =   $util_model->get_object_from_arr_object_that_match_property_condition(
                                                     $arr_deck, 
                                                     "id_cardgroup", 
                                                     $cardgroup->cardgroup_id, 
@@ -88,7 +88,7 @@ class Admin extends MyController
 
         $cardgroup_model= new CardgroupModel;
         $card_model     = new CardModel;
-        $util_moddel    = new UtilModel;
+        $util_model    = new UtilModel;
         $file_model     = new FileModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())
@@ -121,25 +121,12 @@ class Admin extends MyController
         }else{
 
             // Get Line of Column
-            $line_column    = $util_moddel->get_line_of_text_from_array (
+            $line_column    = $util_model->get_line_of_text_from_array (
                                         $arr_column, 
                                         "\t" 
                                     );
-            // Get text of data
-            $txt_data  = "";
-            foreach( $arr_card as $card ){
-
-                $line_row = "";
-                foreach( $arr_column as $column ){
-                    if( $card->$column){
-                        $line_row = $line_row.$card->$column."\t";
-                    }else{
-                        $line_row = $line_row."NULL"."\t";
-                    }
-                }
-                $line_row = substr( $line_row,0,-1 )."\n";
-                $txt_data  = $txt_data.$line_row ;
-            }
+            $txt_data = $util_model->get_text_data_from_array_of_object(
+                                $arr_card,$arr_column);
 
             // Write to file
             $file_model->create_file( ASSETPATH."01get_text_file_from_cardgroup/export.txt");
