@@ -53,35 +53,55 @@ class FileModelTest extends CIUnitTestCase
 
     }
 
-    /*
-        $dir_name = FCPATH."assets/test/007write_to_file";
-        $file_name = "write_text.txt";
-        $text = "Hello, Everybody! ";
+    // return array of column and array of row
+    public function test_get_data_from_export_file(){
 
-        // Create Blank File
-        $my_file = fopen( $dir_name."/".$file_name, 'w') ;
-        fclose($my_file);
+        $result1 = $this->file_model->get_data_from_export_file( 
+                                ASSETPATH."test/03import_text_file_to_card/import1.txt" 
+                            );
 
-        $result01 = $this->file_model->write_to_file($dir_name,$file_name, $text);
+        // There are some blank value in the file import2.txt
+        $result2 = $this->file_model->get_data_from_export_file( 
+                                ASSETPATH."test/03import_text_file_to_card/import2.txt" 
+                            );
 
-        $dir_name = FCPATH."assets/test/007write_to_file";
-        $file_name = "kkkkkk"; //There is no file.
-        $text = "Hello, Everybody! ";  
-        $result02 = $this->file_model->write_to_file($dir_name,$file_name, $text);
+        $result             =   [   
+                                    $result1->arr_column,
 
-        $result             =   [   $result01,
-                                    $result02,
+                                    $result1->arr_row[0]->firstname,
+                                    $result1->arr_row[0]->lastname,
+                                    $result1->arr_row[0]->number,
+
+                                    $result1->arr_row[1]->firstname,
+                                    $result1->arr_row[1]->lastname,
+                                    $result1->arr_row[1]->number,  
+                                    
+                                    $result2->arr_row[0]->firstname,
+                                    $result2->arr_row[0]->lastname,
+                                    $result2->arr_row[0]->number,
+                                    
+
                                 ];
-                        
-        $expectedResult     =   [   TRUE,
-                                    FALSE,
+        $expectedResult     =   [ 
+                                    ["firstname", "lastname", "number"],
+
+                                    "Wittaya",
+                                    "Wijit",
+                                    "01",
+
+                                    "Suchat",
+                                    "Sukjai",
+                                    "02",
+
+                                    "Wittaya",
+                                    "NULL",
+                                    "01",
+
                                 ];
 
-        $this->unit->run($result, $expectedResult, $testName, $note);
-    
-    
+        $this->assertSame($result,$expectedResult);        
+    }
 
-    */
 
     
 }
