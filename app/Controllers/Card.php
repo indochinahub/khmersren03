@@ -259,10 +259,6 @@ class Card extends MyController
 
     }
 
-
-    /*
-    */
-
     public function delete($card_id, $deck_id, $confirm = "0"){
 
         $card_model = new CardModel;
@@ -293,6 +289,11 @@ class Card extends MyController
 
         }
         
+    }
+
+    public function edit($card_id, $deck_id){
+        echo "Hello";
+
     }
 
 }
