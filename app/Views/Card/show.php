@@ -187,14 +187,46 @@
 
             <?php } ?>
 
-
-
-
         <?php } ?>
-
         
     </div>
 
+</div>
 
+<div class="card-info">
+
+    <div class="card-info card-info_header">
+        จัดการบัตรคำ
+    </div>
 
 </div>
+
+<?php if ( $page === "b" ){ ?>
+
+    <div class="card-warning">
+
+        <div class="card-warning card-warning_body">
+            <div class="two_flex_column">
+                <div>
+                    แก้ไขบัตรคำ
+                </div>
+                <div>
+                    <a href="<?php echo base_url(["Card","edit", $card->card_id, $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-warning card-warning_body">
+            <div class="two_flex_column">
+                <div>
+                    ลบบัตรคำ
+                </div>
+                <div>
+                    <a href="<?php echo base_url(["Card","delete", $card->card_id, $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<?php } ?>    

@@ -259,5 +259,41 @@ class Card extends MyController
 
     }
 
+
+    /*
+    */
+
+    public function delete($card_id, $deck_id, $confirm = "0"){
+
+        $card_model = new CardModel;
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+        && $data["user"]->user_level  === "3" ){
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        } 
+
+        if( $confirm === "0"){
+
+            $data    =  [   "page_title"=>"ยืนยันการลบบัตรคำ",
+                            "what_happened"=>"ท่านกำลังลบบัตรคำหมายเลข $card_id ",
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Card", "delete", $card_id, $deck_id, 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => base_url(["Card", "show", "a", $card_id,  $deck_id]),
+                        ];  		
+
+            $this->_view("confirm",$data);
+
+        }else{
+            $card_model->delete_by_id( (int) $card_id );
+            return redirect()->to(base_url(["Deck","show", $deck_id]));		
+
+        }
+        
+    }
+
 }
 
