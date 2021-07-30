@@ -1,4 +1,21 @@
+<div class="card-warning">
+    <div class="card-warning card-warning_header">
+        นำเข้าบัตรคำ
+    </div>
+    <div class="card-warning card-warning_body"> 
+        <div class="two_flex_column" style="margin-bottom:5px;">
+            <div><strong>นำเข้า</strong>กลุ่มบัตรคำ
+            </div>
+            <div>
+                <a href="<?php echo base_url(["Admin","uploadCard"]);?>" class="btn btn-primary">ไป</a>
+            </div>
+        </div>
+    </div>
+
 <div class="card-info">
+     <div class="card-info card-info_header">
+        ส่งออกบัตรคำ
+    </div>
 
     <?php foreach( $arr_cardgroup as $cardgroup){ ?>
 
@@ -15,7 +32,7 @@
                         
                     </div>
             </div>
-
+             
         </div>
 
     <?php } ?>

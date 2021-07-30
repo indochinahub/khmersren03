@@ -14,7 +14,6 @@ use App\Models\DateTimeModel;
 use App\Models\CardgroupModel;
 use App\Models\FileModel;
 
-
 class Admin extends MyController
 {
 
@@ -83,7 +82,6 @@ class Admin extends MyController
 
     }
 
-
     public function exportCardgroup($cardgroup_id, $confirm = "0"){
 
         $cardgroup_model= new CardgroupModel;
@@ -104,6 +102,8 @@ class Admin extends MyController
         $arr_card   = $card_model->get_by_cardgroup_id($cardgroup_id);
         $num_card   = count($card_model->get_by_cardgroup_id($cardgroup_id));
         $arr_column = $card_model->get_column();
+
+
 
         if( $confirm === "0" ){
 
@@ -144,6 +144,74 @@ class Admin extends MyController
         }
 
     }
+
+    public function uploadCard($confirm = "0" ){
+
+        $file_model = new FileModel;
+        $card_model = new CardModel;
+    
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        $full_pathname = ASSETPATH."02import_text_file_to_card/import.txt";
+        $result = $file_model->get_data_from_export_file($full_pathname);
+        $arr_column = $result->arr_column;
+        $arr_row = $result->arr_row;        
+
+        if( $confirm === "0" ){
+
+            $what_happened = "ท่านกำลังนำเข้าชุดบัตรคำจำนวน จำนวน ".count($arr_row)." ข้อ ดังรายละเอียดต่อไปนี้";
+
+            $data = [];
+            foreach( $arr_column as $column ){
+                $what_happened .= "$column :: ". $arr_row[0]->$column."<br>";
+            }
+
+            $data    =  [   "page_title"=>"ยืนยันการนำเข้าชุดบัตรคำ",
+                            "what_happened"=>$what_happened,
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Admin","uploadCard", 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => base_url(["Admin","manageCardgroup"]),
+                        ];  		
+
+            $this->_view("confirm",$data);
+
+        }elseif( $confirm === "1" ){
+
+            foreach( $arr_row as $row ){
+                $data = [];
+                foreach( $arr_column as $column ){
+                    $data[$column] = $row->$column;
+                }
+
+                $card_model->update_by_id(
+                                    $id = $data["card_id"], 
+                                    $data
+                                );
+            }
+
+            $what_happened = "ได้มีการนำเข้าบัตรคำเรียบร้อยแล้ว จำนวน ".count($arr_row)." ข้อ";
+            $data	=  [    "page_title"=>"บัตรคำได้นำเข้าเรียบร้อยแล้ว",
+                            "what_happened"=>$what_happened,
+                            "what_todo" => "",
+                            "btnText_toGo" => "ไป",
+                            "btnLink_toGo" => base_url(["Admin", "manageCardgroup"])
+                        ];
+            $this->_warn($data);            
+
+        }
+
+    }
+
+
+        
 
 }
 
