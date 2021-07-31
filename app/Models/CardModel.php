@@ -161,13 +161,17 @@ class CardModel extends MyModel
 
         $arr_command = [];
         foreach( $arr_deck_property as $deck_property ){
+            $command = new \stdClass;
 
             if(     isset($deck->$deck_property) 
                     && ($card_property = $deck->$deck_property) 
                     && $card->$card_property)
             {
 
-                $command = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+                $command->html          = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+                $command->value         = $card->$card_property;
+                $command->column_name   = $card_property;
+
 
             }else{
                 $command = false;
