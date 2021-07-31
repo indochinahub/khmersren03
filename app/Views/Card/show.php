@@ -3,10 +3,14 @@
         คำสั่ง
     </div>
     <div class="card-info card-info_body">
-        <strong><?php echo $arr_command[0];?></strong>
-        <?php if($arr_command[1]){ echo "<br>".$arr_command[1];}?>
-        <?php if($arr_command[2]){ echo "<br>".$arr_command[2];}?>
-        <?php  if($arr_command[3]){ echo "<br>".$arr_command[3];}?>
+        <?php   foreach( $arr_command as $key => $command ){ 
+                    if( $command && $key === 0 ){ 
+                        echo "<strong>$command->html</strong>";
+                    }elseif( $command ){
+                        echo "<br>".$command->html;
+                    }  
+                }
+        ?>
     </div>
 
     <div class="card-info card-info_header">

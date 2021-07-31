@@ -21,10 +21,9 @@ class Card extends MyController
         $datetime_model = new DateTimeModel;
         $util_model = new UtilModel;
 
-    /*******************************************************/
+    
     // Do something in general
-    /*******************************************************/
-        if( $data["user"] = $this->_get_loggedin_user() ){
+            if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
             return;
@@ -49,15 +48,14 @@ class Card extends MyController
         }
 
         
-    /*******************************************************/
+    
     // Command Section
-    /*******************************************************/        
         $data["arr_command"] = $card_model->get_card_command(
                                             $data["card"], 
                                             $data["course"], 
                                             $data["deck"]
                                         );
-        
+                                        
     /*******************************************************/
     // Choice Section
     /*******************************************************/
@@ -292,7 +290,113 @@ class Card extends MyController
     }
 
     public function edit($card_id, $deck_id){
-        echo "Hello";
+
+        $card_model     = new CardModel;
+        $deck_model     = new DeckModel;
+        $course_model   = new CourseModel;
+        
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        $data["card"]   = $card_model->get_by_id($card_id);
+        $data["deck"]   = $deck_model->get_by_id($deck_id);
+        $data["course"] = $course_model->get_by_deck_id($deck_id);
+
+        // Command Section
+        $data["arr_command"] = $card_model->get_card_command(
+                                $data["card"], 
+                                $data["course"], 
+                                $data["deck"]
+                            );
+
+        // Answers Section
+        $data["arr_answer"]  = $card_model->get_card_answer(
+                                $data["card"], 
+                                $data["course"], 
+                                $data["deck"]
+                            );
+
+        // Choice Section
+        $data["key_of_choices"] = [ 0, 1, 2, 3];
+        $data["arr_choice"] = $card_model->get_card_choice(
+                                $data["card"], 
+                                $data["course"], 
+                                $data["deck"],
+                                $data["key_of_choices"]
+                            );
+
+        // Answers Section
+        $data["arr_answer"]  = $card_model->get_card_answer(
+                                $data["card"], 
+                                $data["course"], 
+                                $data["deck"]
+                            );
+
+		// Set the task
+		if( ($this->request->getMethod() === "post") ){
+			$data["task"] = "do_task";
+			
+		}elseif( $this->request->getMethod() === "post" ){
+			$data["task"] = "form_error";
+
+		}else{
+			$data["task"] = "form_blank";
+		}
+
+        // Do the task
+        if( $data["task"] === "form_blank" ){
+            
+            $data["page_title"] = 	"แก้ไขบัตรคำ";
+            $data["page_link"] 	= 	[	"บัดคำหมายเลข xxx",
+                                        base_url(["Card","show","a",$card_id, $deck_id])
+                                    ];	        
+            $this->_view("edit",$data);
+
+        }
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
