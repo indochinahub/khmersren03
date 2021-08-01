@@ -245,8 +245,6 @@ class CardModel extends MyModel
                 }else{
                     $obj_choice->$sub_choice_key = false;
                 }
-
-
             }
             
             $obj_choice->key = $choice_key - 1;

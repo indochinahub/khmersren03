@@ -61,7 +61,7 @@
 <div>
 
 
-<?php //if( $arr_answer[0] || $arr_answer[1] || $arr_answer[2] ){ ?>
+<?php if( $arr_answer[0] || $arr_answer[1] || $arr_answer[2] ){ ?>
     <div class="accordion" id="accordionExample">
         <div class="card-warning">
             <div class="card-warning card-warning_header" id="headingOne">
@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-<?php //} ?>
+<?php } ?>
 
 <?php if( $page === "b" && ($selected_choice === 0)){ ?>
 
