@@ -522,6 +522,16 @@ class CardModelTest extends CIUnitTestCase
                         );
 
         // In case some card values are emty
+
+        $course = new \stdClass;
+        $course->course_code = "T001";
+
+        $deck = new \stdClass;
+
+        $deck->deck_answer1_col = "card_text1";
+        $deck->deck_answer2_col = "card_picture1";
+        $deck->deck_answer3_col = "card_sound1";
+
         $card = new \stdClass;
         $card->card_text1       = "";
         $card->card_picture1    = "";
@@ -533,21 +543,38 @@ class CardModelTest extends CIUnitTestCase
                         $deck
                     );
 
-        $result             =   [ 
-                                    $result1[0],
-                                    $result1[1],
-                                    $result1[2],
+        $result             =   [   // result1
+                                    $result1[0]->html,
+                                    $result1[0]->value,
+                                    $result1[0]->column_name,
 
+                                    $result1[1]->html,
+                                    $result1[1]->value,
+                                    $result1[1]->column_name,
+
+                                    $result1[2]->html,
+                                    $result1[2]->value,
+                                    $result1[2]->column_name,
+
+                                    // result2
                                     $result2[0],
                                     $result2[1],
                                     $result2[2],
-
                                 ];
-        $expectedResult     =   [
+        $expectedResult     =   [   // result1
                                     "This is Text1",
-                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
-                                    "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
+                                    "This is Text1",
+                                    "card_text1",
 
+                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                    "card_picture1.jpg",
+                                    "card_picture1",                                    
+                            
+                                    "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
+                                    "card_sound1.mp3",
+                                    "card_sound1",
+
+                                    // result2
                                     false,
                                     false,
                                     false,

@@ -193,24 +193,27 @@ class CardModel extends MyModel
                                         "deck_answer3_col"
                                 ];
 
-        $arr_command = [];
+        $arr_answer = [];
         foreach( $arr_deck_property as $deck_property ){
+            $answer = new \stdClass;
 
             if(     isset($deck->$deck_property) 
                     && ($card_property = $deck->$deck_property) 
                     && $card->$card_property)
             {
 
-                $command = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+                $answer->html           = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+                $answer->value          = $card->$card_property;      
+                $answer->column_name    = $card_property;
 
             }else{
-                $command = false;
+                $answer = false;
 
             }            
-            array_push($arr_command, $command);
+            array_push($arr_answer, $answer);
         }
 
-        return $arr_command;
+        return $arr_answer;
     }
 
     //return array of object
