@@ -394,11 +394,11 @@ class CardModelTest extends CIUnitTestCase
         $key_of_choices = [ 3, 0, 1, 2];
 
         $result1 = $this->card_model->get_card_choice(
-                            $card, 
-                            $course, 
-                            $deck, 
-                            $key_of_choices
-                        );
+                                $card, 
+                                $course, 
+                                $deck, 
+                                $key_of_choices
+                            );
 
         // In case some values in card are empty
         $deck = new \stdClass;
@@ -407,31 +407,91 @@ class CardModelTest extends CIUnitTestCase
 
         $card = new \stdClass;
         $card->card_picture1    = "card_picture1.jpg";
-        $card->card_sound1      = "";
+        $card->card_sound1      = "";   
+        
+        $key_of_choices = [ 3, 0, 1, 2];        
 
         $result2 = $this->card_model->get_card_choice(
-                            $card, 
-                            $course, 
-                            $deck, 
-                            $key_of_choices
-                        );
-    
-        $result             =   [ 
-                                    $result1[1]->a,
-                                    $result1[1]->b,
+                                $card, 
+                                $course, 
+                                $deck, 
+                                $key_of_choices
+                            );
 
-                                    $result2[1]->a,
-                                    $result2[1]->b,
-                                ];
-        $expectedResult     =   [
-                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
-                                    "<audio controls><source src='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/course/T001/sound/card_sound1.mp3'>[ Listen Directly ]</a>",
+        $result             =   [      
+                                    // result1 choice 1     
+                                    $result1[0]->a->html,
+                                    $result1[0]->a->value,       
+                                    $result1[0]->a->column_name,
 
-                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
-                                    false,
-
+                                    $result1[0]->b->html,
+                                    $result1[0]->b->value,       
+                                    $result1[0]->b->column_name,     
                                     
+                                    $result1[0]->c->html,
+                                    $result1[0]->c->value,       
+                                    $result1[0]->c->column_name,   
+            
+                                    $result1[0]->c->html,
+                                    $result1[0]->c->value,       
+                                    $result1[0]->c->column_name,    
+
+                                    $result1[0]->key,
+
+                                    // result1 choice 2
+                                    $result1[1]->a->html,
+                                    $result1[1]->a->value,       
+                                    $result1[1]->a->column_name,
+
+                                    $result1[1]->key,
+
+                                    // result2 choice 2                                    
+                                    $result2[1]->a->html,
+                                    $result2[1]->a->value,
+                                    $result2[1]->a->column_name,
+
+                                    $result2[1]->b,
+                                    $result2[1]->c,
+                                    $result2[1]->d,
                                 ];
+
+        $expectedResult     =   [
+                                    // result1 choice 1
+                                    "This is Text13",
+                                    "This is Text13",
+                                    "card_text13",
+
+                                    "This is Text14",
+                                    "This is Text14",
+                                    "card_text14",
+
+                                    "This is Text15",
+                                    "This is Text15",
+                                    "card_text15",
+                                    
+                                    "This is Text15",
+                                    "This is Text15",
+                                    "card_text15",
+                                    
+                                    3,
+
+                                    // result1 choice 2
+                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                    "card_picture1.jpg",
+                                    "card_picture1",
+
+                                    0,
+
+                                    // result2 choice 2                                         
+                                    "<div><img src='http://127.0.0.1/khmersren03/asset/course/T001/image/card_picture1.jpg' class='img-fluid'></div>",
+                                    "card_picture1.jpg",
+                                    "card_picture1",
+
+                                    false,
+                                    false,
+                                    false,
+                                ];
+
         $this->assertSame($result,$expectedResult);        
     }
 
