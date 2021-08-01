@@ -55,10 +55,8 @@ class Card extends MyController
                                             $data["course"], 
                                             $data["deck"]
                                         );
-                                        
-    /*******************************************************/
+
     // Choice Section
-    /*******************************************************/
         if( $data["page"] === "a"){
             $data["key_of_choices"] = [ 0, 1, 2, 3];
             shuffle( $data["key_of_choices"] );

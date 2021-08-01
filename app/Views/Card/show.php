@@ -34,10 +34,10 @@
 
                 <div class="card-info card-info_body" style="<?php if($page === "b"){echo $style;}?>">
                     <div>
-                        <?php if($choice->a){ echo $choice->a;}?>
-                        <?php if($choice->b){ echo "<br>".$choice->b;}?>
-                        <?php if(($choice->c) && ($page === "b") ){ echo "<br>".$choice->c;}?>
-                        <?php if(($choice->d) && ($page === "b") ){ echo "<br>".$choice->d;}?>
+                        <?php if($choice->a){ echo $choice->a->html;}?>
+                        <?php if($choice->b){ echo "<br>".$choice->b->html;}?>
+                        <?php if(($choice->c) && ($page === "b") ){ echo "<br>".$choice->c->html;}?>
+                        <?php if(($choice->d) && ($page === "b") ){ echo "<br>".$choice->d->html;}?>
                     </div>
 
                     <?php if( $page === "a" ){ ?>
