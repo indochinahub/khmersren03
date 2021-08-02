@@ -12,6 +12,16 @@
         <?php } ?>    
     <?php } ?>
 
+    <?php foreach( $arr_answer as $key=>$answer ){ ?>
+        <?php if( $answer ){ ?>
+            <div class="card-info card-info_body">
+                <strong>คำตอบที่ <?php echo ($key + 1);?></strong> ::<br>
+                <?php echo $answer->html;?>
+            </div>        
+        <?php } ?>    
+    <?php } ?>
+
+
     <?php foreach( $arr_choice as $key=>$choice ){ ?>
         <?php if( $choice->a ){ ?>
             <div class="card-info card-info_body">
@@ -48,6 +58,9 @@
                     <button type="submit" name="submit" value="submit" class="btn btn-primary">ปรับปรุง</button>
                 </div>
             </div>
+
+
+            
         </form>
 
     </div>        
