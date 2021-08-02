@@ -7,7 +7,7 @@
             <div><strong>นำเข้า</strong>กลุ่มบัตรคำ
             </div>
             <div>
-                <a href="<?php echo base_url(["Admin","uploadCard"]);?>" class="btn btn-primary">ไป</a>
+                <a href="<?php echo base_url(["Admin","importCard"]);?>" class="btn btn-primary">ไป</a>
             </div>
         </div>
     </div>

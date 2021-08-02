@@ -145,7 +145,7 @@ class Admin extends MyController
 
     }
 
-    public function uploadCard($confirm = "0" ){
+    public function importCard($confirm = "0" ){
 
         $file_model = new FileModel;
         $card_model = new CardModel;
@@ -176,7 +176,7 @@ class Admin extends MyController
                             "what_happened"=>$what_happened,
                             "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
                             "btnText_toConfirm" => "ยืนยัน",
-                            "btnLink_toConfirm" => base_url(["Admin","uploadCard", 1]),
+                            "btnLink_toConfirm" => base_url(["Admin","importCard", 1]),
                             "btnText_toCancle" => "ยกเลิก",
                             "btnLink_toCancle" => base_url(["Admin","manageCardgroup"]),
                         ];  		
@@ -188,7 +188,11 @@ class Admin extends MyController
             foreach( $arr_row as $row ){
                 $data = [];
                 foreach( $arr_column as $column ){
-                    $data[$column] = $row->$column;
+                    if( $row->$column === "NULL"  ){ 
+                        $data[$column] = null;
+                    }else{
+                        $data[$column] = trim($row->$column);
+                    }
                 }
 
                 $card_model->update_by_id(
