@@ -21,7 +21,6 @@
         <?php } ?>    
     <?php } ?>
 
-
     <?php foreach( $arr_choice as $key=>$choice ){ ?>
         <?php if( $choice->a ){ ?>
             <div class="card-info card-info_body">
@@ -49,17 +48,56 @@
                         <textarea class="form-control" name="<?php echo $command->column_name;?>" rows="2"><?php echo $command->value;?></textarea>
                     </div>
                 <?php } ?>
-            <?php } ?>            
+            <?php } ?> 
+
+            <?php foreach( $arr_answer as $key=>$answer ){ ?>
+                <?php if($answer){ ?>
+                    <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
+                        <label><strong>คำตอบที่ <?php echo ($key+1);?></strong> :: </label>
+                        <textarea class="form-control" name="<?php echo $answer->column_name;?>" rows="2"><?php echo $answer->value;?></textarea>
+                    </div>
+                <?php } ?>
+            <?php } ?> 
+
+            <?php foreach( $arr_choice as $key=>$choice ){ ?>
+
+                <?php if($choice->a){ ?>
+                    <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
+                        <label><strong>ตัวเลือกที่ <?php echo ($key+1);?>a</strong> :: </label>
+                        <textarea class="form-control" name="<?php echo $choice->a->column_name;?>" rows="2"><?php echo $choice->a->value;?></textarea>
+                    </div>
+                <?php } ?>
+
+                <?php if($choice->b){ ?>
+                    <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
+                        <label><strong>ตัวเลือกที่ <?php echo ($key+1);?>b</strong> :: </label>
+                        <textarea class="form-control" name="<?php echo $choice->b->column_name;?>" rows="2"><?php echo $choice->b->value;?></textarea>
+                    </div>
+                <?php } ?>   
+
+                <?php if($choice->c){ ?>
+                    <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
+                        <label><strong>ตัวเลือกที่ <?php echo ($key+1);?>c</strong> :: </label>
+                        <textarea class="form-control" name="<?php echo $choice->c->column_name;?>" rows="2"><?php echo $choice->c->value;?></textarea>
+                    </div>
+                <?php } ?>                
+
+                <?php if($choice->d){ ?>
+                    <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
+                        <label><strong>ตัวเลือกที่ <?php echo ($key+1);?>d</strong> :: </label>
+                        <textarea class="form-control" name="<?php echo $choice->d->column_name;?>" rows="2"><?php echo $choice->d->value;?></textarea>
+                    </div>
+                <?php } ?>                
+
+            <?php } ?> 
 
             <div class="two_flex_column">
                 <div>
                 </div>
                 <div>
-                    <button type="submit" name="submit" value="submit" class="btn btn-primary">ปรับปรุง</button>
+                    <button type="submit" class="btn btn-primary">ปรับปรุง</button>
                 </div>
             </div>
-
-
             
         </form>
 

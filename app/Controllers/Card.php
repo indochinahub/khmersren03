@@ -273,7 +273,6 @@ class Card extends MyController
         $deck_model     = new DeckModel;
         $course_model   = new CourseModel;
         
-
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
         {
@@ -320,9 +319,6 @@ class Card extends MyController
 		if( ($this->request->getMethod() === "post") ){
 			$data["task"] = "do_task";
 			
-		}elseif( $this->request->getMethod() === "post" ){
-			$data["task"] = "form_error";
-
 		}else{
 			$data["task"] = "form_blank";
 		}
@@ -331,51 +327,22 @@ class Card extends MyController
         if( $data["task"] === "form_blank" ){
             
             $data["page_title"] = 	"แก้ไขบัตรคำ";
-            $data["page_link"] 	= 	[	"บัดคำหมายเลข xxx",
+            $data["page_link"] 	= 	[	"หมายเลข ".$data["card"]->card_sort,
                                         base_url(["Card","show","a",$card_id, $deck_id])
                                     ];	        
             $this->_view("edit",$data);
 
+        }elseif( $data["task"] = "do_task" ){
+
+            $detail = $this->request->getPost();
+            $card_model->update_by_id( $card_id, $detail);
+
+            return redirect()->to(base_url( ["Card", "edit", $card_id, $deck_id] ));
+            
+
+
+
         }
-
-
-
-
-
-
-
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 }
