@@ -272,6 +272,7 @@ class Card extends MyController
         $card_model     = new CardModel;
         $deck_model     = new DeckModel;
         $course_model   = new CourseModel;
+        $util_model     = new UtilModel;
         
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
@@ -335,6 +336,7 @@ class Card extends MyController
         }elseif( $data["task"] = "do_task" ){
 
             $detail = $this->request->getPost();
+            $detail = $util_model->fill_null_in_array( $detail );
             $card_model->update_by_id( $card_id, $detail);
 
             return redirect()->to(base_url( ["Card", "edit", $card_id, $deck_id] ));
