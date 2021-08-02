@@ -273,6 +273,26 @@ class UtilModel
         return trim($txt_data);
     }
 
+    // return array
+    public function fill_null_in_array( $arr ){
+        if( $arr === [] ){
+            return [];
+        }
+
+        $new_arr = [];
+        foreach( $arr as $key=>$value ){
+            if( $value = trim($value) ){
+                $new_arr[$key] = $value;
+            }else{
+                $new_arr[$key] = null;
+            }
+        }
+
+        return $new_arr;
+
+    }
+    
+
 
 }
 

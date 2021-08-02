@@ -718,4 +718,29 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    // return array
+    public function test_fill_null_in_array(){
+        
+        $result1 = $this->util_model->fill_null_in_array( []);
+        $result2 = $this->util_model->fill_null_in_array( 
+                                [ "one", "two", "" ]
+                            );
+        $result3 = $this->util_model->fill_null_in_array( 
+                                [ "firstname"=>"Wittay", "lastname"=>"" ]
+                            );
+
+        $result         =   [
+                                $result1,
+                                $result2,
+                                $result3
+                            ];
+        $expectedResult =   [   
+                                [],
+                                [ "one", "two", null ],
+                                [ "firstname"=>"Wittay", "lastname"=> null ]
+                            ];
+        $this->assertSame($result,$expectedResult);
+    }
+
+
 }
