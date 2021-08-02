@@ -87,10 +87,8 @@ class Card extends MyController
                                         $data["deck"]
                                     );
 
-    /*******************************************************/
+    
     // Get some value about Time
-    /*******************************************************/
-                      
         $next_midnight_unix_timestamp =  $datetime_model->get_unix_timestamp_at_midnight( 
                     $datetime_model->get_unix_timestamp( time(), $next_day = 1)
                 );
@@ -103,10 +101,7 @@ class Card extends MyController
         
         $today_date = $datetime_model->get_date_part_from_sql_timestamp($now_sql_timestamp);
 
-    /*******************************************************/
     // Check if there is the practice
-    /*******************************************************/
-
         if( ($data["page"] === "b") && ($data["practice"] === false) ){
 
             $detail =   [       "id_deck"=>$deck_id,
@@ -119,10 +114,8 @@ class Card extends MyController
             $data["practice"] = $practice_model->get_by_id($practice_id);;
         }
 
-    /*******************************************************/
     // Get Page "b" 
     // Update Practice
-    /*******************************************************/
         if( $data["page"] === "b"){
 
             // Get the time value
@@ -137,14 +130,14 @@ class Card extends MyController
 
         }
 
-        // for New card or the card which is redone in the same day
-        // Only update lastVisitDate
+    // for New card or the card which is redone in the same day
+    // Only update lastVisitDate
         if( ($data["page"] === "b") && ($today_date === $last_visit_date) ){
             $detail =   [       
                             "practice_lastVisitDate"=>$now_sql_timestamp
                         ];
 
-        //for the correct answer
+    //for the correct answer
         }elseif(  ($data["page"] === "b") && $data["selected_choice"] === 0){
             
             $iterval_num_day = $datetime_model->get_iterval_num_day( 
@@ -166,7 +159,7 @@ class Card extends MyController
                         "practice_timespent"=>$time_spent,
             ];            
 
-        // for the wrong answer
+    // for the wrong answer
         }elseif( ($data["page"] === "b") && $data["selected_choice"] !== 0 ){
 
             $iterval_num_day = 2;
@@ -194,20 +187,15 @@ class Card extends MyController
             $data["practice"] = $practice_model->get_by_id( $data["practice"]->practice_id );
         }
 
-    /*******************************************************/
-    // Get NextCard
-    /*******************************************************/
 
+    // Get NextCard
         $data["next_card_id"] = $card_model->get_next_card_id(
                                         $data["deck"]->deck_id, 
                                         $data["user"]->user_id, 
                                         time()
                                     );  
 
-    /*******************************************************/
     // Statistic Section
-    /*******************************************************/
-
         $data["num_all_card"]   =   count($card_model->get_by_deck_id($deck_id));
         $arr_practice           =   $practice_model->get_by_deck_id_user_id(
                                                     $deck_id, 
@@ -238,10 +226,7 @@ class Card extends MyController
             $data["time_spent"]         =   $data["practice"]->practice_timespent;
       }
 
-    /*******************************************************/
     // View Section
-    /*******************************************************/
-        
         $data["page_title"] = 	"บัตรคำ ".$data["card"]->card_sort;
         $data["page_link"] 	= 	[ 
                                     "ชุดบัตรคำ ".$data["course"]->course_code."-".$data["deck"]->deck_name , 
@@ -279,9 +264,7 @@ class Card extends MyController
         }else{
             $card_model->delete_by_id( (int) $card_id );
             return redirect()->to(base_url(["Deck","show", $deck_id]));		
-
         }
-        
     }
 
     public function edit($card_id, $deck_id){
