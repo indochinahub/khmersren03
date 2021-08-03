@@ -62,6 +62,10 @@
                     <a href="<?php echo base_url(["Cardcomment","showAll"]);?>"><i class="fas fa-angle-double-right"></i> ความเห็นทั้งหมด</a>
                 </li>
 
+                <li>
+                    <a href="<?php echo base_url(["Post","showAll"]);?>"><i class="fas fa-angle-double-right"></i> บทความทั้งหมด</a>
+                </li>
+
                 <?php if( ($loggedin_user) && ($loggedin_user->user_level >= 3) ){ ?>
 
                     <div class="sidebar_section"> เมนูผู้ดูแลระบบ </div>
