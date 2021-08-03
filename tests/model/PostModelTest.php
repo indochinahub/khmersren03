@@ -51,10 +51,6 @@ class PostModelTest extends CIUnitTestCase
 
         $result2 = $this->post_model->get_assoc_media_html($obj_post);
 
-        echo "\n";
-        var_dump( $result2 );
-        echo "\n";        
-
         $result         =   [   
                                 //result01
                                 $result1["[picture01]"],
@@ -64,10 +60,10 @@ class PostModelTest extends CIUnitTestCase
                                 $result1["[picture05]"],
                                 $result1["[picture06]"],
 
-                                $result1["[youtbube01]"],
-                                $result1["[youtbube02]"],
-                                $result1["[youtbube03]"],
-                                $result1["[youtbube04]"],
+                                $result1["[youtube01]"],
+                                $result1["[youtube02]"],
+                                $result1["[youtube03]"],
+                                $result1["[youtube04]"],
 
                                 $result1["[sound01]"],
                                 $result1["[sound02]"],
@@ -81,10 +77,10 @@ class PostModelTest extends CIUnitTestCase
                                 $result2["[picture05]"],
                                 $result2["[picture06]"],
 
-                                $result2["[youtbube01]"],
-                                $result2["[youtbube02]"],
-                                $result2["[youtbube03]"],
-                                $result2["[youtbube04]"],
+                                $result2["[youtube01]"],
+                                $result2["[youtube02]"],
+                                $result2["[youtube03]"],
+                                $result2["[youtube04]"],
 
                                 $result2["[sound01]"],
                                 $result2["[sound02]"],                                
@@ -125,8 +121,58 @@ class PostModelTest extends CIUnitTestCase
                             ];
 
         $this->assertSame($expectedResult, $result);        
-
     }
+
+    // return object
+    public function test_add_media_to_post(){
+
+        $obj_post = new \stdClass;
+
+        $obj_post->post_picture01   = "000231.jpg";
+        $obj_post->post_picture02   = "000232.jpg";
+        $obj_post->post_picture03   = "000233.jpg";
+        $obj_post->post_picture04   = "000234.jpg";
+        $obj_post->post_picture05   = "000235.jpg";
+        $obj_post->post_picture06   = "000236.jpg";
+        $obj_post->post_sound01     = "000231.mp3";
+        $obj_post->post_sound02     = "000232.mp3";
+        $obj_post->post_youtube01   = "1c9jcCS_KKQ";
+        $obj_post->post_youtube02   = "I6j1838RI2Q";
+        $obj_post->post_youtube03   = "y8QbACaKGBo";
+        $obj_post->post_youtube04   = "OutbRXSYjoQ";
+
+        // Picture
+        $obj_post->post_intro       = "xx[picture01]";
+        $obj_post->post_content     = "yy[picture02]";
+
+        $result1 = $this->post_model->add_media_to_post($obj_post);
+
+        // Youtube
+        $obj_post->post_intro       = "xx[youtube01]";
+        $obj_post->post_content     = "yy[youtube02]";
+
+        $result2 = $this->post_model->add_media_to_post($obj_post);
+
+        echo "\n";
+        //var_dump( $result2->post_intro );
+        echo "\n";
+
+
+
+        $result         =   [   
+                                //$result1->post_intro,
+                                //$result1->post_content,
+
+                            ];
+        $expectedResult =   [ 
+                                //"xx<div style='border:1px solid black'><img src='http://127.0.0.1/khmersren03/asset/media/post_media/000231.jpg' class='img-fluid'></div>",
+                                //"yy<div style='border:1px solid black'><img src='http://127.0.0.1/khmersren03/asset/media/post_media/000232.jpg' class='img-fluid'></div>",
+
+                            ];
+        $this->assertSame($expectedResult, $result);                
+
+
+    }    
 
     
 }
