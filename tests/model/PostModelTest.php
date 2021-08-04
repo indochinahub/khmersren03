@@ -211,9 +211,24 @@ class PostModelTest extends CIUnitTestCase
                                 "yy<div><audio controls=''><source src='http://127.0.0.1/khmersren03/asset/media/post_media/000232.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/media/post_media/000232.mp3'>[ Listen Directly ]</a></div>",                                    
                             ];
         $this->assertSame($expectedResult, $result);                
+    }
+    
+    // return array_of_object
+    public function test_get_by_postcategory_id(){
 
+        $result1 = $this->post_model->get_by_postcategory_id($postcategory_id = 0);
+        $result2 = $this->post_model->get_by_postcategory_id($postcategory_id = 12);
 
-    }    
+        $result         =   [   
+                                $result1,
+                                count($result2),
+                            ];
+        $expectedResult =   [ 
+                                [],
+                                2,
+                            ];
+        $this->assertSame($expectedResult, $result);                        
+    }
 
     
 }

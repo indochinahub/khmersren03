@@ -14,7 +14,6 @@ class PostModel extends MyModel
         $this->table = "post";
         $this->primaryKey = $this->table."_id";
     }
-    
 
     // return assoc_array
     public function get_assoc_media_html($obj_post){
@@ -98,6 +97,15 @@ class PostModel extends MyModel
 
 
     }
+
+    // return array_of_object
+    public function get_by_postcategory_id($postcategory_id){
+        
+        $where_clause = " WHERE id_postcategory = $postcategory_id ";
+        return $this->get_where($where_clause);
+    }
+
+    
     
 
 
