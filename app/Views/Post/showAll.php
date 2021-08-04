@@ -9,28 +9,28 @@
             <div>
                 <h5><a href="#"><?php echo $post->post_title;?></a></h5>
                 <h6>
-                    [02 ส.ค. 2564 07:02 น. 
-                    โดย <a href="http://www.khmersren.com/Profile/myProfile/6">วิทยา วิจิตร</a>]
-
+                    [ <?php echo $post->post_createddate;?>
+                        โดย 
+                        <a href="<?php echo base_url( ["Profile","member", $post->user->user_id]);?>">
+                            <?php echo $post->user->displayname;?>
+                        </a>]
                 </h6>
             </div>
 
             <div style="margin-bottom:15px">
-                    ในเดือนกรกฎาคม กัมพูชามีผู้เสียชีวิตเนื่องจากโควิด 19 เกือบ 800 คน <br>
-                    <div style="border:1px solid black">
-                        <img src="http://www.khmersren.com/assets/images/post_media/003381.jpg" class="img-fluid">
-                    </div>            
+                <?php echo $post->post_intro;?>
+                    
             </div>
 
             <div class="two_flex_column" style="margin:10px">
                 <div>
                     <a href="http://www.khmersren.com/Post/showByCategory/17">
-                        <strong>#เรียนเขมรจากข่าว</strong>
+                        <strong>#<?php echo $post->postcategory->postcategory_title;?></strong>
                     </a>
-                    [125]
+                    [ <?php echo $post->postcategory_num_card;?> ]
                 </div>
                 <div>
-                    <a href="http://www.khmersren.com/Profile/showPost/337" class="btn btn-sm btn-primary">ถัดไป</a>
+                    <a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>" class="btn btn-sm btn-primary">ถัดไป</a>
                 </div>
             </div>
             

@@ -13,15 +13,19 @@ use App\Models\CardcommentModel;
 use App\Models\UserModel;
 use App\Models\PostModel;
 use App\Models\DateTimeModel;
+use App\Models\PostcategoryModel;
 
 class Post extends MyController
 {
 
     public function showAll(){
 
-        $post_model = new PostModel;
-        $util_model = new UtilModel;
-        $pagination_model = new PaginationModel;
+        $post_model         = new PostModel;
+        $util_model         = new UtilModel;
+        $pagination_model   = new PaginationModel;
+        $datetime_model     = new DateTimeModel;
+        $user_model         = new UserModel;
+        $postcategory_model = new PostcategoryModel;
 
         $arr_post = $post_model->get_all_row();
         $arr_post = $util_model->sort_array_of_object_by_the_property( 
@@ -46,7 +50,14 @@ class Post extends MyController
 
         $data["arr_post"] = [];
         foreach( $arr_post as $post){
+            $post->user = $user_model->get_by_post_id( $post->post_id );
+            $post->post_createddate = $datetime_model->get_thai_datetime_from_sql_timestamp(
+                                        $post->post_createddate );
+            $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
+            $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
+            
 
+            $post = $post_model->add_media_to_post($post);
             array_push( $data["arr_post"], $post);
 
         }
