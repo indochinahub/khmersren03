@@ -193,7 +193,7 @@ class PostModelTest extends CIUnitTestCase
         $result         =   [   
                                 $result1->post_intro,
                                 $result1->post_content,
-
+  
                                 $result2->post_intro,
                                 $result2->post_content,
 

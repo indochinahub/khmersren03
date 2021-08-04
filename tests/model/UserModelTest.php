@@ -128,5 +128,25 @@ class UserModelTest extends CIUnitTestCase
 
     }
     
+    // return object or false
+    public function test_get_by_post_id(){
+
+        $result1 = $this->user_model->get_by_post_id($post_id = 0);
+        $result2 = $this->user_model->get_by_post_id($post_id = 26);
+
+        $result         =   [ 
+                                $result1,
+                                $result2->user_username,
+                            ];
+
+        $expectedResult =   [ 
+                                false,
+                                "admin"
+                            ];
+
+        $this->assertSame($expectedResult, $result);        
+
+    }
+
     
 }

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models\DateTimeModel;
 
 class UserModel extends MyModel
 {
@@ -86,9 +85,21 @@ class UserModel extends MyModel
                 ];
 
         return $this->update_by_id($user_id, $detail);
-    }    
+    }
+    
+    // return object or false
+    public function get_by_post_id($post_id){
+
+       $postcategory_model =new PostcategoryModel;
+       if( !($postcategory = $postcategory_model->get_by_post_id($post_id)) ){ return false;}
+
+        return $this->get_user_by_id( $postcategory->id_user );
+    }
+
+
 
 
 }
+
 
 

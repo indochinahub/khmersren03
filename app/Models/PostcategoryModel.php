@@ -24,12 +24,6 @@ class PostcategoryModel extends MyModel
         if( ! ($post = $post_model->get_by_id($post_id)) ){ return false;}
 
         return $this->get_by_id( $post->id_postcategory );
-        
-        
-
-
-
-
     }
     
 
