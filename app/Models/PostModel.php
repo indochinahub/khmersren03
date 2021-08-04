@@ -105,7 +105,27 @@ class PostModel extends MyModel
         return $this->get_where($where_clause);
     }
 
-    
+    // return int
+    public function get_num_by_postcategory_id($postcategory_id){
+
+        $sql =  " SELECT COUNT(post_id) AS num_post FROM post ";
+        $sql .= " WHERE id_postcategory =  $postcategory_id ";
+
+        $query = $this->query($sql);
+
+        if( $result = $query->getResult() ){
+            return (int) $result[0]->num_post;
+
+        }else{
+            return 0;
+        }
+
+
+
+
+    }
+
+
     
 
 

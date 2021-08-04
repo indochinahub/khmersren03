@@ -227,8 +227,27 @@ class PostModelTest extends CIUnitTestCase
                                 [],
                                 2,
                             ];
-        $this->assertSame($expectedResult, $result);                        
+        $this->assertSame($expectedResult, $result);
     }
+
+
+    // return int
+    public function test_get_num_by_postcategory_id(){
+
+        $result1 = $this->post_model->get_num_by_postcategory_id($postcategory_id = 0);
+        $result2 = $this->post_model->get_num_by_postcategory_id($postcategory_id = 12);
+
+        $result         =   [   
+                                $result1,
+                                $result2,
+                            ];
+        $expectedResult =   [ 
+                                0,
+                                2,
+                            ];
+        $this->assertSame($expectedResult, $result);        
+
+    }    
 
     
 }
