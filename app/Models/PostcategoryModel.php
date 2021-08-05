@@ -25,6 +25,13 @@ class PostcategoryModel extends MyModel
 
         return $this->get_by_id( $post->id_postcategory );
     }
+
+    // return array of object
+    public function get_by_user_id($user_id){
+
+        $where_clause = " WHERE id_user = $user_id ";
+        return $this->get_where($where_clause);        
+    }
     
 
 

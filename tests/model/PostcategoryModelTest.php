@@ -34,5 +34,24 @@ class PostcategoryModelTest extends CIUnitTestCase
 
         $this->assertSame($expectedResult, $result);                
     }
+
+    // return array of object
+    public function test_get_by_user_id(){
+
+        $result1 = $this->postcategory_model->get_by_user_id($user_id = 0);
+        $result2 = $this->postcategory_model->get_by_user_id($user_id = 1);
+
+        $result         =   [   
+                                $result1,
+                                count($result2),
+                            ];
+
+        $expectedResult =   [ 
+                                [],
+                                5,
+                            ];
+
+        $this->assertSame($expectedResult, $result);                            
+    }
     
 }
