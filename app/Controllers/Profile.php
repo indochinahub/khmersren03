@@ -153,8 +153,6 @@ class Profile extends MyController
             $arr_deck = $deck_model->get_by_user_id($data["member"]->user_id) ;
         }
 
-
-
         // Deck Section
         $data["arr_deck"] = [];
         foreach( $arr_deck as $deck ){

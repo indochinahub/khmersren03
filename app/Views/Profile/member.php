@@ -131,7 +131,8 @@
                 <h5>ดูบทความทั้งหมดของฉัน</h5>
             </div>
             <div>
-                <a href="#" class="btn btn-primary">ไป</a>
+                <a href="<?php echo base_url(["Post","showBy","User", $member->user_id]);?>" class="btn btn-primary">ไป</a>
+                
             </div>
         </div>
 

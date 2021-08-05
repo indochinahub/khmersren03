@@ -63,7 +63,7 @@
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url(["Post","showAll"]);?>"><i class="fas fa-angle-double-right"></i> บทความทั้งหมด</a>
+                    <a href="<?php echo base_url(["Post","showBy","All"]);?>"><i class="fas fa-angle-double-right"></i> บทความทั้งหมด</a>
                 </li>
 
                 <?php if( ($loggedin_user) && ($loggedin_user->user_level >= 3) ){ ?>

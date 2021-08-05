@@ -17,7 +17,7 @@ use App\Models\PostcategoryModel;
 
 class Post extends MyController
 {
-    public function showAll(){
+    public function showBy($groupBy = "All", $id = "0"){
 
         $post_model         = new PostModel;
         $util_model         = new UtilModel;
@@ -26,12 +26,21 @@ class Post extends MyController
         $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
 
-        $arr_post = $post_model->get_all_row();
+        if( $groupBy === "All" ){
+            $arr_post = $post_model->get_all_row();
+
+        }elseif( $groupBy === "User"){
+            
+            $data["member"] = $user_model->get_user_by_id($id);
+            $arr_post = $post_model->get_by_user_id($id);
+        }
+
         $arr_post = $util_model->sort_array_of_object_by_the_property( 
-                                $arr_post, 
-                                $sorted_property = "post_id", 
-                                $order_by ="desc"
-                            );
+            $arr_post, 
+            $sorted_property = "post_id", 
+            $order_by ="desc"
+        );
+
 
         // Pagination
         if( ! ($page = $this->request->getGet('page')) ){
