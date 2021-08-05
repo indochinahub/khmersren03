@@ -14,15 +14,16 @@
         </div>
 
         <div style="margin-bottom:15px">
-
             <?php echo $post->post_intro;?>
-                
         </div>
-        <div style="margin-bottom:15px">
 
-            <?php echo $post->post_content;?>
-                
-        </div>
+        <?php if( $post->post_intro ){ ?>
+        
+            <div style="margin-bottom:15px">
+                <?php echo $post->post_content;?>
+            </div>
+            
+        <?php } ?>        
 
         <div class="two_flex_column" style="margin:10px">
             <div>

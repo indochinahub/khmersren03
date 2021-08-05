@@ -30,7 +30,7 @@
                     [ <?php echo $post->postcategory_num_card;?> ]
                 </div>
                 <div>
-                    <a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>" class="btn btn-sm btn-primary">ถัดไป</a>
+                    <a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>" class="btn btn-primary">อ่าน</a>
                 </div>
             </div>
             
