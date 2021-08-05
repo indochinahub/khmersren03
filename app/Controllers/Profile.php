@@ -11,7 +11,8 @@ use App\Models\PracticeModel;
 use App\Models\UserModel;
 use App\Models\StatisticModel;
 use App\Models\DateTimeModel;
-
+use App\Models\PostModel;
+use App\Models\PostcategoryModel;
 
 class Profile extends MyController
 {
@@ -25,7 +26,9 @@ class Profile extends MyController
 		$datetime_model  = new DateTimeModel;
 		$util_model  	 = new UtilModel;
         $datetime_model  = new DateTimeModel;
-        $user_model  = new UserModel;
+        $user_model      = new UserModel;
+        $post_model      = new PostModel;
+        $postcategory_model = new PostcategoryModel;
 
         $data["user"]   = $this->_get_loggedin_user();
         $data["member"] = $user_model->get_user_by_id($member_id);
@@ -36,6 +39,7 @@ class Profile extends MyController
             $data["if_user_view_own_profile"] = false;
        }
 
+       // Deck Section
        $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
 	   $data["arr_deck"] = [];
        foreach( $arr_deck as $deck ){
@@ -83,8 +87,30 @@ class Profile extends MyController
                                                 $order_by ="desc"
                                             );		
         $data["arr_deck"] = array_slice( $data["arr_deck"], 0, 3);
-            
 
+        // Post Section
+        $arr_post = $post_model->get_by_user_id($data["member"]->user_id);
+        $arr_post = $util_model->sort_array_of_object_by_the_property( 
+                                $arr_post, 
+                                "post_publisheddate", 
+                                $order_by ="desc");
+        $arr_post = array_slice($arr_post,0,3);
+
+        $data["arr_post"] = [];
+        foreach( $arr_post as $post){
+            
+            $post->user = $user_model->get_by_post_id( $post->post_id );
+            $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
+            $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
+            $post->post_createddate = $datetime_model->get_thai_datetime_from_sql_timestamp(
+                                        $post->post_createddate );
+            $post = $post_model->add_media_to_post($post);            
+
+            array_push( $data["arr_post"], $post);
+        }        
+
+        
+        // View Section
         if( $data["if_user_view_own_profile"] ){
             $data["page_title"] = 	"โปรไฟล์ของฉัน ";
 
@@ -109,10 +135,9 @@ class Profile extends MyController
         $datetime_model  = new DateTimeModel;
         $util_model  	 = new UtilModel;
         $user_model      = new UserModel;
+        $post_model      = new PostModel;
 
-        /*******************************************/
         // User Management
-        /*******************************************/
         $data["user"]   = $this->_get_loggedin_user();
         $data["member"] = $user_model->get_user_by_id($member_id);
 
@@ -122,14 +147,15 @@ class Profile extends MyController
             $data["if_user_view_own_profile"] = false;
         }
 
-
-        //
         if( $data["if_user_view_own_profile"] === true){
             $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
         }else{
             $arr_deck = $deck_model->get_by_user_id($data["member"]->user_id) ;
         }
 
+
+
+        // Deck Section
         $data["arr_deck"] = [];
         foreach( $arr_deck as $deck ){
     

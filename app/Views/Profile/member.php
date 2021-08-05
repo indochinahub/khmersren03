@@ -75,3 +75,66 @@
 
     </div>
 </div>
+
+<div class="card-info">
+
+    <div class="card-info card-info_header">
+        บทความของฉัน
+    </div>
+
+
+
+    <?php foreach( $arr_post as $post ){ ?>
+
+        <div class="card-info card-info_body">
+
+            <div>
+                <h5><a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>"><?php echo $post->post_title;?></a></h5>
+                <h6>
+                    [ <?php echo $post->post_createddate;?>
+                        โดย 
+                        <a href="<?php echo base_url( ["Profile","member", $post->user->user_id]);?>">
+                            <?php echo $post->user->displayname;?>
+                        </a>]
+                </h6>
+            </div>
+
+            <div style="margin-bottom:15px">
+                <?php echo $post->post_intro;?>
+                    
+            </div>
+
+            <div class="two_flex_column" style="margin:10px">
+                <div>
+                    <a href="#">
+                        <strong>#<?php echo $post->postcategory->postcategory_title;?></strong>
+                    </a>
+                    [ <?php echo $post->postcategory_num_card;?> ]
+                </div>
+                <div>
+                    <a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>" class="btn btn-primary">อ่าน</a>
+                </div>
+            </div>
+            
+        </div>
+
+        <?php } ?>
+</div>
+
+
+
+<div class="card-warning">
+    <div class="card-warning card-warning_body">
+        
+        <div class="two_flex_column">
+            <div>
+                <h5>ดูบทความทั้งหมดของฉัน</h5>
+            </div>
+            <div>
+                <a href="#" class="btn btn-primary">ไป</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
