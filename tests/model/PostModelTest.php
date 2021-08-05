@@ -247,6 +247,23 @@ class PostModelTest extends CIUnitTestCase
                             ];
         $this->assertSame($expectedResult, $result);        
 
+    }
+
+    // return array of object
+    public function test_get_by_user_id(){
+
+        $result1 = $this->post_model->get_by_user_id($user_id = 0);
+        $result2 = $this->post_model->get_by_user_id($user_id = 1);
+
+        $result         =   [   
+                                $result1,
+                                count($result2),
+                            ];
+        $expectedResult =   [ 
+                                [],
+                                8,
+                            ];   
+        $this->assertSame($expectedResult, $result);                                 
     }    
 
     
