@@ -32,6 +32,21 @@ class PostcategoryModel extends MyModel
         $where_clause = " WHERE id_user = $user_id ";
         return $this->get_where($where_clause);        
     }
+
+    // return object or false
+    public function get_default_postcategory($user_id){
+
+        $where_clause = " WHERE id_user = $user_id AND postcategory_defaultstatus = 1 ";
+        if( $default_postcatefory = $this->get_where($where_clause) ){
+            return $default_postcatefory[0];
+
+        }else{
+            return false;
+
+        }
+        
+
+    }
     
 
 

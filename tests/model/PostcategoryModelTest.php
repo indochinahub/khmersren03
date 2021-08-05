@@ -51,7 +51,25 @@ class PostcategoryModelTest extends CIUnitTestCase
                                 5,
                             ];
 
-        $this->assertSame($expectedResult, $result);                            
+        $this->assertSame($expectedResult, $result);
     }
-    
+
+    // return object or false
+    public function test_get_default_postcategory(){
+
+        $result1 = $this->postcategory_model->get_default_postcategory($user_id = 0);
+        $result2 = $this->postcategory_model->get_default_postcategory($user_id = 1);
+        
+        $result         =   [   
+                                $result1,
+                                is_object( $result2 ),
+                            ];
+
+        $expectedResult =   [ 
+                                false,
+                                true,
+                            ];
+
+        $this->assertSame($expectedResult, $result);
+    }    
 }
