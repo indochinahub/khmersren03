@@ -17,7 +17,6 @@ use App\Models\PostcategoryModel;
 
 class Post extends MyController
 {
-
     public function showAll(){
 
         $post_model         = new PostModel;
@@ -68,6 +67,35 @@ class Post extends MyController
                                ];
                                
         $this->_view("showAll",$data);                
+    }
+
+    public function show($post_id){
+
+        $post_model = new PostModel;
+        $user_model = new UserModel;
+        $postcategory_model = new PostcategoryModel;
+        $datetime_model = new DateTimeModel;
+
+        $data["post"]                   = $post_model->get_by_id($post_id);
+        $data["post"]                   = $post_model->add_media_to_post($data["post"]);
+
+        $data["owner"]                  = $user_model->get_by_post_id($data["post"]->post_id);
+        $data["postcategory"]           = $postcategory_model->get_by_post_id($data["post"]->post_id);
+        $data["postcategory_num_card"]  = $post_model->get_num_by_postcategory_id($data["post"]->id_postcategory);
+        $data["post_createddate"]       = $datetime_model->get_thai_datetime_from_sql_timestamp(
+                                            $data["post"]->post_createddate );
+
+        if( isset( $_SERVER['HTTP_REFERER'] ) ){
+            $data["back_link"] = $_SERVER['HTTP_REFERER'];
+        }else{
+            $data["back_link"] = base_url();
+        }
+
+        $data["page_title"] = 	""; 
+        $data["page_link"] 	= 	[   " ",
+                                    base_url()
+                               ];
+        $this->_view("show",$data);                        
     }
 
 }

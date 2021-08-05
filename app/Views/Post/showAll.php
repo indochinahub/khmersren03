@@ -7,7 +7,7 @@
         <div class="card-info card-info_body">
 
             <div>
-                <h5><a href="#"><?php echo $post->post_title;?></a></h5>
+                <h5><a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>"><?php echo $post->post_title;?></a></h5>
                 <h6>
                     [ <?php echo $post->post_createddate;?>
                         โดย 
@@ -24,7 +24,7 @@
 
             <div class="two_flex_column" style="margin:10px">
                 <div>
-                    <a href="http://www.khmersren.com/Post/showByCategory/17">
+                    <a href="#">
                         <strong>#<?php echo $post->postcategory->postcategory_title;?></strong>
                     </a>
                     [ <?php echo $post->postcategory_num_card;?> ]
