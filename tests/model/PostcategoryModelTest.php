@@ -113,6 +113,9 @@ class PostcategoryModelTest extends CIUnitTestCase
                                 true,
                             ];
         $this->assertSame($expectedResult, $result);        
+
+        $sql = "DELETE FROM postcategory WHERE postcategory_id = $result2 ";
+        $this->postcategory_model->query($sql);        
     }    
 
 

@@ -68,7 +68,6 @@ class PostcategoryModel extends MyModel
                 ];
 
         return $this->insert($detail);
-
     }
 
     
