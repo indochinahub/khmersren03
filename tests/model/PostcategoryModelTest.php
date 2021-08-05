@@ -14,6 +14,11 @@ class PostcategoryModelTest extends CIUnitTestCase
     {
         parent::setUp();
         $this->postcategory_model = new PostcategoryModel();
+
+
+        $sql = "DELETE FROM postcategory WHERE id_user = 2 ";
+        $this->postcategory_model->query($sql);
+
     }
 
     // return object or false
@@ -88,8 +93,29 @@ class PostcategoryModelTest extends CIUnitTestCase
                                 4,
                             ];
         $this->assertSame($expectedResult, $result);
-
     }
+
+    //return insertedID  or false
+    public function test_insert_default_postcategory(){
+
+        $sql = "DELETE FROM postcategory WHERE id_user = 2 ";
+        $this->postcategory_model->query($sql);
+
+        $result1 = $this->postcategory_model->insert_default_postcategory($user_id = 1);
+        $result2 = $this->postcategory_model->insert_default_postcategory($user_id = 2);
+        
+        $result         =   [   
+                                $result1,
+                                $result2 > 0,
+                            ];
+        $expectedResult =   [ 
+                                false,
+                                true,
+                            ];
+        $this->assertSame($expectedResult, $result);        
+    }    
+
+
     
 
 

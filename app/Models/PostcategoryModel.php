@@ -56,6 +56,21 @@ class PostcategoryModel extends MyModel
             return false;
         }        
     }
+
+    //return insertedID  or false
+    public function insert_default_postcategory($user_id){
+        
+        if($this->get_default_postcategory($user_id)){return false;}
+
+        $detail = [     "postcategory_title"=>"ทั่วไป",
+                        "postcategory_defaultstatus" => 1,
+                        "id_user"=>$user_id, 
+                ];
+
+        return $this->insert($detail);
+
+    }
+
     
 
 
