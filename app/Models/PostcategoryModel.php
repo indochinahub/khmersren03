@@ -42,10 +42,19 @@ class PostcategoryModel extends MyModel
 
         }else{
             return false;
-
         }
-        
+    }
 
+    //return array of object
+    public function get_user_postcategory($user_id){
+
+        $where_clause = " WHERE id_user = $user_id AND postcategory_defaultstatus != 1 ";
+        if( $user_postcatefory = $this->get_where($where_clause) ){
+            return $user_postcatefory;
+
+        }else{
+            return false;
+        }        
     }
     
 
