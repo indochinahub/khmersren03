@@ -89,7 +89,7 @@ class PostcategoryModelTest extends CIUnitTestCase
                                 count($result2),
                             ];
         $expectedResult =   [ 
-                                false,
+                                [],
                                 4,
                             ];
         $this->assertSame($expectedResult, $result);

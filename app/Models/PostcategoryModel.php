@@ -53,7 +53,7 @@ class PostcategoryModel extends MyModel
             return $user_postcatefory;
 
         }else{
-            return false;
+            return [];
         }        
     }
 
