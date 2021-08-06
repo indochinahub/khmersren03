@@ -28,19 +28,27 @@ class Post extends MyController
 
         if( $groupBy === "All" ){
             $arr_post = $post_model->get_all_row();
+            $page_title =  "บทความ :: ทั้งหมด ";
 
         }elseif( $groupBy === "User"){
-            
             $data["member"] = $user_model->get_user_by_id($id);
             $arr_post = $post_model->get_by_user_id($id);
+            $page_title =  "บทความของ :: ".$data["member"]->displayname;
+
+        }elseif( $groupBy === "Category" ){
+            $arr_post = $post_model->get_by_postcategory_id($id);
+            $postcategory = $postcategory_model->get_by_id($id);
+            $data["member"] = $user_model->get_user_by_id($postcategory->id_user);
+            $page_title  =  "กลุ่มบทความ :: #".$postcategory->postcategory_title;
+            $page_title  .= "<br>ของ :: ".$data["member"]->displayname;
+            
         }
 
         $arr_post = $util_model->sort_array_of_object_by_the_property( 
-            $arr_post, 
-            $sorted_property = "post_id", 
-            $order_by ="desc"
-        );
-
+                        $arr_post, 
+                        $sorted_property = "post_id", 
+                        $order_by ="desc"
+                    );
 
         // Pagination
         if( ! ($page = $this->request->getGet('page')) ){
@@ -70,12 +78,12 @@ class Post extends MyController
 
         }
 
-        $data["page_title"] = 	"บทความ :: ทั้งหมด "; 
+        $data["page_title"] = 	$page_title; 
         $data["page_link"] 	= 	[   "หน้าแรก ",
                                     base_url()
                                ];
                                
-        $this->_view("showAll",$data);                
+        $this->_view("showBy",$data);                
     }
 
     public function show($post_id){
@@ -99,6 +107,8 @@ class Post extends MyController
         }else{
             $data["back_link"] = base_url();
         }
+
+
 
         $data["page_title"] = 	""; 
         $data["page_link"] 	= 	[   " ",

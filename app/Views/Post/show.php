@@ -3,7 +3,7 @@
     <div class="card-info card-info_body">
 
         <div>
-            <h5><a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>"><?php echo $post->post_title;?></a></h5>
+            <h5><?php echo $post->post_title;?></h5>
             <h6>
                 [ <?php echo $post->post_createddate;?>
                     โดย 
@@ -27,7 +27,7 @@
 
         <div class="two_flex_column" style="margin:10px">
             <div>
-                <a href="#">
+                <a href="<?php echo base_url( ["Post","showBy","Category", $postcategory->postcategory_id] );?>">
                     <strong>#<?php echo $postcategory->postcategory_title;?></strong>
                 </a>
                 [ <?php echo $postcategory_num_card;?> ]

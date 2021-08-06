@@ -24,7 +24,7 @@
 
             <div class="two_flex_column" style="margin:10px">
                 <div>
-                    <a href="#">
+                    <a href="<?php echo base_url( ["Post","showBy","Category",$post->postcategory->postcategory_id] );?>">
                         <strong>#<?php echo $post->postcategory->postcategory_title;?></strong>
                     </a>
                     [ <?php echo $post->postcategory_num_card;?> ]

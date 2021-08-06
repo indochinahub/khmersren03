@@ -82,8 +82,6 @@
         บทความของฉัน
     </div>
 
-
-
     <?php foreach( $arr_post as $post ){ ?>
 
         <div class="card-info card-info_body">
@@ -106,7 +104,7 @@
 
             <div class="two_flex_column" style="margin:10px">
                 <div>
-                    <a href="#">
+                    <a href="<?php echo base_url( ["Post","showBy","Category", $post->postcategory->postcategory_id] );?>">
                         <strong>#<?php echo $post->postcategory->postcategory_title;?></strong>
                     </a>
                     [ <?php echo $post->postcategory_num_card;?> ]
@@ -120,8 +118,6 @@
 
         <?php } ?>
 </div>
-
-
 
 <div class="card-warning">
     <div class="card-warning card-warning_body">
@@ -137,5 +133,25 @@
         </div>
 
     </div>
+</div>
+
+<div class="card-info">
+    <div class="card-info card-info_header">
+        กลุ่มบทความของ xxxx
+    </div>
+    
+    <div class="card-info card-info_body">
+
+        <div class="two_flex_column" style="margin-bottom:5px;">
+            <div>
+                #ทั่วไป[14]
+            </div>
+            <div>
+                <a href="#" class="btn btn-primary">ไป</a>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
