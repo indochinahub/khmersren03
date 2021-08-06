@@ -1,7 +1,6 @@
 <div class="card-info">
     <div class="card-info card-info_header">
         บัตรคำของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
-        
     </div>
         
     <?php foreach( $arr_deck as $deck ){ ?>
@@ -91,7 +90,7 @@
                 <h6>
                     [ <?php echo $post->post_createddate;?>
                         โดย 
-                        <a href="<?php echo base_url( ["Profile","member", $post->user->user_id]);?>">
+                        <a href="<?php echo base_url( ["User","profile", $post->user->user_id]);?>">
                             <?php echo $post->user->displayname;?>
                         </a>]
                 </h6>
