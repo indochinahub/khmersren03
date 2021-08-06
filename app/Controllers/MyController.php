@@ -180,5 +180,14 @@ class MyController extends BaseController {
 		}
 	}
 
+	public function _get_backlink(){
+
+        if( isset( $_SERVER['HTTP_REFERER'] ) ){
+            return $_SERVER['HTTP_REFERER'];
+        }else{
+            return base_url();
+        }		
+	}
+
 
 }

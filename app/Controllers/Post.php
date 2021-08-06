@@ -102,13 +102,7 @@ class Post extends MyController
         $data["post_createddate"]       = $datetime_model->get_thai_datetime_from_sql_timestamp(
                                             $data["post"]->post_createddate );
 
-        if( isset( $_SERVER['HTTP_REFERER'] ) ){
-            $data["back_link"] = $_SERVER['HTTP_REFERER'];
-        }else{
-            $data["back_link"] = base_url();
-        }
-
-
+        $data["back_link"] = $this->_get_backlink();
 
         $data["page_title"] = 	""; 
         $data["page_link"] 	= 	[   " ",
