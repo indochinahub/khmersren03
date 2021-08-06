@@ -68,7 +68,7 @@
                 <h5>ดูบัตรคำทั้งหมดของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?></h5>
             </div>
             <div>
-                <a href="<?php echo base_url(["Profile","deck", $member->user_id]);?>" class="btn btn-primary">ไป</a>
+                <a href="<?php echo base_url(["Deck","byUser", $member->user_id]);?>" class="btn btn-primary">ไป</a>
             </div>
         </div>
 

@@ -115,14 +115,14 @@ class User extends MyController
 
         if( $data["user"]->user_id === $data["member"]->user_id ){
             $data["if_user_view_own_profile"] = true;
-       }else{
+        }else{
             $data["if_user_view_own_profile"] = false;
-       }
+        }
 
-       // Deck Section
-       $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
-	   $data["arr_deck"] = [];
-       foreach( $arr_deck as $deck ){
+        // Deck Section
+        $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
+	    $data["arr_deck"] = [];
+        foreach( $arr_deck as $deck ){
 
         $deck->course 			= $course_model->get_by_deck_id($deck->deck_id);
         array_push( $data["arr_deck"], $deck );
@@ -188,7 +188,6 @@ class User extends MyController
 
             array_push( $data["arr_post"], $post);
         }        
-
         
         // View Section
         if( $data["if_user_view_own_profile"] ){
