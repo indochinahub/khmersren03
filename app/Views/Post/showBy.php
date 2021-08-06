@@ -11,7 +11,7 @@
                 <h6>
                     [ <?php echo $post->post_createddate;?>
                         โดย 
-                        <a href="<?php echo base_url( ["User","profile", $post->user->user_id]);?>">
+                        <a href="<?php echo base_url( ["User","myProfile", $post->user->user_id]);?>">
                             <?php echo $post->user->displayname;?>
                         </a>]
                 </h6>

@@ -248,7 +248,7 @@ class Deck extends MyController
 
     }
 
-    public function byUser($member_id){
+    public function myDeck($member_id){
 
         $deck_model 	 = new DeckModel;
         $course_model 	 = new CourseModel;
@@ -328,17 +328,17 @@ class Deck extends MyController
         if( $data["if_user_view_own_profile"] === true ){
             $data["page_title"] = 	"บัตรคำของฉัน";        
             $data["page_link"] 	= 	[	"โปรไฟล์ของฉัน ",
-                                        base_url( ["Profile","member", $data["member"]->user_id] )
+                                        base_url( ["User","myProfile", $data["member"]->user_id] )
                                     ];
 
         }elseif( $data["if_user_view_own_profile"] === false ){
             $data["page_title"] = 	"บัตรคำของ ".$data["member"]->displayname;        
             $data["page_link"] 	= 	[	"โปรไฟล์ของ ".$data["member"]->displayname,
-                                        base_url( ["Profile","member", $data["member"]->user_id] )
+                                        base_url( ["User","myProfile", $data["member"]->user_id] )
                                     ];
         }
 
-        $this->_view("byUser",$data);
+        $this->_view("myDeck",$data);
 
 
 

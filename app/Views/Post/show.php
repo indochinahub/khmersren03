@@ -7,7 +7,7 @@
             <h6>
                 [ <?php echo $post->post_createddate;?>
                     โดย 
-                    <a href="<?php echo base_url( ["User","profile", $owner->user_id]);?>">
+                    <a href="<?php echo base_url( ["User","myProfile", $owner->user_id]);?>">
                         <?php echo $owner->displayname;?>
                     </a>]
             </h6>

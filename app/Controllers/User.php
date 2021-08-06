@@ -97,7 +97,7 @@ class User extends MyController
 
 	}
 
-    public function profile($member_id){
+    public function myProfile($member_id){
         $deck_model 	 = new DeckModel;
 		$course_model 	 = new CourseModel;
 		$card_model 	 = new CardModel;
