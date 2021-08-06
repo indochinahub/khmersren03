@@ -78,7 +78,7 @@
 <div class="card-info">
 
     <div class="card-info card-info_header">
-        บทความของฉัน
+        บทความของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
 
     <?php foreach( $arr_post as $post ){ ?>
@@ -101,7 +101,7 @@
                     
             </div>
 
-            <div class="two_flex_column" style="margin:10px">
+            <div class="two_flex_column">
                 <div>
                     <a href="<?php echo base_url( ["Post","showBy","Category", $post->postcategory->postcategory_id] );?>">
                         <strong>#<?php echo $post->postcategory->postcategory_title;?></strong>
@@ -123,7 +123,7 @@
         
         <div class="two_flex_column">
             <div>
-                <h5>ดูบทความทั้งหมดของฉัน</h5>
+                <h5>ดูบทความทั้งหมดของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?></h5>
             </div>
             <div>
                 <a href="<?php echo base_url(["Post","showBy","User", $member->user_id]);?>" class="btn btn-primary">ไป</a>
@@ -136,21 +136,26 @@
 
 <div class="card-info">
     <div class="card-info card-info_header">
-        กลุ่มบทความของ xxxx
+        กลุ่มบทความของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
     
-    <div class="card-info card-info_body">
+    <?php foreach( $arr_postcategory as $postcategory){ ?>
 
-        <div class="two_flex_column" style="margin-bottom:5px;">
-            <div>
-                #ทั่วไป[14]
+        <div class="card-info card-info_body">
+
+            <div class="two_flex_column" style="margin-bottom:5px;">
+                <div>
+                    #<?php echo $postcategory->postcategory_title;?>
+                    [<?php echo $postcategory->num_post;?>]
+                </div>
+                <div>
+                    <a href="<?php echo base_url(["Post","showBy","Category", $postcategory->postcategory_id]);?>" class="btn btn-primary">ไป</a>
+                </div>
             </div>
-            <div>
-                <a href="#" class="btn btn-primary">ไป</a>
-            </div>
+
         </div>
-    </div>
 
+    <?php } ?>
 
 </div>
 

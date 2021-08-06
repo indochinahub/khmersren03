@@ -187,8 +187,25 @@ class User extends MyController
             $post = $post_model->add_media_to_post($post);            
 
             array_push( $data["arr_post"], $post);
-        }        
+        }
         
+        // Postcategory Section
+        if( $default_postcategory = $postcategory_model->get_default_postcategory($data["member"]->user_id)){ 
+        }else{
+            $default_postcategory_id = $postcategory_model->insert_default_postcategory($data["member"]->user_id);
+            $default_postcategory = $postcategory_model->get_by_id( $default_postcategory_id );
+        }
+
+        $arr_user_postcategory =   $postcategory_model->get_user_postcategory($data["member"]->user_id);
+
+        $arr_postcategory = array_merge([ $default_postcategory ],$arr_user_postcategory );
+
+        $data["arr_postcategory"] = [];
+        foreach( $arr_postcategory as $postcategory ){
+            $postcategory->num_post = $post_model->get_num_by_postcategory_id($postcategory->postcategory_id);
+            array_push( $data["arr_postcategory"] , $postcategory );
+        }
+
         // View Section
         if( $data["if_user_view_own_profile"] ){
             $data["page_title"] = 	"โปรไฟล์ของฉัน ";
