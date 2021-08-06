@@ -16,7 +16,7 @@
 
                 <div style="padding:10px 0 0 20px;">
                     <a href="<?php echo base_url();?>">
-                        โปรไฟล์ของฉัน
+                        โปรไฟล์
                     </a>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         <div class="sidebar_section">เมนูส่วนตัว</div>
 
                         <li>                
-                            <a href="<?php echo base_url(["Profile","member", $loggedin_user->user_id]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์ของฉัน</a>
+                            <a href="<?php echo base_url(["User","profile", $loggedin_user->user_id]);?>"><i class="fas fa-angle-double-right"></i> โปรไฟล์ของฉัน</a>
                         </li>                
 
                         <li>                
