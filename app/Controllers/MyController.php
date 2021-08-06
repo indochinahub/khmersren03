@@ -133,6 +133,16 @@ class MyController extends BaseController {
 		$this->_warn($data);
 	}
 
+	public function _needPrivilege(){
+		$data	= [     "page_title"=>"คุณไม่มีสิทธิ์ดำเนินการ",
+						"what_happened"=>"คุณไม่สิทธิืในการดำเนินการนี้",
+						"what_todo" => "โดยคลิ๊กที่ปุ่ม <bold>กลับ</bold> เพื่อกลับไปหน้าที่แล้ว",
+						"btnText_toGo" => "กลับ",
+						"btnLink_toGo" => $this->_get_backlink()
+				];
+		$this->_warn($data);
+	}
+
 	public function _needToBeAdmin(){
 		$data	= [     "page_title"=>"ต้องการสิทธิ์ผู้ดูแลระบบ",
 						"what_happened"=>"หน้านี้สำหรับผู้ดูแลระบบเท่านั้น",
