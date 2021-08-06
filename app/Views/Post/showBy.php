@@ -22,7 +22,7 @@
                     
             </div>
 
-            <div class="two_flex_column" style="margin:10px">
+            <div class="two_flex_column">
                 <div>
                     <a href="<?php echo base_url( ["Post","showBy","Category",$post->postcategory->postcategory_id] );?>">
                         <strong>#<?php echo $post->postcategory->postcategory_title;?></strong>

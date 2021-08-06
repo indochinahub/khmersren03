@@ -25,7 +25,7 @@
             
         <?php } ?>        
 
-        <div class="two_flex_column" style="margin:10px">
+        <div class="two_flex_column">
             <div>
                 <a href="<?php echo base_url( ["Post","showBy","Category", $postcategory->postcategory_id] );?>">
                     <strong>#<?php echo $postcategory->postcategory_title;?></strong>
@@ -33,7 +33,7 @@
                 [ <?php echo $postcategory_num_card;?> ]
             </div>
             <div>
-                <a href="<?php echo $back_link;?>" class="btn btn-sm btn-primary">กลับ</a>
+                <a href="<?php echo $back_link;?>" class="btn btn-primary">กลับ</a>
             </div>
         </div>
         

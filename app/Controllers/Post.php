@@ -72,15 +72,14 @@ class Post extends MyController
             $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
             
-
             $post = $post_model->add_media_to_post($post);
             array_push( $data["arr_post"], $post);
 
         }
 
         $data["page_title"] = 	$page_title; 
-        $data["page_link"] 	= 	[   "หน้าแรก ",
-                                    base_url()
+        $data["page_link"] 	= 	[   "ก่อนหน้า ",
+                                    $this->_get_backlink()
                                ];
                                
         $this->_view("showBy",$data);                
