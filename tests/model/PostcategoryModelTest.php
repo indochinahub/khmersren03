@@ -43,6 +43,8 @@ class PostcategoryModelTest extends CIUnitTestCase
     // return array of object
     public function test_get_by_user_id(){
 
+        // I am sure that $user_id  is always valid
+        // So I didn't need to test with $user_id = 0
         $result1 = $this->postcategory_model->get_by_user_id($user_id = 1);
 
         // There is no default category for id_user : 2
