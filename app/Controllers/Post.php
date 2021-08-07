@@ -71,7 +71,7 @@ class Post extends MyController
                                         $post->post_createddate );
             $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
-            
+
             $post = $post_model->add_media_to_post($post);
             array_push( $data["arr_post"], $post);
 
@@ -92,6 +92,8 @@ class Post extends MyController
         $postcategory_model = new PostcategoryModel;
         $datetime_model = new DateTimeModel;
 
+        $user = $this->_get_loggedin_user();
+
         $data["post"]                   = $post_model->get_by_id($post_id);
         $data["post"]                   = $post_model->add_media_to_post($data["post"]);
 
@@ -103,12 +105,121 @@ class Post extends MyController
 
         $data["back_link"] = $this->_get_backlink();
 
+
+        /*
+        if( $user && ( $user->user_id === $data["owner"]->user_id || $user->user_id === "3" ) ){
+            $data["editable"] = true;
+        }else{
+            $data["editable"] = false;
+        }
+        */
+
         $data["page_title"] = 	""; 
         $data["page_link"] 	= 	[   " ",
                                     base_url()
                                ];
         $this->_view("show",$data);                        
     }
+
+    public function delete($post_id, $confirm = "0"){
+        $post_model = new PostModel;
+        $user_model = new UserModel;
+
+        $post = $post_model->get_by_id($post_id);
+        $owner = $user_model->get_by_post_id($post_id);
+
+
+        if( $user = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        if( $user->user_id === $owner->user_id || $user->user_id === "3" ){
+        }else{
+            $this->_needPrivilege();
+            return;
+        }
+
+        if( $confirm === "0"){
+
+            $what_happened = "ท่านกำลังลบบทความหมายเลข $post_id <br> เรื่อง <strong> $post->post_title </strong>";
+
+            $data    =  [   "page_title"=>"ยืนยันการลบบทความ",
+                            "what_happened"=>$what_happened,
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Post", "delete", $post->post_id, 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => $this->_get_backlink(),
+                        ];  		
+
+            $this->_view("confirm",$data);
+
+        }elseif( $confirm === "1" ){
+
+            $post_model->delete_by_id($post_id);
+            return redirect()->to(base_url( ["Post","showBy","User", $owner->user_id]));		
+        }
+    }
+
+    public function addEdit($task,$post_id = "0"){
+
+        $post_model = new PostModel;
+        $user_model = new UserModel;
+        $postcategory_model = new PostcategoryModel;
+
+        $data["post"] = $post_model->get_by_id($post_id);
+        $owner = $user_model->get_by_post_id($post_id);
+
+        if( $user = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        if( $user->user_id === $owner->user_id || $user->user_id === "3" ){
+        }else{
+            $this->_needPrivilege();
+            return;
+        }
+
+        // Set the task
+        if( ($this->request->getMethod() === "post") && $task === "edit"  ){
+            $data["task"] = "update";
+
+        }elseif( $task === "edit"){
+            $data["task"] = "show_form_to_edit";
+        }
+
+        // Get postcategory
+        
+
+
+        // Do the task
+        if( $data["task"] === "show_form_to_edit" ){
+
+            $data["post"] = $post_model->get_by_id($post_id);
+
+            $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
+            $data["page_link"] 	= 	[   "กลับ",
+                                        $this->_get_backlink()
+                                   ];
+            $this->_view("addEdit",$data);                        
+
+        }
+
+
+
+			
+
+
+
+
+        
+
+    }
+    
 
 }
 
