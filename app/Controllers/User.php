@@ -190,15 +190,7 @@ class User extends MyController
         }
         
         // Postcategory Section
-        if( $default_postcategory = $postcategory_model->get_default_postcategory($data["member"]->user_id)){ 
-        }else{
-            $default_postcategory_id = $postcategory_model->insert_default_postcategory($data["member"]->user_id);
-            $default_postcategory = $postcategory_model->get_by_id( $default_postcategory_id );
-        }
-
-        $arr_user_postcategory =   $postcategory_model->get_user_postcategory($data["member"]->user_id);
-
-        $arr_postcategory = array_merge([ $default_postcategory ],$arr_user_postcategory );
+        $arr_postcategory = $postcategory_model->get_by_user_id($data["member"]->user_id);
 
         $data["arr_postcategory"] = [];
         foreach( $arr_postcategory as $postcategory ){
