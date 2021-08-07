@@ -135,9 +135,19 @@ class MyModel extends Model
         }
     }
 
+    // return db object with null value
+    public function get_object_with_null_value(){
 
+        $arr_column = $this->get_column();
 
+        $obj = new \stdClass;
+        foreach( $arr_column as $column){
+            $obj->$column = null;
+        }
 
+        return $obj;
+    }
+    
 
 
 

@@ -269,6 +269,24 @@ class MyModelTest extends CIUnitTestCase
 
     }
 
+    // return db object with null value
+    public function test_get_object_with_null_value(){
+
+        $result1 = $this->user_model->get_object_with_null_value();
+
+        $result         =   [   
+                                is_object($result1),
+                                $result1->user_id,
+                            ];
+        $expectedResult =   [
+                                true,
+                                null
+                            ];
+        $this->assertSame($expectedResult, $result);
+
+
+    }    
+
         
 
         
