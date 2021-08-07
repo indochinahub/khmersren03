@@ -43,17 +43,24 @@ class PostcategoryModelTest extends CIUnitTestCase
     // return array of object
     public function test_get_by_user_id(){
 
-        $result1 = $this->postcategory_model->get_by_user_id($user_id = 0);
-        $result2 = $this->postcategory_model->get_by_user_id($user_id = 1);
+        $result1 = $this->postcategory_model->get_by_user_id($user_id = 1);
+
+        // There is no default category for id_user : 2
+        $sql = "DELETE FROM postcategory WHERE id_user = 2 ";
+        $this->postcategory_model->query($sql);
+
+        $result2 = $this->postcategory_model->get_by_user_id($user_id = 2);        
+
+        $sql = "DELETE FROM postcategory WHERE id_user = 2 ";
+        $this->postcategory_model->query($sql);
 
         $result         =   [   
-                                $result1,
+                                count($result1),
                                 count($result2),
                             ];
-
         $expectedResult =   [ 
-                                [],
                                 5,
+                                1,
                             ];
 
         $this->assertSame($expectedResult, $result);

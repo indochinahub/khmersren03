@@ -29,8 +29,16 @@ class PostcategoryModel extends MyModel
     // return array of object
     public function get_by_user_id($user_id){
 
-        $where_clause = " WHERE id_user = $user_id ";
-        return $this->get_where($where_clause);        
+        if($default_postcategory = $this->get_default_postcategory($user_id)){
+
+        }else{
+            $default_postcategory_id = $this->insert_default_postcategory($user_id);
+            $default_postcategory = $this->get_by_id( $default_postcategory_id );            
+        }
+
+        $arr_user_postcategory =   $this->get_user_postcategory($user_id);
+
+        return array_merge([ $default_postcategory ],$arr_user_postcategory );
     }
 
     // return object or false
