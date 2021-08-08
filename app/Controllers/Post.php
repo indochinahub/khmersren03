@@ -119,9 +119,6 @@ class Post extends MyController
             $data["editable"] = false;
         }
 
-
-
-
         $data["page_title"] = 	""; 
         $data["page_link"] 	= 	[   " ",
                                     base_url()
@@ -176,12 +173,12 @@ class Post extends MyController
         $post_model = new PostModel;
         $user_model = new UserModel;
         $postcategory_model = new PostcategoryModel;
+        $util_model = new UtilModel;
+        $datetime_model = new DateTimeModel;
 
         $data["post"] = $post_model->get_by_id($post_id);
         $owner = $user_model->get_by_post_id($post_id);
-        //get_user_postcategory($user_id);
-
-
+        
         if( $user = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
@@ -194,7 +191,10 @@ class Post extends MyController
             return;
         }
 
-        // Set the task
+        // get postcategory
+        $arr_postcategory =  $postcategory_model->get_by_user_id( $owner->user_id);    
+        
+        // Set the task and validate form
         if( ($this->request->getMethod() === "post") && $task === "edit"  ){
             $data["task"] = "update";
 
@@ -202,14 +202,22 @@ class Post extends MyController
             $data["task"] = "show_form_to_edit";
         }
 
-        // Get postcategory
-        
-
-
         // Do the task
         if( $data["task"] === "show_form_to_edit" ){
 
             $data["post"] = $post_model->get_by_id($post_id);
+
+            $data["arr_postcategory"] = [];
+            foreach( $arr_postcategory as $postcategory){
+
+                if( $postcategory->postcategory_id == $data["post"]->id_postcategory ){
+                    $postcategory->checked_text = " checked ";
+                    
+                }else{
+                    $postcategory->checked_text = "";
+                }
+                array_push( $data["arr_postcategory"], $postcategory);
+           }
 
             $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
             $data["page_link"] 	= 	[   "กลับ",
@@ -217,6 +225,15 @@ class Post extends MyController
                                    ];
             $this->_view("addEdit",$data);                        
 
+        }elseif( $data["task"] === "update"){
+
+            $detail = $this->request->getPost();
+            $detail = $util_model->fill_null_in_array($detail);
+            $detail["post_publisheddate"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
+
+            $post_model->update_by_id($post_id, $detail);
+
+            return redirect()->to(base_url(["Post","show", $post_id]));		
         }
 
 

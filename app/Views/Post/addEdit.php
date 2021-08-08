@@ -25,34 +25,25 @@
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>กลุ่มบทความ</strong> :: </label>
 
-                                    <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="15" name="postCategory_id" value="15">
-                        <label for="15" class="custom-control-label">ทั่วไป</label>
-                    </div>                
-                                    
-                            </div>
+                    <?php foreach( $arr_postcategory as $postcategory){ ?>
 
-            <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
-                <label><strong>การแสดงผล</strong> ::</label>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" id="<?php echo $postcategory->postcategory_id;?>" 
+                                        name="id_postcategory" value="<?php echo $postcategory->postcategory_id;?>" 
+                                        <?php echo $postcategory->checked_text;?>
+                            >
+                            <label for="<?php echo $postcategory->postcategory_id;?>" class="custom-control-label"><?php echo $postcategory->postcategory_title;?></label>
+                        </div>                
 
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="1" name="post_publishstatus" value="1" checked="">
-                    <label for="1" class="custom-control-label">แสดงทันที</label>
+                    <?php } ?>
+
                 </div>
-
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="0" name="post_publishstatus" value="0">
-                    <label for="0" class="custom-control-label">ร่าง</label>
-                </div>
-
-
-            </div>
-
+ 
             <div class="two_flex_column">
                 <div>
                 </div>
                 <div>
-                    <button type="submit" name="submit" value="submit" class="btn btn-sm btn-primary">ปรับปรุง</button>
+                    <button type="submit" class="btn btn-sm btn-primary">ปรับปรุง</button>
                 </div>
             </div>
 
