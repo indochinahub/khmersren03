@@ -1,5 +1,22 @@
 <?php echo $pagination_link;?>
 
+<?php if( ($groupBy === "User") && ($if_user_view_own_post === true) ){ ?>
+
+    <div class="card-warning">
+        <div class="card-warning card-warning_body">
+                <div class="two_flex_column" style="margin-bottom:5px;">
+                    <div>
+                        <a href="<?php echo base_url( );?>" class="btn btn-primary">ไป</a>
+                    </div>
+                    <div>
+                        <strong>เพิ่ม</strong>บทความ
+                    </div>
+                </div>
+        </div>
+    </div>
+
+<?php } ?>    
+
 <div class="card-info">
 
     <?php foreach( $arr_post as $post ){ ?>
