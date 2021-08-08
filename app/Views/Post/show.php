@@ -56,7 +56,7 @@
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                 <div>
-                    <a href="#" class="btn btn-sm btn-primary">ทำ</a>
+                    <a href="#" class="btn btn-primary">ทำ</a>
                 </div>
                 <div>
                     <strong>แก้ไข</strong>บทความนี้
@@ -65,7 +65,7 @@
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                 <div>
-                    <a href="<?php echo base_url( ["Post","delete",$post->post_id] );?>" class="btn btn-sm btn-primary">ทำ</a>
+                    <a href="<?php echo base_url( ["Post","delete",$post->post_id] );?>" class="btn btn-primary">ทำ</a>
                 </div>
                 <div>
                     <strong>ลบ</strong>บทความนี้
