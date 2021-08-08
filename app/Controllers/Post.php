@@ -107,10 +107,20 @@ class Post extends MyController
 
         // Check if user can edit/delete the post
         if( $user && ( $user->user_id === $data["owner"]->user_id || $user->user_id === "3" ) ){
+            $data["deleteable"] = true;
+        }else{
+            $data["deleteable"] = false;
+        }
+
+        if( $user && ( $user->user_id === $data["owner"]->user_id) ){
             $data["editable"] = true;
+
         }else{
             $data["editable"] = false;
         }
+
+
+
 
         $data["page_title"] = 	""; 
         $data["page_link"] 	= 	[   " ",
@@ -169,6 +179,8 @@ class Post extends MyController
 
         $data["post"] = $post_model->get_by_id($post_id);
         $owner = $user_model->get_by_post_id($post_id);
+        //get_user_postcategory($user_id);
+
 
         if( $user = $this->_get_loggedin_user() ){
         }else{
@@ -176,7 +188,7 @@ class Post extends MyController
             return;
         }
 
-        if( $user->user_id === $owner->user_id || $user->user_id === "3" ){
+        if( $user->user_id === $owner->user_id ){
         }else{
             $this->_needPrivilege();
             return;
