@@ -40,3 +40,40 @@
     </div>
 
 </div>
+
+
+
+<?php if( $editable === true ){ ?>
+
+    <div class="card-info">
+        <div class="card-info card-info_header">
+            จัดการบทความ
+        </div>
+    </div>
+
+    <div class="card-warning">
+        <div class="card-warning card-warning_body">
+
+            <div class="two_flex_column" style="margin-bottom:5px;">
+                <div>
+                    <a href="#" class="btn btn-sm btn-primary">ทำ</a>
+                </div>
+                <div>
+                    <strong>แก้ไข</strong>บทความนี้
+                </div>
+            </div>
+
+            <div class="two_flex_column" style="margin-bottom:5px;">
+                <div>
+                    <a href="<?php echo base_url( ["Post","delete",$post->post_id] );?>" class="btn btn-sm btn-primary">ทำ</a>
+                </div>
+                <div>
+                    <strong>ลบ</strong>บทความนี้
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+<?php } ?>    

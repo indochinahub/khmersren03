@@ -105,14 +105,12 @@ class Post extends MyController
 
         $data["back_link"] = $this->_get_backlink();
 
-
-        /*
+        // Check if user can edit/delete the post
         if( $user && ( $user->user_id === $data["owner"]->user_id || $user->user_id === "3" ) ){
             $data["editable"] = true;
         }else{
             $data["editable"] = false;
         }
-        */
 
         $data["page_title"] = 	""; 
         $data["page_link"] 	= 	[   " ",
