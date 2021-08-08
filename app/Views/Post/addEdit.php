@@ -4,22 +4,22 @@
         <form role="form" method="post">
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>หัวข้อ</strong> :: </label>
-                <textarea class="form-control" name="post_title" rows="1"><?php echo $post->post_title;?></textarea>
+                <textarea class="form-control" name="post_title" rows="1"><?php if($post->post_title){echo $post->post_title;}?></textarea>
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>คำนำ</strong> :: </label>
-                <textarea class="form-control" name="post_intro" rows="4"><?php echo $post->post_intro;?></textarea>
+                <textarea class="form-control" name="post_intro" rows="4"><?php if($post->post_intro){echo $post->post_intro;};?></textarea>
            </div>            
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>เนื่อหา</strong> :: </label>
-                <textarea class="form-control" name="post_content" rows="5"><?php echo $post->post_content;?></textarea>
+                <textarea class="form-control" name="post_content" rows="5"><?php if($post->post_content){echo $post->post_content;};?></textarea>
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>การจัดเรียง</strong> :: </label>
-                <input type="text" class="form-control" name="post_sort" value="<?php echo $post->post_sort;?>">
+                <input type="text" class="form-control" name="post_sort" value="<?php if($post->post_sort){echo $post->post_sort;}?>">
             </div>
                         
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">

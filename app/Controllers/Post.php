@@ -26,16 +26,25 @@ class Post extends MyController
         $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
 
-        if( $groupBy === "All" ){
+        $data["groupBy"] = $groupBy;
+        if( $data["groupBy"] === "All" ){
             $arr_post = $post_model->get_all_row();
             $page_title =  "บทความ :: ทั้งหมด ";
 
-        }elseif( $groupBy === "User"){
+        }elseif( $data["groupBy"] === "User"){
             $data["member"] = $user_model->get_user_by_id($id);
             $arr_post = $post_model->get_by_user_id($id);
             $page_title =  "บทความของ :: ".$data["member"]->displayname;
 
-        }elseif( $groupBy === "Category" ){
+            $user = $this->_get_loggedin_user();
+
+            if( $user && ( $user->user_id ===  $data["member"]->user_id ) ){
+                $data["if_user_view_own_post"] = true;
+            }else{
+                $data["if_user_view_own_post"] = false;
+            }
+
+        }elseif( $data["groupBy"] === "Category" ){
             $arr_post = $post_model->get_by_postcategory_id($id);
             $postcategory = $postcategory_model->get_by_id($id);
             $data["member"] = $user_model->get_user_by_id($postcategory->id_user);
@@ -176,36 +185,43 @@ class Post extends MyController
         $util_model = new UtilModel;
         $datetime_model = new DateTimeModel;
 
-        $data["post"] = $post_model->get_by_id($post_id);
-        $owner = $user_model->get_by_post_id($post_id);
-        
+
         if( $user = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
             return;
         }
 
-        if( $user->user_id === $owner->user_id ){
-        }else{
-            $this->_needPrivilege();
-            return;
-        }
-
         // get postcategory
-        $arr_postcategory =  $postcategory_model->get_by_user_id( $owner->user_id);    
+        $arr_postcategory =  $postcategory_model->get_by_user_id($user->user_id); 
+
         
         // Set the task and validate form
+        $data = [];
         if( ($this->request->getMethod() === "post") && $task === "edit"  ){
             $data["task"] = "update";
 
         }elseif( $task === "edit"){
-            $data["task"] = "show_form_to_edit";
+
+            $data["post"] = $post_model->get_by_id($post_id);
+            $owner = $user_model->get_by_post_id($post_id);
+            if( $user->user_id === $owner->user_id ){
+            }else{
+                $this->_needPrivilege();
+                return;
+            }
+
+            $data["task"] = "show_form_to_update";
+
+        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
+            $data["task"] = "insert";
+
+        }elseif( $task === "new" ){
+            $data["task"] = "show_form_to_insert";
         }
 
         // Do the task
-        if( $data["task"] === "show_form_to_edit" ){
-
-            $data["post"] = $post_model->get_by_id($post_id);
+        if( $data["task"] === "show_form_to_update" ){
 
             $data["arr_postcategory"] = [];
             foreach( $arr_postcategory as $postcategory){
@@ -217,7 +233,7 @@ class Post extends MyController
                     $postcategory->checked_text = "";
                 }
                 array_push( $data["arr_postcategory"], $postcategory);
-           }
+            }
 
             $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
             $data["page_link"] 	= 	[   "กลับ",
@@ -232,6 +248,39 @@ class Post extends MyController
             $detail["post_publisheddate"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
 
             $post_model->update_by_id($post_id, $detail);
+
+            return redirect()->to(base_url(["Post","show", $post_id]));		
+
+        }elseif( $data["task"] === "show_form_to_insert"){
+
+            $data = [   
+                        "post" => $post_model->get_object_with_null_value()
+                    ];
+
+            $data["arr_postcategory"] = [];
+            foreach( $arr_postcategory as $postcategory){
+
+                if( $postcategory->postcategory_defaultstatus === "1" ){
+                    $postcategory->checked_text = " checked ";
+                }else{
+                    $postcategory->checked_text = "";
+                }
+                array_push( $data["arr_postcategory"], $postcategory);
+            }                    
+
+            $data["page_title"] = 	"Add new post "; 
+            $data["page_link"] 	= 	[   "กลับ",
+                                        $this->_get_backlink()
+                                   ];
+            $this->_view("addEdit",$data);             
+            
+
+        }elseif( $data["task"] === "insert"){
+
+            $detail = $this->request->getPost();
+            $detail = $util_model->fill_null_in_array($detail);
+
+            $post_id = $post_model->insert($detail);
 
             return redirect()->to(base_url(["Post","show", $post_id]));		
         }
