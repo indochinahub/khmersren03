@@ -43,6 +43,12 @@
                         </li>                
 
                         <li>                
+                            <a href="<?php echo base_url(["Post","showBy","User", $loggedin_user->user_id ]);?>"><i class="fas fa-angle-double-right"></i> บทความของฉัน</a>
+                        </li>                
+
+                        
+
+                        <li>                
                             <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> ออกจากระบบ</a>
                         </li>
                         
