@@ -61,7 +61,6 @@
     <div class="card-info card-info_body">
         
         <?php foreach( $arr_picture as $picture ){ ?>
-            <?php if( $picture->html ){ ?>
 
                 <h5>รูปที่ <?php echo $picture->media_order;?></h5>
                 <?php echo $picture->html;?>
@@ -73,7 +72,7 @@
                     </div>
                 </div>
 
-            <?php } ?>                
+
         <?php } ?>
 
         

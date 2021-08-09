@@ -190,12 +190,11 @@ class Post extends MyController
 
     public function addEdit($task,$post_id = "0"){
 
-        $post_model = new PostModel;
-        $user_model = new UserModel;
+        $post_model         = new PostModel;
+        $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
-        $util_model = new UtilModel;
-        $datetime_model = new DateTimeModel;
-
+        $util_model         = new UtilModel;
+        $datetime_model     = new DateTimeModel;
 
         if( $user = $this->_get_loggedin_user() ){
         }else{
@@ -247,25 +246,13 @@ class Post extends MyController
                 array_push( $data["arr_postcategory"], $postcategory);
             }
             
-            $assoc_media = $post_model->get_assoc_media_html($data["post"]);
-            var_dump( $assoc_media );
-            die();
-            $data["arr_picture"]    = [];
-            $data["arr_sound"]      = [];
-            $data["arr_youtube"]    = [];
-            foreach( $assoc_media as $key => $value){
-                $obj = new \stdClass;
-                $obj->html = $value;
-                $obj->media_order = substr( $key,-2,1);
+            $media_model                    = new MediaModel( $data["post"], "post");
+            $data["post"]->post_intro       = $media_model->replace_media_tag_with_html($data["post"]->post_intro);
+            $data["post"]->post_content     = $media_model->replace_media_tag_with_html($data["post"]->post_content);
 
-                if( substr( $key,1,7) === "picture" ){
-                    array_push( $data["arr_picture"] , $obj);
-                }elseif( substr( $key,1,7) === "youtube" ){
-                    array_push( $data["arr_sound"], $obj);
-                }elseif( substr( $key,1,5) === "sound" ) {
-                    array_push( $data["arr_youtube"],$obj);
-                }
-            }
+            $data["arr_picture"]    = $media_model->get_arr_picture();
+            $data["arr_sound"]      = $media_model->get_arr_sound();
+            $data["arr_youtube"]    = $media_model->get_arr_youtube();
 
             $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
             $data["page_link"] 	= 	[   "กลับ",
@@ -316,15 +303,6 @@ class Post extends MyController
 
             return redirect()->to(base_url(["Post","show", $post_id]));		
         }
-
-
-
-			
-
-
-
-
-        
 
     }
     
