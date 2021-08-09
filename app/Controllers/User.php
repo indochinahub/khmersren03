@@ -11,6 +11,7 @@ use \App\Models\StatisticModel;
 use \App\Models\DateTimeModel;
 use \App\Models\UtilModel;
 use \App\Models\PostModel;
+use \App\Models\MediaModel;
 use \App\Models\PostcategoryModel;
 
 class User extends MyController
@@ -184,7 +185,9 @@ class User extends MyController
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
             $post->post_createddate = $datetime_model->get_thai_datetime_from_sql_timestamp(
                                         $post->post_createddate );
-            $post = $post_model->add_media_to_post($post);            
+
+            $media_model                    = new MediaModel( $post, "post");
+            $post->post_intro       = $media_model->replace_media_tag_with_html($post->post_intro);
 
             array_push( $data["arr_post"], $post);
         }

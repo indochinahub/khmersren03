@@ -12,6 +12,7 @@ use App\Models\PaginationModel;
 use App\Models\CardcommentModel;
 use App\Models\UserModel;
 use App\Models\PostModel;
+use App\Models\MediaModel;
 use App\Models\DateTimeModel;
 use App\Models\PostcategoryModel;
 
@@ -75,13 +76,17 @@ class Post extends MyController
 
         $data["arr_post"] = [];
         foreach( $arr_post as $post){
+
+            $media_model        = new MediaModel( $post, "post");
+            $post->post_intro   = $media_model->replace_media_tag_with_html($post->post_intro);
+
             $post->user = $user_model->get_by_post_id( $post->post_id );
             $post->post_createddate = $datetime_model->get_thai_datetime_from_sql_timestamp(
                                         $post->post_createddate );
             $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
 
-            $post = $post_model->add_media_to_post($post);
+            //$post = $post_model->add_media_to_post($post);
             array_push( $data["arr_post"], $post);
 
         }
@@ -100,11 +105,17 @@ class Post extends MyController
         $user_model = new UserModel;
         $postcategory_model = new PostcategoryModel;
         $datetime_model = new DateTimeModel;
+        
+
 
         $user = $this->_get_loggedin_user();
 
         $data["post"]                   = $post_model->get_by_id($post_id);
-        $data["post"]                   = $post_model->add_media_to_post($data["post"]);
+
+        $media_model                    = new MediaModel( $data["post"], "post");
+        $data["post"]->post_intro       = $media_model->replace_media_tag_with_html($data["post"]->post_intro);
+        $data["post"]->post_content     = $media_model->replace_media_tag_with_html($data["post"]->post_content);
+        
 
         $data["owner"]                  = $user_model->get_by_post_id($data["post"]->post_id);
         $data["postcategory"]           = $postcategory_model->get_by_post_id($data["post"]->post_id);
