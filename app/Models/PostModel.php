@@ -73,27 +73,6 @@ class PostModel extends MyModel
         return $assoc_media;
     }
 
-    // return object
-    public function add_media_to_post($obj_post){
-
-        $assoc_media = $this->get_assoc_media_html($obj_post);
-
-        foreach( $assoc_media as $key=>$value ){
-            if( $value ){
-                $obj_post->post_intro = str_replace( $key, $value, $obj_post->post_intro);
-                $obj_post->post_content = str_replace( $key, $value, $obj_post->post_content);
-            }
-
-        }
-
-        $obj_post->post_intro = nl2br( $obj_post->post_intro ) ;
-        $obj_post->post_content = nl2br( $obj_post->post_content );
-
-        return $obj_post;
-
-
-    }
-
     // return array_of_object
     public function get_by_postcategory_id($postcategory_id){
         
