@@ -68,7 +68,7 @@
                     <div>
                     </div>
                     <div>
-                        <a href="<?php echo base_url(["File","deletePicture","post", $post->post_id, $picture->media_order ]);?>" class="btn btn-primary">ลบ</a>
+                        <a href="<?php echo base_url(["Media","deletePicture","post", $post->post_id, $picture->media_order ]);?>" class="btn btn-primary">ลบ</a>
                     </div>
                 </div>
 

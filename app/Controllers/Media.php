@@ -15,7 +15,7 @@ use App\Models\PostModel;
 use App\Models\DateTimeModel;
 use App\Models\PostcategoryModel;
 
-class File extends MyController
+class Media extends MyController
 {
 
     public function deletePicture($table_name, $key_id, $media_num){
