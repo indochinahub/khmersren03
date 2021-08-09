@@ -30,6 +30,7 @@ class MediaModel
             $property = $this->table_name."_picture0".$key;
             if( isset($obj->$property) && $obj->$property ){
 
+                $picture->media_order = (int) $key;
                 $picture->media_tag = "[picture0".$key."]";
 
                 $html =  "<div style='border:1px solid black'>";
@@ -59,6 +60,7 @@ class MediaModel
             $property = $this->table_name."_sound0".$key;
             if( isset($obj->$property) && $obj->$property ){
 
+                $sound->media_order = (int) $key;
                 $sound->media_tag = "[sound0".$key."]";
 
                 $html =  "<div>";
@@ -89,6 +91,7 @@ class MediaModel
             $property = $this->table_name."_youtube0".$key;
             if( isset($obj->$property) && $obj->$property ){
 
+                $youtube->media_order = (int) $key;
                 $youtube->media_tag = "[youtube0".$key."]";
 
                 $html =     "<div style='margin-bottom:15px'>";

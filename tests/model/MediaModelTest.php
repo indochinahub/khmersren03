@@ -37,6 +37,7 @@ class MediaModelTest extends CIUnitTestCase
 
         $result         =   [   // $result1
                                 count($result1),
+                                $result1[0]->media_order,
                                 $result1[0]->media_tag,
                                 $result1[0]->html,
                                 $result1[0]->property,
@@ -44,6 +45,7 @@ class MediaModelTest extends CIUnitTestCase
 
                                 // $result2
                                 count($result2),
+                                $result1[0]->media_order,
                                 $result2[0]->media_tag,
                                 $result2[0]->html,
                                 $result2[0]->property,
@@ -52,6 +54,7 @@ class MediaModelTest extends CIUnitTestCase
                             ];
         $expectedResult =   [   // $result1
                                 6,
+                                1,
                                 "[picture01]",
                                 "<div style='border:1px solid black'><img src='http://127.0.0.1/khmersren03/asset/media/post_media/000231.jpg' class='img-fluid'></div>",
                                 "post_picture01",
@@ -59,6 +62,7 @@ class MediaModelTest extends CIUnitTestCase
 
                                 // $result2
                                 2,
+                                1,
                                 "[picture01]",
                                 "<div style='border:1px solid black'><img src='http://127.0.0.1/khmersren03/asset/media/post_media/000231.jpg' class='img-fluid'></div>",
                                 "post_picture01",
@@ -86,6 +90,7 @@ class MediaModelTest extends CIUnitTestCase
 
         $result         =   [   // $result1
                                 count($result1),
+                                $result1[0]->media_order,
                                 $result1[0]->media_tag,
                                 $result1[0]->html,
                                 $result1[0]->property,
@@ -93,6 +98,7 @@ class MediaModelTest extends CIUnitTestCase
 
                                 // $result2
                                 count($result2),
+                                $result2[0]->media_order,
                                 $result2[0]->media_tag,
                                 $result2[0]->html,
                                 $result2[0]->property,
@@ -100,6 +106,7 @@ class MediaModelTest extends CIUnitTestCase
                             ];
         $expectedResult =   [   // $result1   
                                 2,
+                                1,
                                 "[sound01]",
                                 "<div><audio controls=''><source src='http://127.0.0.1/khmersren03/asset/media/post_media/000231.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/media/post_media/000231.mp3'>[ Listen Directly ]</a></div>",
                                 "post_sound01",
@@ -107,6 +114,7 @@ class MediaModelTest extends CIUnitTestCase
 
                                 // $result2
                                 1, 
+                                1,
                                 "[sound01]",
                                 "<div><audio controls=''><source src='http://127.0.0.1/khmersren03/asset/media/post_media/000231.mp3' type='audio/mpeg'></audio><br><a href='http://127.0.0.1/khmersren03/asset/media/post_media/000231.mp3'>[ Listen Directly ]</a></div>",
                                 "post_sound01",
@@ -137,6 +145,7 @@ class MediaModelTest extends CIUnitTestCase
 
         $result         =   [   // $result1
                                 count($result1),
+                                $result1[0]->media_order,
                                 $result1[0]->media_tag,
                                 $result1[0]->html,
                                 $result1[0]->property,
@@ -144,6 +153,7 @@ class MediaModelTest extends CIUnitTestCase
 
                                 // $result1
                                 count($result2),
+                                $result2[0]->media_order,
                                 $result2[0]->media_tag,
                                 $result2[0]->html,
                                 $result2[0]->property,
@@ -152,12 +162,14 @@ class MediaModelTest extends CIUnitTestCase
                             ];
         $expectedResult =   [   // $result1   
                                 4,
+                                1,
                                 "[youtube01]",
                                 "<div style='margin-bottom:15px'><div class='embed-responsive embed-responsive-16by9'><iframe class='embed-responsive-item' src='https://www.youtube.com/embed/1c9jcCS_KKQ' allowfullscreen=''></iframe></div></div>",
                                 "post_youtube01",
                                 "1c9jcCS_KKQ",
 
                                 // $result1
+                                1,
                                 1,
                                 "[youtube01]",
                                 "<div style='margin-bottom:15px'><div class='embed-responsive embed-responsive-16by9'><iframe class='embed-responsive-item' src='https://www.youtube.com/embed/1c9jcCS_KKQ' allowfullscreen=''></iframe></div></div>",
