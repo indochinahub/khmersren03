@@ -19,7 +19,7 @@ class File extends MyController
 {
 
     public function deletePicture($table_name, $key_id, $media_num){
-
+        
         // delete real file
 
         // set null to database
@@ -28,7 +28,7 @@ class File extends MyController
             $table_model = new PostModel;
         }
 
-        $obj = $table_model->get_by_id();
+        //$obj = $table_model->get_by_id();
 
         
 
