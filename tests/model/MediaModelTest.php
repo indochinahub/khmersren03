@@ -13,7 +13,7 @@ class MediaModelTest extends CIUnitTestCase
     }
 
 
-    // return array of text
+    // return array of picture
     public function test_get_picture_property(){
 
         
@@ -68,7 +68,7 @@ class MediaModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);                
     }
 
-    // return array of text
+    // return array of sound
     public function test_get_arr_sound(){
 
         $obj = new \stdClass;
@@ -115,6 +115,57 @@ class MediaModelTest extends CIUnitTestCase
                             ];
         $this->assertSame($expectedResult, $result);       
 
+    }    
+
+    // return array of youtube
+    public function test_get_arr_youtube(){
+
+        $obj = new \stdClass;
+        $obj->post_youtube01   = "1c9jcCS_KKQ";
+        $obj->post_youtube02   = "I6j1838RI2Q";
+        $obj->post_youtube03   = "y8QbACaKGBo";
+        $obj->post_youtube04   = "OutbRXSYjoQ";
+
+        $media_model = new MediaModel($obj, "post");
+        $result1 = $media_model->get_arr_youtube();        
+
+        // There is only one name;value pair
+        $obj = new \stdClass;
+        $obj->post_youtube01   = "1c9jcCS_KKQ";
+
+        $media_model = new MediaModel($obj, "post");
+        $result2 = $media_model->get_arr_youtube();        
+
+        $result         =   [   // $result1
+                                count($result1),
+                                $result1[0]->media_tag,
+                                $result1[0]->html,
+                                $result1[0]->property,
+                                $result1[0]->value,
+
+                                // $result1
+                                count($result2),
+                                $result2[0]->media_tag,
+                                $result2[0]->html,
+                                $result2[0]->property,
+                                $result2[0]->value,
+
+                            ];
+        $expectedResult =   [   // $result1   
+                                4,
+                                "[youtube01]",
+                                "<div style='margin-bottom:15px'><div class='embed-responsive embed-responsive-16by9'><iframe class='embed-responsive-item' src='https://www.youtube.com/embed/1c9jcCS_KKQ' allowfullscreen=''></iframe></div></div>",
+                                "post_youtube01",
+                                "1c9jcCS_KKQ",
+
+                                // $result1
+                                1,
+                                "[youtube01]",
+                                "<div style='margin-bottom:15px'><div class='embed-responsive embed-responsive-16by9'><iframe class='embed-responsive-item' src='https://www.youtube.com/embed/1c9jcCS_KKQ' allowfullscreen=''></iframe></div></div>",
+                                "post_youtube01",
+                                "1c9jcCS_KKQ",
+                            ];
+        $this->assertSame($expectedResult, $result);       
     }    
 
 

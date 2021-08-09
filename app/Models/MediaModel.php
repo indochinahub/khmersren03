@@ -18,7 +18,7 @@ class MediaModel
 
     }
 
-    // return array of text
+    // return array of picture
     public function get_arr_picture(){
 
         $obj = $this->obj;
@@ -48,7 +48,7 @@ class MediaModel
     }
 
 
-    // return array of text
+    // return array of sound
     public function get_arr_sound(){
 
         $obj = $this->obj;
@@ -78,6 +78,39 @@ class MediaModel
         }
         
         return $arr_sound;
+    }
+
+
+
+    // return array of youtube
+    public function get_arr_youtube(){
+
+        $obj = $this->obj;
+        $youtube_key    = ["1","2","3","4"];        
+        $arr_youtube = [];
+        foreach($youtube_key as $key){
+            $youtube = new \stdClass;
+            $property = $this->table_name."_youtube0".$key;
+            if( isset($obj->$property) && $obj->$property ){
+
+                $youtube->media_tag = "[youtube0".$key."]";
+
+                $html =     "<div style='margin-bottom:15px'>";
+	            $html .=    "<div class='embed-responsive embed-responsive-16by9'>";
+                $html .=    "<iframe class='embed-responsive-item' src='https://www.youtube.com/embed/".$obj->$property."' allowfullscreen=''></iframe>";
+                $html .=    "</div>";
+                $html .=    "</div>";
+
+                $youtube->html = $html;
+                
+                $youtube->property = $property;
+                $youtube->value = $obj->$property;
+                array_push( $arr_youtube, $youtube);
+            }
+
+        }
+
+        return $arr_youtube;
     }
 
 
