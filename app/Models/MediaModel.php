@@ -15,7 +15,6 @@ class MediaModel
         $this->table_name = $table_name;
         $this->obj = $obj;
 
-
     }
 
     // return array of picture
@@ -46,7 +45,6 @@ class MediaModel
         
         return $arr_picture;
     }
-
 
     // return array of sound
     public function get_arr_sound(){
@@ -80,8 +78,6 @@ class MediaModel
         return $arr_sound;
     }
 
-
-
     // return array of youtube
     public function get_arr_youtube(){
 
@@ -111,6 +107,22 @@ class MediaModel
         }
 
         return $arr_youtube;
+    }
+
+    // return text
+    public function replace_media_tag_with_html($text){
+
+        $arr_media = $this->get_arr_picture();
+        $arr_media = array_merge($arr_media, $this->get_arr_sound());
+        $arr_media = array_merge($arr_media, $this->get_arr_youtube());
+
+        foreach( $arr_media as $media ){
+
+            $text = str_replace( $media->media_tag, $media->html , $text );
+        }
+
+        return nl2br($text);
+
     }
 
 
