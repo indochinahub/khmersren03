@@ -21,7 +21,6 @@ class MediaModel
     // return array of text
     public function get_arr_picture(){
 
-        // get picture media
         $obj = $this->obj;
         $picture_key    = ["1","2","3","4","5","6"];
 
@@ -46,7 +45,39 @@ class MediaModel
         }
         
         return $arr_picture;
+    }
 
+
+    // return array of text
+    public function get_arr_sound(){
+
+        $obj = $this->obj;
+        $sound_key    = ["1","2"];
+
+        $arr_sound = [];
+
+        foreach($sound_key as $key){
+            $sound = new \stdClass;
+            $property = $this->table_name."_sound0".$key;
+            if( isset($obj->$property) && $obj->$property ){
+
+                $sound->media_tag = "[sound0".$key."]";
+
+                $html =  "<div>";
+                $html .= "<audio controls=''>";
+                $html .= "<source src='".base_url([ "asset","media",$this->table_name."_media", $obj->$property ])."' type='audio/mpeg'>";
+                $html .= "</audio><br>";
+                $html .= "<a href='".base_url([ "asset","media",$this->table_name."_media", $obj->$property ])."'>[ Listen Directly ]</a>";
+                $html .= "</div>";
+                $sound->html = $html;
+                
+                $sound->property = $property;
+                $sound->value = $obj->$property;
+                array_push( $arr_sound, $sound);
+            }
+        }
+        
+        return $arr_sound;
     }
 
 
