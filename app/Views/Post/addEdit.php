@@ -43,14 +43,48 @@
                 <div>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-sm btn-primary">ปรับปรุง</button>
+                    <button type="submit" class="btn btn-primary">ปรับปรุง</button>
                 </div>
             </div>
 
         </form>    
 
+    </div>
+</div>
+
+<div class="card-info">
+
+    <div class="card-info card-info_header">
+        การจัดการรูปภาพ
+    </div>
+
+    <div class="card-info card-info_body">
+        
+        <?php foreach( $arr_picture as $picture ){ ?>
+            <?php if( $picture->html ){ ?>
+
+                <h5>รูปที่ <?php echo $picture->media_order;?></h5>
+                <?php echo $picture->html;?>
+                <div class="two_flex_column" style="margin-top:10px">
+                    <div>
+                    </div>
+                    <div>
+                        <a href="<?php echo base_url(["File","deletePicture","post", $post->post_id, $picture->media_order ]);?>" class="btn btn-primary">ลบ</a>
+                    </div>
+                </div>
+
+            <?php } ?>                
+        <?php } ?>
+
+        
+
 
 
 
     </div>
+
+    
+
+
+
 </div>

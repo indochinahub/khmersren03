@@ -223,6 +223,7 @@ class Post extends MyController
         // Do the task
         if( $data["task"] === "show_form_to_update" ){
 
+            // get arr_postcategory
             $data["arr_postcategory"] = [];
             foreach( $arr_postcategory as $postcategory){
 
@@ -233,6 +234,26 @@ class Post extends MyController
                     $postcategory->checked_text = "";
                 }
                 array_push( $data["arr_postcategory"], $postcategory);
+            }
+            
+            $assoc_media = $post_model->get_assoc_media_html($data["post"]);
+            var_dump( $assoc_media );
+            die();
+            $data["arr_picture"]    = [];
+            $data["arr_sound"]      = [];
+            $data["arr_youtube"]    = [];
+            foreach( $assoc_media as $key => $value){
+                $obj = new \stdClass;
+                $obj->html = $value;
+                $obj->media_order = substr( $key,-2,1);
+
+                if( substr( $key,1,7) === "picture" ){
+                    array_push( $data["arr_picture"] , $obj);
+                }elseif( substr( $key,1,7) === "youtube" ){
+                    array_push( $data["arr_sound"], $obj);
+                }elseif( substr( $key,1,5) === "sound" ) {
+                    array_push( $data["arr_youtube"],$obj);
+                }
             }
 
             $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
