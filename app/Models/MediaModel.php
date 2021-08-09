@@ -51,7 +51,7 @@ class MediaModel
     public function get_arr_sound(){
 
         $obj = $this->obj;
-        $sound_key    = ["1","2"];
+        $sound_key    = ["1","2","3","4","5","6"];        
 
         $arr_sound = [];
 
@@ -84,7 +84,7 @@ class MediaModel
     public function get_arr_youtube(){
 
         $obj = $this->obj;
-        $youtube_key    = ["1","2","3","4"];        
+        $youtube_key    = ["1","2","3","4","5","6"];        
         $arr_youtube = [];
         foreach($youtube_key as $key){
             $youtube = new \stdClass;
