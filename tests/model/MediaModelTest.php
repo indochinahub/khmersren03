@@ -238,26 +238,42 @@ class MediaModelTest extends CIUnitTestCase
     public function test_get_first_vacant_picture_slot(){
 
         $obj = new \stdClass;
-        $obj->post_picture01   = "000231.jpg";
-        $obj->post_picture02   = null;
+        $obj->post_picture01   = "xxxx.jpg";
+        $obj->post_picture02   = "xxxx.jpg";
+        $obj->post_picture03   = "xxxx.jpg";
 
         $media_model = new MediaModel($obj, "post");
         $result1 = $media_model->get_first_vacant_picture_slot();
 
 
+        $obj = new \stdClass;
+        $obj->post_picture01   = "";
+        $obj->post_picture02   = null;
+        $obj->post_picture03   = "xxxx.jpg";
+
+        $media_model = new MediaModel($obj, "post");
+        $result2 = $media_model->get_first_vacant_picture_slot();
+
+        $obj = new \stdClass;
+        $obj->post_picture01   = null;
+        $obj->post_picture02   = null;
+        $obj->post_picture03   = null;
+
+        $media_model = new MediaModel($obj, "post");
+        $result3 = $media_model->get_first_vacant_picture_slot();
+
         $result         =   [   
-                                2,
+                                $result1,
+                                $result2,
+                                $result3,
                             ];
         $expectedResult =   [   
-                                2,
+                                false,
+                                1,
+                                1,
                             ];
         $this->assertSame($expectedResult, $result);       
     }
 
 
-
-
-
-
-   
 }

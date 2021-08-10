@@ -130,7 +130,54 @@ class MediaModel
 
     }
 
-    // return medir_order int or fale
+    // return first vacant media slot
+    public function get_first_vacant_picture_slot(){
+
+        $obj = $this->obj;
+        $picture_key    = $this->media_key;
+        foreach($picture_key as $key){
+
+            $property = $this->table_name."_picture0".$key;
+            if(  property_exists($obj,$property) && ! ($obj->$property) ){ 
+                return (int) $key;
+            }
+        }
+
+        return false;
+
+
+            
+
+    /*
+
+        $arr_picture = [];
+        foreach($picture_key as $key){
+            $picture = new \stdClass;
+
+            $property = $this->table_name."_picture0".$key;
+            if( isset($obj->$property) && $obj->$property ){
+
+                $picture->media_order = (int) $key;
+                $picture->media_tag = "[picture0".$key."]";
+
+                $html =  "<div style='border:1px solid black'>";
+                $html .= "<img src='".base_url(["asset","media", $this->table_name."_media", $obj->$property])."' class='img-fluid'>";
+                $html .=  "</div>";
+                $picture->html = $html;
+                
+                $picture->property = $property;
+                $picture->value = $obj->$property;
+                array_push( $arr_picture, $picture);
+            }
+        }
+        
+        return $arr_picture;    
+    
+
+    */
+
+
+    }
 
 
 
