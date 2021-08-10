@@ -73,6 +73,15 @@ class FileModel
 
         return $result;
     }
+
+    // return true
+    public function delete_file($full_pathname){
+
+        if( is_file($full_pathname) ){
+            unlink($full_pathname);
+        }
+        return TRUE;
+    }
     
 
 }

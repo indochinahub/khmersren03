@@ -102,6 +102,41 @@ class FileModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);        
     }
 
+    // return true
+    public function test_delete_file(){
 
+        $full_pathname = ASSETPATH."test/04delete_file/file_to_delete.txt";
+
+        // Create Blank File
+        $my_file = fopen( $full_pathname, 'w' ) ;
+        fclose($my_file);
+
+        $result1 = $this->file_model->delete_file( $full_pathname );
+
+        $result             =   [   
+                                    $result1
+                                ];
+        $expectedResult     =   [ 
+                                    true,
+                                ];
+
+        $this->assertSame($result,$expectedResult);               
+    }
+
+    /*
+
+    $full_path_name = FCPATH."assets/test/003delete_file/test.txt";
+    $result01 = $this->file_model->delete_file($full_path_name);
+
+    $result             =   [   $result01,
+                            ];
+                    
+    $expectedResult     =   [   TRUE,
+                            ];
+
+    $this->unit->run($result, $expectedResult, $testName, $note);
+
+
+    */
     
 }
