@@ -35,6 +35,17 @@ class MediaModelTest extends CIUnitTestCase
         $media_model = new MediaModel($obj, "post");
         $result2 = $media_model->get_arr_picture();
 
+
+        //  2 property-value and 2 null value
+        $obj = new \stdClass;
+        $obj->post_picture01   = "000231.jpg";
+        $obj->post_picture02   = "000232.jpg";
+        $obj->post_picture03   = null;
+        $obj->post_picture04   = null;        
+
+        $media_model = new MediaModel($obj, "post");
+        $result3 = $media_model->get_arr_picture();
+
         $result         =   [   // $result1
                                 count($result1),
                                 $result1[0]->media_order,
@@ -51,6 +62,9 @@ class MediaModelTest extends CIUnitTestCase
                                 $result2[0]->property,
                                 $result2[0]->value,
 
+                                // $result3
+                                count($result3),
+
                             ];
         $expectedResult =   [   // $result1
                                 6,
@@ -66,7 +80,10 @@ class MediaModelTest extends CIUnitTestCase
                                 "[picture01]",
                                 "<div style='border:1px solid black'><img src='http://127.0.0.1/khmersren03/asset/media/post_media/000231.jpg' class='img-fluid'></div>",
                                 "post_picture01",
-                                "000231.jpg",                                
+                                "000231.jpg",   
+                                
+                                // $result3
+                                2,
                             ];
         $this->assertSame($expectedResult, $result);                
     }
@@ -216,6 +233,29 @@ class MediaModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);       
 
     }
+
+    // return first vacant media slot
+    public function test_get_first_vacant_picture_slot(){
+
+        $obj = new \stdClass;
+        $obj->post_picture01   = "000231.jpg";
+        $obj->post_picture02   = null;
+
+        $media_model = new MediaModel($obj, "post");
+        $result1 = $media_model->get_first_vacant_picture_slot();
+
+
+        $result         =   [   
+                                2,
+                            ];
+        $expectedResult =   [   
+                                2,
+                            ];
+        $this->assertSame($expectedResult, $result);       
+    }
+
+
+
 
 
 
