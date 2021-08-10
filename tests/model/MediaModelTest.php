@@ -243,7 +243,7 @@ class MediaModelTest extends CIUnitTestCase
         $obj->post_picture03   = "xxxx.jpg";
 
         $media_model = new MediaModel($obj, "post");
-        $result1 = $media_model->get_first_vacant_picture_slot();
+        $result1 = $media_model->get_first_vacant_picture_slot($media_type = "picture");
 
 
         $obj = new \stdClass;
@@ -252,7 +252,7 @@ class MediaModelTest extends CIUnitTestCase
         $obj->post_picture03   = "xxxx.jpg";
 
         $media_model = new MediaModel($obj, "post");
-        $result2 = $media_model->get_first_vacant_picture_slot();
+        $result2 = $media_model->get_first_vacant_picture_slot($media_type = "picture");
 
         $obj = new \stdClass;
         $obj->post_picture01   = null;
@@ -260,7 +260,7 @@ class MediaModelTest extends CIUnitTestCase
         $obj->post_picture03   = null;
 
         $media_model = new MediaModel($obj, "post");
-        $result3 = $media_model->get_first_vacant_picture_slot();
+        $result3 = $media_model->get_first_vacant_picture_slot($media_type = "picture");
 
         $result         =   [   
                                 $result1,
