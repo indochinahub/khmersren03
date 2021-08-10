@@ -30,7 +30,7 @@ class MediaModel
             $picture = new \stdClass;
 
             $property = $this->table_name."_picture0".$key;
-            if( isset($obj->$property) && $obj->$property ){
+            if( property_exists($obj,$property) && $obj->$property ){
 
                 $picture->media_order = (int) $key;
                 $picture->media_tag = "[picture0".$key."]";
@@ -60,7 +60,7 @@ class MediaModel
         foreach($sound_key as $key){
             $sound = new \stdClass;
             $property = $this->table_name."_sound0".$key;
-            if( isset($obj->$property) && $obj->$property ){
+            if( property_exists($obj,$property) && $obj->$property ){
 
                 $sound->media_order = (int) $key;
                 $sound->media_tag = "[sound0".$key."]";
@@ -91,7 +91,7 @@ class MediaModel
         foreach($youtube_key as $key){
             $youtube = new \stdClass;
             $property = $this->table_name."_youtube0".$key;
-            if( isset($obj->$property) && $obj->$property ){
+            if( property_exists($obj,$property) && $obj->$property ){
 
                 $youtube->media_order = (int) $key;
                 $youtube->media_tag = "[youtube0".$key."]";
@@ -138,7 +138,7 @@ class MediaModel
         foreach($picture_key as $key){
 
             $property = $this->table_name."_picture0".$key;
-            if(  property_exists($obj,$property) && ! ($obj->$property) ){ 
+            if( property_exists($obj,$property) && ! ($obj->$property) ){ 
                 return (int) $key;
             }
         }
