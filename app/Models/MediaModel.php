@@ -9,11 +9,13 @@ class MediaModel
     var $arr_youtube;
     var $table_name;
     var $obj;
+    var $media_key;
 
     public function __construct($obj, $table_name){
 
         $this->table_name = $table_name;
         $this->obj = $obj;
+        $this->media_key = ["1","2","3","4","5","6"]; 
 
     }
 
@@ -21,7 +23,7 @@ class MediaModel
     public function get_arr_picture(){
 
         $obj = $this->obj;
-        $picture_key    = ["1","2","3","4","5","6"];
+        $picture_key    = $this->media_key;
 
         $arr_picture = [];
         foreach($picture_key as $key){
@@ -51,7 +53,7 @@ class MediaModel
     public function get_arr_sound(){
 
         $obj = $this->obj;
-        $sound_key    = ["1","2","3","4","5","6"];        
+        $sound_key    = $this->media_key;
 
         $arr_sound = [];
 
@@ -84,7 +86,7 @@ class MediaModel
     public function get_arr_youtube(){
 
         $obj = $this->obj;
-        $youtube_key    = ["1","2","3","4","5","6"];        
+        $youtube_key    = $this->media_key;
         $arr_youtube = [];
         foreach($youtube_key as $key){
             $youtube = new \stdClass;
@@ -128,6 +130,7 @@ class MediaModel
 
     }
 
+    // return medir_order int or fale
 
 
 
