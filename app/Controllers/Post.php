@@ -214,6 +214,7 @@ class Post extends MyController
         }elseif( $task === "edit"){
 
             $data["post"] = $post_model->get_by_id($post_id);
+
             $owner = $user_model->get_by_post_id($post_id);
             if( $user->user_id === $owner->user_id ){
             }else{
@@ -246,13 +247,13 @@ class Post extends MyController
                 array_push( $data["arr_postcategory"], $postcategory);
             }
             
-            $media_model                    = new MediaModel( $data["post"], "post");
-            $data["post"]->post_intro       = $media_model->replace_media_tag_with_html($data["post"]->post_intro);
-            $data["post"]->post_content     = $media_model->replace_media_tag_with_html($data["post"]->post_content);
-
+            $media_model            = new MediaModel( $data["post"], "post");
             $data["arr_picture"]    = $media_model->get_arr_picture();
             $data["arr_sound"]      = $media_model->get_arr_sound();
             $data["arr_youtube"]    = $media_model->get_arr_youtube();
+            $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
+            $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
+            $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
 
             $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
             $data["page_link"] 	= 	[   "กลับ",
