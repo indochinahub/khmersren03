@@ -123,20 +123,26 @@ class FileModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);               
     }
 
-    /*
-
-    $full_path_name = FCPATH."assets/test/003delete_file/test.txt";
-    $result01 = $this->file_model->delete_file($full_path_name);
-
-    $result             =   [   $result01,
-                            ];
-                    
-    $expectedResult     =   [   TRUE,
-                            ];
-
-    $this->unit->run($result, $expectedResult, $testName, $note);
+    // return true
+    public function test_resize_image(){
 
 
-    */
-    
+        $old_pathname = ASSETPATH."test/file_to_resize.jpg";
+        $new_pathname = ASSETPATH."test/05resize_file/file_to_resize.jpg";
+        copy($old_pathname, $new_pathname);
+
+        $result1 = $this->file_model->resize_image($new_pathname, $size = 800);
+
+        $result             =   [   
+                                    $result1,
+                                ];
+        $expectedResult     =   [ 
+                                    true,
+                                ];
+
+        $this->assertSame($result,$expectedResult);      
+        
+        unlink($new_pathname);
+
+    }    
 }

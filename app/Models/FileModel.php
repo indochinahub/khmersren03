@@ -82,6 +82,18 @@ class FileModel
         }
         return TRUE;
     }
+
+    //return true
+    public function resize_image( $full_pathname, $size = 800){
+        $image = \Config\Services::image();
+
+        $image->withFile($full_pathname);
+        $image->resize($size, $size, true, 'width');
+        $image->save($full_pathname);
+
+        return true;
+
+    }
     
 
 }
