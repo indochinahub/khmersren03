@@ -10,7 +10,16 @@ class Test extends MyController
 {
 
 	public function index(){
-		echo "Hello";
+		/******************************* */
+		// Pagination
+		/******************************* */
+
+		$pager = service("pager");
+		$perPage = 5;
+		$total = 33;
+		$data["pagination"]  = $pager->makeLinks( $page = 3 , $perPage , $total);
+
+		$this->_view("index",$data);
 	}
 
 	public function pagination()	{
