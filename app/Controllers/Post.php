@@ -243,7 +243,7 @@ class Post extends MyController
 
                 if( $postcategory->postcategory_id == $data["post"]->id_postcategory ){
                     $postcategory->checked_text = " checked ";
-                    
+
                 }else{
                     $postcategory->checked_text = "";
                 }

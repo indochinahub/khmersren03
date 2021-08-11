@@ -88,7 +88,6 @@
                 <div class="form-group">
                     <label for="exampleInputFile">เพิ่มรูปภาพที่ <?php echo $first_vacant_picture;?> :: </label>
                     <input type="file" name="myfile" size="20">
-                    <input type="hidden" name="redirect_url" value="http://www.khmersren.com/index.php/Post/addEdit/edit/346">
                 </div>       
 
                 <div class="two_flex_column">
@@ -149,6 +148,55 @@
 
         </div>    
     <?php } ?>    
+
+    <div class="card-info card-info_header">
+        การจัดการแฟ้มเสียง
+    </div>    
+
+    <?php if( $arr_sound ){ ?>
+        
+        <div class="card-info card-info_body">
+            
+            <?php foreach( $arr_sound as $sound ){ ?>
+
+                    <h5>รูปที่ <?php echo $sound->media_order;?></h5>
+                    <?php echo $sound->html;?>
+                    <div class="two_flex_column" style="margin-top:10px">
+                        <div>
+                        </div>
+                        <div>
+                            <a href="<?php echo base_url(["Media","deleteSound","post", $post->post_id, $sound->media_order ]);?>" class="btn btn-warning">ลบ</a>
+                        </div>
+                    </div>
+
+            <?php } ?>
+
+        </div>
+
+    <?php } ?>
+
+    <?php if($first_vacant_sound){ ?>
+
+        <div class="card-info card-info_body">
+
+            <form action="<?php echo base_url(["Media","addSound","post",$post->post_id, $first_vacant_sound]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <div class="form-group">
+                    <label for="exampleInputFile">เพิ่มแฟ้มเสียงที่ <?php echo $first_vacant_sound;?> :: </label>
+                    <input type="file" name="myfile" size="20">
+                </div>       
+
+                <div class="two_flex_column">
+                    <div>
+                    </div>
+                    <div>
+                        <button type="submit" name="submit" value="submit" class="btn btn-sm btn-primary">เพิ่ม</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>    
+    <?php } ?>
+
 
 
 </div>

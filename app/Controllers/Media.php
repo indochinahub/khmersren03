@@ -45,6 +45,36 @@ class Media extends MyController
         return redirect()->to( $this->_get_backlink() );		
     }
 
+    public function deleteSound($table_name, $key_id, $media_num){
+
+        $file_model = new FileModel;
+        
+        $table_model = $this->_get_table_model($table_name);
+
+        $row = $table_model->get_by_id( $key_id );
+
+        $property = $table_name."_sound0".$media_num;
+        $picture_path = ASSETPATH."media/".$table_name."_media/".$row->$property;
+
+        $file_model->delete_file($picture_path );
+
+        $table_model->update_by_id(  $key_id,
+                                     [$property => null]
+                                );
+            
+        return redirect()->to( $this->_get_backlink() );        
+
+        /*
+
+
+        
+
+
+        */
+
+    }
+
+    
     public function addPicture($table_name, $key_id, $media_num){
         $util_model = new UtilModel;
         $file_model = new FileModel;
@@ -76,6 +106,29 @@ class Media extends MyController
                                 );
 
         return redirect()->to( $this->_get_backlink() );		
+    }
+
+    public function addSound($table_name, $key_id, $media_num){
+        $util_model = new UtilModel;
+        $file_model = new FileModel;
+        
+        // get request
+        $file = $this->request->getFile('myfile');
+
+        // Add file to directory
+        $dir = ASSETPATH."media/".$table_name."_media/";
+        $new_filename =  $util_model->add_leading_zero_to_number( $key_id, 5).$media_num.".".$file->getClientExtension();
+        $this->_addFile($file,  $dir, $new_filename ) ;
+
+        // Update database
+        $table_model = $this->_get_table_model($table_name);
+
+        $property = $table_name."_sound0".$media_num;
+        $table_model->update_by_id(  $key_id,
+                                     [$property =>$new_filename]
+                                );
+
+        return redirect()->to( $this->_get_backlink() );        
     }
 
     public function _addFile( $file_obj, $dir, $new_filename){
@@ -112,8 +165,6 @@ class Media extends MyController
                                 );
         return redirect()->to( $this->_get_backlink() );            
     }
-
-
 
 }
 
