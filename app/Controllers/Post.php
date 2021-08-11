@@ -215,6 +215,9 @@ class Post extends MyController
 
             $data["post"] = $post_model->get_by_id($post_id);
 
+            //var_dump( $data["post"] );
+            //die();
+
             $owner = $user_model->get_by_post_id($post_id);
             if( $user->user_id === $owner->user_id ){
             }else{

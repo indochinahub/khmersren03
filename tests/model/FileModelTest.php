@@ -125,8 +125,7 @@ class FileModelTest extends CIUnitTestCase
 
     // return true
     public function test_resize_image(){
-
-
+ 
         $old_pathname = ASSETPATH."test/file_to_resize.jpg";
         $new_pathname = ASSETPATH."test/05resize_file/file_to_resize.jpg";
         copy($old_pathname, $new_pathname);
