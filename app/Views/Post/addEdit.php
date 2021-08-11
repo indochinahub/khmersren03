@@ -129,5 +129,26 @@
 
     <?php } ?>
 
+    <?php if($first_vacant_youtube){ ?>
+
+        <div class="card-info card-info_body">
+
+            <form action="<?php echo base_url(["Media","addYoutube","post",$post->post_id, $first_vacant_youtube]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <div class="form-group">
+                    <label for="soundfile">เพิ่มวิดิโอยูทูปหมายเลข <?php echo $first_vacant_youtube;?> :: </label>
+                    <input type="text" class="form-control" name="youtube">
+                </div>
+                <div class="two_flex_column">
+                    <div>
+                    </div>
+                    <div>
+                        <button type="submit" name="submit" value="submit" class="btn btn-primary">เพิ่ม</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>    
+    <?php } ?>    
+
 
 </div>

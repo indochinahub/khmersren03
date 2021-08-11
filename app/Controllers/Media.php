@@ -101,6 +101,16 @@ class Media extends MyController
 
     public function addYoutube($table_name, $key_id, $media_num){
 
+        // Update database
+        $table_model = $this->_get_table_model($table_name);        
+
+        $youtube_id =  $this->request->getPost("youtube");
+
+        $property = $table_name."_youtube0".$media_num;
+        $table_model->update_by_id(     $key_id,
+                                        [$property =>$youtube_id]
+                                );
+        return redirect()->to( $this->_get_backlink() );            
     }
 
 
