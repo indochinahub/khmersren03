@@ -39,14 +39,16 @@
                         </li>                
 
                         <li>                
+                            <a href="<?php echo base_url(["User","myChat"]);?>"><i class="fas fa-angle-double-right"></i> ข้อความส่วนตัว</a>
+                        </li>                
+
+                        <li>                
                             <a href="<?php echo base_url(["Deck","myDeck", $loggedin_user->user_id]);?>"><i class="fas fa-angle-double-right"></i> บัตรคำของฉัน</a>
                         </li>                
 
                         <li>                
                             <a href="<?php echo base_url(["Post","showBy","User", $loggedin_user->user_id ]);?>"><i class="fas fa-angle-double-right"></i> บทความของฉัน</a>
                         </li>                
-
-                        
 
                         <li>                
                             <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> ออกจากระบบ</a>
