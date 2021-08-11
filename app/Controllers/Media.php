@@ -19,13 +19,18 @@ use App\Models\PostcategoryModel;
 class Media extends MyController
 {
 
+    public function _get_table_model($table_name){
+        if( $table_name === "post" ){
+            return new PostModel;
+        }
+    }    
+
     public function deletePicture($table_name, $key_id, $media_num){
 
         $file_model = new FileModel;
         
-        if( $table_name === "post" ){
-            $table_model = new PostModel;
-        }
+        $table_model = $this->_get_table_model($table_name);
+
         $row = $table_model->get_by_id( $key_id );
 
         $property = $table_name."_picture0".$media_num;
@@ -63,9 +68,7 @@ class Media extends MyController
         $file_model->resize_image( $dir.$new_filename );
 
         // Update database
-        if( $table_name === "post" ){
-            $table_model = new PostModel;
-        }
+        $table_model = $this->_get_table_model($table_name);
 
         $property = $table_name."_picture0".$media_num;
         $table_model->update_by_id(  $key_id,
@@ -83,6 +86,24 @@ class Media extends MyController
 
         return $dir.$new_filename;
     }
+
+    public function deleteYoutube($table_name, $key_id, $media_num){
+
+        // Update database
+        $table_model = $this->_get_table_model($table_name);
+        
+        $property = $table_name."_youtube0".$media_num;
+        $table_model->update_by_id(     $key_id,
+                                        [$property =>null]
+                                );
+        return redirect()->to( $this->_get_backlink() );    
+    }
+
+    public function addYoutube($table_name, $key_id, $media_num){
+
+    }
+
+
 
 }
 
