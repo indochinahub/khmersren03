@@ -12,6 +12,8 @@ class StatisticModelTest extends CIUnitTestCase
         parent::setUp();
         $this->statistic_model = new StatisticModel();
 
+
+
     }    
 
     // return int
@@ -43,6 +45,29 @@ class StatisticModelTest extends CIUnitTestCase
                             ];
 
         $this->assertSame($expectedResult, $result);        
+
+    }
+
+    // return num_rows
+    public function test_reset_practice_timespent(){
+
+        $sql  =  " UPDATE practice SET practice_timespent = 1 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);
+
+        $result1 = $this->statistic_model->reset_practice_timespent($user_id = 1);
+        $result2 = $this->statistic_model->reset_practice_timespent($user_id = 0);
+
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
+        $expectedResult =   [ 
+                                4,
+                                0,
+                            ];
+        $this->assertSame($expectedResult, $result);        
+
 
     }
 
