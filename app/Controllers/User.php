@@ -216,6 +216,16 @@ class User extends MyController
         $this->_view("profile",$data);               
     }
 
+    public function myStatistic(){
+
+        $data["page_title"] = 	"สถิติของฉัน ";
+        $data["page_link"] 	= 	[	"กลับ",
+                                    $this->_get_backlink()
+                                ];	        
+        $this->_view("myStatistic",$data);               
+
+    }
+
 
 }
 
