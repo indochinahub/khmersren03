@@ -96,6 +96,12 @@ class UserModel extends MyModel
         return $this->get_user_by_id( $postcategory->id_user );
     }
 
+    public function run_one_time_a_day($uid){
+
+
+
+    }
+
 
 
 

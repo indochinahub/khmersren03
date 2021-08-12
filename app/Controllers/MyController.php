@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\UtilModel;
 use App\Models\UserModel;
+use App\Models\DateTimeModel;
+
 
 class MyController extends BaseController {
 
@@ -31,7 +33,6 @@ class MyController extends BaseController {
 		if( $uid = $this->session->get("uid") ){
 			$this->uid = (int) $uid;
 			setcookie('uid', $this->uid, time() + (86400 * 7), "/");
-			$this->user_model->update_visit_time($uid);
 
 		}elseif( isset($_COOKIE["uid"]) ){
 			$this->uid = (int) $_COOKIE["uid"];
@@ -41,7 +42,21 @@ class MyController extends BaseController {
 			$this->uid = 0;
 		}
 
-	}    
+		// Method to run One time a day
+		if( $user = $this->_get_loggedin_user()){
+			$datetime_model = new DateTimeModel;
+			$last_date = $datetime_model->get_date_part_from_sql_timestamp(
+											$user->user_visit_time
+										);
+			$today_date = $datetime_model->get_date_part_from_sql_timestamp(
+									$datetime_model->unix_timestamp_to_sql_timestamp(time())
+								);
+
+			$this->user_model->run_one_time_a_day($uid);			
+			$this->user_model->update_visit_time($this->uid);
+		}
+
+	}
 
 	public function _view($filename,$data){
 
