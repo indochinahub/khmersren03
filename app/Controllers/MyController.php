@@ -44,6 +44,7 @@ class MyController extends BaseController {
 
 		// Method to run One time a day
 		if( $user = $this->_get_loggedin_user()){
+
 			$datetime_model = new DateTimeModel;
 			$last_date = $datetime_model->get_date_part_from_sql_timestamp(
 											$user->user_visit_time
@@ -51,8 +52,10 @@ class MyController extends BaseController {
 			$today_date = $datetime_model->get_date_part_from_sql_timestamp(
 									$datetime_model->unix_timestamp_to_sql_timestamp(time())
 								);
+			if( $last_date === $today_date ){
+				$this->user_model->run_one_time_a_day($uid);
+			}
 
-			$this->user_model->run_one_time_a_day($uid);			
 			$this->user_model->update_visit_time($this->uid);
 		}
 
