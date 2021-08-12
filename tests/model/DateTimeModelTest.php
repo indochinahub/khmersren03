@@ -230,5 +230,27 @@ class DateTimeModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);        
 
     }
+
+    // return array of text
+    public function test_get_last_num_day_midnight(){
+
+        //1628670923 :: 2021-08-11 15:35:23        
+        $result1 = $this->datetime_model->get_last_num_day_midnight( 1628670923 , $num_day = 15);
+
+        $result         =   [ 
+                                count($result1),
+                                $result1[0],
+                                $result1[14],
+                            ];
+        $expectedResult =   [ 
+                                15,
+                                "2021-08-11 00:00:00",
+                                "2021-07-28 00:00:00",
+                            ];
+
+        $this->assertSame($expectedResult, $result);                
+    }
+
+        
     
 }
