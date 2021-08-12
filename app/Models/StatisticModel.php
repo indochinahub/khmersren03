@@ -55,6 +55,34 @@ class StatisticModel extends MyModel
         return $arr_result = $query->getResult();
     }
 
+    // return array of key id
+    public function create_daily_statistic($user_id){
+        $datetime_model = new DateTimeModel;
+
+        $arr_statistic = $this->get_now_statistic($user_id);
+
+        $today_midnight =   $datetime_model->unix_timestamp_to_sql_timestamp(
+                                    $datetime_model->get_unix_timestamp_at_midnight( time(), $next_day = 0)  
+                            );
+
+        $arr_id = [];
+        foreach( $arr_statistic as $statistic){
+            $detail =   [   "id_user"               =>  $user_id, 
+                            "id_deck"               =>  $statistic->id_deck,
+                            "statistic_numcard"     =>  $statistic->num_card,
+                            "statistic_timespent"   =>  $statistic->timespent,
+                            "statistic_datetime"    =>  $today_midnight
+                        ];
+            
+            array_push ( $arr_id, $this->insert($detail) );
+        }
+
+        // Clear statistic
+        $this->reset_practice_timespent($user_id);
+
+        return $arr_id;
+    }
+
 }
 
 

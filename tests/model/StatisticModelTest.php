@@ -80,7 +80,7 @@ class StatisticModelTest extends CIUnitTestCase
     //return array of statistic
     public function test_get_now_statistic(){
 
-
+        // Add sample data
         $sql  =  " UPDATE practice SET practice_timespent = 2 ";
         $sql .=  " WHERE  practice_id in (1,2,4,5) ";
         $query = $this->statistic_model->query($sql);        
@@ -114,10 +114,44 @@ class StatisticModelTest extends CIUnitTestCase
                             ];
         $this->assertSame($expectedResult, $result);                
 
+        // Delete sample data
         $sql  =  " UPDATE practice SET practice_timespent = 0 ";
         $sql .=  " WHERE  practice_id in (1,2,4,5) ";
         $query = $this->statistic_model->query($sql);                
     }    
+
+    // return array of key id
+    public function test_create_daily_statistic(){
+
+       // Add sample data
+        $sql  =  " UPDATE practice SET practice_timespent = 2 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);
+
+        $result1 = $this->statistic_model->create_daily_statistic($user_id = 0);
+        $result2 = $this->statistic_model->create_daily_statistic($user_id = 1);
+
+        $result         =   [   
+                                $result1,
+                                count($result2),
+
+                            ];
+        $expectedResult =   [   
+                                [],
+                                2,
+                            ];
+        $this->assertSame($expectedResult, $result);                
+
+        // Delete sample data
+        $sql  =  " UPDATE practice SET practice_timespent = 0 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);
+        
+        // Delete Statistic Data
+        $sql  =  " DELETE FROM statistic WHERE  id_user = 1 ";
+        $query = $this->statistic_model->query($sql);
+    }
+
 
 
 }
