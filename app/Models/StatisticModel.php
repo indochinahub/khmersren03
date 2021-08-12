@@ -43,6 +43,18 @@ class StatisticModel extends MyModel
         return $this->db->affectedRows();
     }
 
+    //return array of statistic
+    public function get_now_statistic($user_id){
+
+        $sql  =   " SELECT id_deck, count(practice_id) as num_card, sum(practice_timespent) as timespent ";
+        $sql  .=  " FROM practice ";
+        $sql  .=  " WHERE id_user = $user_id  AND practice_timespent > 0 ";
+        $sql  .=  " GROUP BY id_deck ";
+        $query = $this->query($sql);
+
+        return $arr_result = $query->getResult();
+    }
+
 }
 
 

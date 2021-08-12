@@ -12,6 +12,10 @@ class StatisticModelTest extends CIUnitTestCase
         parent::setUp();
         $this->statistic_model = new StatisticModel();
 
+        $sql  =  " UPDATE practice SET practice_timespent = 0 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);
+
 
 
     }    
@@ -68,8 +72,52 @@ class StatisticModelTest extends CIUnitTestCase
                             ];
         $this->assertSame($expectedResult, $result);        
 
-
+        $sql  =  " UPDATE practice SET practice_timespent = 0 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);        
     }
+
+    //return array of statistic
+    public function test_get_now_statistic(){
+
+
+        $sql  =  " UPDATE practice SET practice_timespent = 2 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);        
+
+        $result1 = $this->statistic_model->get_now_statistic($user_id = 0);
+        $result2 = $this->statistic_model->get_now_statistic($user_id = 1);
+
+        $result         =   [   // result1
+                                $result1,
+                                
+                                // result2
+                                $result2[0]->id_deck,
+                                $result2[0]->num_card,
+                                $result2[0]->timespent,
+
+                                $result2[1]->id_deck,
+                                $result2[1]->num_card,
+                                $result2[1]->timespent,                               
+                            ];
+        $expectedResult =   [   // result1
+                                [],
+
+                                // result12
+                                "1",
+                                "2",
+                                "4",
+
+                                "2",
+                                "2",
+                                "4",
+                            ];
+        $this->assertSame($expectedResult, $result);                
+
+        $sql  =  " UPDATE practice SET practice_timespent = 0 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);                
+    }    
 
 
 }
