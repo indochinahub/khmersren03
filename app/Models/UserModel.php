@@ -99,7 +99,7 @@ class UserModel extends MyModel
     public function run_one_time_a_day($user_id){
         $statistic_model = new StatisticModel;
 
-        return $statistic_model->create_daily_statistic($user_id);
+        return $statistic_model->create_daily_statistic($user_id, time());
     }
 
 
