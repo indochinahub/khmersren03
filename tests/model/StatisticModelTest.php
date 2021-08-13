@@ -126,33 +126,48 @@ class StatisticModelTest extends CIUnitTestCase
     // return array of key id
     public function test_create_daily_statistic(){
 
-       // Add sample data
+       // a. Add sample data
         $sql  =  " UPDATE practice SET practice_timespent = 2 ";
         $sql .=  " WHERE  practice_id in (1,2,4,5) ";
         $query = $this->statistic_model->query($sql);
 
-        $result1 = $this->statistic_model->create_daily_statistic($user_id = 0);
-        $result2 = $this->statistic_model->create_daily_statistic($user_id = 1);
+        $result1 = $this->statistic_model->create_daily_statistic($user_id = 0, time());
+        $result2 = $this->statistic_model->create_daily_statistic($user_id = 1, time());
 
+        // a. Delete sample data
+        $sql  =  " UPDATE practice SET practice_timespent = 0 ";
+        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
+        $query = $this->statistic_model->query($sql);
+        
+        // a. Delete Statistic Data
+        $sql  =  " DELETE FROM statistic WHERE  id_user = 1 ";
+        $query = $this->statistic_model->query($sql);
+
+        // b. Addd Sample Statistic Data
+        $sql  =     " INSERT INTO statistic(id_user, id_deck, statistic_timespent, statistic_numcard, statistic_datetime) ";
+        $sql  .=    " VALUES (1, 1, 2, 3, '2021-08-13 00:00:00' ) ";
+        $query = $this->statistic_model->query($sql);
+
+        //unix_timestamp = 1628824012 ::  "2021-08-13 10:06:52"
+        // No need to create statistic
+        $result3 = $this->statistic_model->create_daily_statistic($user_id = 1, 1628824012 );
+
+        // b. Delete sample data
+        $sql  =     " DELETE FROM statistic WHERE  id_user = 1 ";
+        $query = $this->statistic_model->query($sql);  
+        
         $result         =   [   
                                 $result1,
                                 count($result2),
+                                $result3,
 
                             ];
         $expectedResult =   [   
                                 [],
                                 2,
+                                [],
                             ];
         $this->assertSame($expectedResult, $result);                
-
-        // Delete sample data
-        $sql  =  " UPDATE practice SET practice_timespent = 0 ";
-        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
-        $query = $this->statistic_model->query($sql);
-        
-        // Delete Statistic Data
-        $sql  =  " DELETE FROM statistic WHERE  id_user = 1 ";
-        $query = $this->statistic_model->query($sql);
     }
 
     // return true or false

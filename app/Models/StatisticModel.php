@@ -56,13 +56,16 @@ class StatisticModel extends MyModel
     }
 
     // return array of key id
-    public function create_daily_statistic($user_id){
+    public function create_daily_statistic($user_id, $unix_timestamp){
         $datetime_model = new DateTimeModel;
+
+        // if there is today statistic , No need to create statistic
+        if( $this->if_there_is_today_statistic($user_id, $unix_timestamp)){ return []; }
 
         $arr_statistic = $this->get_now_statistic($user_id);
 
         $today_midnight =   $datetime_model->unix_timestamp_to_sql_timestamp(
-                                    $datetime_model->get_unix_timestamp_at_midnight( time(), $next_day = 0)  
+                                    $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day = 0)  
                             );
 
         $arr_id = [];
