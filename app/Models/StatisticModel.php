@@ -16,7 +16,6 @@ class StatisticModel extends MyModel
         $this->primaryKey = $this->table."_id";
     }
 
-
     // return int
     public function get_sum_spenttime_by_user_id_and_deck_id($user_id,$deck_id){
 
@@ -102,6 +101,31 @@ class StatisticModel extends MyModel
             return false;
         }
     }
+
+    // return array of statistic
+    public function get_daily_statistic($user_id){
+
+        $sql  =  " SELECT statistic_datetime, ";
+        $sql  .=  " sum(statistic_timespent) as timespent, ";
+        $sql  .=  " sum(statistic_numcard) as num_card  ";
+        $sql  .=  " FROM statistic  ";
+        $sql  .=  " WHERE id_user = $user_id ";
+        $sql  .=  " GROUP BY statistic_datetime ";
+        $sql  .=  " ORDER BY statistic_datetime DESC ";
+
+        $query = $this->query($sql);
+
+        
+        if( $arr_result = $query->getResult() ){
+            return $arr_result;
+
+        }else{
+            return [];
+
+        }
+
+    }
+
 
 }
 

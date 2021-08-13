@@ -206,8 +206,31 @@ class StatisticModelTest extends CIUnitTestCase
         // Delete sample data
         $sql  =     " DELETE FROM statistic WHERE  id_user = 1 ";
         $query = $this->statistic_model->query($sql);        
+    }
+    
+    // return array of statistic
+    public function test_get_daily_statistic(){
+
+        $result1 = $this->statistic_model->get_daily_statistic($user_id = 0);
+        $result2 = $this->statistic_model->get_daily_statistic($user_id = 6);
+
+        $result         =   [   
+                                $result1,
+                                count($result2) > 0,
+
+                                $result2[0]->statistic_datetime,
+                                $result2[0]->timespent,         
+                                $result2[0]->num_card
+                            ];
+        $expectedResult =   [   
+                                [],
+                                true,
+
+                                "2021-08-13 00:00:00",
+                                "675",
+                                "45",                                
+                            ];
+        $this->assertSame($expectedResult, $result);        
     }    
-
-
 
 }
