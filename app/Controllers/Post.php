@@ -105,7 +105,6 @@ class Post extends MyController
         $user_model = new UserModel;
         $postcategory_model = new PostcategoryModel;
         $datetime_model = new DateTimeModel;
-        
 
 
         $user = $this->_get_loggedin_user();

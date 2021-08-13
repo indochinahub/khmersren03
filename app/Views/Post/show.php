@@ -43,7 +43,7 @@
 
 
 
-<?php if(  ( $editable === true) || ($deleteabble === true) ){ ?>
+<?php if(  ( $editable === true) || ($deleteable === true) ){ ?>
 
     <div class="card-info">
         <div class="card-info card-info_header">
