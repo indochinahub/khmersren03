@@ -120,20 +120,31 @@ class User extends MyController
             $data["if_user_view_own_profile"] = false;
         }
 
+        // Statistic Section
+        $data["num_day_from_start"] = $statistic_model->get_num_day_from_start($data["member"]->user_id);
+        $data["num_day_of_statistic"] = count($statistic_model->get_daily_statistic($data["member"]->user_id));
+        $data["total_timespent_of_user"] = $datetime_model->get_second_in_minute_and_hour( $statistic_model->get_total_timespent_of_user($data["member"]->user_id));
+        $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visit_time );
+
+
         // Deck Section
         $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
 	    $data["arr_deck"] = [];
+        $data["total_num_all_card"] = 0;
+        $data["total_num_user_card"] = 0;
         foreach( $arr_deck as $deck ){
 
         $deck->course 			= $course_model->get_by_deck_id($deck->deck_id);
         array_push( $data["arr_deck"], $deck );
 
         $deck->num_all_card		=   count($card_model->get_by_deck_id($deck->deck_id));
+        $data["total_num_all_card"] = $data["total_num_all_card"] + $deck->num_all_card;
 
         $arr_practice			= 	$practice_model->get_by_deck_id_user_id(
                                                     $deck->deck_id, 
                                                     $data["user"]->user_id);
         $deck->num_user_card  	=   count( $arr_practice );
+        $data["total_num_user_card"] = $data["total_num_user_card"] + $deck->num_user_card; 
 
         $deck->card_to_review_today   = count(  $practice_model->get_to_review(
                                                         $deck->deck_id, 

@@ -18,7 +18,7 @@
         </div>
         <div class="two_flex_column">
             <div style="padding:0 0 0 15px">
-                บัตรคำที่ทำได้/ทั้งหมด                            
+                บัตรคำที่ทำได้/ทั้งหมด  
             </div>
             <div>
                 <?php echo $total_num_user_card."/".$total_num_all_card;?>
@@ -29,7 +29,7 @@
                 จำนวนวันที่เข้าใช้งาน/จำนวนวันจากวันแรก
             </div>
             <div>
-                aaa/bbb
+                <?php echo $num_day_of_statistic."/".$num_day_from_start;?>
             </div>
         </div>
         <div class="two_flex_column">
@@ -37,7 +37,7 @@
                 เวลาทั้งหมดที่ทำบัตรคำ
             </div>
             <div>
-                ccc.cc ชั่วโมง
+                <?php echo $total_timespent_of_user;?>
             </div>
         </div>
         <div class="two_flex_column">
@@ -45,12 +45,12 @@
                 เวลาที่เข้าสู่ระบบล่าสุด
             </div>
             <div>
-                13 ส.ค. 2564 14:20 น.
+                <?php echo $last_visit_time;?>
             </div>
         </div>
         <div class="two_flex_column">
             <div style="margin-bottom:5px;">
-                <h5>สถิติย้อนหลัง 15 วัน </h5>
+                <h5>สถิติย้อนหลัง xxx วัน </h5>
             </div>
             <div>
             </div>
@@ -60,7 +60,7 @@
                 จำนวนวันที่เข้าสู่ระบบ   
             </div>
             <div>
-                11/15 วัน 
+                xxx/yy วัน 
             </div>
         </div>
         <div class="two_flex_column">
@@ -68,7 +68,7 @@
                 ร้อยละวันที่เข้าสู่ระบบ   
             </div>
             <div>
-                73%
+                xx%
             </div>
         </div>
         <div class="two_flex_column">
@@ -76,7 +76,7 @@
                 จำนวนเฉลี่ยบัตรคำที่ทำได้ต่อวัน   
             </div>
             <div>
-                18 ข้อ/วัน
+                xx ข้อ/วัน
             </div>
         </div>
         <div class="two_flex_column">
@@ -84,12 +84,12 @@
                 เวลาเฉลี่ยที่ใช้ทำบัตรคำต่อวัน    
             </div>
             <div>
-                6 นาที /วัน
+                xx นาที /วัน
             </div>
         </div>    
         <div class="two_flex_column">
             <div style="margin-bottom:5px;">
-                <h5>สถิติวันนี้ 13 ส.ค. 2564</h5>
+                <h5>สถิติวันนี้ xxx ส.ค. 2564</h5>
             </div>
             <div>
             </div>
@@ -99,7 +99,7 @@
                 บัตรคำรอทบทวน      
             </div>
             <div>
-                65/67
+                xx/xxx
             </div>
         </div>       
         <div class="two_flex_column">
@@ -107,7 +107,7 @@
                 จำนวนบัตรคำที่ทำได้ 
             </div>
             <div>
-                0
+                x
             </div>
         </div>       
         <div class="two_flex_column">
@@ -115,7 +115,7 @@
                 เวลาที่ใช้ทำบัตรคำ  
             </div>
             <div>
-                0 วินาที
+                xx วินาที
             </div>
         </div>        
     </div>
