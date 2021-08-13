@@ -231,6 +231,23 @@ class StatisticModelTest extends CIUnitTestCase
                                 "45",                                
                             ];
         $this->assertSame($expectedResult, $result);        
+    }
+
+    //return int or false
+    public function test_get_num_day_from_start(){
+
+        $result1 = $this->statistic_model->get_num_day_from_start($user_id = 0);
+        $result2 = $this->statistic_model->get_num_day_from_start($user_id = 6);
+
+        $result         =   [   
+                                $result1,
+                                $result2 > 0,
+                            ];
+        $expectedResult =   [   
+                                false,
+                                true,
+                            ];
+        $this->assertSame($expectedResult, $result);        
     }    
 
 }

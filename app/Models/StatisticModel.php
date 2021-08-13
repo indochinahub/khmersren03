@@ -115,7 +115,6 @@ class StatisticModel extends MyModel
 
         $query = $this->query($sql);
 
-        
         if( $arr_result = $query->getResult() ){
             return $arr_result;
 
@@ -126,6 +125,23 @@ class StatisticModel extends MyModel
 
     }
 
+    //return int or false
+    public function get_num_day_from_start($user_id){
+
+        $datetime_model = new DateTimeModel;
+
+        $where_clause =  " WHERE id_user = $user_id ";
+        $where_clause .= " ORDER BY statistic_datetime asc ";
+        if( $arr_statistic = $this->get_where($where_clause) ){
+
+            $start_unix_timestamp  = $datetime_model->sql_timestamp_to_unix_timestamp( $arr_statistic[0]->statistic_datetime );
+
+            return floor( (time() - $start_unix_timestamp  )/ (60*60*24) );
+
+        }else{
+            return false;
+        }
+    }
 
 }
 
