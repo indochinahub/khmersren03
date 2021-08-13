@@ -83,6 +83,23 @@ class StatisticModel extends MyModel
         return $arr_id;
     }
 
+    // return true or false
+    public function if_there_is_today_statistic($user_id, $unix_timestamp){
+        $datetime_model = new DateTimeModel;
+
+        $today_midnight =   $datetime_model->unix_timestamp_to_sql_timestamp(
+                                  $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day = 0)  
+                            );
+
+        $where_clause = " WHERE id_user = $user_id AND statistic_datetime = '$today_midnight' ";                    
+        if( $this->get_where($where_clause) ){
+            return true;
+
+        }else{
+            return false;
+        }
+    }
+
 }
 
 

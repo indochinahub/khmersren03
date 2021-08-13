@@ -16,6 +16,9 @@ class StatisticModelTest extends CIUnitTestCase
         $sql .=  " WHERE  practice_id in (1,2,4,5) ";
         $query = $this->statistic_model->query($sql);
 
+        $sql  =     " DELETE FROM statistic WHERE  id_user = 1 ";
+        $query = $this->statistic_model->query($sql);                
+
 
 
     }    
@@ -151,6 +154,44 @@ class StatisticModelTest extends CIUnitTestCase
         $sql  =  " DELETE FROM statistic WHERE  id_user = 1 ";
         $query = $this->statistic_model->query($sql);
     }
+
+    // return true or false
+    public function test_if_there_is_today_statistic(){
+
+        $datetime_model = new DateTimeModel;
+
+        // Create sample data
+        $sql  =     " INSERT INTO statistic(id_user, id_deck, statistic_timespent, statistic_numcard, statistic_datetime) ";
+        $sql  .=    " VALUES (1, 1, 2, 3, '2021-08-13 00:00:00' ) ";
+        $query = $this->statistic_model->query($sql);
+
+
+        $unix_timestamp = 1628824012; //  "2021-08-13 10:06:52"
+
+        $result1 = $this->statistic_model->if_there_is_today_statistic(
+                                            $user_id = 1, 
+                                            $unix_timestamp
+                                    );
+
+        // There is no statistic for user_id = 0
+        $result2 = $this->statistic_model->if_there_is_today_statistic(
+                                            $user_id = 0, 
+                                            $unix_timestamp
+                                    );                                    
+        $result         =   [   
+                                $result1, 
+                                $result2,
+                            ];
+        $expectedResult =   [   
+                                true,
+                                false
+                            ];
+        $this->assertSame($expectedResult, $result);        
+
+        // Delete sample data
+        $sql  =     " DELETE FROM statistic WHERE  id_user = 1 ";
+        $query = $this->statistic_model->query($sql);        
+    }    
 
 
 
