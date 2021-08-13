@@ -139,7 +139,7 @@ class StatisticModel extends MyModel
             return floor( (time() - $start_unix_timestamp  )/ (60*60*24) );
 
         }else{
-            return false;
+            return 0;
         }
     }
 

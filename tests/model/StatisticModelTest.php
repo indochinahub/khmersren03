@@ -244,7 +244,7 @@ class StatisticModelTest extends CIUnitTestCase
                                 $result2 > 0,
                             ];
         $expectedResult =   [   
-                                false,
+                                0,
                                 true,
                             ];
         $this->assertSame($expectedResult, $result);        
