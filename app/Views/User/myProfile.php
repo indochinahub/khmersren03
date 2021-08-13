@@ -2,7 +2,126 @@
     <div class="card-info card-info_header">
         บัตรคำของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
-        
+</div>
+
+<div class="card-warning">
+
+    <div class="card-warning card-warning_body">
+
+
+        <div class="two_flex_column">
+            <div>
+                <h5>สถิติย้อนหลังตั้งแต่เริ่มต้น</h5>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                บัตรคำที่ทำได้/ทั้งหมด                            
+            </div>
+            <div>
+                <?php echo $total_num_user_card."/".$total_num_all_card;?>
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                จำนวนวันที่เข้าใช้งาน/จำนวนวันจากวันแรก
+            </div>
+            <div>
+                aaa/bbb
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                เวลาทั้งหมดที่ทำบัตรคำ
+            </div>
+            <div>
+                ccc.cc ชั่วโมง
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                เวลาที่เข้าสู่ระบบล่าสุด
+            </div>
+            <div>
+                13 ส.ค. 2564 14:20 น.
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="margin-bottom:5px;">
+                <h5>สถิติย้อนหลัง 15 วัน </h5>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                จำนวนวันที่เข้าสู่ระบบ   
+            </div>
+            <div>
+                11/15 วัน 
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                ร้อยละวันที่เข้าสู่ระบบ   
+            </div>
+            <div>
+                73%
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                จำนวนเฉลี่ยบัตรคำที่ทำได้ต่อวัน   
+            </div>
+            <div>
+                18 ข้อ/วัน
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                เวลาเฉลี่ยที่ใช้ทำบัตรคำต่อวัน    
+            </div>
+            <div>
+                6 นาที /วัน
+            </div>
+        </div>    
+        <div class="two_flex_column">
+            <div style="margin-bottom:5px;">
+                <h5>สถิติวันนี้ 13 ส.ค. 2564</h5>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                บัตรคำรอทบทวน      
+            </div>
+            <div>
+                65/67
+            </div>
+        </div>       
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                จำนวนบัตรคำที่ทำได้ 
+            </div>
+            <div>
+                0
+            </div>
+        </div>       
+        <div class="two_flex_column">
+            <div style="padding:0 0 0 15px">
+                เวลาที่ใช้ทำบัตรคำ  
+            </div>
+            <div>
+                0 วินาที
+            </div>
+        </div>        
+    </div>
+</div>
+
+<div class="card-info">    
     <?php foreach( $arr_deck as $deck ){ ?>
     
         <div class="card-info card-info_body">
