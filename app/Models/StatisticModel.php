@@ -143,6 +143,23 @@ class StatisticModel extends MyModel
         }
     }
 
+    // return int or zero
+    public function get_total_timespent_of_user($user_id){
+
+        $sql =  " SELECT sum(statistic_timespent) as timespent FROM statistic ";
+        $sql .= " WHERE id_user = $user_id ";
+        $query = $this->query($sql);
+
+        $result = $query->getResult();
+
+        if( $timespent = $result[0]->timespent ){
+            return $timespent;
+
+        }else{
+            return 0;
+        }
+    }
+
 }
 
 

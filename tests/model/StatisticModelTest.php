@@ -247,7 +247,25 @@ class StatisticModelTest extends CIUnitTestCase
                                 0,
                                 true,
                             ];
+        $this->assertSame($expectedResult, $result);
+    }    
+
+    // return int or zero
+    public function test_get_total_timespent_of_user(){
+
+        $result1 = $this->statistic_model->get_total_timespent_of_user($user_id = 0);
+        $result2 = $this->statistic_model->get_total_timespent_of_user($user_id = 6);
+
+        $result         =   [   
+                                $result1, 
+                                $result2 > 15000
+                            ];
+        $expectedResult =   [   
+                                0,
+                                true,
+                            ];
         $this->assertSame($expectedResult, $result);        
+
     }    
 
 }
