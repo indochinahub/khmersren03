@@ -96,10 +96,10 @@ class UserModel extends MyModel
         return $this->get_user_by_id( $postcategory->id_user );
     }
 
-    public function run_one_time_a_day($uid){
+    public function run_one_time_a_day($user_id){
+        $statistic_model = new StatisticModel;
 
-
-
+        return $statistic_model->create_daily_statistic($user_id);
     }
 
 
