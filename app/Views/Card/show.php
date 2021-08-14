@@ -74,7 +74,7 @@
                 </h2>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-warning card-warning_body">
                     <?php   foreach( $arr_answer as $key=>$answer ){ 
                                 if( $answer && $key === 0 ){ 
@@ -126,7 +126,13 @@
                 <div>
                 </div>
                 <div>
-                <a href="<?php echo base_url(["Card","show","a", $next_card_id, $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                
+                    <?php if( $next_card_id === false ){ ?>
+                        <a href="<?php echo base_url(["Deck","show",$deck->deck_id]);?>" class="btn btn-primary">ไปชุดบัตรคำ</a>
+                    <?php }else{ ?>
+                        <a href="<?php echo base_url(["Card","show","a", $next_card_id, $deck->deck_id]);?>" class="btn btn-primary">ไป</a>
+                    <?php } ?>
+
                 </div>
             </div>
         </div>
