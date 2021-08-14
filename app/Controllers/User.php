@@ -130,14 +130,12 @@ class User extends MyController
         $data["num_visit_last_15_day"] = 0;
         foreach($last_15_day_statistic as $statistic){
 
-            if( $statistic !== false ){
+            if( $statistic->num_card !== 0  ){
                 $data["num_visit_last_15_day"] = $data["num_visit_last_15_day"] + 1;
             }
         }
 
         $data["percent_of_visit_last_15_day"] =  floor( ($data["num_visit_last_15_day"] / 15) * 100 );
-
-
 
         // Deck Section
         $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
