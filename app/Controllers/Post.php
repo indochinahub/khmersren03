@@ -214,9 +214,6 @@ class Post extends MyController
 
             $data["post"] = $post_model->get_by_id($post_id);
 
-            //var_dump( $data["post"] );
-            //die();
-
             $owner = $user_model->get_by_post_id($post_id);
             if( $user->user_id === $owner->user_id ){
             }else{
@@ -233,6 +230,7 @@ class Post extends MyController
             $data["task"] = "show_form_to_insert";
         }
 
+        
         // Do the task
         if( $data["task"] === "show_form_to_update" ){
 
@@ -275,9 +273,8 @@ class Post extends MyController
 
         }elseif( $data["task"] === "show_form_to_insert"){
 
-            $data = [   
-                        "post" => $post_model->get_object_with_null_value()
-                    ];
+
+            $data["post"] = $post_model->get_object_with_null_value();
 
             $data["arr_postcategory"] = [];
             foreach( $arr_postcategory as $postcategory){
@@ -288,7 +285,7 @@ class Post extends MyController
                     $postcategory->checked_text = "";
                 }
                 array_push( $data["arr_postcategory"], $postcategory);
-            }                    
+            }
 
             $data["page_title"] = 	"Add new post "; 
             $data["page_link"] 	= 	[   "กลับ",
