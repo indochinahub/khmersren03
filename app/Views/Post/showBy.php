@@ -6,7 +6,7 @@
         <div class="card-warning card-warning_body">
                 <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
-                        <a href="<?php echo base_url( );?>" class="btn btn-primary">ไป</a>
+                        <a href="<?php echo base_url( ["Post","addEdit","new"]);?>" class="btn btn-primary">ไป</a>
                     </div>
                     <div>
                         <strong>เพิ่ม</strong>บทความ
