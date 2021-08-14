@@ -95,7 +95,7 @@ class Media extends MyController
         $this->_addFile($file,  $dir, $new_filename ) ;
 
         // Resize Image
-        if( $file->getClientExtension() !== "webm" ){
+        if( $file->getClientExtension() !== "webp" ){
             $file_model->resize_image( $dir.$new_filename );
         }
         
