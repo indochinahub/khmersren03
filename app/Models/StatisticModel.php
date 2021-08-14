@@ -142,19 +142,19 @@ class StatisticModel extends MyModel
 
         $data["arr_statistic"] = [];
         foreach( $arr_date as $date ){                                    
+            $statistic = new \stdClass;
+
+            $statistic->date = $date ;
 
             if( array_key_exists( $date, $assoc_daily_statistic ) ){
-                $statistic = new \stdClass;
-
-                $statistic->date = $date ;
-
                 $daily_statistic = $assoc_daily_statistic[ $date ];
 
                 $statistic->timespent = $daily_statistic->timespent;
                 $statistic->num_card  = $daily_statistic->num_card;
-            }else{
 
-                $statistic = false;
+            }else{
+                $statistic->timespent = 0;
+                $statistic->num_card  = 0;
             }
 
             array_push($data["arr_statistic"], $statistic);
