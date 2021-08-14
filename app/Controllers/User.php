@@ -231,9 +231,30 @@ class User extends MyController
         $statistic_model    =   new StatisticModel;
         $datetime_model     =   new DateTimeModel;
         $util_model         =   new UtilModel;
-
-        $data["user"] = $this->_get_loggedin_user();
         
+        //  Today Statistic
+        $data["today_date"] = $datetime_model->get_thai_date_from_sql_timestamp(
+                                    $datetime_model->unix_timestamp_to_sql_timestamp(time())
+                                );
+
+        if( $arr_today_statistic = $statistic_model->get_now_statistic( $data["user"]->user_id) ){
+
+            $today_num_card     = 0;
+            $today_timespent    = 0;
+            foreach( $arr_today_statistic as $today_statistic ){
+                $today_num_card = $today_num_card + $today_statistic->num_card;
+                $today_timespent = $today_timespent + $today_statistic->timespent;
+            }
+
+            $today_num_card = $today_num_card." ข้อ";
+            $today_timespent = $datetime_model->get_second_in_minute_and_hour($today_timespent);
+            $data["today_statistic_text"] = " $today_timespent <br> $today_num_card ";
+        }else{
+            
+            $data["today_statistic_text"] = "[ไม่มีข้อมูล]";
+        }
+
+        // Last 15 day statistic
         $arr_daily_statistic = $statistic_model->get_daily_statistic( $data["user"]->user_id );
         $assoc_daily_statistic = $util_model->get_assoc_from_array_of_object(
                                     $arr_daily_statistic , 
@@ -261,7 +282,7 @@ class User extends MyController
             }else{
                 $statistic->statistic_text = "[ไม่มีข้อมูล]";
             }
-            
+
             array_push($data["arr_statistic"], $statistic);
         }
 
