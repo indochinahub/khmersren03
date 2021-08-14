@@ -231,13 +231,15 @@ class User extends MyController
         $statistic_model    =   new StatisticModel;
         $datetime_model     =   new DateTimeModel;
         $util_model         =   new UtilModel;
+
+        $user = $this->_get_loggedin_user();
         
         //  Today Statistic
         $data["today_date"] = $datetime_model->get_thai_date_from_sql_timestamp(
                                     $datetime_model->unix_timestamp_to_sql_timestamp(time())
                                 );
 
-        if( $arr_today_statistic = $statistic_model->get_now_statistic( $data["user"]->user_id) ){
+        if( $arr_today_statistic = $statistic_model->get_now_statistic( $user->user_id) ){
 
             $today_num_card     = 0;
             $today_timespent    = 0;
@@ -255,7 +257,7 @@ class User extends MyController
         }
 
         // Last 15 day statistic
-        $arr_daily_statistic = $statistic_model->get_daily_statistic( $data["user"]->user_id );
+        $arr_daily_statistic = $statistic_model->get_daily_statistic( $user->user_id );
         $assoc_daily_statistic = $util_model->get_assoc_from_array_of_object(
                                     $arr_daily_statistic , 
                                     $key_property = "statistic_datetime"

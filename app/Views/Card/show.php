@@ -60,7 +60,6 @@
     <?php } ?>
 <div>
 
-
 <?php if( $arr_answer[0] || $arr_answer[1] || $arr_answer[2] ){ ?>
     <div class="accordion" id="accordionExample">
         <div class="card-warning">
