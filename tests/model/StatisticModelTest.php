@@ -265,7 +265,40 @@ class StatisticModelTest extends CIUnitTestCase
                                 true,
                             ];
         $this->assertSame($expectedResult, $result);        
+    }
+    
+    //return arr of statistic
+    public function test_get_last_15_day_statistic(){
 
+        $unix_timestamp = 1628824012; //  "2021-08-13 10:06:52"
+
+        $result1 = $this->statistic_model->get_last_15_day_statistic($user_id = 0, $unix_timestamp );
+        $result2 = $this->statistic_model->get_last_15_day_statistic($user_id = 6, $unix_timestamp );
+
+        $result         =   [   
+                                // result1 , all elements are false.
+                                $result1[0],
+                                $result1[14],
+
+                                // result2 first element is false
+                                $result2[0],
+
+                                // result2 second element is object
+                                $result2[1]->date,
+                                $result2[1]->timespent,
+                                $result2[1]->num_card,
+                            ];
+        $expectedResult =   [   
+                                false,
+                                false,
+
+                                false,    
+
+                                "2021-08-13 00:00:00",
+                                "675",
+                                "45",
+                            ];
+        $this->assertSame($expectedResult, $result);        
     }    
 
 }

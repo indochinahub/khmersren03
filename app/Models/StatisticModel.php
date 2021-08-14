@@ -125,6 +125,44 @@ class StatisticModel extends MyModel
 
     }
 
+    //return arr of statistic
+    public function get_last_15_day_statistic( $user_id, $unix_timestamp ){
+
+        $util_model = new UtilModel;
+        $datetime_model = new DateTimeModel;
+
+        $arr_daily_statistic = $this->get_daily_statistic( $user_id );
+        $assoc_daily_statistic = $util_model->get_assoc_from_array_of_object(
+                                    $arr_daily_statistic , 
+                                    $key_property = "statistic_datetime"
+                                );        
+
+        $arr_date = $datetime_model->get_last_num_day_midnight(
+                                    time(), 15);
+
+        $data["arr_statistic"] = [];
+        foreach( $arr_date as $date ){                                    
+
+            if( array_key_exists( $date, $assoc_daily_statistic ) ){
+                $statistic = new \stdClass;
+
+                $statistic->date = $date ;
+
+                $daily_statistic = $assoc_daily_statistic[ $date ];
+
+                $statistic->timespent = $daily_statistic->timespent;
+                $statistic->num_card  = $daily_statistic->num_card;
+            }else{
+
+                $statistic = false;
+            }
+
+            array_push($data["arr_statistic"], $statistic);
+        }
+
+        return $data["arr_statistic"];
+    }
+
     //return int or false
     public function get_num_day_from_start($user_id){
 
