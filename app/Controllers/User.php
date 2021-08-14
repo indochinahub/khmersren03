@@ -126,6 +126,18 @@ class User extends MyController
         $data["total_timespent_of_user"] = $datetime_model->get_second_in_minute_and_hour( $statistic_model->get_total_timespent_of_user($data["member"]->user_id));
         $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visit_time );
 
+        $last_15_day_statistic = $statistic_model->get_last_15_day_statistic($data["member"]->user_id, time());
+        $data["num_visit_last_15_day"] = 0;
+        foreach($last_15_day_statistic as $statistic){
+
+            if( $statistic !== false ){
+                $data["num_visit_last_15_day"] = $data["num_visit_last_15_day"] + 1;
+            }
+        }
+
+        $data["percent_of_visit_last_15_day"] =  floor( ($data["num_visit_last_15_day"] / 15) * 100 );
+
+
 
         // Deck Section
         $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;

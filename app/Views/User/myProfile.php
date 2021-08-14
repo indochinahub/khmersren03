@@ -50,7 +50,7 @@
         </div>
         <div class="two_flex_column">
             <div style="margin-bottom:5px;">
-                <h5>สถิติย้อนหลัง xxx วัน </h5>
+                <h5>สถิติย้อนหลัง 15 วัน </h5>
             </div>
             <div>
             </div>
@@ -60,7 +60,7 @@
                 จำนวนวันที่เข้าสู่ระบบ   
             </div>
             <div>
-                xxx/yy วัน 
+                <?php echo $num_visit_last_15_day."/15";?> วัน 
             </div>
         </div>
         <div class="two_flex_column">
@@ -68,7 +68,7 @@
                 ร้อยละวันที่เข้าสู่ระบบ   
             </div>
             <div>
-                xx%
+                <?php echo $percent_of_visit_last_15_day;?>%
             </div>
         </div>
         <div class="two_flex_column">
