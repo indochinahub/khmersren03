@@ -24,7 +24,7 @@
         <div class="card-info card-info_body">
             <div class="two_flex_column">
                     <div>
-                        <strong><?php echo $statistic->thai_date;?></strong>
+                        <strong><?php echo $statistic->date;?></strong>
                     </div>
                     <div style="text-align:right">
                         <?php echo $statistic->statistic_text;?>

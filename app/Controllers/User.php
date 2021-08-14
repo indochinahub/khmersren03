@@ -278,26 +278,26 @@ class User extends MyController
         $arr_date = $datetime_model->get_last_num_day_midnight(
                                     time(), 15);
 
+        $last_15_day_statistic = $statistic_model->get_last_15_day_statistic($user->user_id, time());
         $data["arr_statistic"] = [];
-        foreach( $arr_date as $date ){
-            $statistic = new \stdClass;
+        foreach( $last_15_day_statistic as $statistic ){
 
-            $statistic->thai_date = $datetime_model->get_thai_date_from_sql_timestamp(
-                                        $date
-                                    );
-                                    
-            if( array_key_exists( $date, $assoc_daily_statistic ) ){
-                $daily_statistic = $assoc_daily_statistic[ $date ];
+            if( array_key_exists($statistic->date, $assoc_daily_statistic) ){
 
-                $timespent = $datetime_model->get_second_in_minute_and_hour( $daily_statistic->timespent );
-                $num_card  = $daily_statistic->num_card. " ข้อ";
+                $timespent = $datetime_model->get_second_in_minute_and_hour( $statistic->timespent );
+                $num_card  = $statistic->num_card. " ข้อ";
 
                 $statistic->statistic_text = " $timespent <br> $num_card ";
+
             }else{
                 $statistic->statistic_text = "[ไม่มีข้อมูล]";
             }
 
-            array_push($data["arr_statistic"], $statistic);
+            $statistic->date = $datetime_model->get_thai_date_from_sql_timestamp(
+                $statistic->date
+            );            
+
+            array_push($data["arr_statistic"],$statistic);
         }
 
         $data["page_title"] = 	"สถิติของฉัน ";
