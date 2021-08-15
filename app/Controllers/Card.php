@@ -9,6 +9,9 @@ use App\Models\DeckModel;
 use App\Models\CardModel;
 use App\Models\PracticeModel;
 use App\Models\DateTimeModel;
+use App\Models\CardcommentModel;
+use App\Models\UserModel;
+
 
 class Card extends MyController
 {
@@ -20,13 +23,20 @@ class Card extends MyController
         $practice_model = new PracticeModel;
         $datetime_model = new DateTimeModel;
         $util_model = new UtilModel;
-
+        $cardcomment_model = new CardcommentModel;
+        $user_model = new UserModel;
     
     // Do something in general
-            if( $data["user"] = $this->_get_loggedin_user() ){
+        if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
             return;
+        }
+
+        if( $data["user"]->user_level === "3"){
+            $data["if_user_is_admin"] = true;
+        }else{
+            $data["if_user_is_admin"] = false;
         }
 
         $data["deck"]           = $deck_model->get_by_id($deck_id);
@@ -226,6 +236,19 @@ class Card extends MyController
             $data["time_spent"]         =   $data["practice"]->practice_timespent;
       }
 
+    // Cardcomment section
+
+        $arr_cardcomment = $cardcomment_model->get_by_card_id_and_deck_id($card_id, $deck_id);
+        $data["arr_cardcomment"] = [];
+        foreach( $arr_cardcomment as $cardcomment ){
+            $cardcomment_owner = $user_model->get_by_id( $cardcomment->id_user);
+            $cardcomment->owner_name = $user_model->get_user_displayname($cardcomment_owner);
+            $cardcomment->cardcomment_createtime = $datetime_model->get_thai_datetime_from_sql_timestamp($cardcomment->cardcomment_createtime);
+            array_push( $data["arr_cardcomment"], $cardcomment );
+
+        }
+
+
     // View Section
         $data["page_title"] = 	"บัตรคำ ".$data["card"]->card_sort;
         $data["page_link"] 	= 	[ 
@@ -340,10 +363,6 @@ class Card extends MyController
             $card_model->update_by_id( $card_id, $detail);
 
             return redirect()->to(base_url( ["Card", "edit", $card_id, $deck_id] ));
-            
-
-
-
         }
     }
 

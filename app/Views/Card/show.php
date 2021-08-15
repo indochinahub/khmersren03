@@ -53,8 +53,6 @@
 
             <?php } ?>
 
-
-
         <?php } ?>
 
     <?php } ?>
@@ -205,15 +203,39 @@
 
 </div>
 
-<div class="card-info">
+<?php if( ($page === "b" ){ ?>
 
-    <div class="card-info card-info_header">
-        จัดการบัตรคำ
+    <div class="card-info">
+        <div class="card-info card-info_header">ความคิดเห็น</div>
+
+        <?php foreach( $arr_cardcomment as $cardcomment){ ?>
+            <div class="card-info card-info_body">
+                <div>
+                    โดย :: [ <strong><?php echo $cardcomment->owner_name;?></strong> ] เมื่อ <?php echo $cardcomment->cardcomment_createtime;?><br>
+                    <strong> ความเห็น </strong> :: <?php echo nl2br($cardcomment->cardcomment_text);?>
+                </div>
+                <div class="two_flex_column">
+                    <div>
+                    </div>
+                    <div>
+                        <a href="<?php echo base_url();?>" class="btn btn-primary">ไป</a>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
     </div>
 
-</div>
+<?php } ?>
 
-<?php if ( $page === "b" ){ ?>
+
+
+<?php if ( ($page === "b") &&  $if_user_is_admin === true ){ ?>
+
+    <div class="card-info">
+        <div class="card-info card-info_header">
+            จัดการบัตรคำ
+        </div>
+    </div>
 
     <div class="card-warning">
 
