@@ -138,7 +138,7 @@ class StatisticModel extends MyModel
                                 );        
 
         $arr_date = $datetime_model->get_last_num_day_midnight(
-                                    time(), 15);
+                                    $unix_timestamp, 15);
 
         $data["arr_statistic"] = [];
         foreach( $arr_date as $date ){                                    
