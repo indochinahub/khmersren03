@@ -305,6 +305,15 @@ class User extends MyController
         $this->_view("myStatistic",$data);               
     }
 
+    public function showAll(){
+
+        $data["page_title"] = 	"ผู้ใช้ทั้งหมด ";
+        $data["page_link"] 	= 	[	"กลับ",
+                                    $this->_get_backlink()
+                                ];	        
+        $this->_view("showAll",$data);               
+
+    }
 
 }
 
