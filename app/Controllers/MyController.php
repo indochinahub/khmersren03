@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\UtilModel;
 use App\Models\UserModel;
 use App\Models\DateTimeModel;
+use App\Models\StatisticModel;
 
 
 class MyController extends BaseController {
@@ -33,6 +34,7 @@ class MyController extends BaseController {
 		if( $uid = $this->session->get("uid") ){
 			$this->uid = (int) $uid;
 			setcookie('uid', $this->uid, time() + (86400 * 7), "/");
+			$this->user_model->update_visit_time($this->uid);
 
 		}elseif( isset($_COOKIE["uid"]) ){
 			$this->uid = (int) $_COOKIE["uid"];
@@ -41,25 +43,12 @@ class MyController extends BaseController {
 		}else{
 			$this->uid = 0;
 		}
-
-		// Method to run One time a day
+		
+		// Create Daily Statistic
 		if( $user = $this->_get_loggedin_user()){
+			$statistic_model = new StatisticModel;
+			$statistic_model->create_daily_statistic($user->user_id, time());
 
-			$datetime_model = new DateTimeModel;
-			$last_visit_date = $datetime_model->get_date_part_from_sql_timestamp(
-											$user->user_visit_time
-										);
-			$today_date = $datetime_model->get_date_part_from_sql_timestamp(
-									$datetime_model->unix_timestamp_to_sql_timestamp(time())
-								);
-
-			if( $last_visit_date !== $today_date ){
-				$this->user_model->update_visit_time($this->uid);	
-				$this->user_model->run_one_time_a_day($uid);
-
-			}else{
-				$this->user_model->update_visit_time($this->uid);
-			}
 		}
 	}
 
