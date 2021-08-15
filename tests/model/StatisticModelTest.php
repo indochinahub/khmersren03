@@ -13,13 +13,11 @@ class StatisticModelTest extends CIUnitTestCase
         $this->statistic_model = new StatisticModel();
 
         $sql  =  " UPDATE practice SET practice_timespent = 0 ";
-        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
-        $query = $this->statistic_model->query($sql);
+        $sql .=  " WHERE  id_user = 1 ";
+        $query = $this->statistic_model->query($sql);        
 
         $sql  =     " DELETE FROM statistic WHERE  id_user = 1 ";
         $query = $this->statistic_model->query($sql);                
-
-
 
     }    
 
@@ -76,8 +74,8 @@ class StatisticModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);        
 
         $sql  =  " UPDATE practice SET practice_timespent = 0 ";
-        $sql .=  " WHERE  practice_id in (1,2,4,5) ";
-        $query = $this->statistic_model->query($sql);        
+        $sql .=  " WHERE  id_user = 1 ";
+        $query = $this->statistic_model->query($sql);
     }
 
     //return array of statistic
