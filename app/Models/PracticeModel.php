@@ -103,6 +103,26 @@ class PracticeModel extends MyModel
         }
     }    
 
+    // return int or zero
+    public function get_num_practice_have_done_of_the_day($user_id, $unix_timestamp){
+
+        $datetime_model = new DateTimeModel;
+        
+        $lower_boundry_sql_time_stamp = $datetime_model->unix_timestamp_to_sql_timestamp(
+                                            $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day = 0)                            
+                                        );
+        $upper_boundry_sql_time_stamp = $datetime_model->unix_timestamp_to_sql_timestamp(
+                                            $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day = 1)
+                                        );
+        
+        $sql =  " SELECT count(practice_id) AS num_card FROM practice WHERE id_user = $user_id ";
+        $sql .= " AND practice_lastVisitDate > '$lower_boundry_sql_time_stamp' AND practice_lastVisitDate < '$upper_boundry_sql_time_stamp' ";
+
+        $query = $this->query($sql);
+
+        $num = $query->getResult()[0]->num_card;
+        return (int)$num;
+    }
 
 
 

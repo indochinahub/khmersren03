@@ -175,8 +175,25 @@ class PracticeModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);                
 
-    }    
+    }
 
+    // return int or zero
+    public function test_get_num_practice_have_done_of_the_day(){
 
+        // The day '2021-02-20 10:10:10' :: 1613790610
+        $result1 = $this->practice_model->get_num_practice_have_done_of_the_day($user_id = 0, $unix_timestamp = 1613790610 );
+        $result2 = $this->practice_model->get_num_practice_have_done_of_the_day($user_id = 1, $unix_timestamp = 1613790610 );
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2,
+                                ];
+        $expectedResult     =   [ 
+                                    0,
+                                    4,
+                                ];
+
+        $this->assertSame($result,$expectedResult);                
+    }
     
 }
