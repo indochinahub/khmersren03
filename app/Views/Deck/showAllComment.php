@@ -17,7 +17,7 @@
                     <div>
                     </div>
                     <div>
-                        <a href="#" class="btn btn-primary">ไป</a>
+                        <a href="<?php echo base_url(["Card","show","a",$cardcomment->id_card, $cardcomment->id_deck]);?>" class="btn btn-primary">ไป</a>
                     </div>
                 </div>
         </div>
