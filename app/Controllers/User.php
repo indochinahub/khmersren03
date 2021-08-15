@@ -128,13 +128,21 @@ class User extends MyController
         $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visit_time );
 
         $last_15_day_statistic = $statistic_model->get_last_15_day_statistic($data["member"]->user_id, time());
+
         $data["num_visit_last_15_day"] = 0;
+        $timespent_last_15_day = 0;
+        $num_card_last_15_day = 0;
         foreach($last_15_day_statistic as $statistic){
 
             if( $statistic->num_card !== 0  ){
                 $data["num_visit_last_15_day"] = $data["num_visit_last_15_day"] + 1;
+                $timespent_last_15_day = $timespent_last_15_day + $statistic->timespent;
+                $num_card_last_15_day = $num_card_last_15_day + $statistic->num_card;
             }
         }
+
+        $data["timespent_per_day_last_15_day"] = $datetime_model->get_second_in_minute_and_hour(  $timespent_last_15_day /15  ) ;
+        $data["num_card_per_day_last_15_day"] =  floor($num_card_last_15_day / 15);
 
         $data["percent_of_visit_last_15_day"] =  floor( ($data["num_visit_last_15_day"] / 15) * 100 );
 
@@ -143,45 +151,52 @@ class User extends MyController
 	    $data["arr_deck"] = [];
         $data["total_num_all_card"] = 0;
         $data["total_num_user_card"] = 0;
+        $data["total_card_to_review_today"] = 0;
+        $data["total_card_to_review_tomorrow"] = 0;
+
         foreach( $arr_deck as $deck ){
 
-        $deck->course 			= $course_model->get_by_deck_id($deck->deck_id);
-        array_push( $data["arr_deck"], $deck );
+            $deck->course 			= $course_model->get_by_deck_id($deck->deck_id);
+            array_push( $data["arr_deck"], $deck );
 
-        $deck->num_all_card		=   count($card_model->get_by_deck_id($deck->deck_id));
-        $data["total_num_all_card"] = $data["total_num_all_card"] + $deck->num_all_card;
+            $deck->num_all_card		=   count($card_model->get_by_deck_id($deck->deck_id));
+            $data["total_num_all_card"] = $data["total_num_all_card"] + $deck->num_all_card;
 
-        $arr_practice			= 	$practice_model->get_by_deck_id_user_id(
-                                                    $deck->deck_id, 
-                                                    $data["user"]->user_id);
-        $deck->num_user_card  	=   count( $arr_practice );
-        $data["total_num_user_card"] = $data["total_num_user_card"] + $deck->num_user_card; 
-
-        $deck->card_to_review_today   = count(  $practice_model->get_to_review(
+            $arr_practice			= 	$practice_model->get_by_deck_id_user_id(
                                                         $deck->deck_id, 
-                                                        $data["user"]->user_id, 
-                                                        time(), 
-                                                        $next_day = 0 
-                                                )
-                                            );
-        $deck->card_to_review_tomorrow   = count(  $practice_model->get_to_review(
-                                                        $deck->deck_id, 
-                                                        $data["user"]->user_id, 
-                                                        time(), 
-                                                        $next_day = 1 
+                                                        $data["user"]->user_id);
+            $deck->num_user_card  	=   count( $arr_practice );
+            $data["total_num_user_card"] = $data["total_num_user_card"] + $deck->num_user_card; 
+
+            $deck->card_to_review_today   = count(  $practice_model->get_to_review(
+                                                            $deck->deck_id, 
+                                                            $data["user"]->user_id, 
+                                                            time(), 
+                                                            $next_day = 0 
                                                     )
                                                 );
-        $deck->average_card_interval =  $practice_model->get_average_interval(
-                                                        $deck->deck_id,
-                                                        $data["user"]->user_id
-                                                );
+            $data["total_card_to_review_today"]  = $data["total_card_to_review_today"] + $deck->card_to_review_today;
 
-        $deck->timespent 			 = 	$datetime_model->get_second_in_minute_and_hour(
-                                                $statistic_model->get_sum_spenttime_by_user_id_and_deck_id(
-                                                    $data["user"]->user_id,
-                                                    $deck->deck_id
-                                                )				
-                                            );
+            $deck->card_to_review_tomorrow   = count(  $practice_model->get_to_review(
+                                                            $deck->deck_id, 
+                                                            $data["user"]->user_id, 
+                                                            time(), 
+                                                            $next_day = 1 
+                                                        )
+                                                    );
+            $data["total_card_to_review_tomorrow"] = $data["total_card_to_review_tomorrow"] + $deck->card_to_review_tomorrow;
+
+            $deck->average_card_interval =  $practice_model->get_average_interval(
+                                                            $deck->deck_id,
+                                                            $data["user"]->user_id
+                                                    );
+
+            $deck->timespent 			 = 	$datetime_model->get_second_in_minute_and_hour(
+                                                    $statistic_model->get_sum_spenttime_by_user_id_and_deck_id(
+                                                        $data["user"]->user_id,
+                                                        $deck->deck_id
+                                                    )				
+                                                );
         }       
 
         $data["arr_deck"] = $util_model->sort_array_of_object_by_the_property( 

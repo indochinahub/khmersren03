@@ -76,7 +76,7 @@
                 จำนวนเฉลี่ยบัตรคำที่ทำได้ต่อวัน   
             </div>
             <div>
-                xx ข้อ/วัน
+                <?php echo $num_card_per_day_last_15_day;?> ข้อ/วัน
             </div>
         </div>
         <div class="two_flex_column">
@@ -84,7 +84,7 @@
                 เวลาเฉลี่ยที่ใช้ทำบัตรคำต่อวัน    
             </div>
             <div>
-                xx นาที /วัน
+                <?php echo $timespent_per_day_last_15_day;?>/วัน
             </div>
         </div>    
         <div class="two_flex_column">
@@ -99,7 +99,7 @@
                 บัตรคำรอทบทวน      
             </div>
             <div>
-                xx/xxx
+                <?php echo $total_card_to_review_today."/".$total_card_to_review_tomorrow;?>
             </div>
         </div>       
         <div class="two_flex_column">
