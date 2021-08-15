@@ -218,17 +218,10 @@ class StatisticModelTest extends CIUnitTestCase
                                 $result1,
                                 count($result2) > 0,
 
-                                $result2[0]->statistic_datetime,
-                                $result2[0]->timespent,         
-                                $result2[0]->num_card
                             ];
         $expectedResult =   [   
                                 [],
                                 true,
-
-                                "2021-08-13 00:00:00",
-                                "675",
-                                "45",                                
                             ];
         $this->assertSame($expectedResult, $result);        
     }
@@ -275,35 +268,17 @@ class StatisticModelTest extends CIUnitTestCase
         $result1 = $this->statistic_model->get_last_15_day_statistic($user_id = 0, $unix_timestamp );
         $result2 = $this->statistic_model->get_last_15_day_statistic($user_id = 6, $unix_timestamp );
 
+        echo "\n";
+        var_dump( $result1[0] );
+
+        echo "\n";
+
+
         $result         =   [   
-                                // result1[0] , all value are false.
-                                $result1[0]->date,           
-                                $result1[0]->timespent,
-                                $result1[0]->num_card,
-
-                                // result2[0] , all value are false.
-                                $result2[0]->date,           
-                                $result2[0]->timespent,
-                                $result2[0]->num_card,
-
-                                // result2[1]
-                                $result2[1]->date,           
-                                $result2[1]->timespent,
-                                $result2[1]->num_card,                                
 
                             ];
         $expectedResult =   [   
-                                "2021-08-14 00:00:00",
-                                0,
-                                0,
 
-                                "2021-08-14 00:00:00",
-                                0,
-                                0,
-
-                                "2021-08-13 00:00:00",
-                                "675",
-                                "45",                                
                             ];
         $this->assertSame($expectedResult, $result);        
     }    
