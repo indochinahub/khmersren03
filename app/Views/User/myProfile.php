@@ -89,7 +89,7 @@
         </div>    
         <div class="two_flex_column">
             <div style="margin-bottom:5px;">
-                <h5>สถิติวันนี้ xxx ส.ค. 2564</h5>
+                <h5>สถิติวันนี้ <?php echo $today_date;?></h5>
             </div>
             <div>
             </div>
@@ -107,7 +107,7 @@
                 จำนวนบัตรคำที่ทำได้ 
             </div>
             <div>
-                x
+                <?php echo $num_practice_have_done_today;?>
             </div>
         </div>       
         <div class="two_flex_column">
@@ -115,7 +115,8 @@
                 เวลาที่ใช้ทำบัตรคำ  
             </div>
             <div>
-                xx วินาที
+                <?php echo $timespent_today;?> วินาที
+
             </div>
         </div>        
     </div>

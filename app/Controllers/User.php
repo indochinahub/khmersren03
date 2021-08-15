@@ -122,10 +122,16 @@ class User extends MyController
         }
 
         // Statistic Section
+
+        $data["today_date"] = $datetime_model->get_thai_date_from_sql_timestamp(
+                                    $datetime_model->unix_timestamp_to_sql_timestamp( time() )
+                                );
         $data["num_day_from_start"] = $statistic_model->get_num_day_from_start($data["member"]->user_id);
         $data["num_day_of_statistic"] = count($statistic_model->get_daily_statistic($data["member"]->user_id));
         $data["total_timespent_of_user"] = $datetime_model->get_second_in_minute_and_hour( $statistic_model->get_total_timespent_of_user($data["member"]->user_id));
         $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visit_time );
+        $data["num_practice_have_done_today"] = $practice_model->get_num_practice_have_done_of_the_day($data["member"]->user_id, time());
+        $data["timespent_today"] = $practice_model->get_timespent_of_the_day($data["member"]->user_id, time());
 
         $last_15_day_statistic = $statistic_model->get_last_15_day_statistic($data["member"]->user_id, time());
 
@@ -143,7 +149,6 @@ class User extends MyController
 
         $data["timespent_per_day_last_15_day"] = $datetime_model->get_second_in_minute_and_hour(  $timespent_last_15_day /15  ) ;
         $data["num_card_per_day_last_15_day"] =  floor($num_card_last_15_day / 15);
-
         $data["percent_of_visit_last_15_day"] =  floor( ($data["num_visit_last_15_day"] / 15) * 100 );
 
         // Deck Section
