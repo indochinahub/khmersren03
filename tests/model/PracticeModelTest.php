@@ -13,6 +13,11 @@ class PracticeModelTest extends CIUnitTestCase
     {
         parent::setUp();
         $this->practice_model = new PracticeModel();
+
+        $sql  =  " UPDATE practice SET practice_timespent = 0 ";
+        $sql .=  " WHERE  id_user = 1 ";
+        $query = $this->practice_model->query($sql);        
+
     }
     
     //return array of ojbect or blank array
@@ -195,5 +200,30 @@ class PracticeModelTest extends CIUnitTestCase
 
         $this->assertSame($result,$expectedResult);                
     }
+
+    // return int
+    public function test_get_timespent_of_the_day(){
+
+        $sql =  " UPDATE practice SET practice_timespent = 10 ";
+        $sql .= " WHERE  practice_id = 158 OR ";
+        $sql .= " practice_id = 159 OR "; 
+        $sql .= " practice_id = 28496 OR "; 
+        $sql .= " practice_id = 28497 ";
+        $this->practice_model->query($sql);
+
+        // The day '2021-02-20 10:10:10' :: 1613790610
+        $result1 = $this->practice_model->get_timespent_of_the_day($user_id = 0 , $unix_timestamp = 1613790610);
+        $result2 = $this->practice_model->get_timespent_of_the_day($user_id = 1 , $unix_timestamp = 1613790610);
+
+        $result             =   [ 
+                                    $result1,
+                                    $result2,
+                                ];
+        $expectedResult     =   [ 
+                                    0,
+                                    40,
+                                ];
+        $this->assertSame($result,$expectedResult);                
+    }    
     
 }
