@@ -13,6 +13,7 @@ use \App\Models\UtilModel;
 use \App\Models\PostModel;
 use \App\Models\MediaModel;
 use \App\Models\PostcategoryModel;
+use \App\Models\PaginationModel;
 
 class User extends MyController
 {
@@ -306,13 +307,46 @@ class User extends MyController
     }
 
     public function showAll(){
+        $user_model = new UserModel;
+        $util_model = new UtilModel;
+        $pagination_model = new PaginationModel;
+        $datetime_model = new DateTimeModel;
+
+        $arr_user = $user_model->get_all_row();
+
+        $arr_user = $util_model->sort_array_of_object_by_the_property( 
+                                    $arr_user, 
+                                    "user_visit_time", 
+                                    $order_by ="desc"
+                                );
+
+        if( ! ($page = $this->request->getGet('page')) ){
+            $page = 1;
+        }                                
+
+        $pagination = $pagination_model->get_pagination( 
+                            $arr_user, 
+                            $current_page = $page , 
+                            $per_page = 10
+                        );
+        $data["pagination_link"] = $pagination->link;
+        $arr_user = $pagination->arr_row; 
+
+        $data["arr_user"] = [];
+        foreach( $arr_user as $user){
+
+            $user->display_name = $user_model->get_user_displayname($user);
+            $user->avatar_url = $user_model->get_avarta_url($user->user_id);
+            $user->user_visit_time = $datetime_model->get_thai_datetime_from_sql_timestamp($user->user_visit_time);
+
+            array_push($data["arr_user"], $user);
+        }                
 
         $data["page_title"] = 	"ผู้ใช้ทั้งหมด ";
         $data["page_link"] 	= 	[	"กลับ",
                                     $this->_get_backlink()
                                 ];	        
         $this->_view("showAll",$data);               
-
     }
 
 }
