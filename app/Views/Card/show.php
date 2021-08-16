@@ -215,13 +215,15 @@
                     โดย :: [ <strong><?php echo $cardcomment->owner_name;?></strong> ] เมื่อ <?php echo $cardcomment->cardcomment_createtime;?>
                 </div>
 
-                <?php if( $if_user_is_admin === true ) { ?>
+                <?php if( ( $cardcomment->relation === "i_am_owner" ) || ( $cardcomment->relation === "i_am_admin" ) ) { ?>
                 
                     <div class="two_flex_column">
                         <div>
+                            
                         </div>
                         <div>
-                            <a href="<?php echo base_url();?>" class="btn btn-primary">ไป</a>
+                        <?php if( $cardcomment->relation === "i_am_admin" ){ echo "[As Admin]";}?> 
+                            <a href="<?php echo base_url();?>" class="btn btn-primary">ลบ</a>
                         </div>
                     </div>
                 <?php } ?>
