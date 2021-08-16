@@ -39,7 +39,7 @@
                         </li>                
 
                         <li>                
-                            <a href="<?php echo base_url(["User","myChat"]);?>"><i class="fas fa-angle-double-right"></i> ข้อความส่วนตัว</a>
+                            <a href="<?php echo base_url(["Message","myChat"]);?>"><i class="fas fa-angle-double-right"></i> ข้อความส่วนตัว</a>
                         </li>                
 
                         <li>                
