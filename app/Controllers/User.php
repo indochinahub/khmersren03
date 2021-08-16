@@ -132,6 +132,8 @@ class User extends MyController
         $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visit_time );
         $data["num_practice_have_done_today"] = $practice_model->get_num_practice_have_done_of_the_day($data["member"]->user_id, time());
         $data["timespent_today"] = $practice_model->get_timespent_of_the_day($data["member"]->user_id, time());
+        $data["total_card_to_review_today"] = $practice_model->get_total_num_to_review($data["member"]->user_id, time(), 1);
+        $data["total_card_to_review_tomorrow"] = $practice_model->get_total_num_to_review($data["member"]->user_id, time(), 2);
 
         $last_15_day_statistic = $statistic_model->get_last_15_day_statistic($data["member"]->user_id, time());
 
@@ -156,8 +158,6 @@ class User extends MyController
 	    $data["arr_deck"] = [];
         $data["total_num_all_card"] = 0;
         $data["total_num_user_card"] = 0;
-        $data["total_card_to_review_today"] = 0;
-        $data["total_card_to_review_tomorrow"] = 0;
 
         foreach( $arr_deck as $deck ){
 
@@ -180,7 +180,6 @@ class User extends MyController
                                                             $next_day = 0 
                                                     )
                                                 );
-            $data["total_card_to_review_today"]  = $data["total_card_to_review_today"] + $deck->card_to_review_today;
 
             $deck->card_to_review_tomorrow   = count(  $practice_model->get_to_review(
                                                             $deck->deck_id, 
@@ -189,8 +188,7 @@ class User extends MyController
                                                             $next_day = 1 
                                                         )
                                                     );
-            $data["total_card_to_review_tomorrow"] = $data["total_card_to_review_tomorrow"] + $deck->card_to_review_tomorrow;
-
+            
             $deck->average_card_interval =  $practice_model->get_average_interval(
                                                             $deck->deck_id,
                                                             $data["user"]->user_id
