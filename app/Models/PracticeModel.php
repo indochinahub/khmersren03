@@ -32,15 +32,28 @@ class PracticeModel extends MyModel
         $unix_timestamp = $datetime_model->get_unix_timestamp($unix_timestamp, $next_day);
         $sql_time_stamp = $datetime_model->unix_timestamp_to_sql_timestamp($unix_timestamp);
 
-        
-        $where_clause = " WHERE id_deck = ".$deck_id." AND id_user = ".$user_id;
-
-
         $where_clause       =   " WHERE id_deck = ".$deck_id." AND id_user = ".$user_id;
         $where_clause       .=  " AND practice_nextVisitDate < '$sql_time_stamp' " ;
         $where_clause       .=  " ORDER BY practice_intervalDay DESC ";
 
         return  $this->get_where($where_clause);
+    }
+
+    // return int
+    public function get_total_num_to_review($user_id, $unix_timestamp, $next_day){
+
+        $datetime_model = new DateTimeModel();
+
+        $today_midnight = $datetime_model->unix_timestamp_to_sql_timestamp(
+                                    $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day)                            
+                                );
+        $sql =  " SELECT count(practice_id) as num FROM practice ";
+        $sql .= " WHERE id_user = $user_id AND practice_nextVisitDate < '$today_midnight' ";
+
+        $query = $this->query($sql);
+        $num = $query->getResult()[0]->num;
+        return (int) $num;
+
     }
 
     // return object or false

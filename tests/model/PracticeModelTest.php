@@ -225,5 +225,34 @@ class PracticeModelTest extends CIUnitTestCase
                                 ];
         $this->assertSame($result,$expectedResult);                
     }    
+
+    // return int
+    public function test_get_total_num_to_review(){
+
+        // unix_timestamp = 1582567200
+        // sqlTimeStamp = '2020-02-25 01:00:00'
+        $result1 = $this->practice_model->get_total_num_to_review( 
+                            $user_id = 1, 
+                            $unix_timestamp = 1582567200, 
+                            $next_day = 1
+                        );
+        
+
+        $result2 = $this->practice_model->get_total_num_to_review( 
+                            $user_id = 0, 
+                            $unix_timestamp = time(), 
+                            $next_day = 1
+                        );
+                        
+        $result             =   [ 
+                                    $result1, 
+                                    $result2, 
+                                ];
+        $expectedResult     =   [ 
+                                    12,
+                                    0,
+                                ];
+        $this->assertSame($result,$expectedResult);                        
+    }
     
 }
