@@ -100,5 +100,29 @@ class Cardcomment extends MyController
         }
     }
 
+    public function delete($cardcomment_id, $confirm = "0"){
+
+        $cardcomment_model = new CardcommentModel;
+
+        if( $confirm === "0" ){
+            $data    =  [   "page_title"=>"ยืนยันการลบความเห็น",
+                            "what_happened"=>"ท่านกำลังความคิดเห็นหมายเลข $cardcomment_id ",
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url( ["Cardcomment","delete",$cardcomment_id,1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => $this->_get_backlink(),
+                        ];  		
+
+            $this->_view("confirm",$data);
+
+        }else{
+            $cardcomment = $cardcomment_model->get_by_id( $cardcomment_id );
+            $cardcomment_model->delete_by_id($cardcomment_id);
+            return redirect()->to(base_url(["Card","show","a",$cardcomment->id_card,$cardcomment->id_deck]));		
+
+        }
+    }
+
 }
 
