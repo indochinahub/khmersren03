@@ -331,6 +331,7 @@ class User extends MyController
         $util_model = new UtilModel;
         $pagination_model = new PaginationModel;
         $datetime_model = new DateTimeModel;
+        $practice_model = new PracticeModel;
 
         $arr_user = $user_model->get_all_row();
 
@@ -354,6 +355,10 @@ class User extends MyController
 
         $data["arr_user"] = [];
         foreach( $arr_user as $user){
+
+            $user->num_card_to_review_today = $practice_model->get_total_num_to_review($user->user_id,time(),1);
+            $user->num_card_to_review_tomorrow = $practice_model->get_total_num_to_review($user->user_id,time(),2);
+            
 
             $user->display_name = $user_model->get_user_displayname($user);
             $user->avatar_url = $user_model->get_avarta_url($user->user_id);
