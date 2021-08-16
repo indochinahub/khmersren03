@@ -17,6 +17,11 @@ p {
     ;
 }
 
+
+h5{
+    margin-bottom: 0px;
+}
+
 #sidebar a,
 #sidebar a:hover,
 #sidebar a:focus {

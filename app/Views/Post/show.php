@@ -4,7 +4,7 @@
 
         <div>
             <h5><?php echo $post->post_title;?></h5>
-            <h6>
+            <h6 style="margin-top:5px">
                 [ <?php echo $post->post_createddate;?>
                     โดย 
                     <a href="<?php echo base_url( ["User","myProfile", $owner->user_id]);?>">

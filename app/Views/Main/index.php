@@ -16,7 +16,7 @@
 
             <div>
                 <h5><a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>"><?php echo $post->post_title;?></a></h5>
-                <h6>
+                <h6 style="margin-top:5px">
                     [ <?php echo $post->post_createddate;?>
                         โดย 
                         <a href="<?php echo base_url( ["User","myProfile", $post->user->user_id]);?>">
