@@ -203,7 +203,7 @@
 
 </div>
 
-<?php if( ($page === "b" ){ ?>
+<?php if( $page === "b" ){ ?>
 
     <div class="card-info">
         <div class="card-info card-info_header">ความคิดเห็น</div>
@@ -211,18 +211,39 @@
         <?php foreach( $arr_cardcomment as $cardcomment){ ?>
             <div class="card-info card-info_body">
                 <div>
-                    โดย :: [ <strong><?php echo $cardcomment->owner_name;?></strong> ] เมื่อ <?php echo $cardcomment->cardcomment_createtime;?><br>
-                    <strong> ความเห็น </strong> :: <?php echo nl2br($cardcomment->cardcomment_text);?>
+                <strong> ความเห็น </strong> :: <?php echo nl2br($cardcomment->cardcomment_text);?><br>
+                    โดย :: [ <strong><?php echo $cardcomment->owner_name;?></strong> ] เมื่อ <?php echo $cardcomment->cardcomment_createtime;?>
                 </div>
-                <div class="two_flex_column">
-                    <div>
+
+                <?php if( $if_user_is_admin === true ) { ?>
+                
+                    <div class="two_flex_column">
+                        <div>
+                        </div>
+                        <div>
+                            <a href="<?php echo base_url();?>" class="btn btn-primary">ไป</a>
+                        </div>
                     </div>
-                    <div>
-                        <a href="<?php echo base_url();?>" class="btn btn-primary">ไป</a>
-                    </div>
-                </div>
+                <?php } ?>
+
             </div>
         <?php } ?>
+
+        <div class="card-info card-info_body">
+            <form role="form" method="post" action="<?php echo base_url([ "Cardcomment","add",$card->card_id, $deck->deck_id]);?>">
+                <div class="form-group">
+                    <label><strong>เพิ่มความเห็น</strong></label>
+                    <textarea class="form-control" name="cardcomment_text" rows="2"></textarea>
+                </div>
+                <div class="two_flex_column">
+                        <div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">เพิ่ม</button>
+                        </div>
+                </div>
+            </form>
+        </div>        
     </div>
 
 <?php } ?>

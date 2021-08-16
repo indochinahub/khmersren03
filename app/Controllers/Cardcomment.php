@@ -68,7 +68,37 @@ class Cardcomment extends MyController
                                     base_url()
                                 ];	        
         $this->_view("showAll",$data);
-
     }
+
+    public function add($card_id,$deck_id){
+        $cardcomment_model = new CardcommentModel;
+
+        $user = $this->_get_loggedin_user();
+
+        if(     ( $this->request->getMethod() === "post" )  && 
+                ( $cardcomment_text = trim($this->request->getPost("cardcomment_text")) )
+          ){
+
+            $detail =   [
+                            "id_user"=>$user->user_id,
+                            "id_card"=>$card_id, 
+                            "id_deck"=>$deck_id,
+                            "cardcomment_text"=>$cardcomment_text
+                        ];
+            $cardcomment_model->insert($detail);
+            return redirect()->to( $this->_get_backlink() );		
+            
+        }else{
+
+            $data	= [     "page_title"=>"ไม่มีความคิดเห็น",
+                            "what_happened"=>"คุณไม่ได้กรอกข้อความใดๆ ในช่องแสดงความคิดเห็น",
+                            "what_todo" => "คลิ๊กที่ปุ่ม <bold>กลับ</bold> เพื่อกลับไปบัตรคำ",
+                            "btnText_toGo" => "กลับ",
+                            "btnLink_toGo" => $this->_get_backlink()
+                    ];
+            $this->_warn($data);
+        }
+    }
+
 }
 
