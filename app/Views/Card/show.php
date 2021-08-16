@@ -223,7 +223,8 @@
                         </div>
                         <div>
                         <?php if( $cardcomment->relation === "i_am_admin" ){ echo "[As Admin]";}?> 
-                            <a href="<?php echo base_url();?>" class="btn btn-primary">ลบ</a>
+                            <a href="<?php echo base_url( ["Cardcomment","delete", $cardcomment->cardcomment_id] );?>" class="btn btn-primary">ลบ</a>
+                            
                         </div>
                     </div>
                 <?php } ?>
