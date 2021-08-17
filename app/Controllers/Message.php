@@ -68,21 +68,21 @@ class Message extends MyController
         $datetime_model = new DateTimeModel;
 
         // Check user's previlege
-        if( $user = $this->_get_loggedin_user() ){
+        if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
             $this->_needLogin();
             return;
         }
 
-        $other = $user_model->get_by_id($other_id);
-        $other_displayname = $user_model->get_user_displayname($other);
+        $data["other"] = $user_model->get_by_id($other_id);
+        $other_displayname = $user_model->get_user_displayname($data["other"]);
 
-        $arr_message = $message_model->get_message_with_other($user->user_id,$other_id);
+        $arr_message = $message_model->get_message_with_other($data["user"]->user_id,$other_id);
 
         $data["arr_message"] = [];
         foreach( $arr_message as $message){
 
-            if( $message->id_sender === $user->user_id){
+            if( $message->id_sender === $data["user"]->user_id){
                 $message->role = "i_am_sender";
                 $message->message_senddate = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_senddate);
 
@@ -106,6 +106,46 @@ class Message extends MyController
                                     base_url(["Message","myChat"])
                                 ];	        
         $this->_view("with",$data);
+    }
+
+    
+    public function send($user_id,$other_id){
+        
+        $message_model = new MessageModel;
+
+        // Check user's previlege
+        if( $data["user"] = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        if(  ( $this->request->getMethod() === "post" )  && 
+             ( $cardcomment_text = trim($this->request->getPost("cardcomment_text")) )
+        ){
+
+            $detail = [ 
+                        "id_sender"=>$user_id,
+                        "id_receiver"=>$other_id,
+                        "message_text"=>$this->request->getPost("cardcomment_text") 
+                      ];
+            $message_model->insert($detail);
+            return redirect()->to( $this->_get_backlink() );		
+
+        }else{
+
+            $data	= [     "page_title"=>"ไม่ข้อความ",
+                            "what_happened"=>"คุณไม่ได้กรอกข้อความใดๆ ในช่องส่งข้อความ",
+                            "what_todo" => "คลิ๊กที่ปุ่ม <bold>กลับ</bold> เพื่อกลับห้องสนทนา",
+                            "btnText_toGo" => "กลับ",
+                            "btnLink_toGo" => $this->_get_backlink()
+                    ];
+            $this->_warn($data);            
+
+        }
+
+        
+
 
     }
     

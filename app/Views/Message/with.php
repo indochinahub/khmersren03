@@ -48,6 +48,25 @@
 <?php } ?>
 
 <div class="card-info">
-    <div class="card-info card-info_header">This is Headdrr</div>
-    <div class="card-info card-info_body">This is Body</div>
+    <div class="card-info card-info_header">
+        ส่งข้อความ
+    </div>
+    <div class="card-info card-info_body">
+
+        <form role="form" method="post" action="<?php echo base_url(["Message","send",$user->user_id,$other->user_id ]);?>">
+            
+            <div class="form-group">
+                <label><strong>เพิ่มความเห็น</strong></label>
+                <textarea class="form-control" name="cardcomment_text" rows="2"></textarea>
+            </div>
+            <div class="two_flex_column">
+                    <div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">เพิ่ม</button>
+                    </div>
+            </div>
+        </form>
+
+    </div>
 </div>
