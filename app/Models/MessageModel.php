@@ -69,7 +69,7 @@ class MessageModel extends MyModel
         $util_model = new UtilModel;
 
         $where_clause =  " WHERE (id_sender = $user_id  AND id_receiver = $other_id) ";
-        $where_clause .= " OR (id_sender = $user_id  AND id_receiver = $other_id) ";
+        $where_clause .= " OR (id_sender = $other_id  AND id_receiver = $user_id) ";
 
         if( $arr_message = $this->get_where($where_clause) ){
 
