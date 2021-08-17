@@ -81,6 +81,24 @@ class MessageModelTest extends CIUnitTestCase
                                 false,
                             ];
         $this->assertSame($expectedResult, $result);
-    }    
+    }
+
+    // return array
+    public function test_get_message_with_other(){
+
+        $result1 = $this->message_model->get_message_with_other($user_id = 1,$other_id = 2);
+        $result2 = $this->message_model->get_message_with_other($user_id = 0,$other_id = 0);
+
+        $result         =   [ 
+                                count($result1),
+                                count($result2),
+                            ];
+        $expectedResult =   [ 
+                                17,
+                                0,
+                            ];
+        $this->assertSame($expectedResult, $result);        
+    }
+
    
 }

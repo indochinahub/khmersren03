@@ -86,6 +86,22 @@ class MessageModel extends MyModel
         }
     }
 
+    // return array
+    public function get_message_with_other($user_id,$other_id){
+
+        $where_clause =     " WHERE (id_sender = $user_id  AND id_receiver = $other_id) ";
+        $where_clause .=    " OR (id_sender = $other_id AND id_receiver = $user_id) ";
+        $where_clause .=    " ORDER BY message_id DESC ";
+
+        if( $arr_message = $this->get_where($where_clause) ){
+            $arr_message = $this->add_active_date_property_to_message($arr_message);
+            return $arr_message;
+
+        }else{
+            return [];
+
+        }
+    }
 
 
 
