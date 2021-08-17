@@ -11,7 +11,7 @@
                         </div>
                         <div>
                             โดย [<strong>xxx</strong>]<br>
-                            <?php echo $message->message_readdate;?>
+                            ส่งเมื่อ <?php echo $message->message_senddate;?>
                         </div>
                     </div>
                     <div>
@@ -35,7 +35,7 @@
                         </div>
                         <div>
                             โดย [<strong>xxxxx</strong>]<br>
-                            ส่งเมื่อ <?php echo $message->message_senddate;?>
+                            <?php echo $message->message_readdate;?>
                         </div>
                     </div>
                 </div>

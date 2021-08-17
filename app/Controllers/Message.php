@@ -84,19 +84,18 @@ class Message extends MyController
 
             if( $message->id_sender === $data["user"]->user_id){
                 $message->role = "i_am_sender";
-                $message->message_senddate = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_senddate);
-
             }else{
                 $message->role = "i_am_reciever";
-                if( $message->message_readdate){  
-                    $message->message_readdate = "อ่านเมื่อ ".$datetime_model->get_thai_datetime_from_sql_timestamp($message->message_readdate);
-                }else{
-                    $message->message_readdate = "[ยังไม่ได้อ่าน]";
-
-                }
-
-                $message->message_senddate = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_senddate);
             }
+
+            $message->message_senddate = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_senddate);
+
+            if( $message->message_readdate ){
+                $message->message_readdate = "อ่านเมื่อ ".$datetime_model->get_thai_datetime_from_sql_timestamp($message->message_readdate);
+            }else{
+                $message->message_readdate = "[ยังไม่ได้อ่าน]";
+            }
+
 
             array_push($data["arr_message"], $message);
         }
