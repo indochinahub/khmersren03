@@ -10,7 +10,7 @@
                             <?php echo $message->message_text;?>
                         </div>
                         <div>
-                            โดย [<strong>xxx</strong>]<br>
+                            โดย [<strong><?php echo $other_displayname;?></strong>]<br>
                             ส่งเมื่อ <?php echo $message->message_senddate;?>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                             <?php echo $message->message_text;?>
                         </div>
                         <div>
-                            โดย [<strong>xxxxx</strong>]<br>
+                            โดย [<strong><?php echo $user_displayname;?></strong>]<br>
                             <?php echo $message->message_readdate;?>
                         </div>
                     </div>

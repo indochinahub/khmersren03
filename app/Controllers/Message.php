@@ -34,6 +34,7 @@ class Message extends MyController
         
         $arr_other_id = $message_model->get_other_id_wchich_chatted_with_user($user->user_id);
 
+
         $data["arr_message"] = [];
         foreach( $arr_other_id as $other_id  ){
 
@@ -48,11 +49,14 @@ class Message extends MyController
             array_push($data["arr_message"],$message);
         }
 
+
         $data["arr_message"] = $util_model->sort_array_of_object_by_the_property( 
                                     $data["arr_message"], 
                                     "active_date", 
                                     $order_by ="desc"
                                 );
+
+
 
         $data["page_title"] = 	"ข้อความของฉัน ";
         $data["page_link"] 	= 	[	"กลับ",
@@ -74,8 +78,9 @@ class Message extends MyController
             return;
         }
 
+        $data["user_displayname"] = $user_model->get_user_displayname($data["user"]);
         $data["other"] = $user_model->get_by_id($other_id);
-        $other_displayname = $user_model->get_user_displayname($data["other"]);
+        $data["other_displayname"] = $user_model->get_user_displayname($data["other"]);
 
         $arr_message = $message_model->get_message_with_other($data["user"]->user_id,$other_id);
 
@@ -100,7 +105,7 @@ class Message extends MyController
             array_push($data["arr_message"], $message);
         }
 
-        $data["page_title"] = 	"ข้อความกับ $other_displayname ";
+        $data["page_title"] = 	"ข้อความกับ ".$data["other_displayname"];
         $data["page_link"] 	= 	[	"ข้อความของฉัน",
                                     base_url(["Message","myChat"])
                                 ];	        
