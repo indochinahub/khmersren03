@@ -114,7 +114,24 @@ class MessageModelTest extends CIUnitTestCase
                                 0,
                                 6,
                             ];
-        $this->assertSame($expectedResult, $result);                
-    }    
+        $this->assertSame($expectedResult, $result);
+    }
+    
+    // return int
+    public function test_get_total_num_unread_message(){
+
+        $result1 = $this->message_model->get_total_num_unread_message($user_id = 0);
+        $result2 = $this->message_model->get_total_num_unread_message($user_id = 1);
+
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
+        $expectedResult =   [ 
+                                0,
+                                10,
+                            ];
+        $this->assertSame($expectedResult, $result);        
+    }
    
 }
