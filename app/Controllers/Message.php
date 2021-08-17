@@ -45,6 +45,7 @@ class Message extends MyController
             $message->other_displayname = $user_model->get_user_displayname($other);
 
             $message->thai_active_date = $datetime_model->get_thai_datetime_from_sql_timestamp($message->active_date);
+            $message->num_unread = $message_model->get_num_unread_message($user->user_id,$other_id);
 
             array_push($data["arr_message"],$message);
         }
