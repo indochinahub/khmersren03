@@ -100,5 +100,21 @@ class MessageModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);        
     }
 
+    // return  int
+    public function test_get_num_unread_message(){
+
+        $result1 = $this->message_model->get_num_unread_message($user_id = 0,$other_id = 0);
+        $result2 = $this->message_model->get_num_unread_message($user_id = 1,$other_id = 2);
+
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
+        $expectedResult =   [ 
+                                0,
+                                6,
+                            ];
+        $this->assertSame($expectedResult, $result);                
+    }    
    
 }

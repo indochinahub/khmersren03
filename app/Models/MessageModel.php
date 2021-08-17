@@ -103,6 +103,19 @@ class MessageModel extends MyModel
         }
     }
 
+    // return  int
+    public function get_num_unread_message($user_id,$other_id){
+
+        $sql =  " SELECT COUNT(message_id) as num ";
+        $sql .= " FROM message ";
+        $sql .= " WHERE id_sender = $other_id AND id_receiver = $user_id AND message_readdate IS NULL ";
+        
+        $query = $this->query($sql);
+        $result = $query->getResult();
+
+        return (int)  $result[0]->num; 
+    }
+
 
 
 }
