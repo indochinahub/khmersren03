@@ -62,7 +62,50 @@ class Message extends MyController
     }
 
     public function with($other_id){
-        echo "xxxx";
+
+        $user_model = new UserModel;
+        $message_model = new MessageModel;
+        $datetime_model = new DateTimeModel;
+
+        // Check user's previlege
+        if( $user = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        $other = $user_model->get_by_id($other_id);
+        $other_displayname = $user_model->get_user_displayname($other);
+
+        $arr_message = $message_model->get_message_with_other($user->user_id,$other_id);
+
+        $data["arr_message"] = [];
+        foreach( $arr_message as $message){
+
+            if( $message->id_sender === $user->user_id){
+                $message->role = "i_am_sender";
+                $message->message_senddate = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_senddate);
+
+            }else{
+                $message->role = "i_am_reciever";
+                if( $message->message_readdate){  
+                    $message->message_readdate = "อ่านเมื่อ ".$datetime_model->get_thai_datetime_from_sql_timestamp($message->message_readdate);
+                }else{
+                    $message->message_readdate = "[ยังไม่ได้อ่าน]";
+
+                }
+
+                $message->message_senddate = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_senddate);
+            }
+
+            array_push($data["arr_message"], $message);
+        }
+
+        $data["page_title"] = 	"ข้อความกับ $other_displayname ";
+        $data["page_link"] 	= 	[	"ข้อความของฉัน",
+                                    base_url(["Message","myChat"])
+                                ];	        
+        $this->_view("with",$data);
 
     }
     
