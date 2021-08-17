@@ -18,7 +18,7 @@ use \App\Models\MessageModel;
 
 class Message extends MyController
 {
-    public function myChat(){
+    public function myMessage(){
 
         $message_model = new MessageModel;
         $user_model = new UserModel;
