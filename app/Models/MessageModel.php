@@ -63,21 +63,31 @@ class MessageModel extends MyModel
             return [];
 
         }
-
-
     }
 
-
-    /*
-    public function get_user_id_who_chat_with($user_id){
-
+    // return object or false
+    public function get_last_active_messge_with_other($user_id,$other_id){
         
-        $where_clause =     " WHERE (id_sender = $user_id  AND id_receiver = $member_id) ";
-        $where_clause .=    " OR (id_sender = $member_id  AND id_receiver = $user_id) ";
-        $where_clause .=    " ORDER BY message_id DESC ";
+        $util_model = new UtilModel;
 
-    }        
-    */ 
+        $where_clause =  " WHERE (id_sender = $user_id  AND id_receiver = $other_id) ";
+        $where_clause .= " OR (id_sender = $user_id  AND id_receiver = $other_id) ";
+
+        if( $arr_message = $this->get_where($where_clause) ){
+
+            $arr_message = $this->add_active_date_property_to_message($arr_message);
+            $arr_message = $util_model->sort_array_of_object_by_the_property( 
+                                            $arr_message, 
+                                            "active_date", 
+                                            $order_by ="desc"
+                                        );
+            return $arr_message[0];
+        }else{
+
+            return false;
+        }
+    }
+
 
 
 

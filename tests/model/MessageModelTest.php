@@ -63,5 +63,24 @@ class MessageModelTest extends CIUnitTestCase
 
         $this->assertSame($expectedResult, $result);
     }
+
+    // return object or false
+    public function test_get_last_active_messge_with_other(){
+
+        $result1 = $this->message_model->get_last_active_messge_with_other($user_id = 1,$other_id = 2);
+        $result2 = $this->message_model->get_last_active_messge_with_other($user_id = 0,$other_id = 2);
+
+        $result         =   [ 
+                                $result1->message_id,
+
+                                $result2
+                            ];
+        $expectedResult =   [ 
+                                "28",
+
+                                false,
+                            ];
+        $this->assertSame($expectedResult, $result);
+    }    
    
 }
