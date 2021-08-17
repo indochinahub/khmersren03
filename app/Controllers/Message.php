@@ -49,7 +49,6 @@ class Message extends MyController
             array_push($data["arr_message"],$message);
         }
 
-
         $data["arr_message"] = $util_model->sort_array_of_object_by_the_property( 
                                     $data["arr_message"], 
                                     "active_date", 
@@ -98,7 +97,7 @@ class Message extends MyController
             if( $message->message_readdate ){
                 $message->message_readdate = "อ่านเมื่อ ".$datetime_model->get_thai_datetime_from_sql_timestamp($message->message_readdate);
             }else{
-                $message->message_readdate = "[ยังไม่ได้อ่าน]";
+                $message->message_readdate = "[ผู้รับยังไม่ได้อ่าน]";
             }
 
 
