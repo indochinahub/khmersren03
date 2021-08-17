@@ -14,6 +14,7 @@ class MessageModel extends MyModel
         parent::__construct();
         $this->table = "message";
         $this->primaryKey = $this->table."_id";
+
     }
 
     //return array of object with new property
@@ -127,10 +128,23 @@ class MessageModel extends MyModel
         $result = $query->getResult();
 
         return (int)  $result[0]->num;         
-
     }
 
+    // return num rows
+    public function set_read_time($user_id,$other_id,$unix_timestamp){
 
+        $datetime_model = new DateTimeModel;
+
+        $sql_timestamp =  $datetime_model->unix_timestamp_to_sql_timestamp($unix_timestamp);
+
+        $sql =  " UPDATE message SET message_readdate='$sql_timestamp' ";
+        $sql .= " WHERE  id_receiver = $user_id AND id_sender = $other_id ";
+        $sql .= " AND message_readdate IS NULL ";
+
+        $this->query($sql);
+
+        return $this->affectedRows();
+    }
 
 }
 

@@ -12,6 +12,12 @@ class MessageModelTest extends CIUnitTestCase
         parent::setUp();
         $this->message_model = new MessageModel();
 
+        $sql =  " UPDATE message SET message_readdate = null ";
+        $sql .= " WHERE  message_id in (46,47) ";
+        $this->message_model->query($sql);
+        
+
+
     }    
 
 
@@ -130,6 +136,23 @@ class MessageModelTest extends CIUnitTestCase
         $expectedResult =   [ 
                                 0,
                                 10,
+                            ];
+        $this->assertSame($expectedResult, $result);
+    }
+
+    // return num rows
+    public function test_set_read_time(){
+
+        $result1 = $this->message_model->set_read_time(
+                                $user_id = 3,
+                                $other_id = 1,
+                                time());
+
+        $result         =   [ 
+                                $result1
+                            ];
+        $expectedResult =   [ 
+                                2
                             ];
         $this->assertSame($expectedResult, $result);        
     }
