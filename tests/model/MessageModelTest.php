@@ -47,14 +47,18 @@ class MessageModelTest extends CIUnitTestCase
 
 
     // return array of object
-    public function test_get_message_related_to_user(){
+    public function test_get_other_id_wchich_chatted_with_user(){
         
-        $result1 = $this->message_model->get_message_related_to_user($user_id = 1);
+        $result1 = $this->message_model->get_other_id_wchich_chatted_with_user($user_id = 1);
+        $result2 = $this->message_model->get_other_id_wchich_chatted_with_user($user_id = 0);
+
         $result         =   [ 
-                                0
+                                $result1,
+                                $result2,
                             ];
         $expectedResult =   [ 
-                                0
+                                ["2","6","3"],
+                                [],
                             ];
 
         $this->assertSame($expectedResult, $result);
