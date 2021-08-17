@@ -14,10 +14,45 @@ use \App\Models\PostModel;
 use \App\Models\MediaModel;
 use \App\Models\PostcategoryModel;
 use \App\Models\PaginationModel;
+use \App\Models\MessageModel;
 
 class Message extends MyController
 {
     public function myChat(){
+
+        $message_model = new MessageModel;
+        $user_model = new UserModel;
+        $datetime_model = new DateTimeModel;
+        $util_model = new UtilModel;
+
+        // Check user's previlege
+        if( $user = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+        
+        $arr_other_id = $message_model->get_other_id_wchich_chatted_with_user($user->user_id);
+
+        $data["arr_message"] = [];
+        foreach( $arr_other_id as $other_id  ){
+
+            $message = $message_model->get_last_active_messge_with_other($user->user_id,$other_id);
+
+            $other = $user_model->get_by_id($other_id);
+            $message->other = $other;
+            $message->other_displayname = $user_model->get_user_displayname($other);
+
+            $message->thai_active_date = $datetime_model->get_thai_datetime_from_sql_timestamp($message->active_date);
+
+            array_push($data["arr_message"],$message);
+        }
+
+        $data["arr_message"] = $util_model->sort_array_of_object_by_the_property( 
+                                    $data["arr_message"], 
+                                    "active_date", 
+                                    $order_by ="desc"
+                                );
 
         $data["page_title"] = 	"ข้อความของฉัน ";
         $data["page_link"] 	= 	[	"กลับ",
@@ -25,5 +60,11 @@ class Message extends MyController
                                 ];	        
         $this->_view("myMessage",$data);
     }
+
+    public function with($other_id){
+        echo "xxxx";
+
+    }
+    
 }
 

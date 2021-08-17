@@ -34,8 +34,6 @@ class MessageModel extends MyModel
         return $new_arr_message;
     }
 
-
-
     // return array of object
     public function get_other_id_wchich_chatted_with_user($user_id){
         
