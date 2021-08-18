@@ -1,0 +1,26 @@
+
+
+<?php if( $total_unread_message > 0 ){ ?>
+
+    <div class="card-danger">
+
+        <div class="card-danger card-danger_header">
+            แจ้งเตือน
+        </div>
+
+        <div class="card-danger card-danger_body">
+            
+            <div class="two_flex_column">
+                    <div>
+                        คุณมีข้อความที่ยังไม่ได้อ่าน <strong><?php echo $total_unread_message;?></strong> ข้อความ
+                    </div>
+                    <div>
+                        <a href="<?php echo base_url(["Message","myMessage"]);?>" class="btn btn-primary">ไป</a>
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<?php } ?>    

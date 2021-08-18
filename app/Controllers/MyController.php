@@ -6,6 +6,7 @@ use App\Models\UtilModel;
 use App\Models\UserModel;
 use App\Models\DateTimeModel;
 use App\Models\StatisticModel;
+use App\Models\MessageModel;
 
 
 class MyController extends BaseController {
@@ -53,6 +54,7 @@ class MyController extends BaseController {
 	}
 
 	public function _view($filename,$data){
+		$message_model = new MessageModel;
 
 		// Pass some vars to View
 			$data["uid"] = $this->uid;
@@ -63,9 +65,11 @@ class MyController extends BaseController {
 		// Pass user object
 		if( $data["loggedin_user"] = $this->_get_loggedin_user() ){
 			$data["user_avatar_url"] = $this->user_model->get_avarta_url($data["loggedin_user"]->user_id);
+			$data["total_unread_message"] = $message_model->get_total_num_unread_message($data["loggedin_user"]->user_id);
 
 		}else{  // get anonymous avatar
 			$data["user_avatar_url"] = $this->user_model->get_avarta_url(0);
+			$data["num_unread_message"] = 0;
 
 		}
 
@@ -99,6 +103,7 @@ class MyController extends BaseController {
 		echo view('section/030jumbotron',$data);
 		echo view('section/040navbar',$data);
 		echo view('section/050breadcrumb',$data);
+		echo view('section/055waning.php',$data);
 
 		if( $filename === "warn" ){
 			echo view( 'section/210warn', $data);

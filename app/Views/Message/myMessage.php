@@ -9,7 +9,7 @@
                     <?php echo $message->thai_active_date;?>
                 </div>
                 <div style="margin-bottom:5px">
-                    <a href="<?php echo base_url(["Message","with",$message->other->user_id]);?>" class="btn btn-sm btn-primary">ไป
+                    <a href="<?php echo base_url(["Message","with",$message->other->user_id]);?>" class="btn btn-primary">ไป
                     </a>
                 </div>
             </div>
