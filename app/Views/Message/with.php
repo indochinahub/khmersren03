@@ -20,6 +20,67 @@
             </div>
         </div>
 
+
+    <?php }elseif(  $message->role === "i_am_sender" &&
+                    $message->message_text === null &&
+                    $message->message_picture01 === null &&
+                    $message->message_youtube01 === null
+                 ){ ?>
+
+        <div class="card-warning" style="margin-left:40px;margin-bottom:5px">
+
+            <div class="card-warning card-warning_body">
+
+                <div class="two_flex_column">
+                    <div>
+                        <button type="submit" name="submit" value="submit" class="btn btn-danger">ลบ</button>
+                    </div>
+                    <div>
+                        <strong>ลบข้อความนี้</strong>
+                    </div>
+                </div>                
+
+            </div>
+
+            <div class="card-warning card-warning_body">
+
+                <form action="<?php echo base_url();?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+                    <div class="form-group">
+                        <label for="exampleInputFile">เพิ่มรูปภาพ</label><br>
+                        <input type="file" name="myfile" size="20">
+                    </div>       
+
+                    <div class="two_flex_column">
+                        <div>
+                        </div>
+                        <div>
+                            <button type="submit" name="submit" value="submit" class="btn btn-primary">เพิ่ม</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="card-warning card-warning_body">
+
+                <form action="http://127.0.0.1/khmersren03/Media/addYoutube/post/351/1" method="post" accept-charset="utf-8" style="margin-top:10px">
+                    <div class="form-group">
+                        <label for="soundfile">เพิ่มวิดิโอยูทูปหมายเลข 1 :: </label>
+                        <input type="text" class="form-control" name="youtube">
+                    </div>
+                    <div class="two_flex_column">
+                        <div>
+                        </div>
+                        <div>
+                            <button type="submit" name="submit" value="submit" class="btn btn-primary">เพิ่ม</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>            
+
+        </div>
+
     <?php }elseif(   $message->role === "i_am_sender"    ){ ?>
 
         <div class="card-warning" style="margin-left:40px;margin-bottom:5px">
@@ -73,37 +134,13 @@
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
-                        <h6>เพิ่มสื่อ</h6>
+                        <h6>เพิ่มข้อความสำหรับสื่อ</h6>
                     </div>
                     <div>
                         <a href="<?php echo base_url( ["Message","addBlank",$other->user_id]);?>" class="btn btn-primary">เพิ่ม</a>
                     </div>
             </div>
     </div>
-
-
-
-    <div class="card-info card-info_body">
-
-        <form action="<?php echo base_url();?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
-            <div class="form-group">
-                <label for="exampleInputFile">เพิ่มรูปภาพที่ 2</label>
-                <input type="file" name="myfile" size="20">
-            </div>       
-
-            <div class="two_flex_column">
-                <div>
-                </div>
-                <div>
-                    <button type="submit" name="submit" value="submit" class="btn btn-sm btn-primary">เพิ่ม</button>
-                </div>
-            </div>
-        </form>
-
-    </div>
-
-
-
 
 </div>
 
