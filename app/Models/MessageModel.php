@@ -143,7 +143,7 @@ class MessageModel extends MyModel
 
         $this->query($sql);
 
-        return $this->affectedRows();
+        return $this->db->affectedRows();
     }
 
 }
