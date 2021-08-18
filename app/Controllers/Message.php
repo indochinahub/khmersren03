@@ -129,9 +129,7 @@ class Message extends MyController
             }elseif( $message->message_youtube01 ){
 
                 $message->message_text =  "<div style='margin-bottom:10px;width:250px'>";
-	            $message->message_text .= "<div class='embed-responsive embed-responsive-16by9'>";
                 $message->message_text .= "<iframe class='embed-responsive-item' src='https://www.youtube.com/embed/".$message->message_youtube01."' allowfullscreen=''></iframe>";
-                $message->message_text .= "</div>";
                 $message->message_text .= "</div>";
 
             }
