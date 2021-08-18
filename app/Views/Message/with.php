@@ -56,7 +56,7 @@
         <form role="form" method="post" action="<?php echo base_url(["Message","send",$user->user_id,$other->user_id ]);?>">
             
             <div class="form-group">
-                <label><strong>เพิ่มความเห็น</strong></label>
+                <label><strong>เพิ่มข้อความ</strong></label>
                 <textarea class="form-control" name="cardcomment_text" rows="2"></textarea>
             </div>
             <div class="two_flex_column">
@@ -69,4 +69,43 @@
         </form>
 
     </div>
+
+    <div class="card-info card-info_body">
+
+            <div class="two_flex_column" style="margin-bottom:5px;">
+                    <div>
+                        <h5>เพิ่มสื่อ</h5>
+                    </div>
+                    <div>
+                        <a href="http://127.0.0.1/khmersren03/Deck/show/54" class="btn btn-primary">เพิ่ม</a>
+                    </div>
+            </div>
+    </div>
+
+
+
+    <div class="card-info card-info_body">
+
+        <form action="<?php echo base_url();?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+            <div class="form-group">
+                <label for="exampleInputFile">เพิ่มรูปภาพที่ 2</label>
+                <input type="file" name="myfile" size="20">
+            </div>       
+
+            <div class="two_flex_column">
+                <div>
+                </div>
+                <div>
+                    <button type="submit" name="submit" value="submit" class="btn btn-sm btn-primary">เพิ่ม</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+
+
 </div>
+
+
