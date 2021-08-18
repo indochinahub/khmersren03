@@ -1,3 +1,5 @@
+<?php echo $pagination_link;?>
+
 <?php foreach($arr_message as $message){ ?>
 
     <?php if( $message->role === "i_am_reciever" ){ ?>

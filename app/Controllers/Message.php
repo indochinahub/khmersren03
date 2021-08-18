@@ -70,6 +70,8 @@ class Message extends MyController
         $user_model = new UserModel;
         $message_model = new MessageModel;
         $datetime_model = new DateTimeModel;
+        $pagination_model = new PaginationModel;
+        $util_model = new UtilModel;
 
         // Check user's previlege
         if( $data["user"] = $this->_get_loggedin_user() ){
@@ -83,6 +85,24 @@ class Message extends MyController
         $data["other_displayname"] = $user_model->get_user_displayname($data["other"]);
 
         $arr_message = $message_model->get_message_with_other($data["user"]->user_id,$other_id);
+
+        if( ! ($page = $this->request->getGet('page')) ){
+            $page = 1;
+        }                                
+
+        $pagination = $pagination_model->get_pagination( 
+                            $arr_message, 
+                            $current_page = $page , 
+                            $per_page = 15
+                        );
+        $data["pagination_link"] = $pagination->link;
+        $arr_message = $pagination->arr_row; 
+
+        $arr_message = $util_model->sort_array_of_object_by_the_property( 
+            $arr_message, 
+            "message_id", 
+            $order_by ="asc"
+        );
 
         $data["arr_message"] = [];
         foreach( $arr_message as $message){
