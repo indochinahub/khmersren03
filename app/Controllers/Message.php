@@ -102,9 +102,18 @@ class Message extends MyController
             }
 
             if( $message->message_picture01 ){
-                $message->message_text =  "<div style='border:1px solid black;margin-bottom:10px;'>";
+                $message->message_text =  "<div style='border:1px solid black;margin-bottom:10px'>";
                 $message->message_text .= "<img src='". base_url(["asset","media","message_media",$message->message_picture01]) ."' class='img-fluid'>";
                 $message->message_text .= "</div>";
+
+            }elseif( $message->message_youtube01 ){
+
+                $message->message_text =  "<div style='margin-bottom:10px;width:250px'>";
+	            $message->message_text .= "<div class='embed-responsive embed-responsive-16by9'>";
+                $message->message_text .= "<iframe class='embed-responsive-item' src='https://www.youtube.com/embed/".$message->message_youtube01."' allowfullscreen=''></iframe>";
+                $message->message_text .= "</div>";
+                $message->message_text .= "</div>";
+
             }
 
             array_push($data["arr_message"], $message);

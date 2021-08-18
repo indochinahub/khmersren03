@@ -62,9 +62,9 @@
 
             <div class="card-warning card-warning_body">
 
-                <form action="http://127.0.0.1/khmersren03/Media/addYoutube/post/351/1" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <form action="<?php echo base_url(["Media","addYoutube","message",$message->message_id,1]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
-                        <label for="soundfile">เพิ่มวิดิโอยูทูปหมายเลข 1 :: </label>
+                        <label for="soundfile">เพิ่มวิดิโอยูทูปหมายเลข :: </label>
                         <input type="text" class="form-control" name="youtube">
                     </div>
                     <div class="two_flex_column">
@@ -133,7 +133,7 @@
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
-                        <h6>เพิ่มข้อความสำหรับสื่อ</h6>
+                        <h6>เพิ่มแบบฟอร์มสำหรับสื่อ</h6>
                     </div>
                     <div>
                         <a href="<?php echo base_url( ["Message","addBlank",$other->user_id]);?>" class="btn btn-primary">เพิ่ม</a>
