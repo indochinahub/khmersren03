@@ -105,6 +105,9 @@ class Message extends MyController
             array_push($data["arr_message"], $message);
         }
 
+        // Set Read time
+        $message_model->set_read_time( $data["user"]->user_id,$other_id,time());
+
         $data["page_title"] = 	"ข้อความกับ ".$data["other_displayname"];
         $data["page_link"] 	= 	[	"ข้อความของฉัน",
                                     base_url(["Message","myChat"])
@@ -150,6 +153,10 @@ class Message extends MyController
 
         
 
+
+    }
+
+    public function addBlank($user_id,$other_id){
 
     }
     
