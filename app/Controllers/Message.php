@@ -116,7 +116,7 @@ class Message extends MyController
     }
 
     
-    public function send($user_id,$other_id){
+    public function send($other_id){
         
         $message_model = new MessageModel;
 
@@ -132,7 +132,7 @@ class Message extends MyController
         ){
 
             $detail = [ 
-                        "id_sender"=>$user_id,
+                        "id_sender"=>$data["user"]->user_id,
                         "id_receiver"=>$other_id,
                         "message_text"=>$this->request->getPost("cardcomment_text") 
                       ];
@@ -150,10 +150,6 @@ class Message extends MyController
             $this->_warn($data);            
 
         }
-
-        
-
-
     }
 
     public function addBlank($user_id,$other_id){

@@ -53,7 +53,7 @@
     </div>
     <div class="card-info card-info_body">
 
-        <form role="form" method="post" action="<?php echo base_url(["Message","send",$user->user_id,$other->user_id ]);?>">
+        <form role="form" method="post" action="<?php echo base_url(["Message","send",$other->user_id ]);?>">
             
             <div class="form-group">
                 <label><strong>เพิ่มข้อความ</strong></label>
