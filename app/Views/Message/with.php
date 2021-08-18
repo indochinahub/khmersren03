@@ -42,8 +42,8 @@
             </div>
 
             <div class="card-warning card-warning_body">
-
-                <form action="<?php echo base_url();?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+            
+                <form action="<?php echo base_url(["Media","addPicture","message",$message->message_id,1]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
                         <label for="exampleInputFile">เพิ่มรูปภาพ</label><br>
                         <input type="file" name="myfile" size="20">

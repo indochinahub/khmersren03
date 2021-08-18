@@ -101,6 +101,11 @@ class Message extends MyController
                 $message->message_readdate = "[ผู้รับยังไม่ได้อ่าน]";
             }
 
+            if( $message->message_picture01 ){
+                $message->message_text =  "<div style='border:1px solid black;margin-bottom:10px;'>";
+                $message->message_text .= "<img src='". base_url(["asset","media","message_media",$message->message_picture01]) ."' class='img-fluid'>";
+                $message->message_text .= "</div>";
+            }
 
             array_push($data["arr_message"], $message);
         }
@@ -110,7 +115,7 @@ class Message extends MyController
 
         $data["page_title"] = 	"ข้อความกับ ".$data["other_displayname"];
         $data["page_link"] 	= 	[	"ข้อความของฉัน",
-                                    base_url(["Message","myChat"])
+                                    base_url(["Message","myMessage"])
                                 ];	        
         $this->_view("with",$data);
     }

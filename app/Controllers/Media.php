@@ -15,6 +15,7 @@ use App\Models\PostModel;
 use App\Models\FileModel;
 use App\Models\DateTimeModel;
 use App\Models\PostcategoryModel;
+use App\Models\MessageModel;
 
 class Media extends MyController
 {
@@ -22,6 +23,10 @@ class Media extends MyController
     public function _get_table_model($table_name){
         if( $table_name === "post" ){
             return new PostModel;
+
+        }elseif( $table_name === "message" ){
+            return new MessageModel;
+
         }
     }    
 
@@ -63,15 +68,6 @@ class Media extends MyController
                                 );
             
         return redirect()->to( $this->_get_backlink() );        
-
-        /*
-
-
-        
-
-
-        */
-
     }
 
     
