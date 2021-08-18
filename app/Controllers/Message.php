@@ -173,6 +173,13 @@ class Message extends MyController
         return redirect()->to( $this->_get_backlink() );        
 
     }
+
+    public function delete($message_id){
+        $message_model = new MessageModel;
+        $message_model->delete_by_id($message_id);
+
+        return redirect()->to($this->_get_backlink());
+    }
     
 }
 

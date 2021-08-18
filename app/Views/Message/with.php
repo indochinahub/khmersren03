@@ -20,7 +20,6 @@
             </div>
         </div>
 
-
     <?php }elseif(  $message->role === "i_am_sender" &&
                     $message->message_text === null &&
                     $message->message_picture01 === null &&
@@ -33,7 +32,7 @@
 
                 <div class="two_flex_column">
                     <div>
-                        <button type="submit" name="submit" value="submit" class="btn btn-danger">ลบ</button>
+                        <a href="<?php echo base_url(["Message","delete",$message->message_id]);?>" class="btn btn-danger">ลบ</a>
                     </div>
                     <div>
                         <strong>ลบข้อความนี้</strong>
