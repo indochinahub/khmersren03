@@ -152,7 +152,25 @@ class Message extends MyController
         }
     }
 
-    public function addBlank($user_id,$other_id){
+    public function addBlank($other_id){
+
+        $user_model = new UserModel;
+        $message_model = new MessageModel;
+
+        // Check user's previlege
+        if( $user = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        $detail =   [ 
+                        "id_sender"=>$user->user_id,
+                        "id_receiver"=>$other_id,
+                        "message_text"=>null 
+                    ];
+        $message_model->insert($detail);
+        return redirect()->to( $this->_get_backlink() );        
 
     }
     

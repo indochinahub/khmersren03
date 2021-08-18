@@ -20,8 +20,7 @@
             </div>
         </div>
 
-
-    <?php }elseif( $message->role === "i_am_sender" ){ ?>
+    <?php }elseif(   $message->role === "i_am_sender"    ){ ?>
 
         <div class="card-warning" style="margin-left:40px;margin-bottom:5px">
             <div class="card-warning card-warning_body">
@@ -74,10 +73,10 @@
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
-                        <h5>เพิ่มสื่อ</h5>
+                        <h6>เพิ่มสื่อ</h6>
                     </div>
                     <div>
-                        <a href="http://127.0.0.1/khmersren03/Deck/show/54" class="btn btn-primary">เพิ่ม</a>
+                        <a href="<?php echo base_url( ["Message","addBlank",$other->user_id]);?>" class="btn btn-primary">เพิ่ม</a>
                     </div>
             </div>
     </div>
