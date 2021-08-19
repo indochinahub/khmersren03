@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class AdminModel extends MyModel
+class DbUtilModel extends MyModel
 {
     // return array of table name
     public function get_arr_table_name(){
