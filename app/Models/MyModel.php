@@ -40,7 +40,8 @@ class MyModel extends Model
 
     // return Array Of Object
     public function get_all_row(){
-        return $this->findAll();
+        $dbutil_name = new DbUtilModel;
+        return $dbutil_name->get_all_row_Of_table($this->table);
     }
 
     // Return Array Of column
