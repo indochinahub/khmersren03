@@ -45,8 +45,9 @@ class MyModel extends Model
 
     // Return Array Of column
     public function get_column(){
-        return $this->getFieldNames($this->table);
+        $dbutil_name = new DbUtilModel;
 
+        return $dbutil_name->get_column_of_table($this->table);
     }
 
     // return Int
