@@ -47,5 +47,20 @@ class DbUtilModelTest extends CIUnitTestCase
 
     }
 
+    // return array of row
+    public function test_get_all_row_Of_table(){
+
+        $result1 = $this->dbutil_model->get_all_row_Of_table($table_name = "user");
+
+        $result         =   [ 
+                                count($result1) > 0 ,
+                            ];
+        $expectedResult =   [ 
+                                true,
+                            ];
+
+        $this->assertSame($expectedResult, $result);             
+    }
+
 
 }

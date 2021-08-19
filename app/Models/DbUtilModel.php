@@ -29,6 +29,17 @@ class DbUtilModel extends MyModel
         return $this->getFieldNames($table_name);
     }
 
+    // return array of row
+    public function get_all_row_Of_table($table_name){
+
+        $db = \Config\Database::connect();
+
+        $sql = " SELECT * FROM $table_name WHERE 1 ";
+        $query = $db->query($sql);
+
+        return $query->getResult();
+    }
+
 }
 
 
