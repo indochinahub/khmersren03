@@ -53,8 +53,9 @@ class MyModel extends Model
 
     // return Int
     public function get_num_row(){
-        $this->get_all_row();
-        return $this->countAll();
+        $dbutil_name = new DbUtilModel;
+        
+        return $dbutil_name->get_num_all_row_of_table($this->table);
     }
             
     // return Assoc array Or Blank Array
