@@ -40,6 +40,21 @@ class DbUtilModel extends MyModel
         return $query->getResult();
     }
 
+    // return int
+    public function get_num_all_row_of_table($table_name){
+
+        $db = \Config\Database::connect();
+
+        $primary_key = $table_name."_id";
+
+        $sql = " SELECT COUNT($primary_key) AS num FROM $table_name WHERE 1 ";
+        $query = $db->query($sql);
+
+        $result = $query->getResult();   
+        
+        return $result[0]->num; 
+    }
+
 }
 
 
