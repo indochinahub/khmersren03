@@ -13,6 +13,7 @@ use App\Models\StatisticModel;
 use App\Models\DateTimeModel;
 use App\Models\CardgroupModel;
 use App\Models\FileModel;
+use App\Models\AdminModel;
 
 class Admin extends MyController
 {
@@ -78,8 +79,6 @@ class Admin extends MyController
                                     base_url(["Admin", "dashboard"])
                                ];	        
         $this->_view("manageCardgroup",$data);                
-
-
     }
 
     public function exportCardgroup($cardgroup_id, $confirm = "0"){
@@ -102,8 +101,6 @@ class Admin extends MyController
         $arr_card   = $card_model->get_by_cardgroup_id($cardgroup_id);
         $num_card   = count($card_model->get_by_cardgroup_id($cardgroup_id));
         $arr_column = $card_model->get_column();
-
-
 
         if( $confirm === "0" ){
 
@@ -212,6 +209,27 @@ class Admin extends MyController
 
         }
 
+    }
+
+    public function manageTable(){
+
+        $admin_model = new AdminModel;
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        $data["arr_table"] = $admin_model->get_arr_table_name();
+        
+        $data["page_title"] = 	"จัดการตาราง"; 
+        $data["page_link"] 	= 	[	"แดชบอร์ดของผู้ดูแลระบบ",
+                                    base_url(["Admin", "dashboard"])
+                               ];	        
+        $this->_view("manageTable",$data);                
     }
 
 
