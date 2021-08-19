@@ -5,10 +5,12 @@
         <div class="card-info card-info_body">
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
-                        ตาราง <strong><?php echo $table;?></strong><br>
+                        <strong><?php echo $table->name;?></strong><br>
+                        จำนวน :: <?php echo $table->num_row;?>
                     </div>
                     <div>
-                        <a href="http://127.0.0.1/khmersren03/Admin/exportCardgroup/1" class="btn btn-primary">Export</a>
+                        <a href="<?php echo base_url(["Admin","exportTable",$table->name,0]) ;?>" 
+                        class="btn btn-primary <?php echo $table->diabled_text;?>">Export</a>
                     </div>
             </div>
         </div>

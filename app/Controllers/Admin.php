@@ -13,7 +13,7 @@ use App\Models\StatisticModel;
 use App\Models\DateTimeModel;
 use App\Models\CardgroupModel;
 use App\Models\FileModel;
-use App\Models\AdminModel;
+use App\Models\DbUtilModel;
 
 class Admin extends MyController
 {
@@ -129,6 +129,8 @@ class Admin extends MyController
             $file_model->create_file( ASSETPATH."01get_text_file_from_cardgroup/export.txt");
             $file_model->write_to_file( ASSETPATH."01get_text_file_from_cardgroup/export.txt", 
                                         $line_column."\n".$txt_data );
+
+
             $what_happened =  "ท่านกำลังส่งออกชุดบัตรคำหมายเลข $cardgroup_id จำนวน $num_card ข้อ <br>";
             $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."01get_text_file_from_cardgroup/export.txt";
             $data	=  [    "page_title"=>"บัตรคำได้ส่งออกเรียบร้อยแล้ว",
@@ -213,7 +215,53 @@ class Admin extends MyController
 
     public function manageTable(){
 
-        $admin_model = new AdminModel;
+        $dbutil_model = new DbUtilModel;
+        $util_model = new UtilModel;
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+        
+        $arr_table = $dbutil_model->get_arr_table_name();
+
+        $data["arr_table"] = [];
+        foreach( $arr_table as $table ){
+            $obj = new \stdClass;
+            $obj->name = $table;
+
+            $obj->num_row = $dbutil_model->get_num_all_row_of_table($table); 
+
+            if( $obj->num_row > 10000 ){
+                $obj->diabled_text = "disabled";
+            }else{
+                $obj->diabled_text = "";
+            }
+
+            array_push($data["arr_table"],$obj);
+        }
+
+        $data["arr_table"] = $util_model->sort_array_of_object_by_the_property( 
+                                    $data["arr_table"], 
+                                    "num_row", 
+                                    $order_by ="desc"
+                                );
+
+        $data["page_title"] = 	"จัดการตาราง"; 
+        $data["page_link"] 	= 	[	"แดชบอร์ดของผู้ดูแลระบบ",
+                                    base_url(["Admin", "dashboard"])
+                               ];	        
+        $this->_view("manageTable",$data);                
+    }
+
+    public function exportTable($table_name, $confirm = "0"){
+
+        $util_model     = new UtilModel;
+        $dbutil_model   = new DbUtilModel;
+        $file_model     = new FileModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
@@ -223,17 +271,53 @@ class Admin extends MyController
             return;
         }
 
-        $data["arr_table"] = $admin_model->get_arr_table_name();
-        
-        $data["page_title"] = 	"จัดการตาราง"; 
-        $data["page_link"] 	= 	[	"แดชบอร์ดของผู้ดูแลระบบ",
-                                    base_url(["Admin", "dashboard"])
-                               ];	        
-        $this->_view("manageTable",$data);                
+        if( $confirm === "0" ){
+
+            $data    =  [   "page_title"=>"ยืนยันการส่งออกตาราง",
+                            "what_happened"=>"ท่านกำลังส่งออกตารางข้อมูล <strong>$table_name</strong> ",
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Admin","exportTable",$table_name, 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => $this->_get_backlink() ,
+                        ];  		
+
+            $this->_view("confirm",$data);
+
+        }else{
+
+            $arr_row        = $dbutil_model->get_all_row_Of_table($table_name);
+
+            $arr_column     = $dbutil_model->get_column_of_table($table_name);
+            $line_column    = $util_model->get_line_of_text_from_array (
+                                                        $arr_column, 
+                                                        "\t" 
+                                                    );
+
+            // Get Line of Column
+            $txt_data = $util_model->get_text_data_from_array_of_object(
+                                $arr_row,$arr_column);
+
+            // Write to file
+            $file_model->create_file( ASSETPATH."03get_text_file_from_table/".$table_name.".txt" );
+            $file_model->write_to_file( ASSETPATH."03get_text_file_from_table/".$table_name.".txt" , 
+                                        $line_column."\n".$txt_data ) ;
+
+            $what_happened =  "ท่านกำลังส่งออกตารางชื่อ $table_name <br>";
+            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."03get_text_file_from_table/".$table_name.".txt";
+            $data	=  [    "page_title"=>"บัตรคำได้ส่งออกเรียบร้อยแล้ว",
+                            "what_happened"=>$what_happened,
+                            "what_todo" => "กรุณาดาวน์โหลดเพื่อนำไปใช้งานต่อไป",
+                            "btnText_toGo" => "ไป",
+                            "btnLink_toGo" => base_url(["Admin", "manageTable"])
+                        ];
+            $this->_warn($data);            
+
+        }
+
+
+
     }
-
-
-        
 
 }
 
