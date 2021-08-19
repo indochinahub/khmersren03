@@ -29,4 +29,23 @@ class DbUtilModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);     
     }
 
+    // Return Array Of column
+    public function test_get_column_of_table(){
+
+        $result1 = $this->dbutil_model->get_column_of_table("user");
+
+        $result         =   [ 
+                                count($result1) > 0,
+                                $result1[0],
+                            ];
+        $expectedResult =   [ 
+                                true,
+                                "user_id",
+                            ];
+
+        $this->assertSame($expectedResult, $result);     
+
+    }
+
+
 }

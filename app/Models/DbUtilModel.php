@@ -23,6 +23,12 @@ class DbUtilModel extends MyModel
             return [];
         }
     }
+
+    // Return Array Of column
+    public function get_column_of_table($table_name){
+        return $this->getFieldNames($table_name);
+    }
+
 }
 
 
