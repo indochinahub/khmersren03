@@ -91,9 +91,10 @@
                     </li>                
                     <li>
                         <a href="<?php echo base_url(["Admin","manageCardgroup"]);?>"><i class="fas fa-angle-double-right"></i> จัดการกลุ่มบัตรคำ </a>
-                    </li>                
-
-
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(["Admin","manageTable"]);?>"><i class="fas fa-angle-double-right"></i> จัดการตาราง </a>
+                    </li>
 
                 <?php } ?>                        
 
