@@ -16,8 +16,8 @@ class FollowModelTest extends CIUnitTestCase
     //return array of id
     public function test_get_my_follower_id(){
 
-        $result1 = $this->follow_model->get_my_follower_id($user_id = 0);
-        $result2 = $this->follow_model->get_my_follower_id($user_id = 1);
+        $result1 = $this->follow_model->get_my_follower_id($my_id = 0);
+        $result2 = $this->follow_model->get_my_follower_id($my_id = 1);
 
         $result         =   [ 
                                 $result1,
@@ -33,8 +33,8 @@ class FollowModelTest extends CIUnitTestCase
     //return array of id
     public function test_get_user_id_of_whom_i_follow(){
 
-        $result1 = $this->follow_model->get_user_id_of_whom_i_follow($user_id = 0);
-        $result2 = $this->follow_model->get_user_id_of_whom_i_follow($user_id = 1);
+        $result1 = $this->follow_model->get_user_id_of_whom_i_follow($my_id = 0);
+        $result2 = $this->follow_model->get_user_id_of_whom_i_follow($my_id = 1);
 
         $result         =   [ 
                                 $result1,
