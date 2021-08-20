@@ -31,7 +31,7 @@ class FollowModel extends MyModel
     }
     
     //return array of id
-    public function get_user_id_of_whom_i_follow($my_id){
+    public function get_id_of_whom_i_follow($my_id){
 
         $util_model = new UtilModel;
 
@@ -50,9 +50,28 @@ class FollowModel extends MyModel
     }
 
     //return relation text
-    public function get_my_relation_with_user($my_id,$user_id){
+    public function get_my_relation_with_other($my_id,$other_id){
 
         $arr_my_follower_id = $this->get_my_follower_id($my_id);
+
+        $arr_user_id_whom_i_follow = $this->get_id_of_whom_i_follow($my_id);
+
+        echo "\n";
+        var_dump($arr_my_follower_id);
+        echo "\n";
+        var_dump($arr_user_id_whom_i_follow);
+        echo "\n";        
+
+        if( in_array($my_id,$arr_my_follower_id) && in_array($my_id,$arr_user_id_whom_i_follow )){
+            $relation = "we_folow_each_other";
+        }
+
+
+
+
+
+
+
         
         
 

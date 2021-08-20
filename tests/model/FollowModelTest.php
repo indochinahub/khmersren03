@@ -31,10 +31,10 @@ class FollowModelTest extends CIUnitTestCase
     }
 
     //return array of id
-    public function test_get_user_id_of_whom_i_follow(){
+    public function test_get_id_of_whom_i_follow(){
 
-        $result1 = $this->follow_model->get_user_id_of_whom_i_follow($my_id = 0);
-        $result2 = $this->follow_model->get_user_id_of_whom_i_follow($my_id = 1);
+        $result1 = $this->follow_model->get_id_of_whom_i_follow($my_id = 0);
+        $result2 = $this->follow_model->get_id_of_whom_i_follow($my_id = 1);
 
         $result         =   [ 
                                 $result1,
@@ -48,9 +48,9 @@ class FollowModelTest extends CIUnitTestCase
     }
 
     //return relation text
-    public function test_get_my_relation_with_user(){
+    public function test_get_my_relation_with_other(){
         
-        $result1 = $this->follow_model->get_my_relation_with_user($my_id = 0 ,$user_id = 0 );
+        $result1 = $this->follow_model->get_my_relation_with_other($my_id = 1 ,$other_id = 2 );
 
         $result         =   [ 
                                 0
