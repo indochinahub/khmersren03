@@ -14,6 +14,7 @@ use \App\Models\PostModel;
 use \App\Models\MediaModel;
 use \App\Models\PostcategoryModel;
 use \App\Models\PaginationModel;
+use \App\Models\FollowModel;
 
 class User extends MyController
 {
@@ -111,6 +112,7 @@ class User extends MyController
         $user_model      = new UserModel;
         $post_model      = new PostModel;
         $postcategory_model = new PostcategoryModel;
+        $follow_model       = new FollowModel;
 
         $data["user"]   = $this->_get_loggedin_user();
         $data["member"] = $user_model->get_user_by_id($member_id);
@@ -121,8 +123,15 @@ class User extends MyController
             $data["if_user_view_own_profile"] = false;
         }
 
-        // Statistic Section
+        // Follow Part
+        if( $data["user"] ){
+            $data["relation_text"] = $follow_model->get_my_relation_with_other(
+                                        $data["user"]->user_id,
+                                        $data["member"]->user_id
+                                    );
+        }
 
+        // Statistic Section
         $data["today_date"] = $datetime_model->get_thai_date_from_sql_timestamp(
                                     $datetime_model->unix_timestamp_to_sql_timestamp( time() )
                                 );

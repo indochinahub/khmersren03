@@ -1,28 +1,60 @@
-<div class="card-info">
-    <div class="card-info card-info_body">
-        <strong> ฉันเป็นผู้ติดตาม</strong>ของ สุวชัญ  ชาญเชี่ยว<br>
+<?php if( $user && ( $if_user_view_own_profile === false ) ){ ?>
+
+    <div class="card-info">
+
+        <div class="card-info card-info_body">
+            <?php if( $relation_text === "we_folow_each_other"){ ?>
+                <strong> xxx และฉันติดตามซึ่งกันและกัน</strong><br>
+            <?php }elseif( $relation_text === "i_folow_the_other" ){ ?>        
+                <strong> ฉันเป็นผู้ติดตามของ xxx</strong><br>
+            <?php }elseif( $relation_text === "the_other_follow_me" ){ ?>        
+                <strong> xxx เป็นผู้ติดตามแัน</strong><br>
+            <?php }elseif( $relation_text === "we_have_no_relation" ){ ?>        
+                <strong> ฉันและ xxx ไม่มีความสัมพันธ์กัน</strong><br>
+            <?php } ?>                    
+        </div>
+
+        <?php if( ($relation_text === "we_folow_each_other") or ( $relation_text === "i_folow_the_other") ) { ?>
+
+            <div class="card-info card-info_body">
+                <div class="two_flex_column">
+                    <div>
+                        <strong>เลิกติดตาม</strong> xxxx
+                    </div>
+                    <div>
+                        <a href="" class="btn btn-primary">เลิก</a>
+                    </div>
+                </div>
+            </div>
+
+        <?php }elseif( ($relation_text === "the_other_follow_me") or ( $relation_text === "we_have_no_relation") ) { ?>
+
+            <div class="card-info card-info_body">
+                <div class="two_flex_column">
+                    <div>
+                        <strong>ติดตาม</strong> xxxx
+                    </div>
+                    <div>
+                        <a href="" class="btn btn-primary">เลิก</a>
+                    </div>
+                </div>
+            </div>
+            
+        <?php } ?>
+
+
+        <div class="card-info card-info_body">
+            <div class="two_flex_column">
+                <div>
+                    <strong>ข้อความส่วนตัว</div>
+                <div>
+                    <a href="" class="btn btn-primary">เลิก</a>
+                </div>
+            </div>
+        </div>    
     </div>
 
-    <div class="card-info card-info_body">
-        <div class="two_flex_column">
-            <div>
-                <strong>เลิกติดตาม</strong> สุวชัญ  ชาญเชี่ยว                    </div>
-            <div>
-                <a href="http://127.0.0.1/khmersren02/Follow/unFollow/3" class="btn btn-primary">เลิก</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-info card-info_body">
-        <div class="two_flex_column">
-            <div>
-                <strong>ข้อความส่วนตัว</div>
-            <div>
-                <a href="" class="btn btn-primary">เลิก</a>
-            </div>
-        </div>
-    </div>    
-</div>
+<?php } ?>    
 
 <div class="card-info">
     <div class="card-info card-info_header">
