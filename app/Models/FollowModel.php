@@ -80,9 +80,8 @@ class FollowModel extends MyModel
     // return InsertedId Or false
     public function follow_the_other($my_id, $other_id){
 
-        $where_clause = " WHERE id_user = $other_id AND id_follower_of_user = $my_id ";
-        // If there is 
-        if( $arr_follow = $this->get_where($where_clause)){ return false;}
+        // if there is follower in the table, do noting
+        if( $this->get_follow_by_user_id($my_id, $other_id) ){ return false;}
 
         $detail = [ "id_user"=>$other_id,
                     "id_follower_of_user"=>$my_id
