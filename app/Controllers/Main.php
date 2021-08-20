@@ -19,8 +19,6 @@ use App\Models\PostcategoryModel;
 
 class Main extends MyController
 {
-
-
 	public function index(){
 
         $post_model         = new PostModel;
