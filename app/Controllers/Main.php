@@ -51,11 +51,32 @@ class Main extends MyController
             $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
 
-            //$post = $post_model->add_media_to_post($post);
             array_push( $data["arr_post"], $post);
-
         }
 
+        // User Section
+        $arr_user = $user_model->get_all_row();
+        $arr_user = $util_model->sort_array_of_object_by_the_property( 
+                                    $arr_user, 
+                                    "user_visit_time", 
+                                    $order_by ="desc"
+                                );
+        $arr_user = array_slice($arr_user, 0, 8);
+
+        $data["arr_user"] = [];
+        foreach( $arr_user as $user){
+            $user->avarta_url = $user_model->get_avarta_url($user->user_id);
+            $user->displayname = $user_model->get_user_displayname($user);
+            array_push( $data["arr_user"], $user);
+        }
+
+        $data["arr_user"] = $util_model->saparate_array_to_row(
+                                    $data["arr_user"],
+                                    2,
+                                    4
+                                );
+
+        // View Section
 		$data["page_title"] = 	" "; 
 		$data["page_link"] 	= 	[   "",
 									""

@@ -64,3 +64,49 @@
     </div>
 
 </div>
+
+<div class="card-info">
+    <div class="card-info card-info_header">
+        ผู้ใช้ที่เข้าระบบล่าสุด
+    </div>
+    <div class="card-info card-info_body">
+
+        <?php foreach( $arr_user as $row_of_user ){ ?>
+        
+            <div style="display:flex;justify-content:space-evenly">
+                                                
+                <?php foreach( $row_of_user as $user ){ ?>
+                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="<?php echo base_url(["User","myProfile",$user->user_id]);?>"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
+                                src="<?php echo $user->avarta_url;?>">
+                            </a><br>
+                            <?php echo $user->displayname;?>
+                    </div>
+
+                <?php } ?>
+            </div>
+
+        <?php } ?>            
+    </div>
+
+
+</div>
+
+<div class="card-warning">
+
+    <div class="card-warning card-warning_body">
+        
+        <div class="two_flex_column">
+            <div>
+                <h5>ดูสมาชิกทั้งหมด</h5>
+            </div>
+            <div>
+                <a href="<?php echo base_url( ["User","showAll"] );?>" class="btn btn-primary">ไป</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
