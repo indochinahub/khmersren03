@@ -70,8 +70,7 @@ class FollowModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);        
     }    
 
-
-    // return InsertedId
+    // return InsertedId or false
     public function test_follow_the_other(){
 
         $result1 = $this->follow_model->follow_the_other($my_id = 1, $other_id = 2);
@@ -90,5 +89,22 @@ class FollowModelTest extends CIUnitTestCase
         $sql = " DELETE FROM follow WHERE follow_id = $result2 ";
         $this->follow_model->query($sql);
     }
-   
+
+    // return object or false
+    public function test_get_follow_by_user_id(){
+
+        $result1 = $this->follow_model->get_follow_by_user_id($my_id = 0, $other_id = 0);
+        $result2 = $this->follow_model->get_follow_by_user_id($my_id = 1, $other_id = 2);
+
+        $result         =   [ 
+                                $result1,
+                                is_object($result2),
+                            ];
+        $expectedResult =   [ 
+                                false,
+                                true,
+                            ];
+        $this->assertSame($expectedResult, $result);
+    }    
+
 }

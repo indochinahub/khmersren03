@@ -81,6 +81,7 @@ class FollowModel extends MyModel
     public function follow_the_other($my_id, $other_id){
 
         $where_clause = " WHERE id_user = $other_id AND id_follower_of_user = $my_id ";
+        // If there is 
         if( $arr_follow = $this->get_where($where_clause)){ return false;}
 
         $detail = [ "id_user"=>$other_id,
@@ -89,8 +90,16 @@ class FollowModel extends MyModel
         return $this->insert($detail);
     }
 
-    // return AffectedRow
-    public function unfollow_the_other ($my_id, $other_id){
+    // return object or false
+    public function get_follow_by_user_id($my_id, $other_id){
+
+        $where_clause = " WHERE id_user = $other_id AND id_follower_of_user = $my_id ";
+        if($arr_follow = $this->get_where($where_clause)){ 
+            return $arr_follow[0];
+            
+        }else{
+            return false;
+        }
 
     }
 
