@@ -52,31 +52,29 @@ class FollowModel extends MyModel
     //return relation text
     public function get_my_relation_with_other($my_id,$other_id){
 
-        $arr_my_follower_id = $this->get_my_follower_id($my_id);
+        $arr_follower_of_me = $this->get_my_follower_id($my_id);
+        $arr_follower_of_other = $this->get_my_follower_id($other_id);
 
-        $arr_user_id_whom_i_follow = $this->get_id_of_whom_i_follow($my_id);
+        $arr_who_i_follow = $this->get_id_of_whom_i_follow($my_id);
+        $arr_who_other_follow = $this->get_id_of_whom_i_follow($other_id);
 
-        echo "\n";
-        var_dump($arr_my_follower_id);
-        echo "\n";
-        var_dump($arr_user_id_whom_i_follow);
-        echo "\n";        
+        $relation = "xxxx";
 
-        if( in_array($my_id,$arr_my_follower_id) && in_array($my_id,$arr_user_id_whom_i_follow )){
+        if( in_array( $my_id, $arr_who_other_follow) && in_array( $other_id, $arr_who_i_follow )){
             $relation = "we_folow_each_other";
+
+        }elseif( in_array($my_id, $arr_follower_of_other ) ){
+            $relation = "i_folow_the_other";
+
+        }elseif( in_array( $other_id, $arr_follower_of_me ) ){
+            $relation = "the_other_follow_me";
+
+        }else{
+            $relation = "we_have_no_relation";
+
         }
 
-
-
-
-
-
-
-        
-        
-
-
-
+        return $relation;
     }
 
     // return InsertedId

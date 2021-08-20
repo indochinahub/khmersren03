@@ -25,7 +25,7 @@ class FollowModelTest extends CIUnitTestCase
                             ];
         $expectedResult =   [ 
                                 [],
-                                ["2","3","6","94"]
+                                ["2","94"]
                             ];
         $this->assertSame($expectedResult, $result);
     }
@@ -42,7 +42,7 @@ class FollowModelTest extends CIUnitTestCase
                             ];
         $expectedResult =   [ 
                                 [],
-                                ["2","3","6","94","60","29"],
+                                ["2","94","60","29"],
                             ];
         $this->assertSame($expectedResult, $result);
     }
@@ -50,13 +50,22 @@ class FollowModelTest extends CIUnitTestCase
     //return relation text
     public function test_get_my_relation_with_other(){
         
-        $result1 = $this->follow_model->get_my_relation_with_other($my_id = 1 ,$other_id = 2 );
+        $result1 = $this->follow_model->get_my_relation_with_other($my_id = 1   ,$other_id = 2 );
+        $result2 = $this->follow_model->get_my_relation_with_other($my_id = 1   ,$other_id = 60 );
+        $result3 = $this->follow_model->get_my_relation_with_other($my_id = 29  ,$other_id = 1 );
+        $result4 = $this->follow_model->get_my_relation_with_other($my_id = 0 ,$other_id = 1 );
 
         $result         =   [ 
-                                0
+                                $result1,
+                                $result2,
+                                $result3,
+                                $result4,
                             ];
         $expectedResult =   [ 
-                                0
+                                "we_folow_each_other",
+                                "i_folow_the_other",
+                                "the_other_follow_me",
+                                "we_have_no_relation"
                             ];
         $this->assertSame($expectedResult, $result);        
     }    
