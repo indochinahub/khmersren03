@@ -77,13 +77,20 @@ class FollowModel extends MyModel
         return $relation;
     }
 
-    // return InsertedId
-    public function follow_the_user($my_id, $user_id){
+    // return InsertedId Or false
+    public function follow_the_other($my_id, $other_id){
 
+        $where_clause = " WHERE id_user = $other_id AND id_follower_of_user = $my_id ";
+        if( $arr_follow = $this->get_where($where_clause)){ return false;}
+
+        $detail = [ "id_user"=>$other_id,
+                    "id_follower_of_user"=>$my_id
+                  ];
+        return $this->insert($detail);
     }
 
     // return AffectedRow
-    public function unfollow_the_user($my_id, $user_id){
+    public function unfollow_the_other ($my_id, $other_id){
 
     }
 
