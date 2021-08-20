@@ -30,13 +30,23 @@ class FollowModel extends MyModel
         }
     }
     
-    
-
-
-
     //return array of id
     public function user_id_of_whom_i_follow($user_id){
 
+        $util_model = new UtilModel;
+
+        $where_clause = " WHERE id_follower_of_user = $user_id ";
+        if( $arr_follow = $this->get_where($where_clause)){
+
+            $arr_id = $util_model->get_property_value_Of_many_objects_as_array(
+                                    $arr_follow,
+                                    "id_user"
+                                );
+            return $arr_id;
+
+        }else{
+            return [];
+        }        
     }
 
     //return 
