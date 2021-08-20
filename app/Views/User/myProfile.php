@@ -1,4 +1,30 @@
 <div class="card-info">
+    <div class="card-info card-info_body">
+        <strong> ฉันเป็นผู้ติดตาม</strong>ของ สุวชัญ  ชาญเชี่ยว<br>
+    </div>
+
+    <div class="card-info card-info_body">
+        <div class="two_flex_column">
+            <div>
+                <strong>เลิกติดตาม</strong> สุวชัญ  ชาญเชี่ยว                    </div>
+            <div>
+                <a href="http://127.0.0.1/khmersren02/Follow/unFollow/3" class="btn btn-primary">เลิก</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-info card-info_body">
+        <div class="two_flex_column">
+            <div>
+                <strong>ข้อความส่วนตัว</div>
+            <div>
+                <a href="" class="btn btn-primary">เลิก</a>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="card-info">
     <div class="card-info card-info_header">
         บัตรคำของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
