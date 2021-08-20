@@ -291,8 +291,28 @@ class UtilModel
         return $new_arr;
 
     }
-    
 
+    // return array of array
+    public function saparate_array_to_row($arr_source,$num_row,$num_per_row){
+
+        if( $arr_source === []){ return []; }
+
+        $arr_new = [];
+        for($row = 1;$row < $num_row + 1;$row++){
+            $arr_in_row = [];
+            for($col = 1;$col < $num_per_row + 1;$col++){
+                $obj = array_shift($arr_source);
+                if( $obj ){ 
+                    array_push($arr_in_row, $obj);
+                }else{
+                    array_push($arr_in_row, false);
+                }
+            }
+            array_push( $arr_new ,$arr_in_row);
+        }
+        
+        return $arr_new;
+    }
 
 }
 

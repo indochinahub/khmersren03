@@ -742,5 +742,47 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    // return array of array
+    public function test_saparate_array_to_row(){
+
+        $arr_source =   [ "01", "02", "03", "04" ];
+        $result1 = $this->util_model->saparate_array_to_row(
+                                $arr_source,
+                                $num_row = 2,
+                                $num_per_row = 2);
+        $arr_source =   [ ];
+        $result2 = $this->util_model->saparate_array_to_row(
+                                $arr_source,
+                                $num_row = 2,
+                                $num_per_row = 2);
+
+        $arr_source =   [ "01", "02", "03", "04" ];
+        $result3 = $this->util_model->saparate_array_to_row(
+                                $arr_source,
+                                $num_row = 1,
+                                $num_per_row = 2);
+
+        $result         =   [
+                                $result1,
+                                $result2,
+                                $result3,
+                            ];
+        $expectedResult =   [   
+                                [   
+                                    ["01","02"],
+                                    ["03","04"]
+                                ],
+                                
+                                [ ],
+                                
+                                [   
+                                    ["01","02"],
+                                ],
+
+                            ];
+
+        $this->assertSame($result,$expectedResult);
+    }    
+
 
 }
