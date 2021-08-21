@@ -340,3 +340,75 @@
 
 </div>
 
+<div class="card-info">
+    <div class="card-info card-info_header">
+        ผู้ใช้ที่เกี่ยวข้องกับฉัน
+    </div>
+    <div class="card-info card-info_body">
+                
+            <div style="display:flex;justify-content:space-evenly">
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/6"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000061.jpg">
+                            </a><br>
+                            วิทยา วิจิตร                    </div>
+
+                                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/94"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000941.jpg">
+                            </a><br>
+                            Sasipaphada                    </div>
+
+                                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/1"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/anonymous.jpg">
+                            </a><br>
+                            Surasak                    </div>
+
+                                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/29"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000291.jpg">
+                            </a><br>
+                            สุวชัญ  ชาญเชี่ยว                    </div>
+
+                            </div>
+            <div style="display:flex;justify-content:space-evenly">
+                                                
+                                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/95"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000951.jpg">
+                            </a><br>
+                            Anchisa Bunsri                    </div>
+
+                                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/89"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000891.jpg">
+                            </a><br>
+                            ศิวกร  บุญเย็น                    </div>
+
+                                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/56"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000561.jpg">
+                            </a><br>
+                            พิชญาภัค  ชาญเชี่ยว                    </div>
+
+                                    
+                    <div style="background-color:#becae6;width:24%">
+                            <a href="http://127.0.0.1/khmersren03/User/myProfile/55"> 
+                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000551.jpg">
+                            </a><br>
+                            Natchapha                    </div>
+
+                            </div>
+
+                    
+    </div>
+
+
+</div>
