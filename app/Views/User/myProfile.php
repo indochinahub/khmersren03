@@ -22,7 +22,7 @@
                         <strong>เลิกติดตาม</strong> xxxx
                     </div>
                     <div>
-                        <a href="<?php echo base_url( ["Follow","unfollow",$user->user_id,$member->user_id]);?>" class="btn btn-primary">เลิก</a>
+                        <a href="<?php echo base_url( ["Follow","unfollow",$user->user_id,$member->user_id]);?>" class="btn btn-warning">เลิก</a>
                     </div>
                 </div>
             </div>
@@ -46,9 +46,9 @@
         <div class="card-info card-info_body">
             <div class="two_flex_column">
                 <div>
-                    <strong>ข้อความส่วนตัว</div>
+                    <strong>ข้อความส่วนตัวของคุณกับ </div>
                 <div>
-                    <a href="" class="btn btn-primary">เลิก</a>
+                    <a href="" class="btn btn-primary">ไป</a>
                 </div>
             </div>
         </div>    

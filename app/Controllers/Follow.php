@@ -26,8 +26,18 @@ class Follow extends MyController
         $follow_model->delete_by_id( $follow->follow_id);
 
         return redirect()->to( $this->_get_backlink());		
-    
-
     }
+
+
+    public function follow($my_id,$other_id){
+
+        $follow_model = new FollowModel;
+
+        $follow_model->follow_the_other($my_id, $other_id);
+        return redirect()->to( $this->_get_backlink());		
+    }
+
+
+
 }
 
