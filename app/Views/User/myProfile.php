@@ -22,7 +22,7 @@
                         <strong>เลิกติดตาม</strong> xxxx
                     </div>
                     <div>
-                        <a href="" class="btn btn-primary">เลิก</a>
+                        <a href="<?php echo base_url( ["Follow","unfollow",$user->user_id,$member->user_id]);?>" class="btn btn-primary">เลิก</a>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         <strong>ติดตาม</strong> xxxx
                     </div>
                     <div>
-                        <a href="" class="btn btn-primary">เลิก</a>
+                        <a href="<?php echo base_url( ["Follow","follow",$user->user_id,$member->user_id]);?>" class="btn btn-primary">ติดตาม</a>
                     </div>
                 </div>
             </div>

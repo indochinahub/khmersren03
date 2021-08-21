@@ -124,7 +124,7 @@ class User extends MyController
         }
 
         // Follow Part
-        if( $data["user"] ){
+        if( $data["user"] && ( $data["if_user_view_own_profile"] === false ) ){
             $data["relation_text"] = $follow_model->get_my_relation_with_other(
                                         $data["user"]->user_id,
                                         $data["member"]->user_id
