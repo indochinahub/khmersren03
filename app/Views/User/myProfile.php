@@ -342,73 +342,44 @@
 
 <div class="card-info">
     <div class="card-info card-info_header">
-        ผู้ใช้ที่เกี่ยวข้องกับฉัน
+        ผู้ใช้ที่เกี่ยวข้องกับ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
     <div class="card-info card-info_body">
                 
-            <div style="display:flex;justify-content:space-evenly">
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/6"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000061.jpg">
-                            </a><br>
-                            วิทยา วิจิตร                    </div>
+    <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
+        
+        <div style="display:flex;justify-content:space-evenly">
+                                            
+            <?php foreach( $row_of_user as $user ){ ?>
+                
+                <div style="background-color:#becae6;width:24%">
+                        <a href="<?php echo base_url(["User","myProfile",$user->user_id]);?>"> 
+                            <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
+                            src="<?php echo $user->avarta_url;?>">
+                        </a><br>
+                        <?php echo $user->displayname;?>
+                        
+                </div>
 
-                                    
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/94"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000941.jpg">
-                            </a><br>
-                            Sasipaphada                    </div>
+            <?php } ?>
+        </div>
 
-                                    
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/1"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/anonymous.jpg">
-                            </a><br>
-                            Surasak                    </div>
+    <?php } ?>  
 
-                                    
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/29"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000291.jpg">
-                            </a><br>
-                            สุวชัญ  ชาญเชี่ยว                    </div>
-
-                            </div>
-            <div style="display:flex;justify-content:space-evenly">
-                                                
-                                    
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/95"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000951.jpg">
-                            </a><br>
-                            Anchisa Bunsri                    </div>
-
-                                    
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/89"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000891.jpg">
-                            </a><br>
-                            ศิวกร  บุญเย็น                    </div>
-
-                                    
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/56"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000561.jpg">
-                            </a><br>
-                            พิชญาภัค  ชาญเชี่ยว                    </div>
-
-                                    
-                    <div style="background-color:#becae6;width:24%">
-                            <a href="http://127.0.0.1/khmersren03/User/myProfile/55"> 
-                                <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" src="http://127.0.0.1/khmersren03/asset/avatar/000551.jpg">
-                            </a><br>
-                            Natchapha                    </div>
-
-                            </div>
-
-                    
     </div>
+</div>
 
+<div class="card-warning">
+    <div class="card-warning card-warning_body">
+        
+        <div class="two_flex_column">
+            <div>
+                <h5>ดูผู้ที่เกี่ยวข้องกับ  <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?> ทั้งหมด</h5>
+            </div>
+            <div>
+                <a href="<?php echo base_url(["Follow","myFollow",$member->user_id]);?>" class="btn btn-primary">ไป</a>
+            </div>
+        </div>
 
+    </div>
 </div>

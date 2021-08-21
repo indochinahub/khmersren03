@@ -255,6 +255,33 @@ class User extends MyController
             array_push( $data["arr_postcategory"] , $postcategory );
         }
 
+        // Member Section,
+        $arr_id_whom_i_relate_to = $follow_model->get_id_of_whom_i_relate_to($data["member"]->user_id);
+        $arr_id_whom_i_not_relate_to = $follow_model->get_id_of_whom_i_not_relate_to($data["member"]->user_id,8);
+
+        $arr_id_of_user_to_show = array_values(array_merge( $arr_id_whom_i_relate_to,$arr_id_whom_i_not_relate_to ));
+        $arr_id_of_user_to_show = array_slice( $arr_id_of_user_to_show, 0, 8);
+
+        $data["arr_user_to_show"] = [];
+        foreach( $arr_id_of_user_to_show as $id ){
+            $user = $user_model->get_by_id($id);
+            $user->displayname = $user_model->get_user_displayname($user);
+            $user->avarta_url = $user_model->get_avarta_url($user->user_id);
+            array_push( $data["arr_user_to_show"], $user);
+        }
+
+        $data["arr_user_to_show"] = $util_model->sort_array_of_object_by_the_property( 
+                                        $data["arr_user_to_show"], 
+                                        "user_visit_time", 
+                                        $order_by ="desc"
+                                    );
+
+        $data["arr_user_to_show"] = $util_model->saparate_array_to_row(
+                                        $data["arr_user_to_show"],
+                                        2,
+                                        4
+                                    );
+
         // View Section
         if( $data["if_user_view_own_profile"] ){
             $data["page_title"] = 	"โปรไฟล์ของฉัน ";
