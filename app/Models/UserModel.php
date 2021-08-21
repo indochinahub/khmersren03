@@ -112,7 +112,7 @@ class UserModel extends MyModel
         $sql .= " WHERE id_deck = $deck_id ";
         $sql .= " GROUP BY id_user ";
         $sql .= " ORDER BY lastVisitDate DESC ";
-        $sql .= " LIMIT 0, 4 ";
+        $sql .= " LIMIT 0, $num ";
         $query = $this->query($sql);
 
         if( $arr_user = $query->getResult() ){
