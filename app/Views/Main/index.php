@@ -54,7 +54,7 @@
         
         <div class="two_flex_column">
             <div>
-                <h5>ดูบัตรคำทั้งหมด</h5>
+                <h5>ดูบทความทั้งหมด</h5>
             </div>
             <div>
                 <a href="<?php echo base_url( ["Post","showBy","All"] );?>" class="btn btn-primary">ไป</a>
