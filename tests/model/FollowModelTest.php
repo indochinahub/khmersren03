@@ -111,11 +111,14 @@ class FollowModelTest extends CIUnitTestCase
     public function test_get_id_of_whom_i_not_relate_to(){
 
         $result1 = $this->follow_model->get_id_of_whom_i_not_relate_to($my_id = 1, $num = 15);
+        $result2 = $this->follow_model->get_id_of_whom_i_not_relate_to($my_id = 0, $num = 15);
 
         $result         =   [ 
                                 count($result1),
+                                count($result2),
                             ];
         $expectedResult =   [ 
+                                15,
                                 15,
                             ];
         $this->assertSame($expectedResult, $result);        
