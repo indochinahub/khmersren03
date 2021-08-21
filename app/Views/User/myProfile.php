@@ -8,7 +8,7 @@
             <?php }elseif( $relation_text === "i_folow_the_other" ){ ?>        
                 ฉันเป็นผู้ติดตามของ <strong><?php echo $other_displayname;?></strong><br>
             <?php }elseif( $relation_text === "the_other_follow_me" ){ ?>        
-                <strong><?php echo $other_displayname;?></strong> เป็นผู้ติดตามแัน<br>
+                <strong><?php echo $other_displayname;?></strong> เป็นผู้ติดตามฉัน<br>
             <?php }elseif( $relation_text === "we_have_no_relation" ){ ?>        
                 ฉันและ <strong><?php echo $other_displayname;?></strong> ไม่มีความสัมพันธ์กัน<br>
             <?php } ?>                    
@@ -19,7 +19,7 @@
             <div class="card-info card-info_body">
                 <div class="two_flex_column">
                     <div>
-                        <strong>เลิกติดตาม</strong> <?php echo $other_displayname;?>
+                    เลิกติดตาม <strong><?php echo $other_displayname;?></strong> 
                     </div>
                     <div>
                         <a href="<?php echo base_url( ["Follow","unfollow",$user->user_id,$member->user_id]);?>" class="btn btn-warning">เลิก</a>
@@ -32,7 +32,7 @@
             <div class="card-info card-info_body">
                 <div class="two_flex_column">
                     <div>
-                        ติดตาม<strong><?php echo $other_displayname;?></strong>
+                        ติดตาม <strong><?php echo $other_displayname;?></strong>
                     </div>
                     <div>
                         <a href="<?php echo base_url( ["Follow","follow",$user->user_id,$member->user_id]);?>" class="btn btn-primary">ติดตาม</a>
@@ -47,6 +47,7 @@
             <div class="two_flex_column">
                 <div>
                     ข้อความส่วนตัวของคุณกับ <strong><?php echo $other_displayname;?></strong>
+                    <?php if( $num_unread_message_with_other > 0 ){ echo "[$num_unread_message_with_other]";}?>
                 </div>
                 <div>
                     <a href="<?php echo base_url(["Message","with",$member->user_id]);?>" class="btn btn-primary">ไป</a>

@@ -15,6 +15,8 @@ use \App\Models\MediaModel;
 use \App\Models\PostcategoryModel;
 use \App\Models\PaginationModel;
 use \App\Models\FollowModel;
+use \App\Models\MessageModel;
+
 
 class User extends MyController
 {
@@ -113,6 +115,7 @@ class User extends MyController
         $post_model      = new PostModel;
         $postcategory_model = new PostcategoryModel;
         $follow_model       = new FollowModel;
+        $message_model      = new MessageModel;
 
         $data["user"]   = $this->_get_loggedin_user();
         $data["member"] = $user_model->get_user_by_id($member_id);
@@ -130,6 +133,7 @@ class User extends MyController
                                         $data["member"]->user_id
                                     );
             $data["other_displayname"] = $user_model->get_user_displayname($data["member"]);
+            $data["num_unread_message_with_other"] = $message_model->get_num_unread_message($data["user"]->user_id,$data["member"]->user_id);
         }
 
         // Statistic Section
