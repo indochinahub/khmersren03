@@ -129,6 +129,7 @@ class User extends MyController
                                         $data["user"]->user_id,
                                         $data["member"]->user_id
                                     );
+            $data["other_displayname"] = $user_model->get_user_displayname($data["member"]);
         }
 
         // Statistic Section

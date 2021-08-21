@@ -4,13 +4,13 @@
 
         <div class="card-info card-info_body">
             <?php if( $relation_text === "we_folow_each_other"){ ?>
-                <strong> xxx และฉันติดตามซึ่งกันและกัน</strong><br>
+                <strong><?php echo $other_displayname;?></strong> และฉันติดตามซึ่งกันและกัน<br>
             <?php }elseif( $relation_text === "i_folow_the_other" ){ ?>        
-                <strong> ฉันเป็นผู้ติดตามของ xxx</strong><br>
+                ฉันเป็นผู้ติดตามของ <strong><?php echo $other_displayname;?></strong><br>
             <?php }elseif( $relation_text === "the_other_follow_me" ){ ?>        
-                <strong> xxx เป็นผู้ติดตามแัน</strong><br>
+                <strong><?php echo $other_displayname;?></strong> เป็นผู้ติดตามแัน<br>
             <?php }elseif( $relation_text === "we_have_no_relation" ){ ?>        
-                <strong> ฉันและ xxx ไม่มีความสัมพันธ์กัน</strong><br>
+                ฉันและ <strong><?php echo $other_displayname;?></strong> ไม่มีความสัมพันธ์กัน<br>
             <?php } ?>                    
         </div>
 
@@ -19,7 +19,7 @@
             <div class="card-info card-info_body">
                 <div class="two_flex_column">
                     <div>
-                        <strong>เลิกติดตาม</strong> xxxx
+                        <strong>เลิกติดตาม</strong> <?php echo $other_displayname;?>
                     </div>
                     <div>
                         <a href="<?php echo base_url( ["Follow","unfollow",$user->user_id,$member->user_id]);?>" class="btn btn-warning">เลิก</a>
@@ -32,7 +32,7 @@
             <div class="card-info card-info_body">
                 <div class="two_flex_column">
                     <div>
-                        <strong>ติดตาม</strong> xxxx
+                        ติดตาม<strong><?php echo $other_displayname;?></strong>
                     </div>
                     <div>
                         <a href="<?php echo base_url( ["Follow","follow",$user->user_id,$member->user_id]);?>" class="btn btn-primary">ติดตาม</a>
@@ -46,9 +46,11 @@
         <div class="card-info card-info_body">
             <div class="two_flex_column">
                 <div>
-                    <strong>ข้อความส่วนตัวของคุณกับ </div>
+                    ข้อความส่วนตัวของคุณกับ <strong><?php echo $other_displayname;?></strong>
+                </div>
                 <div>
-                    <a href="" class="btn btn-primary">ไป</a>
+                    <a href="<?php echo base_url(["Message","with",$member->user_id]);?>" class="btn btn-primary">ไป</a>
+                            
                 </div>
             </div>
         </div>    
