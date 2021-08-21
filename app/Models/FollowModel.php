@@ -49,7 +49,16 @@ class FollowModel extends MyModel
         }        
     }
 
-    // return id
+    // return array of id
+    public function get_id_of_whom_i_relate_to($my_id){
+
+        $arr_id_of_my_folower = $this->get_my_follower_id($my_id);
+        $arr_id_of_whom_i_follow = $this->get_id_of_whom_i_follow($my_id);
+
+        return array_values(array_unique(array_merge($arr_id_of_my_folower, $arr_id_of_whom_i_follow )));
+    }
+
+    // return array of id
     public function get_id_of_whom_i_not_relate_to($my_id, $num){
 
         $util_model = new UtilModel;

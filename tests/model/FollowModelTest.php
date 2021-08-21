@@ -119,7 +119,23 @@ class FollowModelTest extends CIUnitTestCase
                                 15,
                             ];
         $this->assertSame($expectedResult, $result);        
+    }
 
+    // return array of id
+    public function test_get_id_of_whom_i_relate_to(){
+
+        $result1 = $this->follow_model->get_id_of_whom_i_relate_to($my_id = 1);
+        $result2 = $this->follow_model->get_id_of_whom_i_relate_to($my_id = 0);
+
+        $result         =   [ 
+                                $result1,
+                                $result2,
+                            ];
+        $expectedResult =   [ 
+                                ["2","94","60","29"],
+                                [],
+                            ];
+        $this->assertSame($expectedResult, $result);                
     }
 
 }
