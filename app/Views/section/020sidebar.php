@@ -51,6 +51,10 @@
                         </li>
 
                         <li>                
+                            <a href="<?php echo base_url(["Follow","myFollow", $loggedin_user->user_id ]);?>"><i class="fas fa-angle-double-right"></i> ผู้เกี่ยวข้องกับฉัน</a>
+                        </li>
+
+                        <li>                
                             <a href="<?php echo base_url(["User","myStatistic"]);?>"><i class="fas fa-angle-double-right"></i> สถิติของฉัน</a>
                         </li>                        
 
