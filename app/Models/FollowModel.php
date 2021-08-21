@@ -49,6 +49,32 @@ class FollowModel extends MyModel
         }        
     }
 
+    // return id
+    public function get_id_of_whom_i_not_relate_to($my_id, $num){
+
+        $util_model = new UtilModel;
+        
+        $sql =  " SELECT user_id FROM user WHERE 1 ";
+        $sql .= " ORDER BY user_visit_time desc ";
+        $sql .= " LIMIT 0, 100 ";
+        $query = $this->query($sql);
+        $arr_user = $query->getResult();
+
+        $arr_all_id = $util_model->get_property_value_Of_many_objects_as_array(
+                                                $arr_user,
+                                                "user_id" );
+
+        $arr_id_of_my_follower = $this->get_my_follower_id($my_id);
+        $arr_id_of_whom_i_follow = $this->get_id_of_whom_i_follow($my_id);
+
+        $arr_id_of_whom_in_not_relate_to = array_diff($arr_all_id, $arr_id_of_my_follower);
+        $arr_id_of_whom_in_not_relate_to = array_diff($arr_id_of_whom_in_not_relate_to, $arr_id_of_whom_i_follow);
+        $arr_id_of_whom_in_not_relate_to = array_slice( $arr_id_of_whom_in_not_relate_to, 0, $num );
+
+        return $arr_id_of_whom_in_not_relate_to;
+
+    }
+
     //return relation text
     public function get_my_relation_with_other($my_id,$other_id){
 

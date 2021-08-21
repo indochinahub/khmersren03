@@ -105,6 +105,21 @@ class FollowModelTest extends CIUnitTestCase
                                 true,
                             ];
         $this->assertSame($expectedResult, $result);
-    }    
+    }
+
+    // return id
+    public function test_get_id_of_whom_i_not_relate_to(){
+
+        $result1 = $this->follow_model->get_id_of_whom_i_not_relate_to($my_id = 1, $num = 15);
+
+        $result         =   [ 
+                                count($result1),
+                            ];
+        $expectedResult =   [ 
+                                15,
+                            ];
+        $this->assertSame($expectedResult, $result);        
+
+    }
 
 }
