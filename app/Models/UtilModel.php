@@ -196,7 +196,6 @@ class UtilModel
         
     }
 
-
     // Return text
     public function add_leading_zero_to_number( $text, $num_required_digit){
 

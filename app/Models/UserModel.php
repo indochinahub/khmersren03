@@ -105,27 +105,7 @@ class UserModel extends MyModel
     // return array_of_object
     public function get_last_visit_user_of_deck($deck_id, $num){
 
-        $util_model = new UtilModel;
-
-        $sql =  " SELECT id_user, MAX( practice_lastVisitDate) AS lastVisitDate ";
-        $sql .= " FROM practice ";
-        $sql .= " WHERE id_deck = $deck_id ";
-        $sql .= " GROUP BY id_user ";
-        $sql .= " ORDER BY lastVisitDate DESC ";
-        $sql .= " LIMIT 0, $num ";
-        $query = $this->query($sql);
-
-        if( $arr_user = $query->getResult() ){
-            $arr_id = $util_model->get_property_value_Of_many_objects_as_array(
-                            $arr_user,
-                            "id_user"
-                        );
-            return $this->get_by_ids($arr_id);
-
-        }else{
-            
-            return [];
-        }
+        return $this->get_last_visit_user_of_decks([$deck_id], $num);
     }
 
     // return array_of_object
