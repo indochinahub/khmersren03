@@ -153,7 +153,7 @@ class UserModel extends MyModel
     }
 
     // return array of user;
-    public function get_last_visit_of_card_and_deck($card_id, $deck_id){
+    public function get_last_visit_of_card_and_deck($card_id, $deck_id , $num){
 
         $util_model = new UtilModel;
         $sql =  " SELECT id_user, MAX( practice_lastVisitDate) AS lastVisitDate ";
@@ -161,6 +161,7 @@ class UserModel extends MyModel
         $sql .= " WHERE id_deck = $deck_id AND id_card = $card_id ";
         $sql .= " GROUP BY id_user ";
         $sql .= " ORDER BY lastVisitDate DESC ";
+        $sql .= " LIMIT 0, $num ";
         $query = $this->query($sql);
 
         if( $arr_user = $query->getResult() ){

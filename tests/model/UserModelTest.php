@@ -233,12 +233,14 @@ class UserModelTest extends CIUnitTestCase
 
         $result1 = $this->user_model->get_last_visit_of_card_and_deck(
                                     $card_id = 0, 
-                                    $deck_id = 5
+                                    $deck_id = 5,
+                                    $num = 4
                                 );
 
         $result2 = $this->user_model->get_last_visit_of_card_and_deck(
                                     $card_id = 500, 
-                                    $deck_id = 5
+                                    $deck_id = 5,
+                                    $num = 4
                                 );
 
         $result         =   [ 
