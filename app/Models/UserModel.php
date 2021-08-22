@@ -136,7 +136,21 @@ class UserModel extends MyModel
             
             return [];
         }
-    }    
+    }   
+
+    // return array of user
+    public function get_last_visit_user_of_course($course_id, $num){
+
+        $deck_model = new DeckModel;
+        $util_model = new UtilModel;
+
+        $arr_deck = $deck_model->get_by_course_id($course_id);
+        $arr_deck_id = $util_model->get_property_value_Of_many_objects_as_array(
+                                    $arr_deck,
+                                    "deck_id"
+                                );
+        return $this->get_last_visit_user_of_decks($arr_deck_id, $num);
+    }
 
 
 

@@ -203,9 +203,30 @@ class UserModelTest extends CIUnitTestCase
                                 true,
                             ];
         $this->assertSame($expectedResult, $result);        
+    }
+    
+    // return array of user
+    public function test_get_last_visit_user_of_course(){
 
+        $result1 = $this->user_model->get_last_visit_user_of_course(
+                            $course_id = 0, 
+                            $num = 4
+                        );        
+        $result2 = $this->user_model->get_last_visit_user_of_course(
+                            $course_id = 8, 
+                            $num = 4
+                        );
 
-    }    
+        $result         =   [ 
+                                $result1,
+                                count($result2),
+                            ];
+        $expectedResult =   [
+                                [],
+                                4
+                            ];
+        $this->assertSame($expectedResult, $result);        
+    }
 
     
 }

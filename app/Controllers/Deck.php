@@ -155,8 +155,6 @@ class Deck extends MyController
                                                 );                                                
 
             array_push($data["arr_card"], $card);
-
-
         }
 
         $data["page_title"] = 	"บัตรคำทั้งหมดในชุด ".$data["course"]->course_code."-".$data["deck"]->deck_name; 
