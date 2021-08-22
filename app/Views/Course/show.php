@@ -69,6 +69,3 @@
     <div class="card-info card-info_body">This is Body</div>
 
 </div>
-
-
-
