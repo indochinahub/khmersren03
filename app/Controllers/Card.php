@@ -232,7 +232,25 @@ class Card extends MyController
                                                     )
                                                 );
             $data["time_spent"]         =   $data["practice"]->practice_timespent;
-      }
+        }
+
+
+        // Display User Visited
+        $arr_visited_user = $user_model->get_last_visit_of_card_and_deck($card_id, $deck_id,8);
+
+        $data["arr_user_to_show"] = [];
+        foreach( $arr_visited_user as $user ){
+
+            $user->displayname = $user_model->get_user_displayname($user);
+            $user->avarta_url = $user_model->get_avarta_url($user->user_id);            
+            array_push( $data["arr_user_to_show"], $user);
+        }
+
+        $data["arr_user_to_show"] = $util_model->saparate_array_to_row(
+                                            $data["arr_user_to_show"],
+                                            2,
+                                            4
+                                        );
 
         // Cardcomment section
         $arr_cardcomment = $cardcomment_model->get_by_card_id_and_deck_id($card_id, $deck_id);
