@@ -68,11 +68,14 @@ class CourseModel extends MyModel
         if( !$sort_value ){ return false;}
 
         $arr_part = explode("-", $sort_value);
-        //$course = $this->course_model->get_course_by_code( $arr_piece[0]);
-        
-        //return $course;
 
+        if( $course = $this->get_by_couse_code($arr_part[0])){
+            return $course;
 
+        }else{
+            return false;
+
+        }
     }
 }
 

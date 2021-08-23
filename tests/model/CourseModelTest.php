@@ -96,10 +96,6 @@ class CourseModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);    
     }    
 
-
-
-
-
     // return Object or false
     public function test_get_course_from_post_sort_value(){
 
@@ -110,29 +106,16 @@ class CourseModelTest extends CIUnitTestCase
         $result             =   [ 
                                     $result1,
                                     $result2,
+                                    is_object($result3),
+                                    $result3->course_shortname,
                                 ];
         $expectedResult     =   [ 
                                     false,
                                     false,
+                                    true,
+                                    "Test Course",
                                 ];
         $this->assertSame($result,$expectedResult);         
-
-    /*
-            $result01 =  $this->post_model->get_course_by_sort_column($sort_value = "T001-003");
-        $result02 =  $this->post_model->get_course_by_sort_column($sort_value = NULL);        
-
-        $result         =   [   
-                                $result01->course_shortname,
-                                $result02
-                            ];
-
-        $expectedResult =   [   
-                                "Test Course",
-                                false
-                            ];
-    
-    */        
-        
     }
 
 
