@@ -50,7 +50,7 @@ class CourseModel extends MyModel
     }
 
     // return object or false
-    public function get_by_couse_code($course_code){
+    public function get_by_course_code($course_code){
 
         $where_clause = " WHERE course_code = '$course_code' ";
 

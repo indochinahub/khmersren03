@@ -80,10 +80,10 @@ class CourseModelTest extends CIUnitTestCase
     }
 
     // return object or false
-    public function test_get_by_couse_code(){
+    public function test_get_by_course_code(){
 
-        $result1 = $this->course_model->get_by_couse_code($course_code = "T001");
-        $result2 = $this->course_model->get_by_couse_code($course_code = "xxxx");
+        $result1 = $this->course_model->get_by_course_code($course_code = "T001");
+        $result2 = $this->course_model->get_by_course_code($course_code = "xxxx");
 
         $result             =   [ 
                                     is_object($result1),
