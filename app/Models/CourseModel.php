@@ -49,6 +49,19 @@ class CourseModel extends MyModel
         return $course;
     }
 
+    // return object or false
+    public function get_by_couse_code($course_code){
+
+        $where_clause = " WHERE course_code = '$course_code' ";
+
+        if( $arr_course = $this->get_where($where_clause) ){
+            return $arr_course[0];
+
+        }else{
+            return false;
+        }
+    }
+
     // return Object or false
     public function get_course_from_post_sort_value($sort_value){
 
@@ -57,7 +70,7 @@ class CourseModel extends MyModel
         $arr_part = explode("-", $sort_value);
         //$course = $this->course_model->get_course_by_code( $arr_piece[0]);
         
-        return $course;
+        //return $course;
 
 
     }
