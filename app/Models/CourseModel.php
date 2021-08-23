@@ -69,7 +69,7 @@ class CourseModel extends MyModel
 
         $arr_part = explode("-", $sort_value);
 
-        if( $course = $this->get_by_couse_code($arr_part[0])){
+        if( $course = $this->get_by_course_code($arr_part[0])){
             return $course;
 
         }else{
