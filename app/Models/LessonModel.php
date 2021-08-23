@@ -11,6 +11,14 @@ class LessonModel extends MyModel
         $this->primaryKey = $this->table."_id";
     }
 
+    // return array of object
+    public function get_by_course_id($course_id){
+
+        $where_clause =  " WHERE id_course = $course_id ";
+        $where_clause .= " ORDER BY lesson_sort ASC ";
+        return $this->get_where($where_clause);
+    }
+
 
 }
 
