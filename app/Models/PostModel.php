@@ -32,10 +32,6 @@ class PostModel extends MyModel
         }else{
             return 0;
         }
-
-
-
-
     }
 
     // return array of object
@@ -53,9 +49,5 @@ class PostModel extends MyModel
 
         return $arr_post;
     }
-
-
-    
-
 
 }

@@ -65,7 +65,6 @@ class PostModelTest extends CIUnitTestCase
                                 8,
                             ];   
         $this->assertSame($expectedResult, $result);                                 
-    }    
-
+    }  
     
 }

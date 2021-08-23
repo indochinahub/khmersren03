@@ -79,46 +79,4 @@ class CourseModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
-    // return object or false
-    public function test_get_by_course_code(){
-
-        $result1 = $this->course_model->get_by_course_code($course_code = "T001");
-        $result2 = $this->course_model->get_by_course_code($course_code = "xxxx");
-
-        $result             =   [ 
-                                    is_object($result1),
-                                    $result2,
-                                ];
-        $expectedResult     =   [ 
-                                    true,
-                                    false,
-                                ];
-        $this->assertSame($result,$expectedResult);    
-    }    
-
-    // return Object or false
-    public function test_get_course_from_post_sort_value(){
-
-        $result1 = $this->course_model->get_course_from_post_sort_value($sort_value = null);
-        $result2 = $this->course_model->get_course_from_post_sort_value($sort_value = "");
-        $result3 = $this->course_model->get_course_from_post_sort_value($sort_value = "T001-003");
-
-        $result             =   [ 
-                                    $result1,
-                                    $result2,
-                                    is_object($result3),
-                                    $result3->course_shortname,
-                                ];
-        $expectedResult     =   [ 
-                                    false,
-                                    false,
-                                    true,
-                                    "Test Course",
-                                ];
-        $this->assertSame($result,$expectedResult);         
-    }
-
-
-
-    
 }

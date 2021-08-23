@@ -49,34 +49,6 @@ class CourseModel extends MyModel
         return $course;
     }
 
-    // return object or false
-    public function get_by_course_code($course_code){
-
-        $where_clause = " WHERE course_code = '$course_code' ";
-
-        if( $arr_course = $this->get_where($where_clause) ){
-            return $arr_course[0];
-
-        }else{
-            return false;
-        }
-    }
-
-    // return Object or false
-    public function get_course_from_post_sort_value($sort_value){
-
-        if( !$sort_value ){ return false;}
-
-        $arr_part = explode("-", $sort_value);
-
-        if( $course = $this->get_by_course_code($arr_part[0])){
-            return $course;
-
-        }else{
-            return false;
-
-        }
-    }
 }
 
 
