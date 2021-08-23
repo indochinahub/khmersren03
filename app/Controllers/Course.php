@@ -9,6 +9,7 @@ use App\Models\DeckModel;
 use App\Models\CardModel;
 use App\Models\PracticeModel;
 use App\Models\UserModel;
+use App\Models\LessonModel;
 class Course extends MyController
 {
 
@@ -63,6 +64,7 @@ class Course extends MyController
         $practice_model = new PracticeModel;
         $util_model = new UtilModel;
         $user_model = new UserModel;
+        $lesson_model = new LessonModel;
 
         if( $data["user"] = $this->_get_loggedin_user() ){
         }else{
@@ -104,7 +106,7 @@ class Course extends MyController
         }
 
         // Display User Visited
-        $arr_visited_user = $user_model->get_last_visit_user_of_course($course_id, $num = 8);
+        $arr_visited_user = $user_model->get_last_visit_user_of_course($course_id, $num = 4);
 
         $data["arr_user_to_show"] = [];
         foreach( $arr_visited_user as $user ){
@@ -116,10 +118,14 @@ class Course extends MyController
 
         $data["arr_user_to_show"] = $util_model->saparate_array_to_row(
                                             $data["arr_user_to_show"],
-                                            2,
+                                            1,
                                             4
                                         );
-        
+
+        // Show Lesson
+        $data["arr_lesson"] = $lesson_model->get_by_course_id($course_id);
+
+        // View Section
         $data["page_title"] = 	"วิชา ".$data["course"]->course_code." ".$data["course"]->course_name;
         $data["page_link"] 	= 	[ "All Courses", base_url(["Course","showAll"])];	        
         $this->_view("show",$data);

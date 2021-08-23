@@ -65,8 +65,22 @@
 
     </div>
 
-    <div class="card-info card-info_header">บทเรียน</div>
-    <div class="card-info card-info_body">This is Body</div>
+    <div class="card-info card-info_header">
+        บทเรียน
+    </div>
+    
+    <?php foreach( $arr_lesson as $lesson){ ?>
+        <div class="card-info card-info_body">
+            <div class="two_flex_column" style="margin-bottom:5px;">
+                <div>
+                    <?php echo $lesson->lesson_title;?>
+                </div>
+                <div>
+                    <a href="<?php echo base_url(["Lesson","show",$lesson->lesson_id]);?>" class="btn btn-primary">ไป</a>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
 </div>
 
