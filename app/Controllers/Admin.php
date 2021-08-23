@@ -235,12 +235,6 @@ class Admin extends MyController
 
             $obj->num_row = $dbutil_model->get_num_all_row_of_table($table); 
 
-            if( $obj->num_row > 10000 ){
-                $obj->diabled_text = "disabled";
-            }else{
-                $obj->diabled_text = "";
-            }
-
             array_push($data["arr_table"],$obj);
         }
 
@@ -289,22 +283,32 @@ class Admin extends MyController
             $arr_row        = $dbutil_model->get_all_row_Of_table($table_name);
 
             $arr_column     = $dbutil_model->get_column_of_table($table_name);
+
+            
+
             $line_column    = $util_model->get_line_of_text_from_array (
                                                         $arr_column, 
                                                         "\t" 
                                                     );
 
-            // Get Line of Column
-            $txt_data = $util_model->get_text_data_from_array_of_object(
-                                $arr_row,$arr_column);
+            $i = 1;
+            do {
+                $start = ($i - 1) * 10000;
+                $arr_row_for_file = array_slice($arr_row, $start, 10000);
 
-            // Write to file
-            $file_model->create_file( ASSETPATH."03get_text_file_from_table/".$table_name.".txt" );
-            $file_model->write_to_file( ASSETPATH."03get_text_file_from_table/".$table_name.".txt" , 
-                                        $line_column."\n".$txt_data ) ;
+                $txt_data = $util_model->get_text_data_from_array_of_object(
+                            $arr_row_for_file,$arr_column);
+
+                // Write to file
+                $file_model->create_file( ASSETPATH."03get_text_file_from_table/".$table_name."$i.txt" );
+                $file_model->write_to_file( ASSETPATH."03get_text_file_from_table/".$table_name."$i.txt" , 
+                                            $line_column."\n".$txt_data ) ;
+                $i = $i + 1;
+
+            } while ( count( $arr_row_for_file ) == 10000);
 
             $what_happened =  "ท่านกำลังส่งออกตารางชื่อ $table_name <br>";
-            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."03get_text_file_from_table/".$table_name.".txt";
+            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."03get_text_file_from_table/".$table_name."[x].txt";
             $data	=  [    "page_title"=>"บัตรคำได้ส่งออกเรียบร้อยแล้ว",
                             "what_happened"=>$what_happened,
                             "what_todo" => "กรุณาดาวน์โหลดเพื่อนำไปใช้งานต่อไป",

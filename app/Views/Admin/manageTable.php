@@ -10,7 +10,7 @@
                     </div>
                     <div>
                         <a href="<?php echo base_url(["Admin","exportTable",$table->name,0]) ;?>" 
-                        class="btn btn-primary <?php echo $table->diabled_text;?>">Export</a>
+                        class="btn btn-primary">Export</a>
                     </div>
             </div>
         </div>
