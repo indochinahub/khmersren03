@@ -40,20 +40,20 @@ class MyModel extends Model
 
     // return Array Of Object
     public function get_all_row(){
-        $dbutil_name = new DbUtilModel;
+        $dbutil_name = new DbutilModel;
         return $dbutil_name->get_all_row_Of_table($this->table);
     }
 
     // Return Array Of column
     public function get_column(){
-        $dbutil_name = new DbUtilModel;
+        $dbutil_name = new DbutilModel;
 
         return $dbutil_name->get_column_of_table($this->table);
     }
 
     // return Int
     public function get_num_row(){
-        $dbutil_name = new DbUtilModel;
+        $dbutil_name = new DbutilModel;
         
         return $dbutil_name->get_num_all_row_of_table($this->table);
     }

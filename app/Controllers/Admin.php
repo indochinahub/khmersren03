@@ -13,7 +13,7 @@ use App\Models\StatisticModel;
 use App\Models\DatetimeModel;
 use App\Models\CardgroupModel;
 use App\Models\FileModel;
-use App\Models\DbUtilModel;
+use App\Models\DbutilModel;
 
 class Admin extends MyController
 {
@@ -216,7 +216,7 @@ class Admin extends MyController
 
     public function manageTable(){
 
-        $dbutil_model = new DbUtilModel;
+        $dbutil_model = new DbutilModel;
         $util_model = new UtilModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())
@@ -255,7 +255,7 @@ class Admin extends MyController
     public function exportTable($table_name, $confirm = "0"){
 
         $util_model     = new UtilModel;
-        $dbutil_model   = new DbUtilModel;
+        $dbutil_model   = new DbutilModel;
         $file_model     = new FileModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())
