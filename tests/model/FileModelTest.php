@@ -67,6 +67,7 @@ class FileModelTest extends CIUnitTestCase
 
         $result             =   [   
                                     $result1->arr_column,
+                                    $result1->table_name,
 
                                     $result1->arr_row[0]->firstname,
                                     $result1->arr_row[0]->lastname,
@@ -84,6 +85,7 @@ class FileModelTest extends CIUnitTestCase
                                 ];
         $expectedResult     =   [ 
                                     ["firstname", "lastname", "number"],
+                                    "student",
 
                                     "Wittaya",
                                     "Wijit",

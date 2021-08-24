@@ -41,7 +41,8 @@ class FileModel
         if( ! is_file($full_pathname )){ die( "There is no file at :".$full_pathname);} 
 
         $text_file        =   fopen($full_pathname, "r");
-        $arr_column   =   explode("\t", trim(fgets($text_file)));             
+        $table_name       =   trim(fgets($text_file));  
+        $arr_column       =   explode("\t", trim(fgets($text_file)));
     
         $arr_row = [];
         while (!feof($text_file)) {
@@ -69,6 +70,7 @@ class FileModel
 
         $result = new \stdClass;
         $result->arr_column = $arr_column ;
+        $result->table_name =   $table_name;
         $result->arr_row    = $arr_row ;
 
         return $result;
