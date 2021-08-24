@@ -282,16 +282,12 @@ class Admin extends MyController
         }else{
 
             $arr_row        = $dbutil_model->get_all_row_Of_table($table_name);
-
             $arr_column     = $dbutil_model->get_column_of_table($table_name);
-
-            
 
             $line_column    = $util_model->get_line_of_text_from_array (
                                                         $arr_column, 
                                                         "\t" 
                                                     );
-
             $i = 1;
             do {
                 $start = ($i - 1) * 10000;
