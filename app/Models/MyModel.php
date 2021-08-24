@@ -150,11 +150,11 @@ class MyModel extends Model
 
         return $obj;
     }
-    
 
-
-
-
+    // return primary key
+    public function get_primary_key(){
+        return $this->primaryKey ;
+    }
 }
 
 

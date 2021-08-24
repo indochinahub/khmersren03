@@ -283,9 +283,21 @@ class MyModelTest extends CIUnitTestCase
                                 null
                             ];
         $this->assertSame($expectedResult, $result);
-
-
     }    
+
+    // return primary key
+    public function test_get_primary_key(){
+
+        $result1 = $this->user_model->get_primary_key();
+
+        $result         =   [   
+                                $result1, 
+                            ];
+        $expectedResult =   [
+                                "user_id",
+                            ];
+        $this->assertSame($expectedResult, $result);        
+    }
 
         
 
