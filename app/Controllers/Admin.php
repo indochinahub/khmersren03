@@ -144,10 +144,11 @@ class Admin extends MyController
 
     }
 
-    public function importCard($confirm = "0" ){
+    public function importTable($confirm = "0" ){
 
         $file_model = new FileModel;
         $card_model = new CardModel;
+        $util_model = new UtilModel;
     
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
@@ -165,7 +166,7 @@ class Admin extends MyController
 
         if( $confirm === "0" ){
 
-            $what_happened = "ท่านกำลังนำเข้าชุดบัตรคำจำนวน จำนวน ".count($arr_row)." ข้อ ดังรายละเอียดต่อไปนี้";
+            $what_happened = "ท่านกำลังนำเข้าชุดบัตรคำจำนวน จำนวน ".count($arr_row)." ข้อ ดังรายละเอียดต่อไปนี้ <br>";
 
             $data = [];
             foreach( $arr_column as $column ){
@@ -176,9 +177,9 @@ class Admin extends MyController
                             "what_happened"=>$what_happened,
                             "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
                             "btnText_toConfirm" => "ยืนยัน",
-                            "btnLink_toConfirm" => base_url(["Admin","importCard", 1]),
+                            "btnLink_toConfirm" => base_url(["Admin","importTable", 1]),
                             "btnText_toCancle" => "ยกเลิก",
-                            "btnLink_toCancle" => base_url(["Admin","manageCardgroup"]),
+                            "btnLink_toCancle" => base_url(["Admin","manageTable"]),
                         ];  		
 
             $this->_view("confirm",$data);
@@ -195,8 +196,10 @@ class Admin extends MyController
                     }
                 }
 
-                $card_model->update_by_id(
-                                    $id = $data["card_id"], 
+                $table_model = $util_model->get_object_model_from_table_name($table_name);
+
+                $table_model->update_by_id(
+                                    $id = $data[ $table_name."_id" ], 
                                     $data
                                 );
             }
@@ -282,6 +285,7 @@ class Admin extends MyController
         }else{
 
             $arr_row        = $dbutil_model->get_all_row_Of_table($table_name);
+            
             $arr_column     = $dbutil_model->get_column_of_table($table_name);
 
             $line_column    = $util_model->get_line_of_text_from_array (
@@ -299,7 +303,7 @@ class Admin extends MyController
                 // Write to file
                 $file_model->create_file( ASSETPATH."03get_text_file_from_table/".$table_name."$i.txt" );
                 $file_model->write_to_file( ASSETPATH."03get_text_file_from_table/".$table_name."$i.txt" , 
-                                            $line_column."\n".$txt_data ) ;
+                                            $table_name."\n".$line_column."\n".$txt_data ) ;
                 $i = $i + 1;
 
             } while ( count( $arr_row_for_file ) == 10000);

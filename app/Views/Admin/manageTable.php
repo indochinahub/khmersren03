@@ -3,7 +3,7 @@
 
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
-                <a href="http://127.0.0.1/khmersren03/Admin/ImportTable/practice/0" class="btn btn-danger">Import</a>                
+                <a href="<?php echo base_url(["Admin","importTable"]);?>" class="btn btn-danger">Import</a>                
             </div>
             <div>
                 <strong>นำเข้าตาราง</strong>
