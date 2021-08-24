@@ -192,7 +192,7 @@ class Admin extends MyController
                     if( $row->$column === "NULL"  ){ 
                         $data[$column] = null;
                     }else{
-                        $data[$column] = trim($row->$column);
+                        $data[$column] = $util_model->sanitize_text_to_import(trim($row->$column))  ;
                     }
                 }
 
