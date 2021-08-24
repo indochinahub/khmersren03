@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class CourseTypeModel extends MyModel
+class CoursetypeModel extends MyModel
 {
 
     public function __construct(){

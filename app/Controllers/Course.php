@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\CourseTypeModel;
+use App\Models\CoursetypeModel;
 use App\Models\CourseModel;
 use App\Models\UtilModel;
 use App\Models\DeckModel;
@@ -15,7 +15,7 @@ class Course extends MyController
 
 	public function showAll() {
 
-        $coursetype_model = new CourseTypeModel();
+        $coursetype_model = new CoursetypeModel();
         $course_model = new CourseModel();
         $util_model = new UtilModel();
 

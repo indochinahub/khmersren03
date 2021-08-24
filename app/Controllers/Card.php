@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\CourseTypeModel;
+use App\Models\CoursetypeModel;
 use App\Models\CourseModel;
 use App\Models\UtilModel;
 use App\Models\DeckModel;
