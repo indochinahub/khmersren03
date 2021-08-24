@@ -124,15 +124,15 @@ class Admin extends MyController
                                     );
             $txt_data = $util_model->get_text_data_from_array_of_object(
                                 $arr_card,$arr_column);
+            $txt_to_write = "card"."\n".$line_column."\n".$txt_data;
 
             // Write to file
-            $file_model->create_file( ASSETPATH."01get_text_file_from_cardgroup/export.txt");
-            $file_model->write_to_file( ASSETPATH."01get_text_file_from_cardgroup/export.txt", 
-                                        $line_column."\n".$txt_data );
-
+            $file_model->create_file( ASSETPATH."01get_text_file_from_cardgroup/export_card.txt");
+            $file_model->write_to_file( ASSETPATH."01get_text_file_from_cardgroup/export_card.txt", 
+                                        $txt_to_write);
 
             $what_happened =  "ท่านกำลังส่งออกชุดบัตรคำหมายเลข $cardgroup_id จำนวน $num_card ข้อ <br>";
-            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."01get_text_file_from_cardgroup/export.txt";
+            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."01get_text_file_from_cardgroup/export_card.txt";
             $data	=  [    "page_title"=>"บัตรคำได้ส่งออกเรียบร้อยแล้ว",
                             "what_happened"=>$what_happened,
                             "what_todo" => "กรุณาดาวน์โหลดเพื่อนำไปใช้งานต่อไป",
