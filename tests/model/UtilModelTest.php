@@ -805,12 +805,15 @@ class UtilModelTest extends CIUnitTestCase
     public function test_sanitize_export_text(){
 
         $result1 = $this->util_model->sanitize_export_text($text = "xxx\nyyy");
+        $result2 = $this->util_model->sanitize_export_text($text = "xxx\r\nyyy");
 
         $result         =   [
                                 $result1,
+                                $result2,
                             ];
         $expectedResult =   [   
-                                "xxx[nl]yyy",
+                                "xxx[newline]yyy",
+                                "xxx[newline]yyy",
                             ];
         $this->assertSame($result,$expectedResult);
     }
