@@ -337,6 +337,12 @@ class UtilModel
         return $text;
     }
 
+    // return sanitized text
+    public function sanitize_text_to_import($text){
+
+        return str_replace( "[newline]","\r\n",$text);
+    }
+
     
 
 }
