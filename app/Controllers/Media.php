@@ -20,21 +20,12 @@ use App\Models\MessageModel;
 class Media extends MyController
 {
 
-    public function _get_table_model($table_name){
-        if( $table_name === "post" ){
-            return new PostModel;
-
-        }elseif( $table_name === "message" ){
-            return new MessageModel;
-
-        }
-    }    
-
     public function deletePicture($table_name, $key_id, $media_num){
 
         $file_model = new FileModel;
+        $util_model = new UtilModel;
         
-        $table_model = $this->_get_table_model($table_name);
+        $table_model = $util_model->get_object_model_from_table_name($table_name);
 
         $row = $table_model->get_by_id( $key_id );
 
@@ -53,8 +44,9 @@ class Media extends MyController
     public function deleteSound($table_name, $key_id, $media_num){
 
         $file_model = new FileModel;
+        $util_model = new UtilModel;
         
-        $table_model = $this->_get_table_model($table_name);
+        $table_model = $util_model->get_object_model_from_table_name($table_name);
 
         $row = $table_model->get_by_id( $key_id );
 
@@ -96,7 +88,7 @@ class Media extends MyController
         }
         
         // Update database
-        $table_model = $this->_get_table_model($table_name);
+        $table_model = $util_model->get_object_model_from_table_name($table_name);
 
         $property = $table_name."_picture0".$media_num;
         $table_model->update_by_id(  $key_id,
@@ -119,7 +111,7 @@ class Media extends MyController
         $this->_addFile($file,  $dir, $new_filename ) ;
 
         // Update database
-        $table_model = $this->_get_table_model($table_name);
+        $table_model = $util_model->get_object_model_from_table_name($table_name);
 
         $property = $table_name."_sound0".$media_num;
         $table_model->update_by_id(  $key_id,
@@ -140,8 +132,10 @@ class Media extends MyController
 
     public function deleteYoutube($table_name, $key_id, $media_num){
 
+        $util_model = new UtilModel;
+
         // Update database
-        $table_model = $this->_get_table_model($table_name);
+        $table_model = $util_model->get_object_model_from_table_name($table_name);
         
         $property = $table_name."_youtube0".$media_num;
         $table_model->update_by_id(     $key_id,
@@ -152,8 +146,10 @@ class Media extends MyController
 
     public function addYoutube($table_name, $key_id, $media_num){
 
+        $util_model = new UtilModel;
+
         // Update database
-        $table_model = $this->_get_table_model($table_name);        
+        $table_model = $util_model->get_object_model_from_table_name($table_name);        
 
         $youtube_id =  $this->request->getPost("youtube");
 
