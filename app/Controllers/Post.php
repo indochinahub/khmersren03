@@ -13,7 +13,7 @@ use App\Models\CardcommentModel;
 use App\Models\UserModel;
 use App\Models\PostModel;
 use App\Models\MediaModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 use App\Models\PostcategoryModel;
 
 class Post extends MyController
@@ -23,7 +23,7 @@ class Post extends MyController
         $post_model         = new PostModel;
         $util_model         = new UtilModel;
         $pagination_model   = new PaginationModel;
-        $datetime_model     = new DateTimeModel;
+        $datetime_model     = new DatetimeModel;
         $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
 
@@ -104,7 +104,7 @@ class Post extends MyController
         $post_model = new PostModel;
         $user_model = new UserModel;
         $postcategory_model = new PostcategoryModel;
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
 
         $user = $this->_get_loggedin_user();
@@ -193,7 +193,7 @@ class Post extends MyController
         $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
         $util_model         = new UtilModel;
-        $datetime_model     = new DateTimeModel;
+        $datetime_model     = new DatetimeModel;
 
         if( $user = $this->_get_loggedin_user() ){
         }else{

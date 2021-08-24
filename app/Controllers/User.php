@@ -8,7 +8,7 @@ use \App\Models\CourseModel;
 use \App\Models\PracticeModel;
 use \App\Models\CardModel;
 use \App\Models\StatisticModel;
-use \App\Models\DateTimeModel;
+use \App\Models\DatetimeModel;
 use \App\Models\UtilModel;
 use \App\Models\PostModel;
 use \App\Models\MediaModel;
@@ -108,9 +108,8 @@ class User extends MyController
 		$card_model 	 = new CardModel;
 		$practice_model  = new PracticeModel;
 		$statistic_model = new StatisticModel;
-		$datetime_model  = new DateTimeModel;
+		$datetime_model  = new DatetimeModel;
 		$util_model  	 = new UtilModel;
-        $datetime_model  = new DateTimeModel;
         $user_model      = new UserModel;
         $post_model      = new PostModel;
         $postcategory_model = new PostcategoryModel;
@@ -299,7 +298,7 @@ class User extends MyController
 
     public function myStatistic(){
         $statistic_model    =   new StatisticModel;
-        $datetime_model     =   new DateTimeModel;
+        $datetime_model     =   new DatetimeModel;
         $util_model         =   new UtilModel;
 
         $user = $this->_get_loggedin_user();
@@ -369,7 +368,7 @@ class User extends MyController
         $user_model = new UserModel;
         $util_model = new UtilModel;
         $pagination_model = new PaginationModel;
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
         $practice_model = new PracticeModel;
 
         $arr_user = $user_model->get_all_row();

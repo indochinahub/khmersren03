@@ -13,7 +13,7 @@ use App\Models\CardcommentModel;
 use App\Models\UserModel;
 use App\Models\PostModel;
 use App\Models\FileModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 use App\Models\PostcategoryModel;
 use App\Models\MessageModel;
 

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class DateTimeModel
+class DatetimeModel
 {
     // return Int
     public function get_unix_timestamp($unix_timestamp , $next_day = 0){
@@ -112,16 +112,15 @@ class DateTimeModel
 
     // return array of text
     public function get_last_num_day_midnight($unix_timestamp, $num_day){
-        $datetime_model = new DateTimeModel;
-
+        
         $arr_date = [];
         for ($num_day = 0; $num_day <= 14; $num_day++) {
-            $midnight_unix_timestamp = $datetime_model->get_unix_timestamp_at_midnight(
+            $midnight_unix_timestamp = $this->get_unix_timestamp_at_midnight(
                                             $unix_timestamp, 
                                             $next_day = -$num_day
                                         );
             array_push  (   $arr_date,
-                            $datetime_model->unix_timestamp_to_sql_timestamp( $midnight_unix_timestamp)
+                            $this->unix_timestamp_to_sql_timestamp( $midnight_unix_timestamp)
                         );
         }
         return $arr_date;

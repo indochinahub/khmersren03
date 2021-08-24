@@ -171,7 +171,7 @@ class StatisticModelTest extends CIUnitTestCase
     // return true or false
     public function test_if_there_is_today_statistic(){
 
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         // Create sample data
         $sql  =     " INSERT INTO statistic(id_user, id_deck, statistic_timespent, statistic_numcard, statistic_datetime) ";

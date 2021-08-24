@@ -133,7 +133,7 @@ class MessageModel extends MyModel
     // return num rows
     public function set_read_time($user_id,$other_id,$unix_timestamp){
 
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         $sql_timestamp =  $datetime_model->unix_timestamp_to_sql_timestamp($unix_timestamp);
 

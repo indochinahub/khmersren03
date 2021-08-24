@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\UtilModel;
 use App\Models\CardgroupModel;
 use App\Models\DeckpModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 
 class StatisticModel extends MyModel
 {
@@ -56,7 +56,7 @@ class StatisticModel extends MyModel
 
     // return array of key id
     public function create_daily_statistic($user_id, $unix_timestamp){
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         // if there is today statistic , No need to create statistic
         if( $this->if_there_is_today_statistic($user_id, $unix_timestamp)){ return []; }
@@ -87,7 +87,7 @@ class StatisticModel extends MyModel
 
     // return true or false
     public function if_there_is_today_statistic($user_id, $unix_timestamp){
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         $today_midnight =   $datetime_model->unix_timestamp_to_sql_timestamp(
                                   $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day = 0)  
@@ -129,7 +129,7 @@ class StatisticModel extends MyModel
     public function get_last_15_day_statistic( $user_id, $unix_timestamp ){
 
         $util_model = new UtilModel;
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         $arr_daily_statistic = $this->get_daily_statistic( $user_id );
         $assoc_daily_statistic = $util_model->get_assoc_from_array_of_object(
@@ -166,7 +166,7 @@ class StatisticModel extends MyModel
     //return int or false
     public function get_num_day_from_start($user_id){
 
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         $where_clause =  " WHERE id_user = $user_id ";
         $where_clause .= " ORDER BY statistic_datetime asc ";

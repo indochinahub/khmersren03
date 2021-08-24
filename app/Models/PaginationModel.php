@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 
 class PaginationModel
 {

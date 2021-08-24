@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\UtilModel;
 use App\Models\DeckModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 
 class PracticeModel extends MyModel
 {
@@ -26,7 +26,7 @@ class PracticeModel extends MyModel
     // return array of object
     public function get_to_review($deck_id, $user_id, $unix_timestamp, $next_day){
 
-        $datetime_model = new DateTimeModel();
+        $datetime_model = new DatetimeModel();
         $util_model = new UtilModel();
 
         $unix_timestamp = $datetime_model->get_unix_timestamp($unix_timestamp, $next_day);
@@ -42,7 +42,7 @@ class PracticeModel extends MyModel
     // return int
     public function get_total_num_to_review($user_id, $unix_timestamp, $next_day){
 
-        $datetime_model = new DateTimeModel();
+        $datetime_model = new DatetimeModel();
 
         $today_midnight = $datetime_model->unix_timestamp_to_sql_timestamp(
                                     $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day)                            
@@ -119,7 +119,7 @@ class PracticeModel extends MyModel
     // return int or zero
     public function get_num_practice_have_done_of_the_day($user_id, $unix_timestamp){
 
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
         
         $lower_boundry_sql_timestamp = $datetime_model->unix_timestamp_to_sql_timestamp(
                                             $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day = 0)                            
@@ -140,7 +140,7 @@ class PracticeModel extends MyModel
     // return int
     public function get_timespent_of_the_day($user_id, $unix_timestamp){
 
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         $lower_boundry_sql_timestamp = $datetime_model->unix_timestamp_to_sql_timestamp(
                                             $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day = 0)                            

@@ -8,7 +8,7 @@ use \App\Models\CourseModel;
 use \App\Models\PracticeModel;
 use \App\Models\CardModel;
 use \App\Models\StatisticModel;
-use \App\Models\DateTimeModel;
+use \App\Models\DatetimeModel;
 use \App\Models\UtilModel;
 use \App\Models\CardcommentModel;
 use \App\Models\PaginationModel;
@@ -24,7 +24,7 @@ class Cardcomment extends MyController
         $course_model       = new CourseModel;
         $card_model         = new CardModel;
         $user_model         = new UserModel;
-        $datetime_model     = new DateTimeModel;
+        $datetime_model     = new DatetimeModel;
         
         $assoc_deck     =  $deck_model->get_all_rows_as_assoc();
         $assoc_user      =  $user_model->get_all_rows_as_assoc();

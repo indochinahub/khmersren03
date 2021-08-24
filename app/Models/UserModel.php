@@ -78,7 +78,7 @@ class UserModel extends MyModel
     // return affected rows
     public function update_visit_time($user_id){
 
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
 
         $detail = [ 
                 "user_visit_time" => $datetime_model->unix_timestamp_to_sql_timestamp(time()) 

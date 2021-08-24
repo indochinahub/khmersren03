@@ -13,7 +13,7 @@ use App\Models\CardcommentModel;
 use App\Models\UserModel;
 use App\Models\PostModel;
 use App\Models\MediaModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 use App\Models\PostcategoryModel;
 use App\Models\LessonModel;
 
@@ -26,7 +26,7 @@ class Lesson extends MyController
         $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
         $util_model         = new UtilModel;
-        $datetime_model     = new DateTimeModel;
+        $datetime_model     = new DatetimeModel;
         $lesson_model       = new LessonModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())

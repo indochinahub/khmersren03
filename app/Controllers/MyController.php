@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UtilModel;
 use App\Models\UserModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 use App\Models\StatisticModel;
 use App\Models\MessageModel;
 

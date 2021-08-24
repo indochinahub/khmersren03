@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Test\CIUnitTestCase;
 
-class DateTimeModelTest extends CIUnitTestCase
+class DatetimeModelTest extends CIUnitTestCase
 {
     var $datetime_model;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->datetime_model = new DateTimeModel();
+        $this->datetime_model = new DatetimeModel();
     }
 
     // return Int

@@ -13,7 +13,7 @@ use App\Models\CardcommentModel;
 use App\Models\UserModel;
 use App\Models\PostModel;
 use App\Models\MediaModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 use App\Models\PostcategoryModel;
 
 
@@ -24,7 +24,7 @@ class Main extends MyController
         $post_model         = new PostModel;
         $util_model         = new UtilModel;
         $pagination_model   = new PaginationModel;
-        $datetime_model     = new DateTimeModel;
+        $datetime_model     = new DatetimeModel;
         $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
 

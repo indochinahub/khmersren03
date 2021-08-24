@@ -8,7 +8,7 @@ use \App\Models\CourseModel;
 use \App\Models\PracticeModel;
 use \App\Models\CardModel;
 use \App\Models\StatisticModel;
-use \App\Models\DateTimeModel;
+use \App\Models\DatetimeModel;
 use \App\Models\UtilModel;
 use \App\Models\PostModel;
 use \App\Models\MediaModel;
@@ -22,7 +22,7 @@ class Message extends MyController
 
         $message_model = new MessageModel;
         $user_model = new UserModel;
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
         $util_model = new UtilModel;
 
         // Check user's previlege
@@ -69,7 +69,7 @@ class Message extends MyController
 
         $user_model = new UserModel;
         $message_model = new MessageModel;
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
         $pagination_model = new PaginationModel;
         $util_model = new UtilModel;
 

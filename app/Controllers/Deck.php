@@ -11,7 +11,7 @@ use App\Models\PracticeModel;
 use App\Models\PaginationModel;
 use App\Models\CardcommentModel;
 use App\Models\UserModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 use App\Models\StatisticModel;
 use App\Models\PostModel;
 
@@ -174,7 +174,7 @@ class Deck extends MyController
         $course_model       = new CourseModel;
         $card_model         = new CardModel;
         $user_model         = new UserModel;
-        $datetime_model     = new DateTimeModel;
+        $datetime_model     = new DatetimeModel;
 
         $assoc_deck         =  $deck_model->get_all_rows_as_assoc();
         $assoc_user         =  $user_model->get_all_rows_as_assoc();
@@ -275,7 +275,7 @@ class Deck extends MyController
         $card_model 	 = new CardModel;
         $practice_model  = new PracticeModel;
         $statistic_model = new StatisticModel;
-        $datetime_model  = new DateTimeModel;
+        $datetime_model  = new DatetimeModel;
         $util_model  	 = new UtilModel;
         $user_model      = new UserModel;
         $post_model      = new PostModel;

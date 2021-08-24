@@ -8,7 +8,7 @@ use App\Models\UtilModel;
 use App\Models\DeckModel;
 use App\Models\CardModel;
 use App\Models\PracticeModel;
-use App\Models\DateTimeModel;
+use App\Models\DatetimeModel;
 use App\Models\CardcommentModel;
 use App\Models\UserModel;
 
@@ -21,7 +21,7 @@ class Card extends MyController
         $course_model = new CourseModel;
         $card_model = new CardModel;
         $practice_model = new PracticeModel;
-        $datetime_model = new DateTimeModel;
+        $datetime_model = new DatetimeModel;
         $util_model = new UtilModel;
         $cardcomment_model = new CardcommentModel;
         $user_model = new UserModel;
