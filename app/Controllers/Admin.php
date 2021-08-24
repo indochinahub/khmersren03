@@ -199,7 +199,7 @@ class Admin extends MyController
                 $table_model = $util_model->get_object_model_from_table_name($table_name);
 
                 $table_model->update_by_id(
-                                    $id = $data[ $table_name."_id" ], 
+                                    $id = $data[ $table_model->get_primary_key() ], 
                                     $data
                                 );
             }
@@ -212,9 +212,7 @@ class Admin extends MyController
                             "btnLink_toGo" => base_url(["Admin", "manageCardgroup"])
                         ];
             $this->_warn($data);            
-
         }
-
     }
 
     public function manageTable(){
