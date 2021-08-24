@@ -9,8 +9,13 @@
                         จำนวน :: <?php echo $table->num_row;?>
                     </div>
                     <div>
+
+                        <a href="<?php echo base_url(["Admin","ImportTable",$table->name,0]) ;?>" 
+                        class="btn btn-danger">Import</a>
+
                         <a href="<?php echo base_url(["Admin","exportTable",$table->name,0]) ;?>" 
                         class="btn btn-primary">Export</a>
+
                     </div>
             </div>
         </div>
