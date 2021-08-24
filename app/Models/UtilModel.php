@@ -325,6 +325,14 @@ class UtilModel
 
         }
     }
+
+    // return sanitized text
+    public function sanitize_export_text($text){
+
+        $text =  str_replace("\n", "[nl]", $text);
+        return $text;
+
+    }
     
 
 }
