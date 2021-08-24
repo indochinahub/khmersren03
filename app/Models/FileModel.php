@@ -70,7 +70,7 @@ class FileModel
 
         $result = new \stdClass;
         $result->arr_column = $arr_column ;
-        $result->table_name =   $table_name;
+        $result->table_name = $table_name;
         $result->arr_row    = $arr_row ;
 
         return $result;

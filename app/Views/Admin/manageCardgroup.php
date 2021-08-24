@@ -28,7 +28,7 @@
                         จำนวน :: <?php echo $cardgroup->num_card;?>
                     </div>
                     <div>
-                        <a href="<?php echo base_url(["Admin", "exportCardgroup", $cardgroup->cardgroup_id]);?>" class="btn btn-primary">Export</a>
+                        <a href="<?php echo base_url(["Admin","exportCardgroup","card",$cardgroup->cardgroup_id]);?>" class="btn btn-primary">Export</a>
                         
                     </div>
             </div>

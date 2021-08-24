@@ -81,7 +81,7 @@ class Admin extends MyController
         $this->_view("manageCardgroup",$data);                
     }
 
-    public function exportCardgroup($cardgroup_id, $confirm = "0"){
+    public function exportCardgroup($table_name,$cardgroup_id,$confirm = "0"){
 
         $cardgroup_model= new CardgroupModel;
         $card_model     = new CardModel;
@@ -108,7 +108,7 @@ class Admin extends MyController
                             "what_happened"=>"ท่านกำลังส่งออกชุดบัตรคำหมายเลข $cardgroup_id จำนวน $num_card ข้อ ",
                             "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
                             "btnText_toConfirm" => "ยืนยัน",
-                            "btnLink_toConfirm" => base_url(["Admin","exportCardgroup", $cardgroup_id, 1]),
+                            "btnLink_toConfirm" => base_url(["Admin","exportCardgroup",$table_name,$cardgroup_id,1]),
                             "btnText_toCancle" => "ยกเลิก",
                             "btnLink_toCancle" => base_url(["Admin","manageCardgroup"]),
                         ];  		
@@ -124,15 +124,15 @@ class Admin extends MyController
                                     );
             $txt_data = $util_model->get_text_data_from_array_of_object(
                                 $arr_card,$arr_column);
-            $txt_to_write = "card"."\n".$line_column."\n".$txt_data;
+            $txt_to_write = $table_name."\n".$line_column."\n".$txt_data;
 
             // Write to file
-            $file_model->create_file( ASSETPATH."01get_text_file_from_cardgroup/export_card.txt");
-            $file_model->write_to_file( ASSETPATH."01get_text_file_from_cardgroup/export_card.txt", 
+            $file_model->create_file( ASSETPATH."01get_text_file_from_cardgroup/export_".$table_name.".txt");
+            $file_model->write_to_file( ASSETPATH."01get_text_file_from_cardgroup/export_".$table_name.".txt", 
                                         $txt_to_write);
 
             $what_happened =  "ท่านกำลังส่งออกชุดบัตรคำหมายเลข $cardgroup_id จำนวน $num_card ข้อ <br>";
-            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."01get_text_file_from_cardgroup/export_card.txt";
+            $what_happened .= "ตาวโหลดได้ที่ ".ASSETPATH."01get_text_file_from_cardgroup/export_".$table_name.".txt";
             $data	=  [    "page_title"=>"บัตรคำได้ส่งออกเรียบร้อยแล้ว",
                             "what_happened"=>$what_happened,
                             "what_todo" => "กรุณาดาวน์โหลดเพื่อนำไปใช้งานต่อไป",
@@ -160,6 +160,7 @@ class Admin extends MyController
         $full_pathname = ASSETPATH."02import_text_file_to_card/import.txt";
         $result = $file_model->get_data_from_export_file($full_pathname);
         $arr_column = $result->arr_column;
+        $table_name = $result->table_name;  
         $arr_row = $result->arr_row;        
 
         if( $confirm === "0" ){
