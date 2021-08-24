@@ -1,6 +1,7 @@
 
 
-<?php if( $loggedin_user && $total_unread_message > 0 ){ ?>
+<?php if(  ($loggedin_user && $total_unread_message > 0 ) 
+             &&  $controller_name !== "Message" ){ ?>
 
     <div class="card-danger">
 
