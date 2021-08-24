@@ -782,7 +782,25 @@ class UtilModelTest extends CIUnitTestCase
                             ];
 
         $this->assertSame($result,$expectedResult);
-    }    
+    }
+
+    // return object or false
+    public function test_get_object_model_from_table_name(){
+
+        $result1 = $this->util_model->get_object_model_from_table_name($table_name = "user");
+        $result2 = $this->util_model->get_object_model_from_table_name($table_name = "");
+
+        $result         =   [
+                                is_object($result1),
+                                $result2,
+                            ];
+        $expectedResult =   [   
+                                true,
+                                false,
+                            ];
+        $this->assertSame($result,$expectedResult);
+    }
+
 
 
 }

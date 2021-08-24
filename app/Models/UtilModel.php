@@ -313,6 +313,20 @@ class UtilModel
         return $arr_new;
     }
 
+    // return object or false
+    public function get_object_model_from_table_name($table_name){
+
+        if( $table_name  ){
+            $class = "App\Models\\".ucfirst($table_name)."Model"; 
+            return new $class();
+
+        }else{
+            return false;
+
+        }
+    }
+    
+
 }
 
 
