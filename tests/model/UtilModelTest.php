@@ -802,10 +802,10 @@ class UtilModelTest extends CIUnitTestCase
     }
 
     // return sanitized text
-    public function test_sanitize_export_text(){
+    public function test_sanitize_text_to_export(){
 
-        $result1 = $this->util_model->sanitize_export_text($text = "xxx\nyyy");
-        $result2 = $this->util_model->sanitize_export_text($text = "xxx\r\nyyy");
+        $result1 = $this->util_model->sanitize_text_to_export($text = "xxx\nyyy");
+        $result2 = $this->util_model->sanitize_text_to_export($text = "xxx\r\nyyy");
 
         $result         =   [
                                 $result1,

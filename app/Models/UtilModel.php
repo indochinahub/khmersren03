@@ -242,7 +242,7 @@ class UtilModel
 
         $line = "";
         foreach( $arr_text as $text ){
-            $text = $this->sanitize_export_text($text);
+            $text = $this->sanitize_text_to_export($text);
             $line = $line.$text.$saparator;
         }
 
@@ -260,8 +260,8 @@ class UtilModel
             $line_row = "";
             foreach( $arr_column as $column ){
                 if( $obj->$column){
-                    
-                    $obj->$column = $this->sanitize_export_text($obj->$column);
+
+                    $obj->$column = $this->sanitize_text_to_export($obj->$column);
                     $line_row = $line_row.$obj->$column."\t";
                 }else{
                     $line_row = $line_row."NULL"."\t";
@@ -330,12 +330,14 @@ class UtilModel
     }
 
     // return sanitized text
-    public function sanitize_export_text($text){
+    public function sanitize_text_to_export($text){
         
         $text =  str_replace( "\r\n","[newline]",$text);
         $text =  str_replace( "\n","[newline]",$text);
         return $text;
     }
+
+    
 
 }
 
