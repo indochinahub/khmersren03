@@ -5,7 +5,7 @@
         <div>
             <h5><?php echo $lesson->lesson_title;?></h5>
             <h6 style="margin-top:5px">
-                [ <?php echo $lesson->lesson_edited_date;?>
+                [ <?php echo $lesson->lesson_edited_date;?> ]
             </h6>
         </div>
 

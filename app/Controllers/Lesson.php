@@ -40,7 +40,8 @@ class Lesson extends MyController
         // Set the task and validate form
         $data = [];
         if( ($this->request->getMethod() === "post") && $task === "edit"  ){
-            //$data["task"] = "update";
+
+            $data["task"] = "update";
 
         }elseif( $task === "edit"){
 
@@ -73,28 +74,24 @@ class Lesson extends MyController
                                         $this->_get_backlink()
                                    ];
             $this->_view("addEdit",$data);            
-
-            /*
-            
-
-            $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
-            $data["page_link"] 	= 	[   "กลับ",
-                                        $this->_get_backlink()
-                                   ];
-            $this->_view("addEdit",$data);
-            */
-            
+          
 
         }elseif( $data["task"] === "update"){
 
-            /*
             $detail = $this->request->getPost();
             $detail = $util_model->fill_null_in_array($detail);
-            $detail["post_publisheddate"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
+            $detail["lesson_edited_date"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
+            $lesson_model->update_by_id($id, $detail);
+            return redirect()->to(base_url(["Lesson","show", $id]));		
 
-            $post_model->update_by_id($post_id, $detail);
+            /*
+            
+            
+            
 
-            return redirect()->to(base_url(["Post","show", $post_id]));		
+            
+
+            
             */
 
 
