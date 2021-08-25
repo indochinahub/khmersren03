@@ -29,10 +29,10 @@
             
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
-                <h5>เพิ่มบัตรคำใหม่</h5>
+                <h5>เพิ่มบัตรคำเปล่า</h5>
             </div>
             <div>
-                <a href="<?php echo base_url();?>" class="btn btn-primary">ไป</a>
+                <a href="<?php echo base_url(["Admin","addBlankCard"]);?>" class="btn btn-primary">ไป</a>
             </div>
         </div>        
     </div>
