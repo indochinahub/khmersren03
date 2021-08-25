@@ -44,18 +44,7 @@ class Lesson extends MyController
 
         }elseif( $task === "edit"){
 
-            /*
-            $data["post"] = $post_model->get_by_id($post_id);
-
-            $owner = $user_model->get_by_post_id($post_id);
-            if( $user->user_id === $owner->user_id ){
-            }else{
-                $this->_needPrivilege();
-                return;
-            }
-
             $data["task"] = "show_form_to_update";
-            */
 
         }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
             $data["task"] = "insert";
@@ -68,27 +57,25 @@ class Lesson extends MyController
         // Do the task
         if( $data["task"] === "show_form_to_update" ){
 
-            /*
-            // get arr_postcategory
-            $data["arr_postcategory"] = [];
-            foreach( $arr_postcategory as $postcategory){
+            $data["lesson"] = $lesson_model->get_by_id($id);
 
-                if( $postcategory->postcategory_id == $data["post"]->id_postcategory ){
-                    $postcategory->checked_text = " checked ";
-
-                }else{
-                    $postcategory->checked_text = "";
-                }
-                array_push( $data["arr_postcategory"], $postcategory);
-            }
-            
-            $media_model            = new MediaModel( $data["post"], "post");
+            $media_model            = new MediaModel( $data["lesson"], "lesson");
             $data["arr_picture"]    = $media_model->get_arr_picture();
             $data["arr_sound"]      = $media_model->get_arr_sound();
             $data["arr_youtube"]    = $media_model->get_arr_youtube();
             $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
             $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
             $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
+
+
+            $data["page_title"] = 	"Edit :: ".$data["lesson"]->lesson_id; 
+            $data["page_link"] 	= 	[   "กลับ",
+                                        $this->_get_backlink()
+                                   ];
+            $this->_view("addEdit",$data);            
+
+            /*
+            
 
             $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
             $data["page_link"] 	= 	[   "กลับ",
