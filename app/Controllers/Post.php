@@ -182,6 +182,9 @@ class Post extends MyController
 
         }elseif( $confirm === "1" ){
 
+            $media_model = new MediaModel($post, "post");
+            $media_model->delete_all_media_file();
+
             $post_model->delete_by_id($post_id);
             return redirect()->to(base_url( ["Post","showBy","User", $owner->user_id]));		
         }

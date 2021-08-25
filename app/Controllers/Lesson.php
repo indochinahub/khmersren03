@@ -84,17 +84,6 @@ class Lesson extends MyController
             $lesson_model->update_by_id($id, $detail);
             return redirect()->to(base_url(["Lesson","show", $id]));		
 
-            /*
-            
-            
-            
-
-            
-
-            
-            */
-
-
         }elseif( $data["task"] === "show_form_to_insert"){
 
             $data["lesson"] = $lesson_model->get_object_with_null_value();
@@ -161,7 +150,6 @@ class Lesson extends MyController
 
         $lesson = $lesson_model->get_by_id($lesson_id);
 
-
         if( (int)$confirm === 0 ){
 
             $data    =  [   "page_title"=>"ยืนยันการลบบทเรียน",
@@ -176,6 +164,9 @@ class Lesson extends MyController
             $this->_view("confirm",$data);
 
         }else{
+
+            $media_model = new MediaModel($lesson, "lesson");
+            $media_model->delete_all_media_file();
 
             $lesson_model->delete_by_id($lesson_id);
             return redirect()->to(base_url( ["Course","show",$lesson->id_course]));		
