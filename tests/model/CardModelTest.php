@@ -16,8 +16,6 @@ class CardModelTest extends CIUnitTestCase
         $this->card_model = new CardModel();
 
         $card_sample = new \stdClass;
-
-
     }
 
     // return array of card or blank array
@@ -583,5 +581,22 @@ class CardModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);                
     }
 
+    //return insertedId
+    public function test_insert_blank_card(){
+
+        $result1 = $this->card_model->insert_blank_card();
+
+        $result             =   [
+                                    $result1 > 0
+                                ];
+        $expectedResult     =   [   
+                                    true
+                                ];
+        $this->assertSame($result,$expectedResult);
+
+        $sql = " DELETE FROM card WHERE card_id = $result1 ";
+        $this->card_model->query($sql);                
+
+    }
     
 }

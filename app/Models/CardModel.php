@@ -260,4 +260,12 @@ class CardModel extends MyModel
         return $arr_shuffled_choice;
     }
 
+    //return insertedId
+    public function insert_blank_card(){
+
+        $sql = " INSERT INTO card (id_cardgroup) VALUES (8) ";
+        $query = $this->query($sql);
+        return $this->db->insertID();
+    }    
+
 }
