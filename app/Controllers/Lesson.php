@@ -139,9 +139,37 @@ class Lesson extends MyController
 
 
     public function show($lesson_id){
-        echo "Hello";
+
+        $lesson_model = new LessonModel;
+        $user_model  = new UserModel;
+        $course_model = new CourseModel;
+
+        $data = [];
+        if( ($data["user"] = $this->_get_loggedin_user())  
+             && ( $data["user"]->user_level === "3")
+        ){
+
+            $data["if_user_is_admin"] = true;
+        }else{
+
+            $data["if_user_is_admin"] = false;
+        }
+
+        $data["lesson"] = $lesson_model->get_by_id($lesson_id);
+
+        $media_model                    = new MediaModel( $data["lesson"], "lesson");
+        $data["lesson"]->lesson_content = $media_model->replace_media_tag_with_html($data["lesson"]->lesson_content);
+
+        $data["course"] = $course_model->get_by_id( $data["lesson"]->id_course );
+        
+        $data["back_link"] = $this->_get_backlink();
 
 
+        $data["page_title"] = 	""; 
+        $data["page_link"] 	= 	[   " ",
+                                    base_url()
+                               ];
+        $this->_view("show",$data);                        
     }
 
 
