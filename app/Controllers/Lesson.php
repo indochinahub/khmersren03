@@ -137,7 +137,6 @@ class Lesson extends MyController
 
     }
 
-
     public function show($lesson_id){
 
         $lesson_model = new LessonModel;
@@ -172,8 +171,33 @@ class Lesson extends MyController
         $this->_view("show",$data);                        
     }
 
+    public function delete($lesson_id, $confirm = "0"){
+        
+        $lesson_model = new LessonModel;
 
-    
+        $lesson = $lesson_model->get_by_id($lesson_id);
+
+
+        if( (int)$confirm === 0 ){
+
+            $data    =  [   "page_title"=>"ยืนยันการลบบทเรียน",
+                            "what_happened"=>"คุณกำลังลบบทเรียนหมายเลข $lesson_id ",
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Lesson", "delete", $lesson_id, 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => $this->_get_backlink(),
+                        ];  		
+
+            $this->_view("confirm",$data);
+
+        }else{
+
+            $lesson_model->delete_by_id($lesson_id);
+            return redirect()->to(base_url( ["Course","show",$lesson->id_course]));		
+        }
+   
+    }
 
 }
 

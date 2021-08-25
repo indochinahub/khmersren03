@@ -54,7 +54,7 @@
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                 <div>
-                    <a href="<?php echo base_url( ["Post","delete",$lesson->lesson_id] );?>" class="btn btn-primary">ทำ</a>
+                    <a href="<?php echo base_url( ["Lesson","delete",$lesson->lesson_id] );?>" class="btn btn-primary">ทำ</a>
                 </div>
                 <div>
                     <strong>ลบ</strong>บทความนี้
