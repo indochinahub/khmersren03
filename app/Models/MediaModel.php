@@ -146,9 +146,31 @@ class MediaModel
         return false;
     }
 
+    // return array of deleted_file
+    public function delete_all_media_file(){
 
+        $util_model = new UtilModel;
+        $file_model = new FileModel;
 
+        $arr_media = $this->get_arr_picture();
+        $arr_media = array_merge($arr_media,$this->get_arr_sound());
 
+        $arr_media = $util_model->get_property_value_Of_many_objects_as_array(
+                            $arr_media,
+                            "value"
+                        );
 
+        $arr_full_pathname = [];
+        foreach( $arr_media as $media ){
+
+            $media_path = ASSETPATH."media/".$this->table_name."_media/".$media;
+            $file_model->delete_file($media_path);
+
+            array_push($arr_full_pathname,$media_path);
+
+        }
+
+        return $arr_full_pathname;
+    }
 
 }

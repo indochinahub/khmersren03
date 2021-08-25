@@ -275,5 +275,42 @@ class MediaModelTest extends CIUnitTestCase
         $this->assertSame($expectedResult, $result);       
     }
 
+    // return array of deleted_file
+    public function test_delete_all_media_file(){
+
+        $obj = new \stdClass;
+        $obj->post_picture01   = "000011.jpg";
+        $obj->post_picture02   = "000012.jpg";
+        $obj->post_picture03   = "000033.jpg";
+        $obj->post_picture04   = "000044.jpg";
+        $obj->post_picture05   = "000055.jpg";
+        $obj->post_picture06   = "000066.jpg";
+
+        $obj->post_sound01     = "000011.mp3";
+        $obj->post_sound02     = "000022.mp3";
+
+        $media_model = new MediaModel($obj, "post");                
+        $result1 = $media_model->delete_all_media_file();
+
+        //---------------------//
+        $obj = new \stdClass;
+        $media_model = new MediaModel($obj, "post");                
+        $result2 = $media_model->delete_all_media_file();
+
+        $result         =   [   
+                                $result1[0],
+                                count($result1),
+
+                                $result2,
+                            ];
+        $expectedResult =   [   
+                                "F:\\xampp\htdocs\khmersren03\asset/media/post_media/000011.jpg",
+                                8,
+
+                                [],
+                            ];
+        $this->assertSame($expectedResult, $result);       
+    }
+
 
 }
