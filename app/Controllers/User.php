@@ -142,7 +142,7 @@ class User extends MyController
         $data["num_day_from_start"] = $statistic_model->get_num_day_from_start($data["member"]->user_id);
         $data["num_day_of_statistic"] = count($statistic_model->get_daily_statistic($data["member"]->user_id));
         $data["total_timespent_of_user"] = $datetime_model->get_second_in_minute_and_hour( $statistic_model->get_total_timespent_of_user($data["member"]->user_id));
-        $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visit_time );
+        $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visittime );
         $data["num_practice_have_done_today"] = $practice_model->get_num_practice_have_done_of_the_day($data["member"]->user_id, time());
         $data["timespent_today"] = $practice_model->get_timespent_of_the_day($data["member"]->user_id, time());
         $data["total_card_to_review_today"] = $practice_model->get_total_num_to_review($data["member"]->user_id, time(), 1);
@@ -271,7 +271,7 @@ class User extends MyController
 
         $data["arr_user_to_show"] = $util_model->sort_array_of_object_by_the_property( 
                                         $data["arr_user_to_show"], 
-                                        "user_visit_time", 
+                                        "user_visittime", 
                                         $order_by ="desc"
                                     );
 
@@ -400,7 +400,7 @@ class User extends MyController
 
             $user->display_name = $user_model->get_user_displayname($user);
             $user->avatar_url = $user_model->get_avarta_url($user->user_id);
-            $user->user_visit_time = $datetime_model->get_thai_datetime_from_sql_timestamp($user->user_visit_time);
+            $user->user_visittime = $datetime_model->get_thai_datetime_from_sql_timestamp($user->user_visittime);
 
             array_push($data["arr_user"], $user);
         }                

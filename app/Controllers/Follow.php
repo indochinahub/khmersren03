@@ -69,7 +69,7 @@ class Follow extends MyController
 
         $data["arr_of_whom_i_follow"] = $util_model->sort_array_of_object_by_the_property( 
                                                 $data["arr_of_whom_i_follow"], 
-                                                "user_visit_time", 
+                                                "user_visittime", 
                                                 $order_by ="desc"
                                             );
 
@@ -93,7 +93,7 @@ class Follow extends MyController
 
         $data["arr_of_my_follower"] = $util_model->sort_array_of_object_by_the_property( 
                                                 $data["arr_of_my_follower"], 
-                                                "user_visit_time", 
+                                                "user_visittime", 
                                                 $order_by ="desc"
                                             );
 

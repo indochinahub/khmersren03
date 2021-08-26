@@ -84,7 +84,7 @@ class Deck extends MyController
 
         $data["arr_user_to_show"] = $util_model->sort_array_of_object_by_the_property( 
                                             $data["arr_user_to_show"], 
-                                            "user_visit_time", 
+                                            "user_visittime", 
                                             $order_by ="desc"
                                         );
         $data["arr_user_to_show"] = $util_model->saparate_array_to_row(

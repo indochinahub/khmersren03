@@ -56,7 +56,7 @@ class Main extends MyController
         $arr_user = $user_model->get_all_row();
         $arr_user = $util_model->sort_array_of_object_by_the_property( 
                                     $arr_user, 
-                                    "user_visit_time", 
+                                    "user_visittime", 
                                     $order_by ="desc"
                                 );
         $arr_user = array_slice($arr_user, 0, 8);
