@@ -45,7 +45,7 @@ class Main extends MyController
 
             $post->user = $user_model->get_by_post_id( $post->post_id );
             $post->post_createddate = $datetime_model->get_thai_datetime_from_sql_timestamp(
-                                        $post->post_createddate );
+                                        $post->post_createtime );
             $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
 
