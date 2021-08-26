@@ -82,7 +82,7 @@ class Post extends MyController
 
             $post->user = $user_model->get_by_post_id( $post->post_id );
             $post->post_createddate = $datetime_model->get_thai_datetime_from_sql_timestamp(
-                                        $post->post_createddate );
+                                        $post->post_createtime );
             $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
 
@@ -120,7 +120,7 @@ class Post extends MyController
         $data["postcategory"]           = $postcategory_model->get_by_post_id($data["post"]->post_id);
         $data["postcategory_num_card"]  = $post_model->get_num_by_postcategory_id($data["post"]->id_postcategory);
         $data["post_createddate"]       = $datetime_model->get_thai_datetime_from_sql_timestamp(
-                                            $data["post"]->post_createddate );
+                                            $data["post"]->post_createtime );
 
         $data["back_link"] = $this->_get_backlink();
 
@@ -268,7 +268,7 @@ class Post extends MyController
 
             $detail = $this->request->getPost();
             $detail = $util_model->fill_null_in_array($detail);
-            $detail["post_publisheddate"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
+            $detail["post_publishtime"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
 
             $post_model->update_by_id($post_id, $detail);
 

@@ -226,7 +226,7 @@ class User extends MyController
         $arr_post = $post_model->get_by_user_id($data["member"]->user_id);
         $arr_post = $util_model->sort_array_of_object_by_the_property( 
                                 $arr_post, 
-                                "post_publisheddate", 
+                                "post_publishtime", 
                                 $order_by ="desc");
         $arr_post = array_slice($arr_post,0,3);
 
@@ -237,7 +237,7 @@ class User extends MyController
             $post->postcategory = $postcategory_model->get_by_post_id($post->post_id);
             $post->postcategory_num_card = $post_model->get_num_by_postcategory_id( $post->id_postcategory);
             $post->post_createddate = $datetime_model->get_thai_datetime_from_sql_timestamp(
-                                        $post->post_createddate );
+                                        $post->post_createtime );
 
             $media_model                    = new MediaModel( $post, "post");
             $post->post_intro       = $media_model->replace_media_tag_with_html($post->post_intro);
