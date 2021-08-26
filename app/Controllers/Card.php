@@ -52,7 +52,7 @@ class Card extends MyController
 
         if( $last_visit_practice = $practice_model->get_last_by_user_id($data["user"]->user_id) ){
             $last_card_visit_unix_timestamp  =    $datetime_model->sql_timestamp_to_unix_timestamp(
-                                                $last_visit_practice->practice_lastVisitDate  
+                                                $last_visit_practice->practice_lastvisittime
                                             );
         }else{
             $last_card_visit_unix_timestamp  = time() - 20; 
@@ -116,7 +116,7 @@ class Card extends MyController
             $detail =   [       "id_deck"=>$deck_id,
                                 "id_card"=>$card_id,
                                 "id_user"=>$data["user"]->user_id,
-                                "practice_nextVisitDate"=>$next_midnight_sql_timestamp
+                                "practice_nextvisittime"=>$next_midnight_sql_timestamp
                         ];
             $practice_id = $practice_model->insert($detail);
 
@@ -129,7 +129,7 @@ class Card extends MyController
 
             // Get the time value
             $last_visit_date = $datetime_model->get_date_part_from_sql_timestamp(
-                                    $data["practice"]->practice_lastVisitDate
+                                    $data["practice"]->practice_lastvisittime
                                 );
 
             $time_spent = time() - $last_card_visit_unix_timestamp;
@@ -143,7 +143,7 @@ class Card extends MyController
         // Only update lastVisitDate
         if( ($data["page"] === "b") && ($today_date === $last_visit_date) ){
             $detail =   [       
-                            "practice_lastVisitDate"=>$now_sql_timestamp
+                            "practice_lastvisittime"=>$now_sql_timestamp
                         ];
 
         //for the correct answer
@@ -162,8 +162,8 @@ class Card extends MyController
             
             $detail = [   
                         "practice_intervalDay"=>$iterval_num_day,
-                        "practice_lastVisitDate"=>$now_sql_timestamp ,
-                        "practice_nextVisitDate"=>$next_visit_date ,
+                        "practice_lastvisittime"=>$now_sql_timestamp ,
+                        "practice_nextvisittime"=>$next_visit_date ,
                         "practice_counter"=> $data["practice"]->practice_counter + 1,
                         "practice_timespent"=>$time_spent,
             ];            
@@ -180,8 +180,8 @@ class Card extends MyController
                                     );
             $detail = [   
                 "practice_intervalDay"=>$iterval_num_day = $iterval_num_day,
-                "practice_lastVisitDate"=>$now_sql_timestamp,
-                "practice_nextVisitDate"=>$next_visit_date,
+                "practice_lastvisittime"=>$now_sql_timestamp,
+                "practice_nextvisittime"=>$next_visit_date,
                 "practice_counter"=> $data["practice"]->practice_counter + 1,
                 "practice_timespent"=>$time_spent,
                 
@@ -228,7 +228,7 @@ class Card extends MyController
 
             $data["next_visit_date"]    =   $datetime_model->get_thai_date_from_sql_timestamp(
                                                     $datetime_model->get_date_part_from_sql_timestamp(
-                                                        $data["practice"]->practice_nextVisitDate
+                                                        $data["practice"]->practice_nextvisittime
                                                     )
                                                 );
             $data["time_spent"]         =   $data["practice"]->practice_timespent;
