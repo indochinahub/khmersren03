@@ -113,12 +113,12 @@ class Message extends MyController
                 $message->role = "i_am_reciever";
             }
 
-            $message->message_senddate = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_senddate);
+            $message->message_sendtime = $datetime_model->get_thai_datetime_from_sql_timestamp($message->message_sendtime);
 
-            if( $message->message_readdate ){
-                $message->message_readdate = "อ่านเมื่อ ".$datetime_model->get_thai_datetime_from_sql_timestamp($message->message_readdate);
+            if( $message->message_readtime ){
+                $message->message_readtime = "อ่านเมื่อ ".$datetime_model->get_thai_datetime_from_sql_timestamp($message->message_readtime);
             }else{
-                $message->message_readdate = "[ผู้รับยังไม่ได้อ่าน]";
+                $message->message_readtime = "[ผู้รับยังไม่ได้อ่าน]";
             }
 
             if( $message->message_picture01 ){

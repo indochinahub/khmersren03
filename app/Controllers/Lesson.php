@@ -80,7 +80,7 @@ class Lesson extends MyController
 
             $detail = $this->request->getPost();
             $detail = $util_model->fill_null_in_array($detail);
-            $detail["lesson_edited_date"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
+            $detail["lesson_edittime"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
             $lesson_model->update_by_id($id, $detail);
             return redirect()->to(base_url(["Lesson","show", $id]));		
 
@@ -115,6 +115,7 @@ class Lesson extends MyController
         $lesson_model = new LessonModel;
         $user_model  = new UserModel;
         $course_model = new CourseModel;
+        $datetime_model = new DatetimeModel;
 
         $data = [];
         if( ($data["user"] = $this->_get_loggedin_user())  
@@ -128,6 +129,8 @@ class Lesson extends MyController
         }
 
         $data["lesson"] = $lesson_model->get_by_id($lesson_id);
+
+        $data["lesson"]->lesson_edittime = $datetime_model->get_thai_datetime_from_sql_timestamp($data["lesson"]->lesson_edittime);
 
         $media_model                    = new MediaModel( $data["lesson"], "lesson");
         $data["lesson"]->lesson_content = $media_model->replace_media_tag_with_html($data["lesson"]->lesson_content);

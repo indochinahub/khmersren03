@@ -12,7 +12,7 @@
                         </div>
                         <div>
                             โดย [<strong><?php echo $other_displayname;?></strong>]<br>
-                            ส่งเมื่อ <?php echo $message->message_senddate;?>
+                            ส่งเมื่อ <?php echo $message->message_sendtime;?>
                         </div>
 
             </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div>
                     โดย [<strong><?php echo $user_displayname;?></strong>]<br>
-                    <?php echo $message->message_readdate;?>
+                    <?php echo $message->message_readtime;?>
                 </div>
             </div>
         </div>
