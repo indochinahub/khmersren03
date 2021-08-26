@@ -64,7 +64,7 @@ class FollowModel extends MyModel
         $util_model = new UtilModel;
         
         $sql =  " SELECT user_id FROM user WHERE 1 ";
-        $sql .= " ORDER BY user_visit_time desc ";
+        $sql .= " ORDER BY user_visittime desc ";
         $sql .= " LIMIT 0, 100 ";
         $query = $this->query($sql);
         $arr_user = $query->getResult();

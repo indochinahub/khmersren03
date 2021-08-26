@@ -81,7 +81,7 @@ class UserModel extends MyModel
         $datetime_model = new DatetimeModel;
 
         $detail = [ 
-                "user_visit_time" => $datetime_model->unix_timestamp_to_sql_timestamp(time()) 
+                "user_visittime" => $datetime_model->unix_timestamp_to_sql_timestamp(time()) 
                 ];
 
         return $this->update_by_id($user_id, $detail);
