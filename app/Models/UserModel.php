@@ -117,11 +117,11 @@ class UserModel extends MyModel
 
         $arr_deck_id_text =  "(".$util_model->get_line_of_text_from_array ($arr_deck_id, ",").")";
 
-        $sql =  " SELECT id_user, MAX( practice_lastVisitDate) AS lastVisitDate ";
+        $sql =  " SELECT id_user, MAX( practice_lastvisittime) AS lastVisittime ";
         $sql .= " FROM practice ";
         $sql .= " WHERE id_deck in $arr_deck_id_text ";
         $sql .= " GROUP BY id_user ";
-        $sql .= " ORDER BY lastVisitDate DESC ";
+        $sql .= " ORDER BY lastVisittime DESC ";
         $sql .= " LIMIT 0, $num ";
         $query = $this->query($sql);
 
@@ -156,11 +156,11 @@ class UserModel extends MyModel
     public function get_last_visit_of_card_and_deck($card_id, $deck_id , $num){
 
         $util_model = new UtilModel;
-        $sql =  " SELECT id_user, MAX( practice_lastVisitDate) AS lastVisitDate ";
+        $sql =  " SELECT id_user, MAX( practice_lastvisittime ) AS visittime ";
         $sql .= " FROM practice ";
         $sql .= " WHERE id_deck = $deck_id AND id_card = $card_id ";
         $sql .= " GROUP BY id_user ";
-        $sql .= " ORDER BY lastVisitDate DESC ";
+        $sql .= " ORDER BY visittime DESC ";
         $sql .= " LIMIT 0, $num ";
         $query = $this->query($sql);
 

@@ -33,7 +33,7 @@ class PracticeModel extends MyModel
         $sql_time_stamp = $datetime_model->unix_timestamp_to_sql_timestamp($unix_timestamp);
 
         $where_clause       =   " WHERE id_deck = ".$deck_id." AND id_user = ".$user_id;
-        $where_clause       .=  " AND practice_nextVisitDate < '$sql_time_stamp' " ;
+        $where_clause       .=  " AND practice_nextvisittime < '$sql_time_stamp' " ;
         $where_clause       .=  " ORDER BY practice_intervalDay DESC ";
 
         return  $this->get_where($where_clause);
@@ -48,7 +48,7 @@ class PracticeModel extends MyModel
                                     $datetime_model->get_unix_timestamp_at_midnight( $unix_timestamp, $next_day)                            
                                 );
         $sql =  " SELECT count(practice_id) as num FROM practice ";
-        $sql .= " WHERE id_user = $user_id AND practice_nextVisitDate < '$today_midnight' ";
+        $sql .= " WHERE id_user = $user_id AND practice_nextvisittime < '$today_midnight' ";
 
         $query = $this->query($sql);
         $num = $query->getResult()[0]->num;
@@ -73,7 +73,7 @@ class PracticeModel extends MyModel
     public function get_last_by_user_id($user_id){
 
         $where_clause  = " WHERE id_user = $user_id ";
-        $where_clause .= " ORDER BY practice_lastVisitDate desc ";
+        $where_clause .= " ORDER BY practice_lastvisittime desc ";
         $where_clause .= " LIMIT 0,1 ";
 
         if( $arr_practice = $query = $this->get_where($where_clause)){
@@ -129,7 +129,7 @@ class PracticeModel extends MyModel
                                         );
         
         $sql =  " SELECT count(practice_id) AS num_card FROM practice WHERE id_user = $user_id ";
-        $sql .= " AND practice_lastVisitDate > '$lower_boundry_sql_timestamp' AND practice_lastVisitDate < '$upper_boundry_sql_timestamp' ";
+        $sql .= " AND practice_lastvisittime > '$lower_boundry_sql_timestamp' AND practice_lastvisittime < '$upper_boundry_sql_timestamp' ";
 
         $query = $this->query($sql);
 
@@ -150,7 +150,7 @@ class PracticeModel extends MyModel
                                         );        
 
         $sql =  " SELECT sum(practice_timespent) AS timespent  FROM practice WHERE id_user = $user_id ";
-        $sql .= " AND practice_lastVisitDate > '$lower_boundry_sql_timestamp' AND practice_lastVisitDate < '$upper_boundry_sql_timestamp' ";
+        $sql .= " AND practice_lastvisittime > '$lower_boundry_sql_timestamp' AND practice_lastvisittime < '$upper_boundry_sql_timestamp' ";
 
         $query = $this->query($sql);
 
