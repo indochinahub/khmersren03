@@ -12,7 +12,7 @@ class MessageModelTest extends CIUnitTestCase
         parent::setUp();
         $this->message_model = new MessageModel();
 
-        $sql =  " UPDATE message SET message_readdate = null ";
+        $sql =  " UPDATE message SET message_readtime = null ";
         $sql .= " WHERE  message_id in (46,47) ";
         $this->message_model->query($sql);
         
@@ -25,12 +25,12 @@ class MessageModelTest extends CIUnitTestCase
     public function test_add_active_date_property_to_message(){
 
         $message1 = new \stdClass;
-        $message1->message_senddate = "2021-04-22 21:50:22";
-        $message1->message_readdate = NULL;
+        $message1->message_sendtime = "2021-04-22 21:50:22";
+        $message1->message_readtime = NULL;
       
         $message2 = new \stdClass;
-        $message2->message_senddate = "2021-04-22 21:50:22";
-        $message2->message_readdate = "2021-04-23 21:50:22";
+        $message2->message_sendtime = "2021-04-22 21:50:22";
+        $message2->message_readtime = "2021-04-23 21:50:22";
 
         $result1 = $this->message_model->add_active_date_property_to_message($arr_message = [$message1,$message2]);
         $result2 = $this->message_model->add_active_date_property_to_message($arr_message = []);

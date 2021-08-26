@@ -23,10 +23,10 @@ class MessageModel extends MyModel
         $new_arr_message = [];
         foreach( $arr_message as $message){
 
-            if( $message->message_readdate ){
-                $message->active_date = $message->message_readdate;
+            if( $message->message_readtime ){
+                $message->active_date = $message->message_readtime;
             }else{
-                $message->active_date = $message->message_senddate;
+                $message->active_date = $message->message_sendtime;
             }
             
             array_push($new_arr_message,$message);
@@ -109,7 +109,7 @@ class MessageModel extends MyModel
 
         $sql =  " SELECT COUNT(message_id) as num ";
         $sql .= " FROM message ";
-        $sql .= " WHERE id_sender = $other_id AND id_receiver = $user_id AND message_readdate IS NULL ";
+        $sql .= " WHERE id_sender = $other_id AND id_receiver = $user_id AND message_readtime IS NULL ";
         
         $query = $this->query($sql);
         $result = $query->getResult();
@@ -122,7 +122,7 @@ class MessageModel extends MyModel
 
         $sql =  " SELECT COUNT(message_id) as num ";
         $sql .= " FROM message ";
-        $sql .= " WHERE id_receiver = $user_id AND message_readdate IS NULL ";
+        $sql .= " WHERE id_receiver = $user_id AND message_readtime IS NULL ";
         
         $query = $this->query($sql);
         $result = $query->getResult();
@@ -137,9 +137,9 @@ class MessageModel extends MyModel
 
         $sql_timestamp =  $datetime_model->unix_timestamp_to_sql_timestamp($unix_timestamp);
 
-        $sql =  " UPDATE message SET message_readdate='$sql_timestamp' ";
+        $sql =  " UPDATE message SET message_readtime='$sql_timestamp' ";
         $sql .= " WHERE  id_receiver = $user_id AND id_sender = $other_id ";
-        $sql .= " AND message_readdate IS NULL ";
+        $sql .= " AND message_readtime IS NULL ";
 
         $this->query($sql);
 
