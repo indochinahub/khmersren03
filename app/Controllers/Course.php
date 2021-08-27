@@ -138,8 +138,93 @@ class Course extends MyController
 
     public function addEdit($task,$id = "0"){
 
-        echo "addEdit";
+        $course_model = new CourseModel;
+        $util_model = new UtilModel;
 
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        // Set the task and validate form
+        $data = [];
+        if( ($this->request->getMethod() === "post") && $task === "edit"  ){
+
+            $data["task"] = "update";
+
+        }elseif( $task === "edit"){
+
+            $data["task"] = "show_form_to_update";
+
+        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
+            //$data["task"] = "insert";
+
+        }elseif( $task === "new" ){
+            //$data["task"] = "show_form_to_insert";
+        }
+
+        // Do the task
+        if( $data["task"] === "show_form_to_update" ){
+
+            $data["course"] = $course_model->get_by_id($id);
+
+            //var_dump($data["course"]);
+            //die();
+
+            // View Section
+            $data["page_title"] = 	"เพิ่ม/แก้ไขวิชา ";
+            $data["page_link"] 	= 	[ "กลับ", $this->_get_backlink() ];
+            $this->_view("addEdit",$data);     
+
+        }elseif( $data["task"] === "update"){
+
+            $detail = $this->request->getPost();
+            $detail = $util_model->fill_null_in_array($detail);
+
+            $course_model->update_by_id($id, $detail);
+
+            return redirect()->to(base_url(["Course","show", $id]));		
+
+
+        }elseif( $data["task"] === "show_form_to_insert"){
+
+            /*
+            $data["post"] = $post_model->get_object_with_null_value();
+
+            $data["arr_postcategory"] = [];
+            foreach( $arr_postcategory as $postcategory){
+
+                if( $postcategory->postcategory_defaultstatus === "1" ){
+                    $postcategory->checked_text = " checked ";
+                }else{
+                    $postcategory->checked_text = "";
+                }
+                array_push( $data["arr_postcategory"], $postcategory);
+            }
+
+            $data["page_title"] = 	"Add new post "; 
+            $data["page_link"] 	= 	[   "กลับ",
+                                        $this->_get_backlink()
+                                   ];
+            $this->_view("addEdit",$data);             
+            */
+
+        }elseif( $data["task"] === "insert"){
+
+            /*
+            $detail = $this->request->getPost();
+            $detail = $util_model->fill_null_in_array($detail);
+
+            $post_id = $post_model->insert($detail);
+
+            return redirect()->to(base_url(["Post","show", $post_id]));
+            */		
+        }
+
+   
     }
 
     public function delete($course_id, $confirm = "0"){
