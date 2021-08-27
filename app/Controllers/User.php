@@ -375,7 +375,7 @@ class User extends MyController
 
         $arr_user = $util_model->sort_array_of_object_by_the_property( 
                                     $arr_user, 
-                                    "user_visit_time", 
+                                    "user_visittime", 
                                     $order_by ="desc"
                                 );
 

@@ -16,7 +16,7 @@
                 <div style="padding-left:15px">
                     <strong><?php echo $user->display_name;?></strong><br>
                     บัตรคำรอทบทวน ::<?php echo $user->num_card_to_review_today."/".$user->num_card_to_review_tomorrow;?><br>
-                    เมื่อ :: <?php echo $user->user_visit_time;?>
+                    เมื่อ :: <?php echo $user->user_visittime;?>
                 </div>
             </div>    
         </div>
