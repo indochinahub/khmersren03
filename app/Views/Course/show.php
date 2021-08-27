@@ -11,7 +11,7 @@
         
     </div>
 
-    <?php if( $arr_deck ){ ?>
+    <?php if( $arr_deck && $user){ ?>
     
         <div class="card-info card-info_header">
             ชุดบัตรคำ

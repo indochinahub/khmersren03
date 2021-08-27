@@ -66,43 +66,49 @@ class Course extends MyController
         $user_model = new UserModel;
         $lesson_model = new LessonModel;
 
-        if( $data["user"] = $this->_get_loggedin_user() ){
+        $data = [];
+        if( ( $data["user"] = $this->_get_loggedin_user()) && 
+              $data["user"]->user_level === "3" ){
+
+            $data["if_user_is_adamin"] = true;
         }else{
-            $this->_needLogin();
-            return;
+            $data["if_user_is_adamin"] = false;
         }
 
         $data["course"] = $course_model->get_by_id($course_id);
         $arr_deck = $deck_model->get_by_course_id($course_id);
 
-        $data["arr_deck"] = [];
-        foreach( $arr_deck as $deck){
+        if( $data["user"] ){  
 
-            $deck->num_all_card = count($card_model->get_by_deck_id($deck->deck_id));
+            $data["arr_deck"] = [];
+            foreach( $arr_deck as $deck){
 
-            $arr_practice = $practice_model->get_by_deck_id_user_id(
-                                                    $deck->deck_id, 
-                                                    $data["user"]->user_id);
-            $deck->num_user_card = count( $arr_practice );
-
-            $deck->card_to_review_today = count(    $practice_model->get_to_review(
+                $deck->num_all_card = count($card_model->get_by_deck_id($deck->deck_id));
+                $arr_practice = $practice_model->get_by_deck_id_user_id(
+                                                        $deck->deck_id, 
+                                                        $data["user"]->user_id);
+                $deck->num_user_card = count( $arr_practice );
+                $deck->card_to_review_today = count(    $practice_model->get_to_review(
+                                                            $deck_id = $deck->deck_id, 
+                                                            $user_id = $data["user"]->user_id, 
+                                                            $unix_timestamp = time(), 
+                                                            $next_day = 0 )
+                                                    );
+                $deck->card_to_review_tomorrow = count(    $practice_model->get_to_review(
                                                         $deck_id = $deck->deck_id, 
                                                         $user_id = $data["user"]->user_id, 
                                                         $unix_timestamp = time(), 
-                                                        $next_day = 0 )
-                                                );
-            $deck->card_to_review_tomorrow = count(    $practice_model->get_to_review(
-                                                    $deck_id = $deck->deck_id, 
-                                                    $user_id = $data["user"]->user_id, 
-                                                    $unix_timestamp = time(), 
-                                                    $next_day = 1)
-                                                );  
+                                                        $next_day = 1)
+                                                    );  
+                $deck->avarage_card_interval = (int) $util_model->get_average_property_of_arr_object( 
+                                                        $arr_object = $arr_practice, 
+                                                        $property = "practice_intervalDay"
+                                                    );
+            array_push( $data["arr_deck"], $deck);
+            }
 
-            $deck->avarage_card_interval = (int) $util_model->get_average_property_of_arr_object( 
-                                                    $arr_object = $arr_practice, 
-                                                    $property = "practice_intervalDay"
-                                                );
-          array_push( $data["arr_deck"], $deck);
+        }else{
+            $data["arr_deck"] = [];
         }
 
         // Display User Visited
