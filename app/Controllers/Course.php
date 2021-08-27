@@ -55,7 +55,6 @@ class Course extends MyController
 
 	}
 
-
     public function show($course_id){
 
         $course_model = new CourseModel;
@@ -135,9 +134,21 @@ class Course extends MyController
         $data["page_title"] = 	"วิชา ".$data["course"]->course_code." ".$data["course"]->course_name;
         $data["page_link"] 	= 	[ "All Courses", base_url(["Course","showAll"])];	        
         $this->_view("show",$data);
-        
+    }
+
+    public function addEdit($task,$id = "0"){
+
+        echo "addEdit";
 
     }
+
+    public function delete($course_id, $confirm = "0"){
+
+        echo "delete";
+
+    }
+
+    
 
 
 }

@@ -87,10 +87,10 @@
         <div class="card-warning card-warning_body">
             <div class="two_flex_column">
                 <div>
-                    แก้ไขบัตรคำ
+                    แก้ไขวิชา
                 </div>
                 <div>
-                    <a href="http://127.0.0.1/khmersren03/Card/edit/9583/16" class="btn btn-primary">ไป</a>
+                    <a href="<?php echo base_url(["Course","addEdit",$course->course_id]);?>" class="btn btn-primary">ไป</a>
                 </div>
             </div>
         </div>
@@ -98,10 +98,10 @@
         <div class="card-warning card-warning_body">
             <div class="two_flex_column">
                 <div>
-                    ลบบัตรคำ
+                    ลบวิชา
                 </div>
                 <div>
-                    <a href="http://127.0.0.1/khmersren03/Card/delete/9583/16" class="btn btn-primary">ไป</a>
+                    <a href="<?php echo base_url(["Course","delete",$course->course_id]);?>" class="btn btn-primary">ไป</a>
                 </div>
             </div>
         </div>
