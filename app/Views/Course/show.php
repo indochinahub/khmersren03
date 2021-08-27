@@ -90,7 +90,7 @@
                     แก้ไขวิชา
                 </div>
                 <div>
-                    <a href="<?php echo base_url(["Course","addEdit",$course->course_id]);?>" class="btn btn-primary">ไป</a>
+                    <a href="<?php echo base_url(["Course","addEdit","edit",$course->course_id]);?>" class="btn btn-primary">ไป</a>
                 </div>
             </div>
         </div>
