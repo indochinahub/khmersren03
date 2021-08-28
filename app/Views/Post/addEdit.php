@@ -96,7 +96,7 @@
                         <div>
                         </div>
                         <div>
-                            <button type="submit" name="submit" value="submit" class="btn btn-sm btn-primary">เพิ่ม</button>
+                            <button type="submit" name="submit" value="submit" class="btn btn-primary">เพิ่ม</button>
                         </div>
                     </div>
                 </form>
@@ -191,7 +191,7 @@
                         <div>
                         </div>
                         <div>
-                            <button type="submit" name="submit" value="submit" class="btn btn-sm btn-primary">เพิ่ม</button>
+                            <button type="submit" name="submit" value="submit" class="btn btn-primary">เพิ่ม</button>
                         </div>
                     </div>
                 </form>
