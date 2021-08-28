@@ -3,15 +3,15 @@
 
         <form role="form" method="post">
 
-            <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
-                <label><strong>Id</strong> :: <?php echo $course->course_id;?></label>
-            </div>
+            <?php if( $course->course_id ){ ?>
+                <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
+                    <label><strong>Id</strong> :: <?php echo $course->course_id;?></label>
+                </div>
+            <?php } ?>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>Sort</strong> :: </label>
-                <input type="text" class="form-control" name="course_sort" value="<?php if($course->course_sort){echo $course->course_sort;}?>"
-                    placeholder="[null]"
-                >
+                <input type="text" class="form-control" name="course_sort" value="<?php if($course->course_sort){echo $course->course_sort;}?>">
             </div>
             
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
@@ -35,10 +35,16 @@
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 15px 0">
-                <label><strong>Id Coursetype</strong> :: </label>
-                <textarea class="form-control" name="id_coursetype" rows="1"><?php if($course->id_coursetype){echo $course->id_coursetype;}?></textarea>
-            </div>            
-                        
+                <label><strong>Coursetype</strong> :: </label>
+                <select class="custom-select" name="id_coursetype">
+                    <?php foreach( $arr_coursetype as $coursetype){ ?>
+                        <option value="<?php echo $coursetype->coursetype_id;?>" <?php echo $coursetype->selected_text;?>>
+                            <?php echo $coursetype->coursetype_name;?>
+                        </option>                        
+                    <?php } ?>                    
+                </select>
+            </div>
+                       
             <div class="two_flex_column">
                 <div>
                 </div>
