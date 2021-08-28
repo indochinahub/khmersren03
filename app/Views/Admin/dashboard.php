@@ -45,7 +45,7 @@
                     <h5>เพิ่มวิชา</h5>
                 </div>
                 <div>
-                    <a href="<?php echo base_url(["Course","addEdit","add"]);?>" class="btn btn-primary">ไป</a>
+                    <a href="<?php echo base_url(["Course","addEdit","new"]);?>" class="btn btn-primary">ไป</a>
                 </div>
             </div>        
         </div>
