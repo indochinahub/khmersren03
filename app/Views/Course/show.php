@@ -109,6 +109,105 @@
     </div>
 <?php }?>
 
+
+<div class="card-info">
+
+    <div class="card-info card-info_body">
+        <div class="icon_row">
+
+            <div class="course_icon">
+                <div>    
+                    <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
+                </div>
+                <div>
+                    Description
+                </div>
+            </div>
+
+
+            <div class="course_icon">
+                <div>    
+                    <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
+                </div>
+                <div>
+                    Description
+                </div>
+            </div>            
+
+        </div>
+    </div>
+
+    <div class="card-info card-info_body">
+        
+            <div class="icon_row">
+                <div class="course_icon">
+                    <div class="course_icon-thumbnail">
+                        <a href="http://127.0.0.1/khmersren03/Course/show/1">
+                            <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
+                        </a>
+                    </div>
+                    <div class="course_icon-title" style="">
+                        <a href="http://127.0.0.1/khmersren03/Course/show/1">
+                            <strong>T001</strong><br>
+                            Test Courses++                            </a>
+                    </div>		
+                </div>		
+                
+                                        <div class="course_icon">
+                        <div class="course_icon-thumbnail">
+                            <a href="http://127.0.0.1/khmersren03/Course/show/62">
+                                <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
+                            </a>
+                        </div>
+                        <div class="course_icon-title" style="">
+                            <a href="http://127.0.0.1/khmersren03/Course/show/62">
+                                <strong>code</strong><br>
+                                name                                </a>
+                        </div>		
+                    </div>		
+                
+            </div>
+        
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="card-info">
     <div class="card-info card-info_header">
         บทเรียน
