@@ -167,11 +167,11 @@ class User extends MyController
         $data["percent_of_visit_last_15_day"] =  floor( ($data["num_visit_last_15_day"] / 15) * 100 );
 
         // Deck Section
-        $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
+        $arr_deck = $deck_model->get_by_user_id($data["member"]->user_id) ;
+
 	    $data["arr_deck"] = [];
         $data["total_num_all_card"] = 0;
         $data["total_num_user_card"] = 0;
-
         foreach( $arr_deck as $deck ){
 
             $deck->course 			= $course_model->get_by_deck_id($deck->deck_id);
@@ -182,13 +182,13 @@ class User extends MyController
 
             $arr_practice			= 	$practice_model->get_by_deck_id_user_id(
                                                         $deck->deck_id, 
-                                                        $data["user"]->user_id);
+                                                        $data["member"]->user_id);
             $deck->num_user_card  	=   count( $arr_practice );
             $data["total_num_user_card"] = $data["total_num_user_card"] + $deck->num_user_card; 
 
             $deck->card_to_review_today   = count(  $practice_model->get_to_review(
                                                             $deck->deck_id, 
-                                                            $data["user"]->user_id, 
+                                                            $data["member"]->user_id, 
                                                             time(), 
                                                             $next_day = 0 
                                                     )
@@ -196,7 +196,7 @@ class User extends MyController
 
             $deck->card_to_review_tomorrow   = count(  $practice_model->get_to_review(
                                                             $deck->deck_id, 
-                                                            $data["user"]->user_id, 
+                                                            $data["member"]->user_id, 
                                                             time(), 
                                                             $next_day = 1 
                                                         )
@@ -204,12 +204,12 @@ class User extends MyController
             
             $deck->average_card_interval =  $practice_model->get_average_interval(
                                                             $deck->deck_id,
-                                                            $data["user"]->user_id
+                                                            $data["member"]->user_id
                                                     );
 
             $deck->timespent 			 = 	$datetime_model->get_second_in_minute_and_hour(
                                                     $statistic_model->get_sum_spenttime_by_user_id_and_deck_id(
-                                                        $data["user"]->user_id,
+                                                        $data["member"]->user_id,
                                                         $deck->deck_id
                                                     )				
                                                 );
@@ -221,6 +221,10 @@ class User extends MyController
                                                 $order_by ="desc"
                                             );		
         $data["arr_deck"] = array_slice( $data["arr_deck"], 0, 3);
+
+        //var_dump( $data["arr_deck"] );
+        //die();
+
 
         // Post Section
         $arr_post = $post_model->get_by_user_id($data["member"]->user_id);
