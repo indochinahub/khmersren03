@@ -290,11 +290,8 @@ class Deck extends MyController
             $data["if_user_view_own_profile"] = false;
         }
 
-        if( $data["if_user_view_own_profile"] === true){
-            $arr_deck = $deck_model->get_by_user_id($data["user"]->user_id) ;
-        }else{
-            $arr_deck = $deck_model->get_by_user_id($data["member"]->user_id) ;
-        }
+
+        $arr_deck = $deck_model->get_by_user_id($data["member"]->user_id) ;
 
         // Deck Section
         $data["arr_deck"] = [];
@@ -307,31 +304,31 @@ class Deck extends MyController
     
             $arr_practice			= 	$practice_model->get_by_deck_id_user_id(
                                                         $deck->deck_id, 
-                                                        $data["user"]->user_id);
+                                                        $data["member"]->user_id);
             $deck->num_user_card  	=   count( $arr_practice );
     
             $deck->card_to_review_today   = count(  $practice_model->get_to_review(
                                                             $deck->deck_id, 
-                                                            $data["user"]->user_id, 
+                                                            $data["member"]->user_id, 
                                                             time(), 
                                                             $next_day = 0 
                                                     )
                                                 );
             $deck->card_to_review_tomorrow   = count(  $practice_model->get_to_review(
                                                             $deck->deck_id, 
-                                                            $data["user"]->user_id, 
+                                                            $data["member"]->user_id, 
                                                             time(), 
                                                             $next_day = 1 
                                                         )
                                                     );
             $deck->average_card_interval =  $practice_model->get_average_interval(
                                                             $deck->deck_id,
-                                                            $data["user"]->user_id
+                                                            $data["member"]->user_id
                                                     );
     
             $deck->timespent 			 = 	$datetime_model->get_second_in_minute_and_hour(
                                                     $statistic_model->get_sum_spenttime_by_user_id_and_deck_id(
-                                                        $data["user"]->user_id,
+                                                        $data["member"]->user_id,
                                                         $deck->deck_id
                                                     )				
                                                 );
@@ -348,7 +345,7 @@ class Deck extends MyController
         if( $data["if_user_view_own_profile"] === true ){
             $data["page_title"] = 	"บัตรคำของฉัน";        
             $data["page_link"] 	= 	[	"โปรไฟล์ของฉัน ",
-                                        base_url( ["User","myProfile", $data["member"]->user_id] )
+                                        base_url( ["User","myProfile", $data["user"]->user_id] )
                                     ];
 
         }elseif( $data["if_user_view_own_profile"] === false ){

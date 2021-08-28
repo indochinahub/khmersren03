@@ -1,6 +1,6 @@
 <div class="card-info">
     <div class="card-info card-info_header">
-        บัตรคำของฉัน
+        บัตรคำของ <?php if( $if_user_view_own_profile === true ){echo "ฉัน";}else{ echo $member->displayname;} ?>
     </div>
 
     <?php foreach( $arr_deck as $deck ){ ?>
