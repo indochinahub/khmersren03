@@ -355,12 +355,6 @@ class Card extends MyController
                                 $data["key_of_choices"]
                             );
 
-        // Answers Section
-        $data["arr_answer"]  = $card_model->get_card_answer(
-                                $data["card"], 
-                                $data["course"], 
-                                $data["deck"]
-                            );
 
 		// Set the task
 		if( ($this->request->getMethod() === "post") ){
