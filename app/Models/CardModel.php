@@ -168,7 +168,7 @@ class CardModel extends MyModel
                     && $card->$card_property)
             {
 
-                $command->html          = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+                $command->html          = nl2br($this->get_card_value_in_html($course,$card_property,$card->$card_property));
                 $command->value         = $card->$card_property;
                 $command->column_name   = $card_property;
 
@@ -202,7 +202,7 @@ class CardModel extends MyModel
                     && $card->$card_property)
             {
 
-                $answer->html           = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+                $answer->html           = nl2br($this->get_card_value_in_html($course,$card_property,$card->$card_property));
                 $answer->value          = $card->$card_property;      
                 $answer->column_name    = $card_property;
 
@@ -238,7 +238,7 @@ class CardModel extends MyModel
                      && $card->$card_property
                 )
                 {
-                    $obj_choice->$sub_choice_key->html = $this->get_card_value_in_html($course,$card_property,$card->$card_property);
+                    $obj_choice->$sub_choice_key->html = nl2br($this->get_card_value_in_html($course,$card_property,$card->$card_property));
                     $obj_choice->$sub_choice_key->value = $card->$card_property;
                     $obj_choice->$sub_choice_key->column_name = $card_property;
 
