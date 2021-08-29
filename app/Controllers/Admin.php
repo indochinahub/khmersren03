@@ -98,7 +98,13 @@ class Admin extends MyController
 
         // Get Some Data
         $cardgroup  = $cardgroup_model->get_by_id( $cardgroup_id );
+
         $arr_card   = $card_model->get_by_cardgroup_id($cardgroup_id);
+        $arr_card   = $util_model->sort_array_of_object_by_the_property( 
+                                $arr_card, 
+                                "card_sort", 
+                                $order_by ="asc"
+                            );
         $num_card   = count($card_model->get_by_cardgroup_id($cardgroup_id));
         $arr_column = $card_model->get_column();
 
