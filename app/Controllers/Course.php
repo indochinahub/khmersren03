@@ -233,7 +233,25 @@ class Course extends MyController
 
     public function delete($course_id, $confirm = "0"){
 
-        echo "delete";
+        $course_model = new CourseModel;
+        $course = $course_model->get_by_id($course_id);
+
+        if( $confirm === "1"){
+            $course_model->delete_by_id($course_id);
+            return redirect()->to(base_url(["Course","showAll"]));		
+
+        }else{
+            $data    =  [   "page_title"=>"ยืนยันการลบวิชา",
+                            "what_happened"=>"คุณกำลังลบวิชา ".$course->course_code." :: ".$course->course_name,
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Course","delete",$course_id, 1]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => $this->_get_backlink(),
+                        ];  		
+
+            $this->_confirm($data);                
+        }        
 
     }
 
