@@ -36,19 +36,5 @@
             </div>
         </div>        
     </div>
-
-
-    <div class="card-info card-info_body">    
-            
-            <div class="two_flex_column" style="margin-bottom:5px;">
-                <div>
-                    <h5>เพิ่มวิชา</h5>
-                </div>
-                <div>
-                    <a href="<?php echo base_url(["Course","addEdit","new"]);?>" class="btn btn-primary">ไป</a>
-                </div>
-            </div>        
-        </div>
-
     
 </div>

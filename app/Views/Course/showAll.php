@@ -1,3 +1,18 @@
+<div class="card-warning">
+    <div class="card-warning card-warning_body">
+        
+        <div class="two_flex_column">
+            <div>
+                <h5>เพิ่มบัตรคำ</h5>
+            </div>
+            <div>
+                <a href="<?php echo base_url(["Course","addEdit","new"]);?>" class="btn btn-primary">ไป</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="card-info">
 
     <?php foreach( $arr_coursetype as $coursetype){ ?>
