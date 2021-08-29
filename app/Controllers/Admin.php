@@ -331,7 +331,6 @@ class Admin extends MyController
             return;
         }
 
-
         $data["num_card"] = $card_model->get_num_by_cardgroup_id(8);
 
         if( ($this->request->getMethod() === "post") && !$this->request->getPost("required_num") ){     
@@ -370,34 +369,6 @@ class Admin extends MyController
                                    ];	        
             $this->_view("addBlankCard",$data);                            
         }
-
-
     }
-
-    /*
-    public function addBlankCard(){
-        $this->load->model("card_model");
-
-        if($this->_if_needToBeAdmin()){return;}
-
-        $data["num_current_cards"] = count($this->card_model->get_by_cardgroup_id($cardgroup_id = 8));
-
-        if( $this->input->post("submit") == "submit"){
-            $required_num = $this->input->post("required_num");
-            
-            for( $i = $data["num_current_cards"] + 1; $i <= $required_num; $i++) {
-                $this->card_model->insert_blank_card();
-            }
-
-            $data["num_current_cards"] = count($this->card_model->get_by_cardgroup_id($cardgroup_id = 8));
-
-        }
-
-        $data["page_title"] = "เพิ่มบัตรคำเปล่า";
-        $this->_mainView('addBlankCard',$data);        
-
-    }
-    */
-
 }
 
