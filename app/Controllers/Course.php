@@ -176,13 +176,6 @@ class Course extends MyController
             $data["arr_coursetype"] = [];
             foreach( $arr_coursetype as $coursetype){
 
-                /*
-                var_dump($key);
-                echo "<hr>";
-                var_dump($coursetype->coursetype_id);
-                echo "<hr>";                
-                */
-
                 if( $data["course"]->id_coursetype == $coursetype->coursetype_id ){
                     $coursetype->selected_text = "selected";
                 }else{
