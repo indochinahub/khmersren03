@@ -1,6 +1,6 @@
-<div class="card-info">
+<div class="box">
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <div>
             <h5><?php echo $post->post_title;?></h5>
@@ -45,14 +45,12 @@
 
 <?php if(  ( $editable === true) || ($deleteable === true) ){ ?>
 
-    <div class="card-info">
-        <div class="card-info card-info_header">
+    <div class="box">
+        <div class="box__head box__head--info">
             จัดการบทความ
         </div>
-    </div>
 
-    <div class="card-warning">
-        <div class="card-warning card-warning_body">
+        <div class="box__body box__body--info">
 
             <?php if(  ( $editable === true)){ ?>
                 <div class="two_flex_column" style="margin-bottom:5px;">

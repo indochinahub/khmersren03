@@ -1,11 +1,11 @@
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         บัตรคำของ <?php if( $if_user_view_own_profile === true ){echo "ฉัน";}else{ echo $member->displayname;} ?>
     </div>
 
     <?php foreach( $arr_deck as $deck ){ ?>
     
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>

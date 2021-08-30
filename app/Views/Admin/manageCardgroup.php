@@ -1,12 +1,12 @@
 
-<div class="card-info">
-     <div class="card-info card-info_header">
+<div class="box">
+     <div class="box__head box__head--info">
         ส่งออกบัตรคำ
     </div>
 
     <?php foreach( $arr_cardgroup as $cardgroup){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>กลุ่มบัตรคำ :: <?php echo $cardgroup->cardgroup_id;?><br>

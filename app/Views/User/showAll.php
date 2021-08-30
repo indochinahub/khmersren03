@@ -1,10 +1,10 @@
 <?php echo $pagination_link;?>
 
-<div class="card-info">
+<div class="box">
 
     <?php foreach( $arr_user as $user){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <div style="display:flex;justify-content:flex-start">
                 <div>
                     <a href="<?php echo base_url(["User","myProfile", $user->user_id]);?>"> 

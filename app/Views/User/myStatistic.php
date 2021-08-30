@@ -1,10 +1,10 @@
-<div class="card-info">
+<div class="box">
 
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         สถิติประจำวัน
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
             <div class="two_flex_column">
                     <div>
                         <strong>วันนี้</strong>
@@ -15,13 +15,13 @@
              </div>
     </div>    
 
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         สถิติย้อนหลัง 15 วัน
     </div>
 
     <?php foreach( $arr_statistic as $statistic){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <div class="two_flex_column">
                     <div>
                         <strong><?php echo $statistic->date;?></strong>

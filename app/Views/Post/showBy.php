@@ -2,8 +2,8 @@
 
 <?php if( ($groupBy === "User") && ($if_user_view_own_post === true) ){ ?>
 
-    <div class="card-warning">
-        <div class="card-warning card-warning_body">
+    <div class="box">
+        <div class="box__body box__body--warning">
                 <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
                         <a href="<?php echo base_url( ["Post","addEdit","new"]);?>" class="btn btn-primary">ไป</a>
@@ -21,7 +21,7 @@
 
     <?php foreach( $arr_post as $post ){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
             <div>
                 <h5><a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>"><?php echo $post->post_title;?></a></h5>

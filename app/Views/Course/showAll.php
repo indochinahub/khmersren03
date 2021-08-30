@@ -1,5 +1,5 @@
-<div class="card-warning">
-    <div class="card-warning card-warning_body">
+<div class="box">
+    <div class="box__body box__body--info">
         
         <div class="two_flex_column">
             <div>
@@ -11,16 +11,13 @@
         </div>
 
     </div>
-</div>
-
-<div class="card-info">
 
     <?php foreach( $arr_coursetype as $coursetype){ ?>
-        <div class="card-info card-info_header">
+        <div class="box__head box__head--info">
             <?php echo $coursetype->coursetype_name;?>
         </div>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
             <?php foreach( $coursetype->arr_course_as_row as $row ){ ?>
 
@@ -65,7 +62,5 @@
             
         </div>
     <?php } ?>
-
-
     
 </div>

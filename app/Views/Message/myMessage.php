@@ -1,7 +1,7 @@
-<div class="card-info">
+<div class="box">
 
     <?php foreach( $arr_message as $message ){ ?>
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <div class="two_flex_column">
                 <div>
                     <strong><?php echo $message->other_displayname;?></strong>

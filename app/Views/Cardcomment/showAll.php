@@ -1,10 +1,10 @@
 <?php echo $pagination_link;?>
 
-<div class="card-info">
+<div class="box">
 
     <?php foreach( $arr_cardcomment as $cardcomment){ ?>
     
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <div>
                 <strong>ชุดบัตรคำ :: <?php echo $cardcomment->course->course_code."-".$cardcomment->deck->deck_name;?></strong><br>
                 <strong>ลำดับ :: <?php echo $cardcomment->card->card_sort;?></strong><br>

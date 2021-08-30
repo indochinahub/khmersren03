@@ -1,5 +1,6 @@
-<div class="card-warning">
-    <div class="card-warning card-warning_body">
+<div class="box">
+
+    <div class="box__body box__body--warning">
 
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
@@ -11,13 +12,10 @@
         </div>
 
     </div>
-</div>
-
-<div class="card-info">
 
     <?php foreach( $arr_table as $table ){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
                         <strong><?php echo $table->name;?></strong><br>

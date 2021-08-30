@@ -1,6 +1,6 @@
-<div class="card-info">
+<div class="box">
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
@@ -13,7 +13,7 @@
 
     </div>
 
-    <div class="card-info card-info_body">    
+    <div class="box__body box__body--info">    
             
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
@@ -25,7 +25,7 @@
         </div>        
     </div>
 
-    <div class="card-info card-info_body">    
+    <div class="box__body box__body--info">    
             
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>

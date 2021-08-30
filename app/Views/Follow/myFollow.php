@@ -1,11 +1,10 @@
-<div class="card-info">
-    <div class="card-info card-info_header">
-        ผู้ที่ <?php echo $display_name;?> ติดตาม
-        
+<div class="box">
 
+    <div class="box__head box__head--info">
+        ผู้ที่ <?php echo $display_name;?> ติดตาม
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <?php foreach( $arr_of_whom_i_follow as $row_of_user ){ ?>
             
@@ -35,11 +34,11 @@
     
     </div>
     
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         ผู้ติดตาม <?php echo $display_name;?> 
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <?php foreach( $arr_of_my_follower as $row_of_user ){ ?>
             
