@@ -1,5 +1,5 @@
-<div class="card-info">
-    <div class="card-info card-info_body">
+<div class="box">
+    <div class="box__body box__body--info">
         <h2>สวัสดีผู้เยี่ยมชมทุกท่าน</h2>
         ยินดีต้อนรับทุกท่านเข้าสู่เว็บไซต์ www.khmersren.com  เว็บไซต์ที่ส่งเสริมการเรียนรู้สิ่งต่างๆ ด้วยตนเอง <br>
         <br>
@@ -7,12 +7,11 @@
     </div>
 </div>
 
-<div class="card-info">
-    <div class="card-info card-info_header">บทความล่าสุด</div>
+    <div class="box__head box__head--info">บทความล่าสุด</div>
 
     <?php foreach( $arr_post as $post ){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
             <div>
                 <h5><a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>"><?php echo $post->post_title;?></a></h5>
@@ -46,11 +45,7 @@
 
     <?php } ?>
 
-</div>
-
-<div class="card-warning">
-
-    <div class="card-warning card-warning_body">
+    <div class="box__body box__body--warning">
         
         <div class="two_flex_column">
             <div>
@@ -63,13 +58,10 @@
 
     </div>
 
-</div>
-
-<div class="card-info">
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         ผู้ใช้ที่เข้าระบบล่าสุด
     </div>
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <?php foreach( $arr_user as $row_of_user ){ ?>
         
@@ -92,12 +84,7 @@
                   
     </div>
 
-
-</div>
-
-<div class="card-warning">
-
-    <div class="card-warning card-warning_body">
+    <div class="box__body box__body--warning">
         
         <div class="two_flex_column">
             <div>
@@ -110,4 +97,4 @@
 
     </div>
 
-</div>
+

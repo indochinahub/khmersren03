@@ -1,8 +1,8 @@
 <?php if( $user && ( $if_user_view_own_profile === false ) ){ ?>
 
-    <div class="card-info">
+    <div class="box">
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <?php if( $relation_text === "we_folow_each_other"){ ?>
                 <strong><?php echo $other_displayname;?></strong> และฉันติดตามซึ่งกันและกัน<br>
             <?php }elseif( $relation_text === "i_folow_the_other" ){ ?>        
@@ -16,7 +16,7 @@
 
         <?php if( ($relation_text === "we_folow_each_other") or ( $relation_text === "i_folow_the_other") ) { ?>
 
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 <div class="two_flex_column">
                     <div>
                     เลิกติดตาม <strong><?php echo $other_displayname;?></strong> 
@@ -29,7 +29,7 @@
 
         <?php }elseif( ($relation_text === "the_other_follow_me") or ( $relation_text === "we_have_no_relation") ) { ?>
 
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 <div class="two_flex_column">
                     <div>
                         ติดตาม <strong><?php echo $other_displayname;?></strong>
@@ -43,7 +43,7 @@
         <?php } ?>
 
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <div class="two_flex_column">
                 <div>
                     ข้อความส่วนตัวของคุณกับ <strong><?php echo $other_displayname;?></strong>
@@ -59,16 +59,15 @@
 
 <?php } ?>    
 
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         บัตรคำของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
 </div>
 
-<div class="card-warning">
+<div class="box">
 
-    <div class="card-warning card-warning_body">
-
+    <div class="box__body box__body--warning">
 
         <div class="two_flex_column">
             <div>
@@ -181,12 +180,10 @@
             </div>
         </div>        
     </div>
-</div>
 
-<div class="card-info">    
     <?php foreach( $arr_deck as $deck ){ ?>
-    
-        <div class="card-info card-info_body">
+        
+        <div class="box__body box__body--info">
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
@@ -239,10 +236,7 @@
 
     <?php } ?>          
             
-</div>
-
-<div class="card-warning">
-    <div class="card-warning card-warning_body">
+    <div class="box__body box__body--warning">
         
         <div class="two_flex_column">
             <div>
@@ -254,17 +248,14 @@
         </div>
 
     </div>
-</div>
 
-<div class="card-info">
-
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         บทความของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
 
     <?php foreach( $arr_post as $post ){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
             <div>
                 <h5><a href="<?php echo base_url([ "Post","show",$post->post_id ]);?>"><?php echo $post->post_title;?></a></h5>
@@ -297,10 +288,8 @@
         </div>
 
         <?php } ?>
-</div>
 
-<div class="card-warning">
-    <div class="card-warning card-warning_body">
+    <div class="box__body box__body--warning">
         
         <div class="two_flex_column">
             <div>
@@ -313,16 +302,14 @@
         </div>
 
     </div>
-</div>
 
-<div class="card-info">
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         กลุ่มบทความของ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
     
     <?php foreach( $arr_postcategory as $postcategory){ ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                 <div>
@@ -338,13 +325,10 @@
 
     <?php } ?>
 
-</div>
-
-<div class="card-info">
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         ผู้ใช้ที่เกี่ยวข้องกับ <?php if( $if_user_view_own_profile === true ){ echo "ฉัน"; }else{ echo $member->displayname; }?>
     </div>
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
                 
     <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
         
@@ -367,10 +351,8 @@
     <?php } ?>  
 
     </div>
-</div>
 
-<div class="card-warning">
-    <div class="card-warning card-warning_body">
+    <div class="box__body box__body--warning">
         
         <div class="two_flex_column">
             <div>

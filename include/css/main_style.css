@@ -51,6 +51,72 @@ h5{
     margin: 10px 0 5px 0;
 }
 
+
+/* ---------------------------------------------------
+    BEM Css
+----------------------------------------------------- */
+
+.box__head--success{
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.box__body--success{
+    background-color: #edffe2;
+}
+
+.box__head--info{
+    background-color: #17a2b8;
+    color: #ffffff;
+}
+
+.box__body--info{
+    background-color: #ceecf2;
+}
+
+.box__head--warning{
+    background-color: #e0b802fa;
+    color: #000;
+}
+
+.box__body--warning{
+    background-color: #f3e08dfa;    
+}
+
+.box__head--danger{
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.box__body--danger{
+    background-color: #f7abb3;
+}
+
+.box__head {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 10px;
+    text-align: center;
+}
+
+.box__body {
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -231,62 +297,6 @@ a.article:hover {
 
 }
 
-/* ---------------------------------------------------
-    Card Style
------------------------------------------------------ */
-
-.card-success .card-success_header{
-    background-color: #28a745;
-    color : #ffffff;
-    padding:10px;
-    text-align:center;
-}
-
-.card-success .card-success_body{
-    background-color: #edffe2;
-    padding:10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.card-info .card-info_header{
-    background-color: #17a2b8;
-    color : #ffffff;
-    padding:10px;
-    text-align:center;
-}
-
-.card-info .card-info_body{
-    background-color: #ceecf2;;
-    padding:10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-
-.card-danger .card-danger_header{
-    background-color: #dc3545;
-    color : #ffffff;
-    padding:10px;
-    text-align:center;
-}
-
-.card-danger .card-danger_body{
-    background-color: #f7abb3;
-    padding:10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.card-warning .card-warning_header{
-    background-color: #e0b802fa;
-    color : #000;
-    padding:10px;
-    text-align:center;
-}
-
-.card-warning .card-warning_body{
-    background-color: #f3e08dfa;
-    padding:10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
 
 /* ---------------------------------------------------
     Course Icon
@@ -332,57 +342,3 @@ a.article:hover {
 
 
 
-/* ---------------------------------------------------
-    BEM Css
------------------------------------------------------ */
-
-.box__head--success{
-    background-color: #28a745;
-    color: #ffffff;
-}
-
-.box__body--success{
-    background-color: #edffe2;
-}
-
-.box__head--info{
-    background-color: #17a2b8;
-    color: #ffffff;
-}
-
-.box__body--info{
-    background-color: #ceecf2;
-}
-
-.box__head--warning{
-    background-color: #e0b802fa;
-    color: #000;
-}
-
-.box__body--warning{
-    background-color: #f3e08dfa;    
-}
-
-
-.box__head--danger{
-    background-color: #dc3545;
-    color: #ffffff;
-}
-
-.box__body--danger{
-    background-color: #f7abb3;
-}
-
-
-
-.box__head {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    padding: 10px;
-    text-align: center;
-}
-
-.box__body {
-
-    padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
