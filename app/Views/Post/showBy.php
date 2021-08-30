@@ -17,7 +17,7 @@
 
 <?php } ?>    
 
-<div class="card-info">
+<div class="box">
 
     <?php foreach( $arr_post as $post ){ ?>
 
