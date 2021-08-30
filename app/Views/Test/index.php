@@ -50,35 +50,28 @@
         <p class="mb-1">Some placeholder content in a paragraph.</p>
         <small class="text-muted">And some muted small print.</small>
     </a>
-</div>     
-
-<div class="card-success">
-    <div class="card-success card-success_header">This is Headdrr</div>
-    <div class="card-success card-success_body">This is Body</div>
-    <div class="card-success card-success_body">This is Body</div>
-    <div class="card-success card-success_body">This is Body</div>
 </div>
 
-<div class="card-info">
-    <div class="card-info card-info_header">This is Headdrr</div>
-    <div class="card-info card-info_body">This is Body</div>
-    <div class="card-info card-info_body">This is Body</div>
-    <div class="card-info card-info_body">This is Body</div>
+<div class="box">
+    <div class="box__head box__head--success">header</div>
+    <div class="box__body box__body--success">bodysuccess body</div>
 </div>
 
-<div class="card-warning">
-    <div class="card-warning card-warning_header">This is Headdrr</div>
-    <div class="card-warning card-warning_body">This is Body</div>
-    <div class="card-warning card-warning_body">This is Body</div>
-    <div class="card-warning card-warning_body">This is Body</div>
+<div class="box">
+    <div class="box__head box__head--info">header</div>
+    <div class="box__body box__body--info">bodysuccess body</div>
 </div>
 
-<div class="card-danger">
-    <div class="card-danger card-danger_header">This is Headdrr</div>
-    <div class="card-danger card-danger_body">This is Body</div>
-    <div class="card-danger card-danger_body">This is Body</div>
-    <div class="card-danger card-danger_body">This is Body</div>
-</div>            
+<div class="box">
+    <div class="box__head box__head--warning">header</div>
+    <div class="box__body box__body--warning">bodysuccess body</div>
+</div>
+
+<div class="box">
+    <div class="box__head box__head--danger">header</div>
+    <div class="box__body box__body--danger">bodysuccess body</div>
+</div>
+
 
 <div class="card-info">
     <div class="card-info card-info_header">ภาษาเขมร</div>
@@ -111,11 +104,6 @@
                         เรียนภาษาเขมรจากเพลง </a>                        
                 </div>		
             </div>		
-            
-
-
-
-
             
 
         </div>
@@ -158,6 +146,16 @@
 
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <div class="accordion" id="accordionExample">
   <div class="card-danger">
