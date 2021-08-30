@@ -1,11 +1,11 @@
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         ข้อมูล
     </div>
 
     <?php foreach( $arr_command as $key=>$command ){ ?>
         <?php if( $command ){ ?>
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 <strong>คำสั่งที่ <?php echo ($key + 1);?></strong> ::<br>
                 <?php echo $command->html;?>
             </div>        
@@ -14,7 +14,7 @@
 
     <?php foreach( $arr_answer as $key=>$answer ){ ?>
         <?php if( $answer ){ ?>
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 <strong>คำตอบที่ <?php echo ($key + 1);?></strong> ::<br>
                 <?php echo $answer->html;?>
             </div>        
@@ -23,7 +23,7 @@
 
     <?php foreach( $arr_choice as $key=>$choice ){ ?>
         <?php if( $choice->a ){ ?>
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 <strong>ตัวเลือกที่ <?php echo ($key + 1);?></strong> ::<br>
                 <?php if( $choice->a ){ echo "a) ".$choice->a->html;}?>
                 <?php if( $choice->b ){ echo "<br>b) ".$choice->b->html;}?>
@@ -33,11 +33,11 @@
         <?php } ?>    
     <?php } ?>
 
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         ข้อมูล
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <form role="form" method="post">
 

@@ -1,8 +1,8 @@
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="">
         คำอธิบาย
     </div>
-    <div class="card-info card-info_body">
+    <div class="box__head box__head--info">
         <?php if($course->course_description){ ?>
             <?php echo $course->course_description;?>
         <?php }else{ ?>
@@ -13,13 +13,13 @@
 
     <?php if( $arr_deck && $user){ ?>
     
-        <div class="card-info card-info_header">
+        <div class="box__head box__head--info">
             ชุดบัตรคำ
         </div>
 
         <?php foreach( $arr_deck as $deck){ ?>
 
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 <div style="display:flex;justify-content:space-between;">
                     <div>ชุดบัตรคำ ::<strong><?php echo $course->course_code."-".$deck->deck_name;?></strong><br>
                         จำนวนบัตรคำ :: <?php echo $deck->num_user_card."/".$deck->num_all_card;?><br>
@@ -40,10 +40,10 @@
 
     <?php if( $user && $arr_user_to_show ){ ?>
 
-        <div class="card-info card-info_header">
+        <div class="box__head box__head--info">
             ผู้ที่เข้าใช้บัตรคำล่าสุด
         </div>
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
 
         <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
                 
@@ -76,15 +76,12 @@
 </div>
 
 <?php if( $if_user_is_adamin === true){ ?>
-    <div class="card-info">
-            <div class="card-info card-info_header">
-                จัดการบัตรคำ
-            </div>
-    </div>
+    <div class="box">
+        <div class="box__head box__head--info">
+            จัดการบัตรคำ
+        </div>
 
-    <div class="card-warning">
-
-        <div class="card-warning card-warning_body">
+        <div class="box__body box__body--warning">
             <div class="two_flex_column">
                 <div>
                     แก้ไขวิชา
@@ -95,7 +92,7 @@
             </div>
         </div>
 
-        <div class="card-warning card-warning_body">
+        <div class="box__body box__body--warning">
             <div class="two_flex_column">
                 <div>
                     ลบวิชา
@@ -110,9 +107,9 @@
 <?php }?>
 
 
-<div class="card-info">
+<div class="box">
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         <div class="icon_row">
 
             <div class="course_icon">
@@ -137,7 +134,7 @@
         </div>
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         
             <div class="icon_row">
                 <div class="course_icon">
@@ -172,49 +169,13 @@
     
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         บทเรียน
     </div>
     
     <?php foreach( $arr_lesson as $lesson){ ?>
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <div class="two_flex_column" style="margin-bottom:5px;">
                 <div>
                     <?php echo $lesson->lesson_title;?>
@@ -226,10 +187,7 @@
         </div>
     <?php } ?>
 
-</div>
-
-<div class="card-warning">
-    <div class="card-warning card-warning_body">
+    <div class="box__body box__body--info">
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
                 <a href="<?php echo base_url(["Lesson","addEdit","new",$course->course_id]);?>" class="btn btn-primary">ไป</a>

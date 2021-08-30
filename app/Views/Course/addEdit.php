@@ -1,5 +1,5 @@
-<div class="card-info">
-    <div class="card-info card-info_body">
+<div class="box">
+    <div class="box__body box__body--info">
 
         <form role="form" method="post">
 

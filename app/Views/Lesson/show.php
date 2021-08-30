@@ -1,6 +1,6 @@
-<div class="card-info">
+<div class="box">
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <div>
             <h5><?php echo $lesson->lesson_title;?></h5>
@@ -34,14 +34,12 @@
 
 <?php if( $if_user_is_admin === true ){ ?>
 
-    <div class="card-info">
-        <div class="card-info card-info_header">
+    <div class="box">
+        <div class="box__head box__head--info">
             จัดการบทความ
         </div>
-    </div>
 
-    <div class="card-warning">
-        <div class="card-warning card-warning_body">
+        <div class="box__body box__body--warning">
 
                 <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>

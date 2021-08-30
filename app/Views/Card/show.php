@@ -1,8 +1,8 @@
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         คำสั่ง
     </div>
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         <?php   foreach( $arr_command as $key => $command ){ 
                     if( $command && $key === 0 ){ 
                         echo "<strong>$command->html</strong>";
@@ -13,7 +13,7 @@
         ?>
     </div>
 
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         ตัวเลือก
     </div>
 
@@ -32,7 +32,7 @@
             
             <?php if( $choice->a ){  ?>
 
-                <div class="card-info card-info_body" style="<?php if($page === "b"){echo $style;}?>">
+                <div class="box__body box__body--info" style="<?php if($page === "b"){echo $style;}?>">
                     <div>
                         <?php if($choice->a){ echo $choice->a->html;}?>
                         <?php if($choice->b){ echo "<br>".$choice->b->html;}?>
@@ -60,8 +60,8 @@
 
 <?php if( $arr_answer[0] || $arr_answer[1] || $arr_answer[2] ){ ?>
     <div class="accordion" id="accordionExample">
-        <div class="card-warning">
-            <div class="card-warning card-warning_header" id="headingOne">
+        <div class="box">
+            <div class="box__head box__head--warning" id="headingOne">
                 <h2 class="mb-0">
                     <button class="btn btn-block text-center" type="button" data-toggle="collapse" 
                     data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
@@ -72,7 +72,7 @@
             </div>
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-warning card-warning_body">
+                <div class="box__body box__body--warning">
                     <?php   foreach( $arr_answer as $key=>$answer ){ 
                                 if( $answer && $key === 0 ){ 
                                     echo $answer->html;
@@ -89,11 +89,11 @@
 
 <?php if( $page === "b" && ($selected_choice === 0)){ ?>
 
-    <div class="card-success">
-        <div class="card-success card-success_header">
+    <div class="box">
+        <div class="box__head box__head--success">
             ผล
         </div>
-        <div class="card-success card-success_body">
+        <div class="box__body box__body--success">
             <div>คำตอบ<strrong>ถูกต้อง</strong></div>
             <div class="two_flex_column">
                 <div>
@@ -113,11 +113,11 @@
 
 <?php }elseif( $page === "b" ){ ?>
 
-    <div class="card-danger">
-        <div class="card-danger card-danger_header">
+    <div class="box">
+        <div class="box__head box__head--danger">
             ผล
         </div>
-        <div class="card-danger card-danger_body">
+        <div class="box__body box__body--danger">
             <div>คำตอบ<strrong>ไม่ถูกต้อง</strong></div>
             <div class="two_flex_column">
                 <div>
@@ -139,13 +139,13 @@
 
 
     
-<div class="card-info">
+<div class="box">
 
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         สถิติ
     </div>
         
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
     
         <div class="two_flex_column">
             <div>
@@ -203,11 +203,11 @@
 
 </div>
 
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         สมาชิกที่ใช้งานบัตรคำนี้
     </div>
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
             
@@ -240,11 +240,11 @@
 
 <?php if( $page === "b" ){ ?>
 
-    <div class="card-info">
-        <div class="card-info card-info_header">ความคิดเห็น</div>
+    <div class="box">
+        <div class="box__head box__head--info">ความคิดเห็น</div>
 
         <?php foreach( $arr_cardcomment as $cardcomment){ ?>
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 <div>
                 <strong> ความเห็น </strong> :: <?php echo nl2br($cardcomment->cardcomment_text);?><br>
                     โดย :: [ <strong><?php echo $cardcomment->owner_name;?></strong> ] เมื่อ <?php echo $cardcomment->cardcomment_createtime;?>
@@ -267,7 +267,7 @@
             </div>
         <?php } ?>
 
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
             <form role="form" method="post" action="<?php echo base_url([ "Cardcomment","add",$card->card_id, $deck->deck_id]);?>">
                 <div class="form-group">
                     <label><strong>เพิ่มความเห็น</strong></label>
@@ -290,15 +290,12 @@
 
 <?php if ( ($page === "b") &&  $if_user_is_admin === true ){ ?>
 
-    <div class="card-info">
-        <div class="card-info card-info_header">
+    <div class="box">
+        <div class="box__head box__head--info">
             จัดการบัตรคำ
         </div>
-    </div>
 
-    <div class="card-warning">
-
-        <div class="card-warning card-warning_body">
+        <div class="box__body box__body--warning">
             <div class="two_flex_column">
                 <div>
                     แก้ไขบัตรคำ
@@ -309,7 +306,7 @@
             </div>
         </div>
 
-        <div class="card-warning card-warning_body">
+        <div class="box__body box__body--warning">
             <div class="two_flex_column">
                 <div>
                     ลบบัตรคำ
