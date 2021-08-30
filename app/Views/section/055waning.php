@@ -3,13 +3,13 @@
 <?php if(  ($loggedin_user && $total_unread_message > 0 ) 
              &&  $controller_name !== "Message" ){ ?>
 
-    <div class="card-danger">
+    <div class="box">
 
-        <div class="card-danger card-danger_header">
+        <div class="box__head box__head--danger">
             แจ้งเตือน
         </div>
 
-        <div class="card-danger card-danger_body">
+        <div class="box__body box__body--danger">
             
             <div class="two_flex_column">
                     <div>

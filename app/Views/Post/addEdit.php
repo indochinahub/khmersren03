@@ -1,5 +1,5 @@
-<div class="card-info">
-    <div class="card-info card-info_body">
+<div class="box">
+    <div class="box__body box__body--info">
 
         <form role="form" method="post">
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
@@ -54,15 +54,15 @@
 
 <?php if( $task === "show_form_to_update" ){ ?>
 
-    <div class="card-info">
+    <div class="box">
 
-        <div class="card-info card-info_header">
+        <div class="box__head box__head--info">
             การจัดการรูปภาพ
         </div>
 
         <?php if( $arr_picture ){ ?>
         
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 
                 <?php foreach( $arr_picture as $picture ){ ?>
 
@@ -84,7 +84,7 @@
 
         <?php if($first_vacant_picture){ ?>
 
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
 
                 <form action="<?php echo base_url(["Media","addPicture","post",$post->post_id, $first_vacant_picture]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
@@ -104,13 +104,13 @@
             </div>    
         <?php } ?>
 
-        <div class="card-info card-info_header">
+        <div class="box__head box__head--info">
             การจัดการยูทูป
         </div>    
 
         <?php if( $arr_youtube ){ ?>
             
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 
                 <?php foreach( $arr_youtube as $youtube ){ ?>
 
@@ -132,7 +132,7 @@
 
         <?php if($first_vacant_youtube){ ?>
 
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
 
                 <form action="<?php echo base_url(["Media","addYoutube","post",$post->post_id, $first_vacant_youtube]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
@@ -151,13 +151,13 @@
             </div>    
         <?php } ?>    
 
-        <div class="card-info card-info_header">
+        <div class="box__head box__head--info">
             การจัดการแฟ้มเสียง
         </div>    
 
         <?php if( $arr_sound ){ ?>
             
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
                 
                 <?php foreach( $arr_sound as $sound ){ ?>
 
@@ -179,7 +179,7 @@
 
         <?php if($first_vacant_sound){ ?>
 
-            <div class="card-info card-info_body">
+            <div class="box__body box__body--info">
 
                 <form action="<?php echo base_url(["Media","addSound","post",$post->post_id, $first_vacant_sound]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">

@@ -4,8 +4,8 @@
 
     <?php if( $message->role === "i_am_reciever" ){ ?>
 
-        <div class="card-info" style="margin-right:40px;margin-bottom:5px"">
-            <div class="card-info card-info_body" style="text-align:left">
+        <div class="box" style="margin-right:40px;margin-bottom:5px"">
+            <div class="box__body box__body--info" style="text-align:left">
 
                         <div>
                             <?php echo $message->message_text;?>
@@ -24,9 +24,9 @@
                     $message->message_youtube01 === null
                  ){ ?>
 
-        <div class="card-warning" style="margin-left:40px;margin-bottom:5px">
+        <div class="box" style="margin-left:40px;margin-bottom:5px">
 
-            <div class="card-warning card-warning_body">
+            <div class="box__body box__body--warning">
 
                 <div class="two_flex_column">
                     <div>
@@ -39,7 +39,7 @@
 
             </div>
 
-            <div class="card-warning card-warning_body">
+            <div class="box__body box__body--warning">
             
                 <form action="<?php echo base_url(["Media","addPicture","message",$message->message_id,1]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
@@ -58,7 +58,7 @@
 
             </div>
 
-            <div class="card-warning card-warning_body">
+            <div class="box__body box__body--warning">
 
                 <form action="<?php echo base_url(["Media","addYoutube","message",$message->message_id,1]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
@@ -80,8 +80,8 @@
 
     <?php }elseif(   $message->role === "i_am_sender"    ){ ?>
 
-        <div class="card-warning" style="margin-left:40px;margin-bottom:5px">
-            <div class="card-warning card-warning_body" style="text-align:right">
+        <div class="box" style="margin-left:40px;margin-bottom:5px">
+            <div class="box__body box__body--warning" style="text-align:right">
 
                 <div>
                     <?php echo $message->message_text;?>
@@ -97,11 +97,11 @@
 
 <?php } ?>
 
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         ส่งข้อความ
     </div>
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
         <form role="form" method="post" action="<?php echo base_url(["Message","send",$other->user_id ]);?>">
             
@@ -120,7 +120,7 @@
 
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                     <div>
@@ -133,5 +133,3 @@
     </div>
 
 </div>
-
-
