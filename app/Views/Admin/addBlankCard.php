@@ -1,6 +1,6 @@
-<div class="card-info">
+<div class="box">
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         <form method="post" accept-charset="utf-8" style="margin-top:10px">
             <div class="form-group">
                 <label for="soundfile">จำนวนบัตรคำปัจจุบัน <?php echo $num_card;?> ข้อ</label>

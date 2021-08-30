@@ -1,15 +1,15 @@
-<div class="card-info">
-    <div class="card-info card-info_header">
+<div class="box">
+    <div class="box__head box__head--info">
         คำอธิบาย
     </div>
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
             คำอธิบาย
     </div>
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         การใช้งานบัตรคำ
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         <div style="display:flex;justify-content:space-between;">
             <div><strong>เพิ่ม/ทบทวนบัตรคำ</strong>
             </div>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         <div style="display:flex;justify-content:space-between;">
             <div>ดูบัตรคำทั้งหมด
             </div>
@@ -34,7 +34,7 @@
         </div>
     </div>
     
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         <div style="display:flex;justify-content:space-between;">
             <div>ดูความคิดเห็นทั้งหมด
             </div>
@@ -47,10 +47,10 @@
 
     <?php if( $num_user_card > 0  ){ ?>
 
-        <div class="card-info card-info_header">
+        <div class="box__head box__head--info">
             สถิติ
         </div>
-        <div class="card-info card-info_body">
+        <div class="box__body box__body--info">
         
             <div class="two_flex_column">
                 <div>
@@ -92,11 +92,11 @@
 
     <?php } ?>
 
-    <div class="card-info card-info_header">
+    <div class="box__head box__head--info">
         ผู้ใช้ล่าสุด
     </div>
 
-    <div class="card-info card-info_body">
+    <div class="box__body box__body--info">
         <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
             
             <div style="display:flex;justify-content:space-evenly">
@@ -122,15 +122,13 @@
         <?php } ?>  
     </div>
 
-</div>
+    <?php if( $num_user_card > 0  ){ ?>
 
-<?php if( $num_user_card > 0  ){ ?>
+        <div class="box__head box__head--info">
+            ส่วนจัดการบัตรคำ
+        </div>
 
-    <div class="card-info">
-        <div class="card-info card-info_header">ส่วนจัดการบัตรคำ</div>
-    </div>
-    <div class="card-warning">
-        <div class="card-warning card-warning_body">
+        <div class="box__body box__body--warning">
 
             <div class="two_flex_column" style="margin-bottom:5px;">
                 <div>
@@ -142,8 +140,9 @@
             </div>
 
         </div>
-    </div>
+    
+    <?php } ?>
 
-<?php } ?>
+</div>
 
 
