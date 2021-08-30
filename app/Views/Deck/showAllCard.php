@@ -14,10 +14,16 @@
             คำสั่ง
         </div>
         <div class="card-info card-info_body">
-            <strong><?php echo $card->arr_command[0];?></strong>
-            <?php if($card->arr_command[1]){ echo "<br>".$card->arr_command[1];}?>
-            <?php if($card->arr_command[2]){ echo "<br>".$card->arr_command[2];}?>
-            <?php if($card->arr_command[3]){ echo "<br>".$card->arr_command[3];}?>
+
+            <?php   foreach( $card->arr_command as $key => $command ){ 
+                        if( $command && $key === 0 ){ 
+                            echo "<strong>$command->html</strong>";
+                        }elseif( $command ){
+                            echo "<br>".$command->html;
+                        }  
+                    }
+            ?>
+
         </div>
 
         <div class="card-info card-info_header">
@@ -27,10 +33,10 @@
             <?php foreach( $card->arr_choice as $choice ){ ?>
                 <?php if( $choice->a ){ ?>
                     <div class="card-info card-info_body">
-                        <?php if($choice->a){ echo $choice->a;}?>
-                        <?php if($choice->b){ echo "<br>".$choice->b;}?>
-                        <?php if($choice->c){ echo "<br>".$choice->c;}?>
-                        <?php if($choice->d){ echo "<br>".$choice->d;}?>
+                        <?php if($choice->a){ echo $choice->a->html;}?>
+                        <?php if($choice->b){ echo "<br>".$choice->b->html;}?>
+                        <?php if($choice->c){ echo "<br>".$choice->c->html;}?>
+                        <?php if($choice->d){ echo "<br>".$choice->d->html;}?>
                     </div>    
                 <?php } ?>
             <?php }?>
@@ -40,9 +46,16 @@
                 คำตอบ
             </div>
             <div class="card-info card-info_body">
-                <?php if($card->arr_answer[0]){ echo $card->arr_answer[0];}?>
-                <?php if($card->arr_answer[1]){ echo $card->arr_answer[1];}?>
-                <?php if($card->arr_answer[2]){ echo $card->arr_answer[2];}?>
+
+                    <?php   foreach( $card->arr_answer as $key=>$answer ){ 
+                                if( $answer && $key === 0 ){ 
+                                    echo $answer->html;
+                                }elseif( $answer ){
+                                    echo "<br>".$answer->html;
+                                }
+                            } 
+                    ?>                
+
             </div>
         <?php } ?>
 
