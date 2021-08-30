@@ -119,7 +119,7 @@ class User extends MyController
         $data["user"]   = $this->_get_loggedin_user();
         $data["member"] = $user_model->get_user_by_id($member_id);
 
-        if( $data["user"] && $data["user"]->user_id === $data["member"]->user_id ){
+        if( $data["user"] && ( $data["user"]->user_id === $data["member"]->user_id)  ){
             $data["if_user_view_own_profile"] = true;
         }else{
             $data["if_user_view_own_profile"] = false;
