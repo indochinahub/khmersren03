@@ -17,11 +17,27 @@
                     <div class="form-error">[<?php echo $password_error;?>]</div>
                 <?php } ?>
             </div>
-            <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
+
+            <div class="two_flex_column">
+                <div>
+
+                </div>
+                <div>
+                    <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
         </form>
 
     </div>
 
+    <div class="box__body box__body--info">
+        <a href="<?php base_url(["Register","register"])?>">[สมัครสมาชิก]</a><br>
+    </div>
+
+    <div class="box__body box__body--info">
+        <a href="<?php base_url()?>">[ลืมรหัสผ่าน]</a>
+    </div>    
 </div>
 
 
