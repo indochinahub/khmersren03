@@ -32,11 +32,15 @@
     </div>
 
     <div class="box__body box__body--info">
-        <a href="<?php base_url(["Register","register"])?>">[สมัครสมาชิก]</a><br>
+        <a href="<?php echo base_url(["Apply","register"])?>">
+            [สมัครสมาชิก]
+        </a>
     </div>
 
     <div class="box__body box__body--info">
-        <a href="<?php base_url()?>">[ลืมรหัสผ่าน]</a>
+        <a href="<?php echo base_url()?>">
+            [ลืมรหัสผ่าน]
+        </a>
     </div>    
 </div>
 
