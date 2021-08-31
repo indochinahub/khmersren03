@@ -51,5 +51,23 @@ class Test extends MyController
 		
 	}
 
+	public function mail(){
+
+		$email = \Config\Services::email();
+
+		$email->setFrom('indochinahub@gmail.com', 'Wittaya  Wijit');
+		$email->setTo('indochinahub@gmail.com');
+		//$email->setCC('another@another-example.com');
+		//$email->setBCC('them@their-example.com');
+		
+		$email->setSubject('Hello Wittaya');
+		$email->setMessage('Testing the email class.');
+		
+		$email->send();
+
+
+
+	}
+
 }
 
