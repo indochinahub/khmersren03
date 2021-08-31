@@ -1,8 +1,8 @@
 <div class="box">
-    <div class="">
+    <div class="box__head box__head--info">
         คำอธิบาย
     </div>
-    <div class="box__head box__head--info">
+    <div class="box__body box__body--info">
         <?php if($course->course_description){ ?>
             <?php echo $course->course_description;?>
         <?php }else{ ?>
