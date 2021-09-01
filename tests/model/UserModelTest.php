@@ -252,7 +252,28 @@ class UserModelTest extends CIUnitTestCase
                                 true,
                             ];
         $this->assertSame($expectedResult, $result);
-    }    
+    }
+
+    // return user object or false
+    public function test_get_user_by_username(){
+
+        $result1 = $this->user_model->get_user_by_username( "xxxx" );
+        $result2 = $this->user_model->get_user_by_username( "user01" );
+        $result3 = $this->user_model->get_user_by_username( "user05@gmail.com" );
+                    
+        $result         =   [ 
+                                $result1,
+                                is_object($result2),
+                                is_object($result3),
+                            ];
+        $expectedResult =   [
+                                false,
+                                true,
+                                true,
+                            ];
+        $this->assertSame($expectedResult, $result);
+    }
+
 
     
 }

@@ -176,6 +176,21 @@ class UserModel extends MyModel
         }        
     }
 
+    // return user object or false
+    public function get_user_by_username( $username ){
+
+        $username = strtolower($username); 
+
+        $where_clause = " WHERE user_username = '".$username."' ";
+        if( $arr_user = $this->get_where( $where_clause ) ){
+            return $arr_user[0];
+
+        }else{
+            return false;
+        }
+
+    }
+
 
 
 
