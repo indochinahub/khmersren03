@@ -26,7 +26,7 @@ class Apply extends MyController
             return redirect()->to(base_url(["User","logout"]));		
         }
 
-		$validattion_rules = 	[	'user_username' => 'required',
+		$validattion_rules = 	[	'user_username' => 'required|valid_email',
 									'user_password' => 'required',
                                     'confirm_password' => 'required|matches[user_password]',
 								];     
@@ -49,9 +49,8 @@ class Apply extends MyController
 
 		}
 
-
         if( $data["task"] === "send_verification_email" ){
-            die("send verification email");
+            die();
 
         }elseif( $data["task"] === "form_error" ){
 
