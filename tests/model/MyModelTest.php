@@ -133,7 +133,7 @@ class MyModelTest extends CIUnitTestCase
         $result01 = $this->user_model->get_all_row();
 
         $result =           [ 
-                                count($result01) > 900,
+                                count($result01) > 50,
                             ];
         $expectedResult =   [ 
                                 true,
