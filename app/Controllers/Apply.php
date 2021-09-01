@@ -26,11 +26,74 @@ class Apply extends MyController
             return redirect()->to(base_url(["User","logout"]));		
         }
 
-        $data["page_title"] = 	"สมัครสมาชิกใหม่";
-        $data["page_link"] 	= 	[	"หน้าแรก",
-                                    base_url()
-                                ];	        
-        $this->_view("register",$data);               
+		$validattion_rules = 	[	'user_username' => 'required',
+									'user_password' => 'required',
+                                    'confirm_password' => 'required|matches[user_password]',
+								];     
+
+		// Set the task
+		$data = [];
+		if( ($this->request->getMethod() === "post") && ($this->validate($validattion_rules)) ){
+			$data["task"] = "send_verification_email";
+			
+		}elseif( $this->request->getMethod() === "post" ){
+			$data["user_username_error"] = $this->validator->getError('user_username');
+			$data["user_password_error"] = $this->validator->getError('user_password');
+            $data["confirm_password_error"] = $this->validator->getError('confirm_password');
+
+			$data["task"] = "form_error";
+
+		}else{
+            
+            $data["task"] = "show_blank_form";
+
+		}
+
+
+        if( $data["task"] === "send_verification_email" ){
+            die("send verification email");
+
+        }elseif( $data["task"] === "form_error" ){
+
+            $data["user_username"] = $this->request->getPost("user_username");
+            $data["user_password"] = $this->request->getPost("user_password");
+            $data["confirm_password"] = $this->request->getPost("confirm_password");
+
+            $data["page_title"] = 	"ฟอร์มไม่ถูกต้อง";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("register",$data);
+
+        }elseif( $data["task"] === "show_blank_form" ){
+
+            $data["user_username"] = "";
+            $data["user_password"] = "";
+            $data["confirm_password"] = "";
+
+            $data["page_title"] = 	"สมัครสมาชิกใหม่";
+            $data["page_link"] 	= 	[	"หน้าแรก",
+                                        base_url()
+                                    ];	        
+            $this->_view("register",$data);               
+
+        }
+
+        //var_dump( $data["task"] );
+        //die();
+
+        // do the task
+
+
+
+
+
+
+                                
+
+
+
+
     }
 
 
