@@ -293,8 +293,8 @@ class StatisticModelTest extends CIUnitTestCase
                                 0,
 
                                 "2021-08-12 00:00:00",
-                                "655",
-                                "44",
+                                0,
+                                0,
                             ];
         $this->assertSame($expectedResult, $result);        
     }    
