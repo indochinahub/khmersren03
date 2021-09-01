@@ -832,6 +832,32 @@ class UtilModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    // return random number or fale
+    public function test_get_random_number(){
+
+        $result1 = $this->util_model->get_random_number($num_digit = 1);
+        $result2 = $this->util_model->get_random_number($num_digit = 2);
+        $result3 = $this->util_model->get_random_number($num_digit = 6);
+        $result4 = $this->util_model->get_random_number($num_digit = 7);
+        $result5 = $this->util_model->get_random_number($num_digit = 0);
+
+        $result         =   [
+                                strlen($result1),
+                                strlen($result2),
+                                strlen($result3),
+                                $result4,
+                                $result5,
+                            ];
+        $expectedResult =   [   
+                                1,
+                                2,
+                                6,
+                                false,
+                                false,
+                            ];
+        $this->assertSame($result,$expectedResult);
+    }
+
 
 
 }

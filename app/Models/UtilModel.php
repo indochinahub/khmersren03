@@ -343,6 +343,15 @@ class UtilModel
         return str_replace( "[newline]","\r\n",$text);
     }
 
+    // return random number or false
+    public function get_random_number($num_digit){
+
+        if($num_digit < 1 or $num_digit > 6){ return false;}
+
+        $number = rand( 100000, 999999);
+        return substr($number, -$num_digit);
+    }
+
     
 
 }
