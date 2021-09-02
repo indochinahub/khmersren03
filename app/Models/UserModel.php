@@ -48,9 +48,10 @@ class UserModel extends MyModel
             return $obj_user->user_display_name;
 
         }else{
-            return $obj_user->user_username;    
 
-        }
+            $arr_text = explode( "@", $obj_user->user_username);
+            return $arr_text[0];    
+    }
 
     }
 

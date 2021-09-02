@@ -114,14 +114,21 @@ class UserModelTest extends CIUnitTestCase
 
         $result2 = $this->user_model->get_user_displayname($obj_user = $user );
 
+        $user->user_display_name = "";
+        $user->user_username = "indochinahub@gmail.com" ;
+
+        $result3 = $this->user_model->get_user_displayname($obj_user = $user );
+
         $result         =   [ 
                                 $result1,
                                 $result2,
+                                $result3,
                             ];
 
         $expectedResult =   [ 
                                 "Displayname",
-                                "Username"
+                                "Username",
+                                "indochinahub"
                             ];
 
         $this->assertSame($expectedResult, $result);        
