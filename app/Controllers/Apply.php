@@ -168,7 +168,7 @@ class Apply extends MyController
                 $message =  "ขอบคุณที่่สมัครเข้าใช้งานเว็บไซต์ www.khmersren.com โดยมีรายละเอียดเข้าใช้งานต่อไปนี้ <br>";
                 $message .= "username : $username  <br>";
                 $message .= "password : $user->user_password  <br><br>";
-                $message .= "กรุณาคลิ๊กลิงก์ข้างล่างต่อไปนี้ เพื่อยันยันอีเมล์<br>";
+                $message .= "กรุณาคลิ๊กลิงก์ข้างล่าง เพื่อยันยันอีเมล์<br>";
                 $message .= "<a href='$url'>$url</a>";    
                 
                 $this->_sendEmail($username,$subject,$message);
@@ -184,7 +184,7 @@ class Apply extends MyController
             }elseif( $user ){
 
                 $subject = "รายละเอียดสำหรับใช้งาน khmersren.com";
-                $message =  "รหัสผ่านของเท่านสำหรับเข้าใช้งานเว็บไซต์ www.khmersren.com โดยมีรายละเอียดเข้าใช้งานต่อไปนี้ <br>";
+                $message =  "รหัสผ่านของเท่านสำหรับเข้าใช้งานเว็บไซต์ www.khmersren.com <br>";
                 $message .= "username : $user->user_username  <br>";
                 $message .= "password : $user->user_password  <br><br>";
                 
