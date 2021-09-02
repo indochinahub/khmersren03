@@ -38,7 +38,7 @@
     </div>
 
     <div class="box__body box__body--info">
-        <a href="<?php echo base_url()?>">
+        <a href="<?php echo base_url(["Apply","forgetPassword"])?>">
             [ลืมรหัสผ่าน]
         </a>
     </div>    
