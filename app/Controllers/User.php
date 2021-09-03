@@ -431,19 +431,8 @@ class User extends MyController
         
         $media_model            = new MediaModel( $data["user"], "user");
         $data["arr_picture"]    = $media_model->get_arr_picture();
-
-
-        var_dump($data["arr_picture"]);
-
-        die();
-
-        /*
-        
-
         $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
-        $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
-        $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
-        */
+
 
         $data["page_title"] = 	"แก้ไขข้อมูลส่วนตัว ";
         $data["page_link"] 	= 	[	"กลับ",

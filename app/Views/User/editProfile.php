@@ -41,17 +41,49 @@
     <div class="box__head box__head--info">
         รูปภาพ
     </div>
-    <div class="box__body box__body--info">
-        <div style="border:1px solid black">
-            <img src="http://www.khmersren.com/asset/media/post_media/003701.webp" class="img-fluid">
+
+    <?php if( $arr_picture ){ ?>
+        
+        <div class="box__body box__body--info">
+            
+            <?php foreach( $arr_picture as $picture ){ ?>
+
+                    <h5>รูปที่ <?php echo $picture->media_order;?></h5>
+                    <?php echo $picture->html;?>
+                    <div class="two_flex_column" style="margin-top:10px">
+                        <div>
+                        </div>
+                        <div>
+                            <a href="<?php echo base_url(["Media","deletePicture","user", $user->user_id, $picture->media_order ]);?>" class="btn btn-warning">ลบ</a>
+                        </div>
+                    </div>
+
+            <?php } ?>
+
         </div>
-        <div class="two_flex_column" style="margin-top:10px">
-            <div>
-            </div>
-            <div>
-                <a href="http://www.khmersren.com/Media/deletePicture/post/370/1" class="btn btn-warning">ลบ</a>
-            </div>
-        </div>        
-    </div>
+
+    <?php } ?>
+
+    <?php if($first_vacant_picture){ ?>
+
+        <div class="box__body box__body--info">
+
+            <form action="<?php echo base_url(["Media","addPicture","user",$user->user_id, $first_vacant_picture]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <div class="form-group">
+                    <label for="exampleInputFile">เพิ่มรูปประจำตัว <?php echo $first_vacant_picture;?> :: </label>
+                    <input type="file" name="myfile" size="20">
+                </div>       
+
+                <div class="two_flex_column">
+                    <div>
+                    </div>
+                    <div>
+                        <button type="submit" name="submit" value="submit" class="btn btn-primary">เพิ่ม</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>    
+    <?php } ?>
 
 </div>
