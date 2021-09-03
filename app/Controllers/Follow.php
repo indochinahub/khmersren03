@@ -63,7 +63,7 @@ class Follow extends MyController
         foreach( $arr_id_of_whom_i_follow as $id ){
             $user = $user_model->get_by_id($id);
             $user->displayname = $user_model->get_user_displayname($user);
-            $user->avarta_url = $user_model->get_avarta_url($user->user_id);
+            $user->avarta_url = $user_model->get_avarta_url($user);
             array_push( $data["arr_of_whom_i_follow"], $user);
         }
 
@@ -87,7 +87,7 @@ class Follow extends MyController
         foreach( $arr_id_of_my_follower as $id ){
             $user = $user_model->get_by_id($id);
             $user->displayname = $user_model->get_user_displayname($user);
-            $user->avarta_url = $user_model->get_avarta_url($user->user_id);
+            $user->avarta_url = $user_model->get_avarta_url($user);
             array_push( $data["arr_of_my_follower"], $user);
         }
 

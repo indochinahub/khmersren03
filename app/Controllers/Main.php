@@ -28,6 +28,8 @@ class Main extends MyController
         $user_model         = new UserModel;
         $postcategory_model = new PostcategoryModel;
 
+        
+
 		// Post Section
         $arr_post = $post_model->get_all_row();
         $arr_post = $util_model->sort_array_of_object_by_the_property( 
@@ -63,7 +65,7 @@ class Main extends MyController
 
         $data["arr_user"] = [];
         foreach( $arr_user as $user){
-            $user->avarta_url = $user_model->get_avarta_url($user->user_id);
+            $user->avarta_url = $user_model->get_avarta_url($user);
             $user->displayname = $user_model->get_user_displayname($user);
             array_push( $data["arr_user"], $user);
         }

@@ -64,22 +64,22 @@ class MyController extends BaseController {
 
 		// Pass user object
 		if( $data["loggedin_user"] = $this->_get_loggedin_user() ){
-			$data["user_avatar_url"] = $this->user_model->get_avarta_url($data["loggedin_user"]->user_id);
+			$data["user_avatar_url"] = $this->user_model->get_avarta_url($data["loggedin_user"]);
 			$data["total_unread_message"] = $message_model->get_total_num_unread_message($data["loggedin_user"]->user_id);
 
 		}else{  // get anonymous avatar
-			$data["user_avatar_url"] = $this->user_model->get_avarta_url(0);
+			$data["user_avatar_url"] = base_url(["asset","media","user_media","anonymous.jpg" ]);
 			$data["num_unread_message"] = 0;
 
 		}
 
 		// Pass member object
 		if( isset($data["member"] ) && ( $data["member"] !== false ) ){
-			$data["member_avatar_url"] = $this->user_model->get_avarta_url($data["member"]->user_id);
+			$data["member_avatar_url"] = $this->user_model->get_avarta_url($data["member"]);
 
 		}else{ // get anonymous avatar
 			$data["member"] = false;
-			$data["member_avatar_url"] = $this->user_model->get_avarta_url(0);
+			$data["member_avatar_url"] = base_url(["asset","media","user_media","anonymous.jpg" ]);
 
 		}
 

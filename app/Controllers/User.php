@@ -269,7 +269,7 @@ class User extends MyController
         foreach( $arr_id_of_user_to_show as $id ){
             $user = $user_model->get_by_id($id);
             $user->displayname = $user_model->get_user_displayname($user);
-            $user->avarta_url = $user_model->get_avarta_url($user->user_id);
+            $user->avarta_url = $user_model->get_avarta_url($user);
             array_push( $data["arr_user_to_show"], $user);
         }
 
@@ -403,7 +403,7 @@ class User extends MyController
             
 
             $user->display_name = $user_model->get_user_displayname($user);
-            $user->avatar_url = $user_model->get_avarta_url($user->user_id);
+            $user->avatar_url = $user_model->get_avarta_url($user);
             $user->user_visittime = $datetime_model->get_thai_datetime_from_sql_timestamp($user->user_visittime);
 
             array_push($data["arr_user"], $user);

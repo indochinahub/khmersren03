@@ -64,31 +64,6 @@ class UserModel extends MyModel
             return base_url(["asset","media","user_media","anonymous.jpg" ]);
         }
     }
-    
-    /*
-    //return URL 
-    public function get_avarta_url($user_id){
-        $util_model = new UtilModel();
-
-        $path       =   ASSETPATH."avatar/";
-
-        $filename   =  $util_model->add_leading_zero_to_number( 
-                                        $text = $user_id, 
-                                        $num_required_digit = 5
-                                        );
-        $filename  .= "1.jpg";
-
-        if( file_exists( $path.$filename )){
-            return base_url(["asset", "avatar", $filename]);
-
-        }else{
-            return base_url(["asset", "avatar", "anonymous.jpg"]);
-        }
-
-    }
-    */
-
-
 
     // return affected rows
     public function update_visit_time($user_id){

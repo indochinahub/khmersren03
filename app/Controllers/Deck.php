@@ -78,7 +78,7 @@ class Deck extends MyController
         foreach( $arr_visited_user as $user ){
 
             $user->displayname = $user_model->get_user_displayname($user);
-            $user->avarta_url = $user_model->get_avarta_url($user->user_id);            
+            $user->avarta_url = $user_model->get_avarta_url($user);
             array_push( $data["arr_user_to_show"], $user);
         }
 
