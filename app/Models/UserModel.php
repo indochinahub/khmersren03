@@ -51,10 +51,21 @@ class UserModel extends MyModel
 
             $arr_text = explode( "@", $obj_user->user_username);
             return $arr_text[0];    
-    }
+        }
 
     }
 
+    //return URL 
+    public function get_avarta_url($user_obj){
+        
+        if( $user_obj->user_picture01 ) {
+            return base_url(["asset","media","user_media",$user_obj->user_picture01]);
+        }else{
+            return base_url(["asset","media","user_media","anonymous.jpg" ]);
+        }
+    }
+    
+    /*
     //return URL 
     public function get_avarta_url($user_id){
         $util_model = new UtilModel();
@@ -75,6 +86,9 @@ class UserModel extends MyModel
         }
 
     }
+    */
+
+
 
     // return affected rows
     public function update_visit_time($user_id){
