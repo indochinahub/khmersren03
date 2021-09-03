@@ -60,7 +60,11 @@
 
                         <li>                
                             <a href="<?php echo base_url(["User","myStatistic"]);?>"><i class="fas fa-angle-double-right"></i> สถิติของฉัน</a>
-                        </li>                        
+                        </li>
+
+                        <li>                
+                            <a href="<?php echo base_url(["User","editProfile"]);?>"><i class="fas fa-angle-double-right"></i> แก้ไขข้อมูลส่วนตัว</a>
+                        </li>
 
                         <li>                
                             <a href="<?php echo base_url(["User","logout"]);?>"><i class="fas fa-angle-double-right"></i> ออกจากระบบ</a>

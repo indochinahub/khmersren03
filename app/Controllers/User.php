@@ -416,5 +416,44 @@ class User extends MyController
         $this->_view("showAll",$data);               
     }
 
+    
+    public function editProfile(){
+
+
+
+        // Check user's previlege
+        if( $data["user"] = $this->_get_loggedin_user() ){
+        }else{
+            $this->_needLogin();
+            return;
+        }
+
+        
+        $media_model            = new MediaModel( $data["user"], "user");
+        $data["arr_picture"]    = $media_model->get_arr_picture();
+
+
+        var_dump($data["arr_picture"]);
+
+        die();
+
+        /*
+        
+
+        $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
+        $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
+        $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
+        */
+
+        $data["page_title"] = 	"แก้ไขข้อมูลส่วนตัว ";
+        $data["page_link"] 	= 	[	"กลับ",
+                                    $this->_get_backlink()
+                                ];	        
+        $this->_view("editProfile",$data);               
+    }
+
+
+
+
 }
 
