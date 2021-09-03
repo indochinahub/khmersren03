@@ -222,9 +222,6 @@ class User extends MyController
                                             );		
         $data["arr_deck"] = array_slice( $data["arr_deck"], 0, 3);
 
-        //var_dump( $data["arr_deck"] );
-        //die();
-
 
         // Post Section
         $arr_post = $post_model->get_by_user_id($data["member"]->user_id);
@@ -416,10 +413,9 @@ class User extends MyController
         $this->_view("showAll",$data);               
     }
 
-    
     public function editProfile(){
 
-
+        $user_model = new UserModel;
 
         // Check user's previlege
         if( $data["user"] = $this->_get_loggedin_user() ){
@@ -428,21 +424,56 @@ class User extends MyController
             return;
         }
 
-        
         $media_model            = new MediaModel( $data["user"], "user");
         $data["arr_picture"]    = $media_model->get_arr_picture();
-        $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
+        $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");        
 
+        $validattion_rules = 	[	
+                                    'user_password' => 'required|numeric|min_length[4]|max_length[4]',
+                                    "user_display_name"=> 'required|min_length[6]|max_length[30]',
+                                ];   
 
-        $data["page_title"] = 	"แก้ไขข้อมูลส่วนตัว ";
-        $data["page_link"] 	= 	[	"กลับ",
-                                    $this->_get_backlink()
-                                ];	        
-        $this->_view("editProfile",$data);               
+		// Set the task
+		if( ($this->request->getMethod() === "post") && ($this->validate($validattion_rules) ) ){
+
+            $password     =  trim( $this->request->getPost("user_password") );
+            $display_name =  trim($this->request->getPost("user_display_name"));
+
+            $detail =   [   "user_password"=>$password,
+                            "user_display_name"=>$display_name
+                        ];
+
+            $user_model->update_by_id(
+                                        $data["user"]->user_id, 
+                                        $detail
+                                    );
+            return redirect()->to( $this->_get_backlink() );		
+            
+
+        }elseif( $this->request->getMethod() === "post" ){            
+
+            $data["user"]->user_password     =  trim( $this->request->getPost("user_password") );
+            $data["user"]->user_display_name =  trim($this->request->getPost("user_display_name")); 
+
+            $data["user_password_error"] = $this->validator->getError('user_password');
+            $data["user_display_name_error"] = $this->validator->getError('user_display_name');
+            
+            $data["page_title"] = 	"ข้อมูลผิดพลาด ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("editProfile",$data);              
+
+        }else{
+    
+            $data["page_title"] = 	"แก้ไขข้อมูลส่วนตัว ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("editProfile",$data);               
+        }
+
     }
-
-
-
 
 }
 

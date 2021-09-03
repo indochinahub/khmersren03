@@ -5,7 +5,7 @@
 
             <div class="form-group">
                 <label for="user_username">Email</label>
-                <input type="email" class="form-control" name="user_username" id="user_username" value="<?php echo $user->user_username;?>"
+                <input type="text" class="form-control" name="user_username" id="user_username" value="<?php echo $user->user_username;?>"
                     readonly
                 >
             </div>
@@ -15,6 +15,9 @@
                 <input type="number" class="form-control" name="user_password" id="user_password" 
                     value="<?php echo $user->user_password;?>"
                 >
+                <?php if( isset($user_password_error) && $user_password_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $user_password_error;?>]</div>
+                <?php } ?>                
             </div>
 
 
@@ -22,7 +25,11 @@
                 <label for="user_display_name">Display Name</label>
                 <input type="text" class="form-control" name="user_display_name" id="user_display_name" 
                     value="<?php echo $user->user_display_name;?>"
+                    placeholder="ความยาวมากกว่า 6 ตัวอักษร"
                 >
+                <?php if( isset($user_display_name_error) && $user_display_name_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $user_display_name_error;?>]</div>
+                <?php } ?>
             </div>            
 
             <div class="two_flex_column">
@@ -48,7 +55,7 @@
             
             <?php foreach( $arr_picture as $picture ){ ?>
 
-                    <h5>รูปที่ <?php echo $picture->media_order;?></h5>
+                    <h5>รูปประจำตัว</h5>
                     <?php echo $picture->html;?>
                     <div class="two_flex_column" style="margin-top:10px">
                         <div>
