@@ -162,7 +162,7 @@ class User extends MyController
             }
         }
 
-        $data["timespent_per_day_last_15_day"] = $datetime_model->get_second_in_minute_and_hour(  $timespent_last_15_day /15  ) ;
+        $data["timespent_per_day_last_15_day"] = $datetime_model->get_second_in_minute_and_hour(floor($timespent_last_15_day /15)) ;
         $data["num_card_per_day_last_15_day"] =  floor($num_card_last_15_day / 15);
         $data["percent_of_visit_last_15_day"] =  floor( ($data["num_visit_last_15_day"] / 15) * 100 );
 
