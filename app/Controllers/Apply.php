@@ -30,7 +30,7 @@ class Apply extends MyController
         }
 
 		$validattion_rules = 	[	'user_username' => 'required|valid_email',
-									'user_password' => 'required',
+									'user_password' => 'required|numeric|min_length[4]|max_length[4]',
                                     'confirm_password' => 'required|matches[user_password]',
 								];     
 
@@ -151,7 +151,8 @@ class Apply extends MyController
 
         $user_model = new UserModel;
 
-		$validattion_rules = 	[	'user_username' => 'required|valid_email',
+		$validattion_rules = 	[	
+                                    'user_username' => 'required|valid_email',
 								];
 		// Set the task
 		$data = [];
