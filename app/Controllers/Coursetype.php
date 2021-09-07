@@ -23,6 +23,15 @@ class Coursetype extends MyController
 {
     public function manageCoursetype(){
 
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+
         $coursetype_model = new CoursetypeModel;
 
         $arr_coursetype = $coursetype_model->get_all_row();
@@ -41,6 +50,46 @@ class Coursetype extends MyController
                                 ];	        
         $this->_view("manageCoursetype",$data);                       
     }
+
+    public function addEdit($task,$post_id = "0"){
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        $data = [];
+        if( ($this->request->getMethod() === "post") && $task === "edit"  ){
+            echo "to update";
+            $data["task"] = "update";
+
+        }elseif( $task === "edit"){
+            echo "show form to edit";
+            $data["task"] = "show_form_to_update";
+
+        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
+            echo "to insert";
+            $data["task"] = "insert";
+
+        }elseif( $task === "new" ){
+            echo "show_form_to_insert";
+            $data["task"] = "show_form_to_insert";
+        }
+
+
+
+
+    }
+
+    public function delete($id, $confirm = "0"){
+        echo "delete";
+
+    }
+
+    
 
 }
 

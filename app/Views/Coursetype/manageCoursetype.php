@@ -4,7 +4,7 @@
 
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
-                <a href="http://127.0.0.1/khmersren03/Admin/importTable" class="btn btn-info">New</a>                
+                <a href="<?php echo base_url(["Coursetype","addEdit","new"]);?>" class="btn btn-info">New</a>        
             </div>
             <div>
                 <strong>เพิ่มกลุ่มวิชาใหม่</strong>
@@ -21,8 +21,8 @@
                         <?php if( $coursetype->num_coure ){  echo "[".$coursetype->num_coure."]";}?>
                     </div>
                     <div>
-                        <a href="http://127.0.0.1/khmersren03/Admin/exportTable/card/0" class="btn btn-primary">Edit</a>
-                        <a href="http://127.0.0.1/khmersren03/Admin/exportTable/card/0" class="btn btn-primary">Delete</a>
+                        <a href="<?php echo base_url(["Coursetype","addEdit","edit",$coursetype->coursetype_id]);?>" class="btn btn-warning">Edit</a>
+                        <a href="<?php echo base_url(["Coursetype","delete",$coursetype->coursetype_id]);?>" class="btn btn-danger">Delete</a>
                     </div>
             </div>
         </div>
