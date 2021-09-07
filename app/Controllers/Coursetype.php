@@ -23,6 +23,9 @@ class Coursetype extends MyController
 {
     public function manageCoursetype(){
 
+        $course_model = new CourseModel;
+        $coursetype_model = new CoursetypeModel;
+
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
         {
@@ -31,15 +34,12 @@ class Coursetype extends MyController
             return;
         }
 
-
-        $coursetype_model = new CoursetypeModel;
-
         $arr_coursetype = $coursetype_model->get_all_row();
 
         $data["arr_coursetype"] = [];
         foreach( $arr_coursetype as $coursetype){
 
-            $coursetype->num_coure = 55;
+            $coursetype->num_coure = count($course_model->get_by_coursetype_id($coursetype->coursetype_id));
             array_push($data["arr_coursetype"], $coursetype);
         }
 
