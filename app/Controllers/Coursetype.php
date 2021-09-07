@@ -43,7 +43,6 @@ class Coursetype extends MyController
             array_push($data["arr_coursetype"], $coursetype);
         }
 
-
         $data["page_title"] = 	"จัดการประเภทวิชา ";
         $data["page_link"] 	= 	[	"กลับ",
                                     $this->_get_backlink()
@@ -51,7 +50,9 @@ class Coursetype extends MyController
         $this->_view("manageCoursetype",$data);                       
     }
 
-    public function addEdit($task,$post_id = "0"){
+    public function addEdit($task,$id = "0"){
+
+        $coursetype_model = new CoursetypeModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
@@ -61,24 +62,76 @@ class Coursetype extends MyController
             return;
         }
 
+        $validattion_rules = 	[ 'coursetype_name' => 'required|min_length[4]|max_length[40]' ];    
+
+        // Set task
         $data = [];
-        if( ($this->request->getMethod() === "post") && $task === "edit"  ){
-            echo "to update";
+        if( ($this->request->getMethod() === "post") && $task === "edit" &&
+             $this->validate($validattion_rules) 
+          ){
             $data["task"] = "update";
 
+        }elseif(($this->request->getMethod() === "post") && $task === "edit"){
+            $data["task"] = "show_form_error";
+        
         }elseif( $task === "edit"){
-            echo "show form to edit";
-            $data["task"] = "show_form_to_update";
+            $data["task"] = "show_form_to_edit";
 
         }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
-            echo "to insert";
+
             $data["task"] = "insert";
 
         }elseif( $task === "new" ){
-            echo "show_form_to_insert";
             $data["task"] = "show_form_to_insert";
         }
 
+        // Do the task
+        if( $data["task"] === "show_form_to_edit" ){
+            $coursetype = $coursetype_model->get_by_id($id);
+
+            $data["coursetype_id"] = $id;
+            $data["coursetype_name"] = $coursetype->coursetype_name;
+            
+            $data["page_title"] = 	"แก้ไขกลุ่มวิชา ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("addEdit",$data);      
+            
+        }elseif( $data["task"] === "show_form_error"){
+            $data["coursetype_id"] = $id;
+            $data["coursetype_name"] = $this->request->getPost("coursetype_name");
+
+            $data["coursetype_name_error"] = $this->validator->getError('coursetype_name');
+
+            $data["page_title"] = 	"แก้ไขกลุ่มวิชา ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("addEdit",$data);      
+
+        }elseif( $data["task"] === "update" ){
+            $detail =   [   "coursetype_name"=>trim($this->request->getPost("coursetype_name"))
+                        ];
+            $coursetype_model->update_by_id($id, $detail );
+            return redirect()->to(base_url([ "Coursetype","manageCoursetype" ]));	
+
+        }elseif( $data["task"] === "show_form_to_insert" ){
+            $data["coursetype_name"] = "";
+
+            $data["page_title"] = 	"เพิ่มกลุ่มวิชา ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("addEdit",$data);      
+
+        }elseif( $data["task"] === "insert" ){
+            $detail =   [
+                            "coursetype_name"=>trim($this->request->getPost("coursetype_name"))
+                        ];
+            $coursetype_model->insert($detail);
+            return redirect()->to(base_url([ "Coursetype","manageCoursetype" ]));	            
+        }
     }
 
     public function delete($id, $confirm = "0"){
