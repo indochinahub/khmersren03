@@ -49,6 +49,19 @@ class CourseModel extends MyModel
         return $course;
     }
 
+    //return array_of_object
+    public function get_by_coursetype_id($coursetype_id){
+        
+        $where_clause = " WHERE id_coursetype = $coursetype_id ";
+        if( $arr_course = $this->get_where($where_clause) ){
+            return $arr_course;
+
+        }else{
+            return [];
+
+        }
+    }
+
 }
 
 

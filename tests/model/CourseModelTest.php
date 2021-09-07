@@ -79,4 +79,23 @@ class CourseModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    //return array_of_object
+    public function test_get_by_coursetype_id(){
+
+        $result1 = $this->course_model->get_by_coursetype_id($coursetype_id = 3);
+        $result2 = $this->course_model->get_by_coursetype_id($coursetype_id = 0);
+
+        $result             =   [ 
+                                    count($result1) > 0,
+                                    $result2,
+                                ];
+
+        $expectedResult     =   [ 
+                                    true,
+                                    [],
+                                ];
+
+        $this->assertSame($result,$expectedResult);
+    }
+
 }
