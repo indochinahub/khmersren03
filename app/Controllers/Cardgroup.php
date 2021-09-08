@@ -58,7 +58,7 @@ class Cardgroup extends MyController
             $data["task"] = "update";
 
         }elseif(($this->request->getMethod() === "post") && $task === "edit"){
-            //$data["task"] = "show_form_error";
+            $data["task"] = "show_form_error";
         
         }elseif( $task === "edit"){
             $data["task"] = "show_form_to_edit";
@@ -71,14 +71,13 @@ class Cardgroup extends MyController
             //$data["task"] = "show_form_to_insert";
         }
 
-
-
         // Do the task
+        $arr_course = $course_model->get_all_row();
+
         if( $data["task"] === "show_form_to_edit" ){
 
             $cardgroup = $cardgroup_model->get_by_id($id);
 
-            $arr_course = $course_model->get_all_row();
             $data["arr_course"] = [];
             foreach( $arr_course as $course){
 
@@ -94,7 +93,6 @@ class Cardgroup extends MyController
             $data["cardgroup_name"] = $cardgroup->cardgroup_name;
             $data["cardgroup_description"] = $cardgroup->cardgroup_description;
 
-
             $data["page_title"] = 	"แก้ไขกลุ่มบัตรคำ ";
             $data["page_link"] 	= 	[	"กลับ",
                                         $this->_get_backlink()
@@ -102,6 +100,30 @@ class Cardgroup extends MyController
             $this->_view("addEdit",$data);                  
 
         }elseif( $data["task"] === "show_form_error"){
+
+            $cardgroup = $cardgroup_model->get_by_id($id);
+
+            $data["arr_course"] = [];
+            foreach( $arr_course as $course){
+                if( $cardgroup->id_course == $course->course_id ){
+                    $course->selected_text = "selected";
+                }else{
+                    $course->selected_text = "";
+                }
+                array_push($data["arr_course"],$course);
+            }
+
+            $data["cardgroup_id"] = $id;
+            $data["cardgroup_name"] = $this->request->getPost("cardgroup_name");
+            $data["cardgroup_description"] = $this->request->getPost("cardgroup_description");
+
+            $data["cardgroup_name_error"] = $this->validator->getError('cardgroup_name');
+
+            $data["page_title"] = 	"แก้ไขกลุ่มบัตรคำ ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("addEdit",$data);                  
 
         }elseif( $data["task"] === "update" ){
 

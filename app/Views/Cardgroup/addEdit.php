@@ -12,6 +12,10 @@
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>Name</strong> :: </label>
                 <input type="text" class="form-control" name="cardgroup_name" value="<?php echo $cardgroup_name;?>">
+                <?php if( isset($cardgroup_name_error) && $cardgroup_name_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $cardgroup_name_error;?>]</div>
+                <?php } ?>
+
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
