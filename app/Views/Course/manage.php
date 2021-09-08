@@ -19,11 +19,17 @@
             <div class="two_flex_column">
                     <div>
                         <strong><?php echo $course->course_code;?></strong><br>
-                        <?php echo $course->course_name;?>
+                        <?php echo $course->course_name;?><br>
+                        Type :: <?php echo $course->coursetype_name;?>
                     </div>
                     <div>
-                        <a href="<?php echo base_url( ["Course","addEdit","edit",$course->course_id]);?>" class="btn btn-warning">Edit</a>
-                        <a href="<?php echo base_url( ["Course","delete",$course->course_id]);?>" class="btn btn-danger">Delete</a>
+                        <div style="margin-bottom:5px">
+                            <a href="<?php echo base_url( ["Course","addEdit","edit",$course->course_id]);?>" class="btn btn-warning">Edit</a>
+                        </div>
+                        <div>
+                            <a href="<?php echo base_url( ["Course","delete",$course->course_id]);?>" class="btn btn-danger">Delete</a>    
+                        </div>
+                        
                     </div>
             </div>
         </div>

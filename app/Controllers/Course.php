@@ -258,6 +258,7 @@ class Course extends MyController
 
         $course_model = new CourseModel;
         $util_model = new UtilModel;
+        $coursetype_model = new CoursetypeModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
@@ -276,6 +277,8 @@ class Course extends MyController
 
         $data["arr_course"] = [];
         foreach( $arr_course as $course){
+            $coursetype = $coursetype_model->get_by_id($course->id_coursetype);
+            $course->coursetype_name = $coursetype->coursetype_name;
             array_push($data["arr_course"],$course);
         }
 
