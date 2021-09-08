@@ -1,17 +1,5 @@
 <div class="box">
-    <div class="box__body box__body--info">
-        
-        <div class="two_flex_column">
-            <div>
-                <h5>เพิ่มวิชา</h5>
-            </div>
-            <div>
-                <a href="<?php echo base_url(["Course","addEdit","new"]);?>" class="btn btn-primary">ไป</a>
-            </div>
-        </div>
-
-    </div>
-
+    
     <?php foreach( $arr_coursetype as $coursetype){ ?>
         <div class="box__head box__head--info">
             <?php echo $coursetype->coursetype_name;?>

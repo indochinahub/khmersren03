@@ -75,38 +75,6 @@
 
 </div>
 
-<?php if( $if_user_is_adamin === true){ ?>
-    <div class="box">
-        <div class="box__head box__head--info">
-            จัดการบัตรคำ
-        </div>
-
-        <div class="box__body box__body--warning">
-            <div class="two_flex_column">
-                <div>
-                    แก้ไขวิชา
-                </div>
-                <div>
-                    <a href="<?php echo base_url(["Course","addEdit","edit",$course->course_id]);?>" class="btn btn-primary">ไป</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="box__body box__body--warning">
-            <div class="two_flex_column">
-                <div>
-                    ลบวิชา
-                </div>
-                <div>
-                    <a href="<?php echo base_url(["Course","delete",$course->course_id]);?>" class="btn btn-primary">ไป</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-<?php }?>
-
-
 <div class="box">
 
     <div class="box__body box__body--info">

@@ -225,7 +225,7 @@ class Course extends MyController
             $detail = $util_model->fill_null_in_array($detail);
 
             $course_id = $course_model->insert($detail);
-            return redirect()->to(base_url(["Course","showAll"]));
+            return redirect()->to(base_url(["Course","manage"]));	
             
         }
     }

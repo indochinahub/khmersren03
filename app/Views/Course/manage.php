@@ -4,7 +4,7 @@
 
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
-                <a href="http://127.0.0.1/khmersren03/Coursetype/addEdit/new" class="btn btn-primary">New</a>        
+                <a href="<?php echo base_url(["Course","addEdit","new"]);?>" class="btn btn-primary">New</a>    
             </div>
             <div>
                 <strong>เพิ่มวิชาใหม่</strong>
