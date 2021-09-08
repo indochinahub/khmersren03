@@ -57,18 +57,20 @@ class Cardgroup extends MyController
           ){
             $data["task"] = "update";
 
-        }elseif(($this->request->getMethod() === "post") && $task === "edit"){
+        }elseif( ($this->request->getMethod() === "post") && ($task === "new") &&
+            $this->validate($validattion_rules) 
+          ){
+            $data["task"] = "insert";
+
+        }elseif(($this->request->getMethod() === "post") ){
             $data["task"] = "show_form_error";
         
         }elseif( $task === "edit"){
             $data["task"] = "show_form_to_edit";
 
-        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
-
-            //$data["task"] = "insert";
 
         }elseif( $task === "new" ){
-            //$data["task"] = "show_form_to_insert";
+            $data["task"] = "show_form_to_insert";
         }
 
         // Do the task
@@ -97,23 +99,18 @@ class Cardgroup extends MyController
             $data["page_link"] 	= 	[	"กลับ",
                                         $this->_get_backlink()
                                     ];	        
-            $this->_view("addEdit",$data);                  
+            $this->_view("addEdit",$data); 
 
         }elseif( $data["task"] === "show_form_error"){
 
-            $cardgroup = $cardgroup_model->get_by_id($id);
-
             $data["arr_course"] = [];
             foreach( $arr_course as $course){
-                if( $cardgroup->id_course == $course->course_id ){
-                    $course->selected_text = "selected";
-                }else{
-                    $course->selected_text = "";
-                }
+                $course->selected_text = "";
                 array_push($data["arr_course"],$course);
             }
 
-            $data["cardgroup_id"] = $id;
+            if($id !== "0"){ $data["cardgroup_id"] = $id; }
+            
             $data["cardgroup_name"] = $this->request->getPost("cardgroup_name");
             $data["cardgroup_description"] = $this->request->getPost("cardgroup_description");
 
@@ -138,8 +135,31 @@ class Cardgroup extends MyController
 
         }elseif( $data["task"] === "show_form_to_insert" ){
 
+            $data["arr_course"] = [];
+            foreach( $arr_course as $course){
+                $course->selected_text = "";
+                array_push($data["arr_course"],$course);
+            }
+
+            $data["arr_course"] = $arr_course;
+            $data["cardgroup_name"] = "";
+            $data["cardgroup_description"] = "";
+
+            $data["page_title"] = 	"เพิ่มกลุ่มบัตรคำ ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("addEdit",$data);             
+
         }elseif( $data["task"] === "insert" ){
 
+            $detail =   [
+                            "cardgroup_name"=>$this->request->getPost("cardgroup_name"),
+                            "cardgroup_description"=>$this->request->getPost("cardgroup_description"),
+                            "id_course"=>$this->request->getPost("id_course"),
+                        ];
+            $cardgroup_model->insert($detail);
+            return redirect()->to(base_url(["Cardgroup","manage"]));	
         }
 
 
