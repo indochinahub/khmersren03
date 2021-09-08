@@ -47,5 +47,17 @@
             </div>
         </div>        
     </div>    
+
+    <div class="box__body box__body--info">    
+        <div class="two_flex_column" style="margin-bottom:5px;">
+            <div>
+                <h5>จัดการวิชา</h5>
+            </div>
+            <div>
+                <a href="<?php echo base_url(["Course","manage"]);?>" class="btn btn-primary">ไป</a>
+            </div>
+        </div>        
+    </div>    
     
+
 </div>

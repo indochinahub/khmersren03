@@ -198,8 +198,7 @@ class Course extends MyController
 
             $course_model->update_by_id($id, $detail);
 
-            return redirect()->to(base_url(["Course","show", $id]));		
-
+            return redirect()->to(base_url(["Course","manage"]));	
 
         }elseif( $data["task"] === "show_form_to_insert"){
 
@@ -238,7 +237,7 @@ class Course extends MyController
 
         if( $confirm === "1"){
             $course_model->delete_by_id($course_id);
-            return redirect()->to(base_url(["Course","showAll"]));		
+            return redirect()->to(base_url(["Course","manage"]));	
 
         }else{
             $data    =  [   "page_title"=>"ยืนยันการลบวิชา",
@@ -253,6 +252,38 @@ class Course extends MyController
             $this->_confirm($data);                
         }        
 
+    }
+
+    public function manage(){
+
+        $course_model = new CourseModel;
+        $util_model = new UtilModel;
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+            && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        $arr_course = $course_model->get_all_row();
+
+        $arr_course = $util_model->sort_array_of_object_by_the_property( 
+                            $arr_course, 
+                            "id_coursetype", 
+                            $order_by ="asc");
+
+        $data["arr_course"] = [];
+        foreach( $arr_course as $course){
+            array_push($data["arr_course"],$course);
+        }
+
+        $data["page_title"] = 	"จัดการวิชา";
+        $data["page_link"] 	= 	[   "ก่อนหน้า", 
+                                    $this->_get_backlink()
+                                ];	        
+        $this->_view("manage",$data);        
     }
 
     
