@@ -58,6 +58,18 @@
             </div>
         </div>        
     </div>    
+
+    <div class="box__body box__body--info">    
+        <div class="two_flex_column" style="margin-bottom:5px;">
+            <div>
+                <h5>จัดการกลุ่มบัตรคำ</h5>
+            </div>
+            <div>
+                <a href="<?php echo base_url(["Cardgroup","manage"]);?>" class="btn btn-primary">ไป</a>
+            </div>
+        </div>        
+    </div>    
+
     
 
 </div>
