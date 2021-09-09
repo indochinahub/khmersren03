@@ -150,7 +150,6 @@ class Course extends MyController
             return;
         }
 
-
         // 01/06 Validation Rules and Default Value 
         $validattion_rules = [ 
                                 "course_sort"       => "required",
@@ -190,6 +189,18 @@ class Course extends MyController
         }elseif( ($this->request->getMethod() === "post") && ($task === "new") &&
             $this->validate($validattion_rules) 
           ){
+
+            $detail = [ 
+                "course_sort"       => trim($this->request->getPost("course_sort")),
+                "course_code"       => trim($this->request->getPost("course_code")),
+                "course_shortname"  => trim($this->request->getPost("course_shortname")),
+                "course_name"       => trim($this->request->getPost("course_name")),
+                "course_download"   => trim($this->request->getPost("course_download")),
+                "id_coursetype"     => trim($this->request->getPost("id_coursetype"))   
+                ];
+
+            $course_model->insert($detail);
+            return redirect()->to(base_url(["Course","manage"]));	 
 
         // 04/06 Show form with error
         }elseif(($this->request->getMethod() === "post") ){
@@ -244,62 +255,19 @@ class Course extends MyController
             $data["page_link"] 	= 	[ "กลับ", $this->_get_backlink() ];
             $this->_view("addEdit",$data);    
 
-
         // 05/05 Show new form
         }elseif( $task === "new" ){
 
-            
-
-        }
-
-
-
-
-
-        /*
-
-
-
-        // Do the task
-        if( $data["task"] === "show_form_to_update" ){
-
- 
-
-        }elseif( $data["task"] === "update"){
-
-
-
-        }elseif( $data["task"] === "show_form_to_insert"){
-
-            $arr_coursetype = $coursetype_model->get_all_row();
             $data["arr_coursetype"] = [];
-            foreach( $arr_coursetype as $key => $coursetype){
-                if( $key === 0){
+            foreach( $arr_coursetype as $coursetype){
                     $coursetype->selected_text = "selected";
-                }else{
-                    $coursetype->selected_text = "";
-                }
                 array_push($data["arr_coursetype"],$coursetype);
             }
 
-            $data["course"] = $course_model->get_object_with_null_value();
-
-            $data["page_title"] = 	"เพิ่ม ";
+            $data["page_title"] = 	"เพิ่มวิชา ";
             $data["page_link"] 	= 	[ "กลับ", $this->_get_backlink() ];
-            $this->_view("addEdit",$data);     
-
-        }elseif( $data["task"] === "insert"){
-
-            $detail = $this->request->getPost();
-            $detail = $util_model->fill_null_in_array($detail);
-
-            $course_id = $course_model->insert($detail);
-            return redirect()->to(base_url(["Course","manage"]));	
-            
+            $this->_view("addEdit",$data);    
         }
-        */
-
-
 
     }
 
