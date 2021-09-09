@@ -46,37 +46,65 @@ class Cardgroup extends MyController
     public function addEdit($task,$id = "0"){
 
         $cardgroup_model = new CardgroupModel;
-        $course_model = new CourseModel;        
-
+        $course_model = new CourseModel;    
+        
+        // 01/06 Validation Rules and Default Value 
+        $arr_course = $course_model->get_all_row();
         $validattion_rules = 	[ 'cardgroup_name' => 'required|min_length[4]|max_length[80]' ];            
         
-        // Set task
-        $data = [];
+        $data["cardgroup_id"] = "";
+        $data["cardgroup_name"] = "";
+        $data["cardgroup_description"] = "";
+
+        // 02/06 Update data
         if( ($this->request->getMethod() === "post") && $task === "edit" &&
              $this->validate($validattion_rules) 
           ){
-            $data["task"] = "update";
 
+            $detail = [
+                "cardgroup_name"=>$this->request->getPost("cardgroup_name"),
+                "cardgroup_description"=>$this->request->getPost("cardgroup_description"),
+                "id_course"=>$this->request->getPost("id_course"),
+            ];
+
+            $cardgroup_model->update_by_id($id,$detail);
+            return redirect()->to(base_url(["Cardgroup","manage"]));	
+
+        // 03/06 Insert data
         }elseif( ($this->request->getMethod() === "post") && ($task === "new") &&
             $this->validate($validattion_rules) 
           ){
-            $data["task"] = "insert";
+            
+            $detail =   [
+                "cardgroup_name"=>$this->request->getPost("cardgroup_name"),
+                "cardgroup_description"=>$this->request->getPost("cardgroup_description"),
+                "id_course"=>$this->request->getPost("id_course"),
+            ];
+            $cardgroup_model->insert($detail);
+            return redirect()->to(base_url(["Cardgroup","manage"]));	
 
+        // 04/06 Show form with error
         }elseif(($this->request->getMethod() === "post") ){
-            $data["task"] = "show_form_error";
-        
+
+            $data["arr_course"] = [];
+            foreach( $arr_course as $course){
+                $course->selected_text = "";
+                array_push($data["arr_course"],$course);
+            }
+
+            $data["cardgroup_name"] = $this->request->getPost("cardgroup_name");
+            $data["cardgroup_description"] = $this->request->getPost("cardgroup_description");
+
+            $data["cardgroup_name_error"] = $this->validator->getError('cardgroup_name');
+
+            $data["page_title"] = 	"แก้ไขกลุ่มบัตรคำ ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("addEdit",$data);                  
+
+        // 05/06 Show form to edit
         }elseif( $task === "edit"){
-            $data["task"] = "show_form_to_edit";
-
-
-        }elseif( $task === "new" ){
-            $data["task"] = "show_form_to_insert";
-        }
-
-        // Do the task
-        $arr_course = $course_model->get_all_row();
-
-        if( $data["task"] === "show_form_to_edit" ){
 
             $cardgroup = $cardgroup_model->get_by_id($id);
 
@@ -99,76 +127,56 @@ class Cardgroup extends MyController
             $data["page_link"] 	= 	[	"กลับ",
                                         $this->_get_backlink()
                                     ];	        
-            $this->_view("addEdit",$data); 
+            $this->_view("addEdit",$data);             
 
-        }elseif( $data["task"] === "show_form_error"){
-
-            $data["arr_course"] = [];
-            foreach( $arr_course as $course){
-                $course->selected_text = "";
-                array_push($data["arr_course"],$course);
-            }
-
-            if($id !== "0"){ $data["cardgroup_id"] = $id; }
+        // 05/05 Show new form
+        }elseif( $task === "new" ){
             
-            $data["cardgroup_name"] = $this->request->getPost("cardgroup_name");
-            $data["cardgroup_description"] = $this->request->getPost("cardgroup_description");
-
-            $data["cardgroup_name_error"] = $this->validator->getError('cardgroup_name');
-
-            $data["page_title"] = 	"แก้ไขกลุ่มบัตรคำ ";
-            $data["page_link"] 	= 	[	"กลับ",
-                                        $this->_get_backlink()
-                                    ];	        
-            $this->_view("addEdit",$data);                  
-
-        }elseif( $data["task"] === "update" ){
-
-            $detail = [
-                        "cardgroup_name"=>$this->request->getPost("cardgroup_name"),
-                        "cardgroup_description"=>$this->request->getPost("cardgroup_description"),
-                        "id_course"=>$this->request->getPost("id_course"),
-                    ];
-
-            $cardgroup_model->update_by_id($id,$detail);
-            return redirect()->to(base_url(["Cardgroup","manage"]));	
-
-        }elseif( $data["task"] === "show_form_to_insert" ){
-
             $data["arr_course"] = [];
             foreach( $arr_course as $course){
                 $course->selected_text = "";
                 array_push($data["arr_course"],$course);
             }
-
-            $data["arr_course"] = $arr_course;
-            $data["cardgroup_name"] = "";
-            $data["cardgroup_description"] = "";
 
             $data["page_title"] = 	"เพิ่มกลุ่มบัตรคำ ";
             $data["page_link"] 	= 	[	"กลับ",
                                         $this->_get_backlink()
                                     ];	        
             $this->_view("addEdit",$data);             
+        }
+    }
 
-        }elseif( $data["task"] === "insert" ){
+    public function delete($id, $confirm = "0"){
 
-            $detail =   [
-                            "cardgroup_name"=>$this->request->getPost("cardgroup_name"),
-                            "cardgroup_description"=>$this->request->getPost("cardgroup_description"),
-                            "id_course"=>$this->request->getPost("id_course"),
-                        ];
-            $cardgroup_model->insert($detail);
-            return redirect()->to(base_url(["Cardgroup","manage"]));	
+        /*
+        $coursetype_model = new CoursetypeModel;
+        $coursetype = $coursetype_model->get_by_id($id);
+
+        if( $confirm === "0" ){
+
+            $data    =  [   "page_title"=>"ยืนยันการลบบทความ",
+                            "what_happened"=>"ท่านกำลังลบกลุ่มวิชา $id :: $coursetype->coursetype_name",
+                            "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
+                            "btnText_toConfirm" => "ยืนยัน",
+                            "btnLink_toConfirm" => base_url(["Coursetype","delete", $id, "1"]),
+                            "btnText_toCancle" => "ยกเลิก",
+                            "btnLink_toCancle" => $this->_get_backlink(),
+                        ];  		
+
+            $this->_view("confirm",$data);
+
+        }else{
+            $coursetype_model->delete_by_id($id);
+            return redirect()->to( base_url( ["Coursetype","manageCoursetype"] ));		
         }
 
+        */
 
-
-
-
-
+        
 
     }
+
+
 
 }
 

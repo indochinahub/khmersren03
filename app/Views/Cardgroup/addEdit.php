@@ -3,7 +3,7 @@
 
         <form role="form" method="post">
 
-            <?php if( isset($cardgroup_id) ){ ?>
+            <?php if(  $cardgroup_id ){ ?>
                 <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                     <label><strong>Id</strong> :: </label>
                     <input type="text" class="form-control" name="cardgroup_id" value="<?php echo $cardgroup_id;?>" readonly>
