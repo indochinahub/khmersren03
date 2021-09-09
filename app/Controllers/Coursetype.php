@@ -25,6 +25,7 @@ class Coursetype extends MyController
 
         $course_model = new CourseModel;
         $coursetype_model = new CoursetypeModel;
+        $util_model = new UtilModel;
 
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
@@ -35,6 +36,11 @@ class Coursetype extends MyController
         }
 
         $arr_coursetype = $coursetype_model->get_all_row();
+        $arr_coursetype = $util_model->sort_array_of_object_by_the_property( 
+                                        $arr_coursetype , 
+                                        "coursetype_id", 
+                                        $order_by ="desc"
+                                    );
 
         $data["arr_coursetype"] = [];
         foreach( $arr_coursetype as $coursetype){
