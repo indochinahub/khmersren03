@@ -4,7 +4,7 @@
 
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
-                <h5>จัดการกลุ่มบัตรคำ</h5>
+                <h5>ส่งออกกลุ่มบัตรคำ</h5>
             </div>
             <div>
                 <a href="<?php echo base_url(["Admin","manageCardgroup"]);?>" class="btn btn-primary">ไป</a>
