@@ -66,6 +66,16 @@ class Lesson extends MyController
         }elseif( ($this->request->getMethod() === "post") && ($data["task"] === "new") &&
             $this->validate($validattion_rules) 
           ){
+
+            $detail = [
+                        "lesson_title"      =>  trim($this->request->getPost("lesson_title")),
+                        "lesson_content"    =>  trim($this->request->getPost("lesson_content")),
+                        "lesson_sort"       =>  trim($this->request->getPost("lesson_sort")),
+                        "lesson_edittime"   =>  $datetime_model->unix_timestamp_to_sql_timestamp(time()),
+                        "id_course"         =>  $id
+                    ];
+            $lesson_id = $lesson_model->insert($detail);
+            return redirect()->to(base_url(["Lesson","show",$lesson_id]));      
             
         // 04/06 Show form with error
         }elseif(($this->request->getMethod() === "post") ){
@@ -119,48 +129,13 @@ class Lesson extends MyController
 
         // 06/06 Show new form
         }elseif( $data["task"] === "new" ){
-            
-
-        }        
-
-        /*
-
-        // Do the task
-        if( $data["task"] === "show_form_to_update" ){
-
-      
-          
-
-        }elseif( $data["task"] === "update"){
-
-	
-
-        }elseif( $data["task"] === "show_form_to_insert"){
-
-            $data["lesson"] = $lesson_model->get_object_with_null_value();
-            $data["course_id"] = $id;
 
             $data["page_title"] = 	"Add new lesson "; 
             $data["page_link"] 	= 	[   "กลับ",
                                         $this->_get_backlink()
                                    ];
-            $this->_view("addEdit",$data);                         
-
-        }elseif( $data["task"] === "insert"){
-
-            $detail = $this->request->getPost();
-            $detail["id_course"] = $id;
-
-            $detail = $util_model->fill_null_in_array($detail);
-            
-            $lesson_id = $lesson_model->insert($detail);
-
-            return redirect()->to(base_url(["Lesson","show",$lesson_id]));            
-
-        }    
-        
-        */
-
+            $this->_view("addEdit",$data);              
+        }        
     }
 
     public function show($lesson_id){
