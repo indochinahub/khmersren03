@@ -62,31 +62,32 @@ class Coursetype extends MyController
             return;
         }
 
-        $validattion_rules = 	[ 'coursetype_name' => 'required|min_length[4]|max_length[40]' ];    
+        // 01/06 Validation Rules and Default Value 
+        $validattion_rules = 	[ 'coursetype_name' => 'required|min_length[4]|max_length[40]' ];
 
-        // Set task
-        $data = [];
+        $data["coursetype_id"] = "";
+        $data["coursetype_name"] = "";
+
+        // 02/06 Update data
         if( ($this->request->getMethod() === "post") && $task === "edit" &&
              $this->validate($validattion_rules) 
           ){
-            $data["task"] = "update";
 
-        }elseif(($this->request->getMethod() === "post") && $task === "edit"){
-            $data["task"] = "show_form_error";
-        
+            $detail =   [   "coursetype_name"=>trim($this->request->getPost("coursetype_name"))
+                        ];
+            $coursetype_model->update_by_id($id, $detail );
+            return redirect()->to(base_url([ "Coursetype","manageCoursetype" ]));	
+
+        // 03/06 Insert data
+        }elseif( ($this->request->getMethod() === "post") && ($task === "new") &&
+            $this->validate($validattion_rules) 
+          ){
+            
+        // 04/06 Show form with error
+        }elseif(($this->request->getMethod() === "post") ){
+
+        // 05/06 Show form to edit
         }elseif( $task === "edit"){
-            $data["task"] = "show_form_to_edit";
-
-        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
-
-            $data["task"] = "insert";
-
-        }elseif( $task === "new" ){
-            $data["task"] = "show_form_to_insert";
-        }
-
-        // Do the task
-        if( $data["task"] === "show_form_to_edit" ){
             $coursetype = $coursetype_model->get_by_id($id);
 
             $data["coursetype_id"] = $id;
@@ -96,7 +97,20 @@ class Coursetype extends MyController
             $data["page_link"] 	= 	[	"กลับ",
                                         $this->_get_backlink()
                                     ];	        
-            $this->_view("addEdit",$data);      
+            $this->_view("addEdit",$data);            
+
+        // 06/06 Show new form
+        }elseif( $task === "new" ){
+            
+
+        }
+
+        /*
+
+
+        // Do the task
+        if( $data["task"] === "show_form_to_edit" ){
+      
             
         }elseif( $data["task"] === "show_form_error"){
             $data["coursetype_id"] = $id;
@@ -111,10 +125,7 @@ class Coursetype extends MyController
             $this->_view("addEdit",$data);      
 
         }elseif( $data["task"] === "update" ){
-            $detail =   [   "coursetype_name"=>trim($this->request->getPost("coursetype_name"))
-                        ];
-            $coursetype_model->update_by_id($id, $detail );
-            return redirect()->to(base_url([ "Coursetype","manageCoursetype" ]));	
+
 
         }elseif( $data["task"] === "show_form_to_insert" ){
             $data["coursetype_name"] = "";
@@ -132,6 +143,11 @@ class Coursetype extends MyController
             $coursetype_model->insert($detail);
             return redirect()->to(base_url([ "Coursetype","manageCoursetype" ]));	            
         }
+
+        
+        
+        */
+        
     }
 
     public function delete($id, $confirm = "0"){
