@@ -3,35 +3,47 @@
 
         <form role="form" method="post">
 
-            <?php if( $course->course_id ){ ?>
+            <?php if( $course_id ){ ?>
                 <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
-                    <label><strong>Id</strong> :: <?php echo $course->course_id;?></label>
+                    <label><strong>Id</strong> :: <?php echo $course_id;?></label>
                 </div>
             <?php } ?>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>Sort</strong> :: </label>
-                <input type="text" class="form-control" name="course_sort" value="<?php if($course->course_sort){echo $course->course_sort;}?>">
+                <input type="text" class="form-control" name="course_sort" value="<?php echo $course_sort;?>">
+                <?php if( isset($course_sort_error) && $course_sort_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $course_sort_error;?>]</div>
+                <?php } ?>
             </div>
             
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>Code</strong> :: </label>
-                <input type="text" class="form-control" name="course_code" value="<?php if($course->course_code){echo $course->course_code;};?>">
+                <input type="text" class="form-control" name="course_code" value="<?php echo $course_code;?>">
+                <?php if( isset($course_code_error) && $course_code_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $course_code_error;?>]</div>
+                <?php } ?>                
            </div>            
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>Shortname</strong> :: </label>
-                <input type="text" class="form-control" name="course_shortname" value="<?php if($course->course_shortname){echo $course->course_shortname;};?>">
+                <input type="text" class="form-control" name="course_shortname" value="<?php echo $course_shortname;?>">
+                <?php if( isset($course_shortname_error) && $course_shortname_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $course_shortname_error;?>]</div>
+                <?php } ?>                
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>Name</strong> :: </label>
-                <input type="text" class="form-control" name="course_name" value="<?php if($course->course_name){echo $course->course_name;}?>">
+                <input type="text" class="form-control" name="course_name" value="<?php echo $course_name;?>">
+                <?php if( isset($course_name_error) && $course_name_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $course_name_error;?>]</div>
+                <?php } ?>                                
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>Download</strong> :: </label>
-                <textarea class="form-control" name="course_download" rows="3" placeholder="[null]"><?php if($course->course_download){echo $course->course_download;}?></textarea>
+                <textarea class="form-control" name="course_download" rows="3" placeholder="[null]"><?php echo $course_download;?></textarea>
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 15px 0">

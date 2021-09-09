@@ -150,33 +150,89 @@ class Course extends MyController
             return;
         }
 
-        // Set the task and validate form
-        $data = [];
-        if( ($this->request->getMethod() === "post") && $task === "edit"  ){
 
-            $data["task"] = "update";
+        // 01/06 Validation Rules and Default Value 
+        $validattion_rules = [ 
+                                "course_sort"       => "required",
+                                "course_code"       => "required|min_length[4]|max_length[15]",
+                                "course_shortname"  => "required|min_length[4]|max_length[30]",
+                                "course_name"       => "required|min_length[4]|max_length[120]"
+                            ];
+        
+        $arr_coursetype = $coursetype_model->get_all_row();
 
+        $data["course_id"]          = "";
+        $data["course_sort"]        = "";
+        $data["course_code"]        = "";
+        $data["course_shortname"]   = "";
+        $data["course_name"]        = "";
+        $data["course_download"]    = "";
+        $data["id_coursetype"]      = "";
+
+        // 02/06 Update data
+        if( ($this->request->getMethod() === "post") && $task === "edit" &&
+             $this->validate($validattion_rules) 
+          ){
+
+            $detail = [ 
+                        "course_sort"       => trim($this->request->getPost("course_sort")),
+                        "course_code"       => trim($this->request->getPost("course_code")),
+                        "course_shortname"  => trim($this->request->getPost("course_shortname")),
+                        "course_name"       => trim($this->request->getPost("course_name")),
+                        "course_download"   => trim($this->request->getPost("course_download")),
+                        "id_coursetype"     => trim($this->request->getPost("id_coursetype"))   
+                        ];
+
+            $course_model->update_by_id($id,$detail);
+            return redirect()->to(base_url(["Course","manage"]));	 
+
+        // 03/06 Insert data
+        }elseif( ($this->request->getMethod() === "post") && ($task === "new") &&
+            $this->validate($validattion_rules) 
+          ){
+
+        // 04/06 Show form with error
+        }elseif(($this->request->getMethod() === "post") ){
+
+            $data["course_sort"]        = trim($this->request->getPost("course_sort"));
+            $data["course_code"]        = trim($this->request->getPost("course_code"));
+            $data["course_shortname"]   = trim($this->request->getPost("course_shortname"));
+            $data["course_name"]        = trim($this->request->getPost("course_name"));
+            $data["course_download"]    = trim($this->request->getPost("course_download"));
+            $data["id_coursetype"]      = trim($this->request->getPost("id_coursetype"));   
+
+            $data["arr_coursetype"] = [];
+            foreach( $arr_coursetype as $coursetype){
+                $coursetype->selected_text = "";
+                array_push($data["arr_coursetype"],$coursetype);
+            }
+
+            $data["course_sort_error"] = $this->validator->getError('course_sort');
+            $data["course_code_error"] = $this->validator->getError('course_code');
+            $data["course_shortname_error"] = $this->validator->getError('course_shortname');
+            $data["course_name_error"] = $this->validator->getError('course_name');
+
+            $data["page_title"] = 	"แก้ไขวิชา ";
+            $data["page_link"] 	= 	[ "กลับ", $this->_get_backlink() ];
+            $this->_view("addEdit",$data);    
+
+        // 05/06 Show form to edit
         }elseif( $task === "edit"){
 
-            $data["task"] = "show_form_to_update";
+            $course = $course_model->get_by_id($id);
 
-        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
-            $data["task"] = "insert";
+            $data["course_id"]          = $course->course_id;
+            $data["course_sort"]        = $course->course_sort;
+            $data["course_code"]        = $course->course_code;
+            $data["course_shortname"]   = $course->course_shortname;
+            $data["course_name"]        = $course->course_name;
+            $data["course_download"]    = $course->course_download;
+            $data["id_coursetype"]      = $course->id_coursetype;
 
-        }elseif( $task === "new" ){
-            $data["task"] = "show_form_to_insert";
-        }
-
-        // Do the task
-        if( $data["task"] === "show_form_to_update" ){
-
-            $data["course"] = $course_model->get_by_id($id);
-
-            $arr_coursetype = $coursetype_model->get_all_row();
             $data["arr_coursetype"] = [];
             foreach( $arr_coursetype as $coursetype){
 
-                if( $data["course"]->id_coursetype == $coursetype->coursetype_id ){
+                if( $course->id_coursetype == $coursetype->coursetype_id ){
                     $coursetype->selected_text = "selected";
                 }else{
                     $coursetype->selected_text = "";
@@ -184,21 +240,34 @@ class Course extends MyController
                 array_push($data["arr_coursetype"],$coursetype);
             }
 
-            //die();
-
-            // View Section
             $data["page_title"] = 	"แก้ไขวิชา ";
             $data["page_link"] 	= 	[ "กลับ", $this->_get_backlink() ];
-            $this->_view("addEdit",$data);     
+            $this->_view("addEdit",$data);    
+
+
+        // 05/05 Show new form
+        }elseif( $task === "new" ){
+
+            
+
+        }
+
+
+
+
+
+        /*
+
+
+
+        // Do the task
+        if( $data["task"] === "show_form_to_update" ){
+
+ 
 
         }elseif( $data["task"] === "update"){
 
-            $detail = $this->request->getPost();
-            $detail = $util_model->fill_null_in_array($detail);
 
-            $course_model->update_by_id($id, $detail);
-
-            return redirect()->to(base_url(["Course","manage"]));	
 
         }elseif( $data["task"] === "show_form_to_insert"){
 
@@ -228,6 +297,10 @@ class Course extends MyController
             return redirect()->to(base_url(["Course","manage"]));	
             
         }
+        */
+
+
+
     }
 
     public function delete($course_id, $confirm = "0"){
