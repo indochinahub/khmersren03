@@ -82,9 +82,24 @@ class Coursetype extends MyController
         }elseif( ($this->request->getMethod() === "post") && ($task === "new") &&
             $this->validate($validattion_rules) 
           ){
+
+            $detail =   [
+                            "coursetype_name"=>trim($this->request->getPost("coursetype_name"))
+                        ];
+            $coursetype_model->insert($detail);
+            return redirect()->to(base_url([ "Coursetype","manageCoursetype" ]));	            
             
         // 04/06 Show form with error
         }elseif(($this->request->getMethod() === "post") ){
+
+            $data["coursetype_name"] = $this->request->getPost("coursetype_name");
+            $data["coursetype_name_error"] = $this->validator->getError('coursetype_name');
+
+            $data["page_title"] = 	"แก้ไขกลุ่มวิชา ";
+            $data["page_link"] 	= 	[	"กลับ",
+                                        $this->_get_backlink()
+                                    ];	        
+            $this->_view("addEdit",$data);      
 
         // 05/06 Show form to edit
         }elseif( $task === "edit"){
@@ -101,53 +116,13 @@ class Coursetype extends MyController
 
         // 06/06 Show new form
         }elseif( $task === "new" ){
-            
-
-        }
-
-        /*
-
-
-        // Do the task
-        if( $data["task"] === "show_form_to_edit" ){
-      
-            
-        }elseif( $data["task"] === "show_form_error"){
-            $data["coursetype_id"] = $id;
-            $data["coursetype_name"] = $this->request->getPost("coursetype_name");
-
-            $data["coursetype_name_error"] = $this->validator->getError('coursetype_name');
-
-            $data["page_title"] = 	"แก้ไขกลุ่มวิชา ";
-            $data["page_link"] 	= 	[	"กลับ",
-                                        $this->_get_backlink()
-                                    ];	        
-            $this->_view("addEdit",$data);      
-
-        }elseif( $data["task"] === "update" ){
-
-
-        }elseif( $data["task"] === "show_form_to_insert" ){
-            $data["coursetype_name"] = "";
 
             $data["page_title"] = 	"เพิ่มกลุ่มวิชา ";
             $data["page_link"] 	= 	[	"กลับ",
                                         $this->_get_backlink()
                                     ];	        
             $this->_view("addEdit",$data);      
-
-        }elseif( $data["task"] === "insert" ){
-            $detail =   [
-                            "coursetype_name"=>trim($this->request->getPost("coursetype_name"))
-                        ];
-            $coursetype_model->insert($detail);
-            return redirect()->to(base_url([ "Coursetype","manageCoursetype" ]));	            
         }
-
-        
-        
-        */
-        
     }
 
     public function delete($id, $confirm = "0"){
