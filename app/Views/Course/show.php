@@ -155,7 +155,7 @@
         </div>
     <?php } ?>
 
-    <div class="box__body box__body--info">
+    <div class="box__body box__body--warning">
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
                 <a href="<?php echo base_url(["Lesson","addEdit","new",$course->course_id]);?>" class="btn btn-primary">ไป</a>
