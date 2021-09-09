@@ -15,8 +15,8 @@
         <div class="box__body box__body--info">
             <div class="two_flex_column">
                     <div>
-                        Id :: <?php echo $cardgroup->cardgroup_id;?><br>
-                        <?php echo $cardgroup->cardgroup_name;?>
+                        <?php echo $cardgroup->cardgroup_id."::".$cardgroup->cardgroup_name;?><br>
+                        <?php echo $cardgroup->course_code;?>
                     </div>
                     <div>
                         <div style="margin-bottom:5px">

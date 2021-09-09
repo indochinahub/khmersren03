@@ -19,6 +19,9 @@ class Cardgroup extends MyController
  
     public function manage(){
 
+        $course_model = new CourseModel;
+        $util_model = new UtilModel;
+
         if( ($data["user"] = $this->_get_loggedin_user())
             && $data["user"]->user_level  === "3" )
         {
@@ -30,9 +33,17 @@ class Cardgroup extends MyController
         $cardgroup_model = new CardgroupModel;
         
         $arr_cardgroup = $cardgroup_model->get_all_row();
+        $arr_cardgroup = $util_model->sort_array_of_object_by_the_property( 
+                                        $arr_cardgroup , 
+                                        "cardgroup_id", 
+                                        $order_by ="desc"
+                                    );
 
         $data["arr_cardgroup"] = [];
         foreach( $arr_cardgroup as $cardgroup){
+
+            $course = $course_model->get_by_id($cardgroup->id_course);
+            $cardgroup->course_code = "[".$course->course_code." : ".$course->course_name."]";
             array_push($data["arr_cardgroup"],$cardgroup);
         }
 
