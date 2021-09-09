@@ -129,7 +129,7 @@ class Cardgroup extends MyController
                                     ];	        
             $this->_view("addEdit",$data);             
 
-        // 05/05 Show new form
+        // 06/06 Show new form
         }elseif( $task === "new" ){
             
             $data["arr_course"] = [];
