@@ -148,17 +148,16 @@ class Cardgroup extends MyController
 
     public function delete($id, $confirm = "0"){
 
-        /*
-        $coursetype_model = new CoursetypeModel;
-        $coursetype = $coursetype_model->get_by_id($id);
+        $cardgroup_model = new CardgroupModel;
+        $cardgroup = $cardgroup_model->get_by_id($id);
 
         if( $confirm === "0" ){
 
-            $data    =  [   "page_title"=>"ยืนยันการลบบทความ",
-                            "what_happened"=>"ท่านกำลังลบกลุ่มวิชา $id :: $coursetype->coursetype_name",
+            $data    =  [   "page_title"=>"ยืนยันการกลุ่มบทความ",
+                            "what_happened"=>"ท่านกำลังลบกลุ่มวิชา $id :: $cardgroup->cardgroup_name",
                             "what_todo" => "คลิ๊กที่ปุ่ม \"<strong>ยืนยัน</strong>\" หรือปุ่ม \"<strong>ยกเลิก</strong>\" ",
                             "btnText_toConfirm" => "ยืนยัน",
-                            "btnLink_toConfirm" => base_url(["Coursetype","delete", $id, "1"]),
+                            "btnLink_toConfirm" => base_url(["Cardgroup","delete", $id, "1"]),
                             "btnText_toCancle" => "ยกเลิก",
                             "btnLink_toCancle" => $this->_get_backlink(),
                         ];  		
@@ -166,13 +165,10 @@ class Cardgroup extends MyController
             $this->_view("confirm",$data);
 
         }else{
-            $coursetype_model->delete_by_id($id);
-            return redirect()->to( base_url( ["Coursetype","manageCoursetype"] ));		
+
+            $cardgroup_model->delete_by_id($id);
+            return redirect()->to( base_url( [ "Cardgroup","manage" ] ));		
         }
-
-        */
-
-        
 
     }
 

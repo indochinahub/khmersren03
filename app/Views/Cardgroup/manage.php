@@ -23,7 +23,7 @@
                             <a href="<?php echo base_url(["Cardgroup","addEdit","edit",$cardgroup->cardgroup_id]);?>" class="btn btn-warning">Edit</a>
                         </div>
                         <div>
-                            <a href="" class="btn btn-danger">Delete</a>    
+                            <a href="<?php echo base_url(["Cardgroup","delete",$cardgroup->cardgroup_id]);?>" class="btn btn-danger">Delete</a>    
                         </div>
                         
                     </div>
