@@ -37,28 +37,44 @@ class Lesson extends MyController
             return;
         }
 
-        // Set the task and validate form
-        $data = [];
-        if( ($this->request->getMethod() === "post") && $task === "edit"  ){
+        $data["task"] = $task;
 
-            $data["task"] = "update";
+        // 01/06 Validation Rules and Default Value 
+        $validattion_rules = 	[ 
+                                    'lesson_title' => 'required|min_length[4]|max_length[100]',
+                                    'lesson_content' => 'required',
+                                ];            
+        $data["lesson_title"]   =   "";
+        $data["lesson_content"] =   "";
+        $data["lesson_sort"]    =   "";
 
-        }elseif( $task === "edit"){
+        // 02/06 Update data
+        if( ($this->request->getMethod() === "post") && $data["task"] === "edit" &&
+             $this->validate($validattion_rules) 
+          ){
 
-            $data["task"] = "show_form_to_update";
+            $detail = [
+                        "lesson_title"      =>  trim($this->request->getPost("lesson_title")),
+                        "lesson_content"    =>  trim($this->request->getPost("lesson_content")),
+                        "lesson_sort"       =>  trim($this->request->getPost("lesson_sort")),
+                        "lesson_edittime"   =>  $datetime_model->unix_timestamp_to_sql_timestamp(time())
+                    ];
+            $lesson_model->update_by_id($id, $detail);
+            return redirect()->to(base_url(["Lesson","show", $id]));	
 
-        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
-            $data["task"] = "insert";
-
-        }elseif( $task === "new" ){
-            $data["task"] = "show_form_to_insert";
-        }
-
-
-        // Do the task
-        if( $data["task"] === "show_form_to_update" ){
+        // 03/06 Insert data
+        }elseif( ($this->request->getMethod() === "post") && ($data["task"] === "new") &&
+            $this->validate($validattion_rules) 
+          ){
+            
+        // 04/06 Show form with error
+        }elseif(($this->request->getMethod() === "post") ){
 
             $data["lesson"] = $lesson_model->get_by_id($id);
+
+            $data["lesson_title"]   =   trim($this->request->getPost("lesson_title"));
+            $data["lesson_content"] =   trim($this->request->getPost("lesson_content"));
+            $data["lesson_sort"]    =   trim($this->request->getPost("lesson_sort"));
 
             $media_model            = new MediaModel( $data["lesson"], "lesson");
             $data["arr_picture"]    = $media_model->get_arr_picture();
@@ -66,23 +82,58 @@ class Lesson extends MyController
             $data["arr_youtube"]    = $media_model->get_arr_youtube();
             $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
             $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
-            $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
+            $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");            
 
+            $data["lesson_title_error"] = $this->validator->getError('lesson_title');
+            $data["lesson_content_error"] = $this->validator->getError('lesson_content');
 
             $data["page_title"] = 	"Edit :: ".$data["lesson"]->lesson_id; 
             $data["page_link"] 	= 	[   "กลับ",
                                         $this->_get_backlink()
                                    ];
-            $this->_view("addEdit",$data);            
+            $this->_view("addEdit",$data);                  
+
+        // 05/06 Show form to edit
+        }elseif( $data["task"] === "edit"){
+
+            $lesson = $lesson_model->get_by_id($id);
+
+            $data["lesson_id"]      =   $id;
+            $data["lesson_title"]   =   $lesson->lesson_title;
+            $data["lesson_content"] =   $lesson->lesson_content;
+            $data["lesson_sort"]    =   $lesson->lesson_sort;
+
+            $media_model            = new MediaModel( $lesson, "lesson");
+            $data["arr_picture"]    = $media_model->get_arr_picture();
+            $data["arr_sound"]      = $media_model->get_arr_sound();
+            $data["arr_youtube"]    = $media_model->get_arr_youtube();
+            $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
+            $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
+            $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
+
+            $data["page_title"] = 	"Edit :: ".$lesson->lesson_id; 
+            $data["page_link"] 	= 	[   "กลับ",
+                                        $this->_get_backlink()
+                                   ];
+            $this->_view("addEdit",$data);                  
+
+        // 06/06 Show new form
+        }elseif( $data["task"] === "new" ){
+            
+
+        }        
+
+        /*
+
+        // Do the task
+        if( $data["task"] === "show_form_to_update" ){
+
+      
           
 
         }elseif( $data["task"] === "update"){
 
-            $detail = $this->request->getPost();
-            $detail = $util_model->fill_null_in_array($detail);
-            $detail["lesson_edittime"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
-            $lesson_model->update_by_id($id, $detail);
-            return redirect()->to(base_url(["Lesson","show", $id]));		
+	
 
         }elseif( $data["task"] === "show_form_to_insert"){
 
@@ -106,7 +157,9 @@ class Lesson extends MyController
 
             return redirect()->to(base_url(["Lesson","show",$lesson_id]));            
 
-        }        
+        }    
+        
+        */
 
     }
 

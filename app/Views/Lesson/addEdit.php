@@ -4,17 +4,26 @@
         <form role="form" method="post">
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>หัวข้อ</strong> :: </label>
-                <textarea class="form-control" name="lesson_title" rows="1"><?php if($lesson->lesson_title){echo $lesson->lesson_title;}?></textarea>
+                <input type="text" class="form-control" name="lesson_title" value="<?php echo $lesson_title;?>">
+                <?php if( isset($lesson_title_error) && $lesson_title_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $lesson_title_error;?>]</div>
+                <?php } ?>
+
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>เนื่อหา</strong> :: </label>
-                <textarea class="form-control" name="lesson_content" rows="5"><?php if($lesson->lesson_content){echo $lesson->lesson_content;};?></textarea>
+                <textarea class="form-control" name="lesson_content" rows="5"><?php echo $lesson_content;?></textarea>
+                <?php if( isset($lesson_content_error) && $lesson_content_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $lesson_content_error;?>]</div>
+                <?php } ?>
+
+
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 10px 0">
                 <label><strong>การจัดเรียง</strong> :: </label>
-                <input type="text" class="form-control" name="lesson_sort" value="<?php if($lesson->lesson_sort){echo $lesson->lesson_sort;};?>">
+                <input type="text" class="form-control" name="lesson_sort" value="<?php echo $lesson_sort;?>">
             </div>            
 
             <div class="two_flex_column">
@@ -31,7 +40,7 @@
     </div>
 </div>
 
-<?php if( $task === "show_form_to_update" ){ ?>
+<?php if( $task === "edit" ){ ?>
 
     <div class="box">
 
@@ -65,7 +74,7 @@
 
             <div class="box__body box__body--info">
 
-                <form action="<?php echo base_url(["Media","addPicture","lesson",$lesson->lesson_id, $first_vacant_picture]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <form action="<?php echo base_url(["Media","addPicture","lesson",$lesson_id, $first_vacant_picture]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
                         <label for="exampleInputFile">เพิ่มรูปภาพที่ <?php echo $first_vacant_picture;?> :: </label>
                         <input type="file" name="myfile" size="20">
@@ -113,7 +122,7 @@
 
             <div class="box__body box__body--info">
 
-                <form action="<?php echo base_url(["Media","addYoutube","lesson",$lesson->lesson_id, $first_vacant_youtube]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <form action="<?php echo base_url(["Media","addYoutube","lesson",$lesson_id, $first_vacant_youtube]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
                         <label for="soundfile">เพิ่มวิดิโอยูทูปหมายเลข <?php echo $first_vacant_youtube;?> :: </label>
                         <input type="text" class="form-control" name="youtube">
