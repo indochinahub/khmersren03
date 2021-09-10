@@ -9,39 +9,36 @@
 
             <?php foreach( $coursetype->arr_course_as_row as $row ){ ?>
 
-                <div class="icon_row">
-                    <div class="course_icon">
-                        <div class="course_icon-thumbnail">
-                            <a href="<?php echo base_Url(["Course","show", $row[0]->course_id]);?>">
-                                <img src="<?php echo $row[0]->icon_url;?>" width="100%">
-                            </a>
+                <div class="row2icon">
+                    <div class="row2icon_icon" style="background-color:black">
+                        <div>
+                            <img src="<?php echo $row[0]->icon_url;?>" width="100%">
                         </div>
-                        <div class="course_icon-title" style="">
+                        <div style="padding:5px">
                             <a href="<?php echo base_Url(["Course","show", $row[0]->course_id]);?>">
                                 <strong><?php echo $row[0]->course_code;?></strong><br>
                                 <?php echo $row[0]->course_name;?>
                             </a>
-                        </div>		
-                    </div>		
-                    
+                        </div>
+                    </div>
+
                     <?php if( $row[1] !== false ){ ?>
-                        <div class="course_icon">
-                            <div class="course_icon-thumbnail">
-                                <a href="<?php echo base_Url(["Course","show", $row[1]->course_id]);?>">
-                                    <img src="<?php echo $row[1]->icon_url;?>" width="100%">
-                                </a>
+                        <div class="row2icon_icon" style="background-color:black">
+                            <div>
+                                <img src="<?php echo $row[1]->icon_url;?>" width="100%">
                             </div>
-                            <div class="course_icon-title" style="">
-                                <a href="<?php echo base_Url(["Course","show", $row[1]->course_id]);?>">
+                            <div style="padding:5px">
+                                <a href="<?php echo base_Url(["Course","show", $row[0]->course_id]);?>">
                                     <strong><?php echo $row[1]->course_code;?></strong><br>
                                     <?php echo $row[1]->course_name;?>
                                 </a>
-                            </div>		
-                        </div>		
+                            </div>
+                        </div>
                     <?php }else{ ?>
-                        <div>
-                        </div>		                        
-                        
+
+                        <div class="row2icon_icon">
+                        </div>
+
                     <?php } ?>
 
                 </div>

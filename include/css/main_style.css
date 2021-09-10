@@ -274,7 +274,6 @@ a.article:hover {
     Course Icon
 
    ----------------------------------------------------- */
-
 .row2icon {
     padding:5px;
     display:flex;
@@ -285,7 +284,7 @@ a.article:hover {
 
 .row2icon_icon {
     width:49%;
-    padding:5px;
+    padding:2px;
 }
 
 .row3icon {
@@ -312,49 +311,6 @@ a.article:hover {
 .row4icon_icon {
     width:24%;
     padding:5px;
-}
-
-
-
-
-
-
-
-
-.icon_row {
-    padding:5px;
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    
-}
-
-.course_icon {
-    width:49%;
-	background-color:black;
-	border-style: solid;
-	border-color:black;
-	margin: 0 0 10px 0;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.course_icon .course_icon-title {
-	background-color:black;
-	padding:5px;
-	color:white
 }
 
 /* ---------------------------------------------------
