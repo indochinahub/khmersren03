@@ -209,6 +209,7 @@ class Post extends MyController
         // 01/06 Validation Rules and Default Value 
         $arr_postcategory =  $postcategory_model->get_by_user_id($user->user_id); 
 
+        $data["display_media_part"] = false;
         $validattion_rules = 	[ 
                                     'post_title' => 'required|min_length[4]|max_length[100]',
                                     'post_intro' => 'required',
@@ -241,7 +242,18 @@ class Post extends MyController
             $this->validate($validattion_rules) 
           ){
 
-            
+            $detail =   [
+                "post_title"    =>  trim($this->request->getPost("post_title")),
+                "post_intro"    =>  trim($this->request->getPost("post_intro")),
+                "post_content"  =>  trim($this->request->getPost("post_content")),
+                "post_sort"     =>  trim($this->request->getPost("post_sort")),
+                "id_postcategory"=> trim($this->request->getPost("id_postcategory")),
+                "post_publishtime"=> $datetime_model->unix_timestamp_to_sql_timestamp(time())
+            ];
+
+            $post_id = $post_model->insert($detail);
+            return redirect()->to(base_url(["Post","show", $post_id ]));
+
         // 04/06 Show form with error
         }elseif(($this->request->getMethod() === "post") ){
 
@@ -265,16 +277,8 @@ class Post extends MyController
                 }
                 array_push( $data["arr_postcategory"], $postcategory);
             }
-            
-            $media_model            = new MediaModel( $post, "post");
-            $data["arr_picture"]    = $media_model->get_arr_picture();
-            $data["arr_sound"]      = $media_model->get_arr_sound();
-            $data["arr_youtube"]    = $media_model->get_arr_youtube();
-            $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
-            $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
-            $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
 
-            $data["page_title"] = 	"Edit :: ".$post->post_id; 
+            $data["page_title"] = 	"Error "; 
             $data["page_link"] 	= 	[   "กลับ",
                                         $this->_get_backlink()
                                    ];
@@ -282,6 +286,7 @@ class Post extends MyController
 
         // 05/06 Show form to edit
         }elseif( $data["task"] === "edit"){
+            $data["display_media_part"] = true;
 
             $post = $post_model->get_by_id($id);
 
@@ -292,6 +297,7 @@ class Post extends MyController
                 return;
             }
 
+            $data["post_id"]            = $id;
             $data["post_title"]         = $post->post_title;
             $data["post_intro"]         = $post->post_intro;
             $data["post_content"]       = $post->post_content;
@@ -324,7 +330,21 @@ class Post extends MyController
         // 06/06 Show new form
         }elseif( $data["task"] === "new" ){
 
-
+            $data["arr_postcategory"] = [];
+            foreach( $arr_postcategory as $key=>$postcategory){
+                if( $key === 0 ){
+                    $postcategory->checked_text = " checked ";
+                }else{
+                    $postcategory->checked_text = "";
+                }
+                array_push( $data["arr_postcategory"], $postcategory);
+            }
+            
+            $data["page_title"] = 	"New Post"; 
+            $data["page_link"] 	= 	[   "กลับ",
+                                        $this->_get_backlink()
+                                   ];
+            $this->_view("addEdit",$data);                        
         }        
   
     }

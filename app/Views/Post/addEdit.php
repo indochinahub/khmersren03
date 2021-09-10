@@ -58,7 +58,7 @@
     </div>
 </div>
 
-<?php if( $task === "show_form_to_update" ){ ?>
+<?php if( $display_media_part === true ){ ?>
 
     <div class="box">
 
@@ -78,7 +78,7 @@
                             <div>
                             </div>
                             <div>
-                                <a href="<?php echo base_url(["Media","deletePicture","post", $post->post_id, $picture->media_order ]);?>" class="btn btn-warning">ลบ</a>
+                                <a href="<?php echo base_url(["Media","deletePicture","post", $post_id, $picture->media_order ]);?>" class="btn btn-warning">ลบ</a>
                             </div>
                         </div>
 
@@ -92,7 +92,7 @@
 
             <div class="box__body box__body--info">
 
-                <form action="<?php echo base_url(["Media","addPicture","post",$post->post_id, $first_vacant_picture]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <form action="<?php echo base_url(["Media","addPicture","post",$post_id, $first_vacant_picture]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
                         <label for="exampleInputFile">เพิ่มรูปภาพที่ <?php echo $first_vacant_picture;?> :: </label>
                         <input type="file" name="myfile" size="20">
@@ -140,7 +140,7 @@
 
             <div class="box__body box__body--info">
 
-                <form action="<?php echo base_url(["Media","addYoutube","post",$post->post_id, $first_vacant_youtube]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <form action="<?php echo base_url(["Media","addYoutube","post",$post_id, $first_vacant_youtube]);?>" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
                         <label for="soundfile">เพิ่มวิดิโอยูทูปหมายเลข <?php echo $first_vacant_youtube;?> :: </label>
                         <input type="text" class="form-control" name="youtube">
@@ -173,7 +173,7 @@
                             <div>
                             </div>
                             <div>
-                                <a href="<?php echo base_url(["Media","deleteSound","post", $post->post_id, $sound->media_order ]);?>" class="btn btn-warning">ลบ</a>
+                                <a href="<?php echo base_url(["Media","deleteSound","post", $post_id, $sound->media_order ]);?>" class="btn btn-warning">ลบ</a>
                             </div>
                         </div>
 
@@ -187,7 +187,7 @@
 
             <div class="box__body box__body--info">
 
-                <form action="<?php echo base_url(["Media","addSound","post",$post->post_id, $first_vacant_sound]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
+                <form action="<?php echo base_url(["Media","addSound","post",$post_id, $first_vacant_sound]);?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" style="margin-top:10px">
                     <div class="form-group">
                         <label for="exampleInputFile">เพิ่มแฟ้มเสียงที่ <?php echo $first_vacant_sound;?> :: </label>
                         <input type="file" name="myfile" size="20">
