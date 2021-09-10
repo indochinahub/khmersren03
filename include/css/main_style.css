@@ -272,7 +272,54 @@ a.article:hover {
 
 /* ---------------------------------------------------
     Course Icon
------------------------------------------------------ */
+
+   ----------------------------------------------------- */
+
+.row2icon {
+    padding:5px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.row2icon_icon {
+    width:49%;
+    padding:5px;
+}
+
+.row3icon {
+    padding:5px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.row3icon_icon {
+    width:33%;
+    padding:5px;
+}
+
+.row4icon {
+    padding:5px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.row4icon_icon {
+    width:24%;
+    padding:5px;
+}
+
+
+
+
+
+
+
 
 .icon_row {
     padding:5px;
@@ -291,6 +338,18 @@ a.article:hover {
 	margin: 0 0 10px 0;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 .course_icon .course_icon-title {
 	background-color:black;

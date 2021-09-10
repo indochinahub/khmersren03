@@ -70,7 +70,68 @@
 </div>
 
 
+<div class="box">
 
+    <div class="box__head box__head--info">
+        แถว 2 ไอคอน
+    </div>
+
+    <div class="row2icon">
+        <div class="row2icon_icon" style="background-color:yellow">
+            x x x x x x x xx x x x x x x x x x x xx x x x x x x x x x x xx x x x 
+            x x x x x x x xx x x x x x x x x x x xx x x x x x x x x x x xx x x x 
+        </div>
+
+        <div class="row2icon_icon" style="background-color:green">
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+        </div>            
+    </div>
+
+    <div class="box__head box__head--info">
+        แถว 3 ไอคอน
+    </div>
+
+    <div class="row3icon">
+        <div class="row3icon_icon" style="background-color:yellow">
+            x x x x x x x xx x x x x x x x x x x xx x x x x x x x x x x xx x x x 
+            x x x x x x x xx x x x x x x x x x x xx x x x x x x x x x x xx x x x 
+        </div>
+
+        <div class="row3icon_icon" style="background-color:green">
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+        </div>
+        
+        <div class="row3icon_icon" style="background-color:blue">
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+        </div>
+    </div>
+
+    <div class="box__head box__head--info">
+        แถว 4 ไอคอน
+    </div>
+
+    <div class="row4icon">
+        <div class="row4icon_icon" style="background-color:yellow">
+            x x x x x x x xx x x x x x x x x x x xx x x x x x x x x x x xx x x x 
+        </div>
+
+        <div class="row4icon_icon" style="background-color:green">
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+        </div>
+        
+        <div class="row4icon_icon" style="background-color:blue">
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+        </div>
+
+        <div class="row4icon_icon" style="background-color:brown">
+            z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z z
+        </div>
+    </div>
+
+</div>
 
 
 <?php echo $pagination;?>
