@@ -4,7 +4,6 @@
         ผู้ที่ <?php echo $display_name;?> ติดตาม
     </div>
 
-
         <?php foreach( $arr_of_whom_i_follow as $row_of_user ){ ?>
             
             <div class="row4icon">
@@ -50,13 +49,11 @@
                                     <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
                                     src="<?php echo $user->avarta_url;?>">
                                 </a>
-                                
                         </div>
                     <?php }else{ ?>
                         <div class="row4icon_icon">
                         </div>
                     <?php } ?>
-
 
                 <?php } ?>
             </div>
