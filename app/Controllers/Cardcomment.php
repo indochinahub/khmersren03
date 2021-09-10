@@ -71,27 +71,32 @@ class Cardcomment extends MyController
     }
 
     public function add($card_id,$deck_id){
+
         $cardcomment_model = new CardcommentModel;
+
+        $validattion_rules = 	[ 
+                                    "cardcomment_text" => "required",
+                                ];            
 
         $user = $this->_get_loggedin_user();
 
-        if(     ( $this->request->getMethod() === "post" )  && 
-                ( $cardcomment_text = trim($this->request->getPost("cardcomment_text")) )
+        if(     $this->request->getMethod() === "post"  && 
+                $this->validate($validattion_rules)
           ){
 
             $detail =   [
                             "id_user"=>$user->user_id,
                             "id_card"=>$card_id, 
                             "id_deck"=>$deck_id,
-                            "cardcomment_text"=>$cardcomment_text
+                            "cardcomment_text"=>$this->request->getPost("cardcomment_text")
                         ];
             $cardcomment_model->insert($detail);
             return redirect()->to( $this->_get_backlink() );		
             
         }else{
 
-            $data	= [     "page_title"=>"ไม่มีความคิดเห็น",
-                            "what_happened"=>"คุณไม่ได้กรอกข้อความใดๆ ในช่องแสดงความคิดเห็น",
+            $data	= [     "page_title"=>"มีข้อผิดพลาด",
+                            "what_happened"=>"ข้อผิดพลาดดังต่อไปนี้ :: ".$this->validator->getError("cardcomment_text"),
                             "what_todo" => "คลิ๊กที่ปุ่ม <bold>กลับ</bold> เพื่อกลับไปบัตรคำ",
                             "btnText_toGo" => "กลับ",
                             "btnLink_toGo" => $this->_get_backlink()
