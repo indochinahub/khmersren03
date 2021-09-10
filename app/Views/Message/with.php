@@ -107,7 +107,7 @@
             
             <div class="form-group">
                 <label><strong>เพิ่มข้อความ</strong></label>
-                <textarea class="form-control" name="cardcomment_text" rows="2"></textarea>
+                <textarea class="form-control" name="message_text" rows="2"></textarea>
             </div>
             <div class="two_flex_column">
                     <div>

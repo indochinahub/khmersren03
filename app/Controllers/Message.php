@@ -161,26 +161,30 @@ class Message extends MyController
             return;
         }
 
-        if(  ( $this->request->getMethod() === "post" )  && 
-             ( $cardcomment_text = trim($this->request->getPost("cardcomment_text")) )
+        $validattion_rules = 	[ 
+                                    "message_text" => "required",
+                                ];            
+
+        if(  $this->request->getMethod() === "post" && 
+             $this->validate($validattion_rules)
         ){
 
             $detail = [ 
                         "id_sender"=>$data["user"]->user_id,
                         "id_receiver"=>$other_id,
-                        "message_text"=>$this->request->getPost("cardcomment_text") 
+                        "message_text"=>$this->request->getPost("message_text") 
                       ];
             $message_model->insert($detail);
             return redirect()->to( $this->_get_backlink() );		
 
         }else{
 
-            $data	= [     "page_title"=>"ไม่ข้อความ",
-                            "what_happened"=>"คุณไม่ได้กรอกข้อความใดๆ ในช่องส่งข้อความ",
+            $data	= [     "page_title"=>"ไม่สามารถส่งข้อความได้",
+                            "what_happened"=>"ไม่สามารถส่งข้อความได้ มีข้อผิดพลาดต่อไปนี้ : ".$this->validator->getError("message_text"),
                             "what_todo" => "คลิ๊กที่ปุ่ม <bold>กลับ</bold> เพื่อกลับห้องสนทนา",
                             "btnText_toGo" => "กลับ",
                             "btnLink_toGo" => $this->_get_backlink()
-                    ];
+                        ];
             $this->_warn($data);            
 
         }
