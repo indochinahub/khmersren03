@@ -144,7 +144,7 @@ class User extends MyController
         $data["total_timespent_of_user"] = $datetime_model->get_second_in_minute_and_hour( $statistic_model->get_total_timespent_of_user($data["member"]->user_id));
         $data["last_visit_time"] =  $datetime_model->get_thai_datetime_from_sql_timestamp($data["member"]->user_visittime );
         $data["num_practice_have_done_today"] = $practice_model->get_num_practice_have_done_of_the_day($data["member"]->user_id, time());
-        $data["timespent_today"] = $practice_model->get_timespent_of_the_day($data["member"]->user_id, time());
+        $data["timespent_today"] = $datetime_model->get_second_in_minute_and_hour( $practice_model->get_timespent_of_the_day($data["member"]->user_id, time()));
         $data["total_card_to_review_today"] = $practice_model->get_total_num_to_review($data["member"]->user_id, time(), 1);
         $data["total_card_to_review_tomorrow"] = $practice_model->get_total_num_to_review($data["member"]->user_id, time(), 2);
 

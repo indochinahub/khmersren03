@@ -175,7 +175,7 @@
                 เวลาที่ใช้ทำบัตรคำ  
             </div>
             <div>
-                <?php echo $timespent_today;?> วินาที
+                <?php echo $timespent_today;?>
 
             </div>
         </div>        
