@@ -4,22 +4,28 @@
         <form role="form" method="post">
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>หัวข้อ</strong> :: </label>
-                <textarea class="form-control" name="post_title" rows="1"><?php if($post->post_title){echo $post->post_title;}?></textarea>
+                <input type="text" class="form-control" name="post_title" value="<?php echo $post_title;?>">
+                <?php if( isset($post_title_error) && $post_title_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $post_title_error;?>]</div>
+                <?php } ?>                
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>คำนำ</strong> :: </label>
-                <textarea class="form-control" name="post_intro" rows="4"><?php if($post->post_intro){echo $post->post_intro;};?></textarea>
+                <textarea class="form-control" name="post_intro" rows="4"><?php echo $post_intro;?></textarea>
+                <?php if( isset($post_intro_error) && $post_intro_error != "" ){ ?>
+                    <div class="form-error">[<?php echo $post_intro_error;?>]</div>
+                <?php } ?>  
            </div>            
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>เนื่อหา</strong> :: </label>
-                <textarea class="form-control" name="post_content" rows="5"><?php if($post->post_content){echo $post->post_content;};?></textarea>
+                <textarea class="form-control" name="post_content" rows="5"><?php echo $post_content;?></textarea>
             </div>
 
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">
                 <label><strong>การจัดเรียง</strong> :: </label>
-                <input type="text" class="form-control" name="post_sort" value="<?php if($post->post_sort){echo $post->post_sort;}?>">
+                <input type="text" class="form-control" name="post_sort" value="<?php echo $post_sort;?>">
             </div>
                         
             <div class="form-group" style="margin-bottom:1px;padding:10px 0 5px 0">

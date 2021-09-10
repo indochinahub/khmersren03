@@ -190,7 +190,7 @@ class Post extends MyController
         }
     }
 
-    public function addEdit($task,$post_id = "0"){
+    public function addEdit($task,$id = "0"){
 
         $post_model         = new PostModel;
         $user_model         = new UserModel;
@@ -204,53 +204,69 @@ class Post extends MyController
             return;
         }
 
-        // get postcategory
+        $data["task"] = $task;
+
+        // 01/06 Validation Rules and Default Value 
         $arr_postcategory =  $postcategory_model->get_by_user_id($user->user_id); 
 
-        
-        // Set the task and validate form
-        $data = [];
-        if( ($this->request->getMethod() === "post") && $task === "edit"  ){
-            $data["task"] = "update";
+        $validattion_rules = 	[ 
+                                    'post_title' => 'required|min_length[4]|max_length[100]',
+                                    'post_intro' => 'required',
+                                ];            
 
-        }elseif( $task === "edit"){
+        $data["post_title"]         = "";
+        $data["post_intro"]         = "";
+        $data["post_content"]       = "";
+        $data["post_sort"]          = "";
+        $data["id_postcategory"]    = "";
 
-            $data["post"] = $post_model->get_by_id($post_id);
+        // 02/06 Update data
+        if( ($this->request->getMethod() === "post") && $data["task"] === "edit" &&
+             $this->validate($validattion_rules) 
+          ){
 
-            $owner = $user_model->get_by_post_id($post_id);
-            if( $user->user_id === $owner->user_id ){
-            }else{
-                $this->_needPrivilege();
-                return;
-            }
+            $detail =   [
+                            "post_title"    =>  trim($this->request->getPost("post_title")),
+                            "post_intro"    =>  trim($this->request->getPost("post_intro")),
+                            "post_content"  =>  trim($this->request->getPost("post_content")),
+                            "post_sort"     =>  trim($this->request->getPost("post_sort")),
+                            "id_postcategory"=> trim($this->request->getPost("id_postcategory")),
+                            "post_publishtime"=> $datetime_model->unix_timestamp_to_sql_timestamp(time())
+                        ];
+            $post_model->update_by_id($id, $detail);
+            return redirect()->to(base_url(["Post","show", $id]));		                        
 
-            $data["task"] = "show_form_to_update";
+        // 03/06 Insert data
+        }elseif( ($this->request->getMethod() === "post") && ($data["task"] === "new") &&
+            $this->validate($validattion_rules) 
+          ){
 
-        }elseif( ($this->request->getMethod() === "post") && ($task === "new") ){
-            $data["task"] = "insert";
+            
+        // 04/06 Show form with error
+        }elseif(($this->request->getMethod() === "post") ){
 
-        }elseif( $task === "new" ){
-            $data["task"] = "show_form_to_insert";
-        }
+            $post = $post_model->get_by_id($id);
 
-        
-        // Do the task
-        if( $data["task"] === "show_form_to_update" ){
+            $data["post_title"]         = trim($this->request->getPost("post_title"));
+            $data["post_intro"]         = trim($this->request->getPost("post_intro"));
+            $data["post_content"]       = trim($this->request->getPost("post_content"));
+            $data["post_sort"]          = trim($this->request->getPost("post_sort"));
 
-            // get arr_postcategory
+            $data["post_title_error"] = $this->validator->getError('post_title');
+            $data["post_intro_error"] = $this->validator->getError('post_intro');
+
             $data["arr_postcategory"] = [];
-            foreach( $arr_postcategory as $postcategory){
+            foreach( $arr_postcategory as $key=>$postcategory){
 
-                if( $postcategory->postcategory_id == $data["post"]->id_postcategory ){
+                if( $key === 0 ){
                     $postcategory->checked_text = " checked ";
-
                 }else{
                     $postcategory->checked_text = "";
                 }
                 array_push( $data["arr_postcategory"], $postcategory);
             }
             
-            $media_model            = new MediaModel( $data["post"], "post");
+            $media_model            = new MediaModel( $post, "post");
             $data["arr_picture"]    = $media_model->get_arr_picture();
             $data["arr_sound"]      = $media_model->get_arr_sound();
             $data["arr_youtube"]    = $media_model->get_arr_youtube();
@@ -258,56 +274,62 @@ class Post extends MyController
             $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
             $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
 
-            $data["page_title"] = 	"Edit :: ".$data["post"]->post_id; 
+            $data["page_title"] = 	"Edit :: ".$post->post_id; 
             $data["page_link"] 	= 	[   "กลับ",
                                         $this->_get_backlink()
                                    ];
-            $this->_view("addEdit",$data);                        
+            $this->_view("addEdit",$data); 
 
-        }elseif( $data["task"] === "update"){
+        // 05/06 Show form to edit
+        }elseif( $data["task"] === "edit"){
 
-            $detail = $this->request->getPost();
-            $detail = $util_model->fill_null_in_array($detail);
-            $detail["post_publishtime"] = $datetime_model->unix_timestamp_to_sql_timestamp(time());
+            $post = $post_model->get_by_id($id);
 
-            $post_model->update_by_id($post_id, $detail);
+            $owner = $user_model->get_by_post_id($id);
+            if( $user->user_id === $owner->user_id ){
+            }else{
+                $this->_needPrivilege();
+                return;
+            }
 
-            return redirect()->to(base_url(["Post","show", $post_id]));		
-
-        }elseif( $data["task"] === "show_form_to_insert"){
-
-
-            $data["post"] = $post_model->get_object_with_null_value();
+            $data["post_title"]         = $post->post_title;
+            $data["post_intro"]         = $post->post_intro;
+            $data["post_content"]       = $post->post_content;
+            $data["post_sort"]          = $post->post_sort;
 
             $data["arr_postcategory"] = [];
             foreach( $arr_postcategory as $postcategory){
-
-                if( $postcategory->postcategory_defaultstatus === "1" ){
+                if( $postcategory->postcategory_id == $post->id_postcategory ){
                     $postcategory->checked_text = " checked ";
                 }else{
                     $postcategory->checked_text = "";
                 }
                 array_push( $data["arr_postcategory"], $postcategory);
             }
+            
+            $media_model            = new MediaModel( $post, "post");
+            $data["arr_picture"]    = $media_model->get_arr_picture();
+            $data["arr_sound"]      = $media_model->get_arr_sound();
+            $data["arr_youtube"]    = $media_model->get_arr_youtube();
+            $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
+            $data["first_vacant_sound"] = $media_model->get_first_vacant_picture_slot("sound");
+            $data["first_vacant_youtube"] = $media_model->get_first_vacant_picture_slot("youtube");
 
-            $data["page_title"] = 	"Add new post "; 
+            $data["page_title"] = 	"Edit :: ".$post->post_id; 
             $data["page_link"] 	= 	[   "กลับ",
                                         $this->_get_backlink()
                                    ];
-            $this->_view("addEdit",$data);             
+            $this->_view("addEdit",$data);                        
             
+        // 06/06 Show new form
+        }elseif( $data["task"] === "new" ){
 
-        }elseif( $data["task"] === "insert"){
 
-            $detail = $this->request->getPost();
-            $detail = $util_model->fill_null_in_array($detail);
-
-            $post_id = $post_model->insert($detail);
-
-            return redirect()->to(base_url(["Post","show", $post_id]));		
-        }
-
+        }        
+  
     }
+
+
     
 
 }
