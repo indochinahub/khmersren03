@@ -65,7 +65,7 @@
 
         <?php foreach( $arr_user as $row_of_user ){ ?>
         
-            <div class="row2icon">
+            <div class="row4icon">
                                                 
                 <?php foreach( $row_of_user as $user ){ ?>
                     
