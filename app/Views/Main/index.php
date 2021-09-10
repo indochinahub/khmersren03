@@ -61,20 +61,23 @@
     <div class="box__head box__head--info">
         ผู้ใช้ที่เข้าระบบล่าสุด
     </div>
-    <div class="box__body box__body--info">
+
 
         <?php foreach( $arr_user as $row_of_user ){ ?>
         
-            <div style="display:flex;justify-content:space-evenly">
+            <div class="row2icon">
                                                 
                 <?php foreach( $row_of_user as $user ){ ?>
                     
-                    <div style="background-color:#becae6;width:24%">
+                    <div class="row4icon_icon">
+                        <div>
                             <a href="<?php echo base_url(["User","myProfile",$user->user_id]);?>"> 
                                 <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
-                                src="<?php echo $user->avarta_url;?>">
-                            </a><br>
-                            <?php echo $user->displayname;?>
+                                    src="<?php echo $user->avarta_url;?>"
+                                >
+                            </a>
+                        </div>
+                            
                     </div>
 
                 <?php } ?>
@@ -82,7 +85,7 @@
 
         <?php } ?>  
                   
-    </div>
+
 
     <div class="box__body box__body--warning">
         
