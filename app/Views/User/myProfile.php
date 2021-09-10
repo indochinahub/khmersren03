@@ -332,17 +332,15 @@
                 
     <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
         
-        <div style="display:flex;justify-content:space-evenly">
+        <div class="row4icon">
                                             
             <?php foreach( $row_of_user as $user ){ ?>
                 
-                <div style="background-color:#becae6;width:24%">
+                <div class="row4icon_icon">
                         <a href="<?php echo base_url(["User","myProfile",$user->user_id]);?>"> 
                             <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
                             src="<?php echo $user->avarta_url;?>">
-                        </a><br>
-                        <?php echo $user->displayname;?>
-                        
+                        </a>
                 </div>
 
             <?php } ?>
