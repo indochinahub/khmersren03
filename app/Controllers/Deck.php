@@ -485,7 +485,47 @@ class Deck extends MyController
             $this->validate($validattion_rules) 
           ){
 
+            $detail = [
+                "deck_sort"         =>  trim($this->request->getPost("deck_sort")),
+                "deck_name"         =>  trim($this->request->getPost("deck_name")),
+                "deck_description"  =>  trim($this->request->getPost("deck_description")),
         
+                "deck_command1_col" =>  trim($this->request->getPost("deck_command1_col")),
+                "deck_command2_col" =>  trim($this->request->getPost("deck_command2_col")),
+                "deck_command3_col" =>  trim($this->request->getPost("deck_command3_col")),
+                "deck_command4_col" =>  trim($this->request->getPost("deck_command4_col")),
+        
+                "deck_answer1_col"  =>  trim($this->request->getPost("deck_answer1_col")),
+                "deck_answer2_col"  =>  trim($this->request->getPost("deck_answer2_col")),
+                "deck_answer3_col"  =>  trim($this->request->getPost("deck_answer3_col")),
+                
+                "deck_choice1a_col" =>  trim($this->request->getPost("deck_choice1a_col")),
+                "deck_choice1b_col" =>  trim($this->request->getPost("deck_choice1b_col")),
+                "deck_choice1c_col" =>  trim($this->request->getPost("deck_choice1c_col")),
+                "deck_choice1d_col" =>  trim($this->request->getPost("deck_choice1d_col")),
+
+                "deck_choice2a_col" =>  trim($this->request->getPost("deck_choice2a_col")),
+                "deck_choice2b_col" =>  trim($this->request->getPost("deck_choice2b_col")),
+                "deck_choice2c_col" =>  trim($this->request->getPost("deck_choice2c_col")),
+                "deck_choice2d_col" =>  trim($this->request->getPost("deck_choice2d_col")),
+        
+                "deck_choice3a_col" =>  trim($this->request->getPost("deck_choice3a_col")),
+                "deck_choice3b_col" =>  trim($this->request->getPost("deck_choice3b_col")),
+                "deck_choice3c_col" =>  trim($this->request->getPost("deck_choice3c_col")),
+                "deck_choice3d_col" =>  trim($this->request->getPost("deck_choice3d_col")),
+        
+                "deck_choice4a_col" =>  trim($this->request->getPost("deck_choice4a_col")),
+                "deck_choice4b_col" =>  trim($this->request->getPost("deck_choice4b_col")),
+                "deck_choice4c_col" =>  trim($this->request->getPost("deck_choice4c_col")),
+                "deck_choice4d_col" =>  trim($this->request->getPost("deck_choice4d_col")),
+
+                "id_cardgroup"      =>  trim($this->request->getPost("id_cardgroup")),
+            ];
+
+            $deck_model->insert($detail);
+            return redirect()->to(base_url(["Deck","manage"]));	            
+
+            
         // 04/06 Show form with error
         }elseif(($this->request->getMethod() === "post") ){
 
@@ -596,6 +636,18 @@ class Deck extends MyController
             
         // 06/06 Show new form
         }elseif( $data["task"] === "new" ){
+            
+            $data["arr_cardgroup"] = [];
+            foreach( $arr_cardgroup as $cardgroup ){
+                $cardgroup->checked_text = "";
+                array_push($data["arr_cardgroup"],$cardgroup);
+            }
+
+            $data["page_title"] = 	"เพิ่มชุดบัตรคำ ";
+            $data["page_link"] 	= 	[	"กลับ ",
+                                        $this->_get_backlink()
+                                    ];
+            $this->_view("addEdit",$data);     
 
 
         }                

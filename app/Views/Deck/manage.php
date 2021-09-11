@@ -3,7 +3,7 @@
     <div class="box__body box__body--warning">
         <div class="two_flex_column" style="margin-bottom:5px;">
             <div>
-                <a href="<?php echo base_url( ["Deck","new"]);?>" class="btn btn-primary">New</a>
+                <a href="<?php echo base_url( ["Deck","addEdit","new"]);?>" class="btn btn-primary">New</a>
             </div>
             <div>
                 <strong>เพิ่มชุดบัตรคำใหม่</strong>
