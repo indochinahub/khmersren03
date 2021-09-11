@@ -361,6 +361,10 @@ class Deck extends MyController
 
     public function manage(){
 
+        $deck_model = new DeckModel;
+        $course_model = new CourseModel;
+        $util_model = new UtilModel;
+
         if( ($data["user"] = $this->_get_loggedin_user())
         && $data["user"]->user_level  === "3" )
         {
@@ -369,13 +373,25 @@ class Deck extends MyController
             return;
         }
 
-        $data["page_title"] = 	"จัดการบัตรคำ";        
+        $arr_deck = $deck_model->get_all_row();
+        $arr_deck = $util_model->sort_array_of_object_by_the_property( 
+                                            $arr_deck, 
+                                            "deck_id", 
+                                            $order_by ="desc"
+                                        );
+
+        $data["arr_deck"] = [];
+        foreach( $arr_deck as $deck){
+
+            $deck->course = $course_model->get_by_deck_id($deck->deck_id);
+            array_push($data["arr_deck"],$deck);
+        }
+
+        $data["page_title"] = 	"จัดการชุดบัตรคำ";        
         $data["page_link"] 	= 	[	"กลับ ",
                                     $this->_get_backlink()
                                 ];
         $this->_view("manage",$data);
-
-
     }
 
 
