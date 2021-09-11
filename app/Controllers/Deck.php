@@ -14,6 +14,7 @@ use App\Models\UserModel;
 use App\Models\DatetimeModel;
 use App\Models\StatisticModel;
 use App\Models\PostModel;
+use App\Models\CardgroupModel;
 
 class Deck extends MyController
 {
@@ -392,6 +393,213 @@ class Deck extends MyController
                                     $this->_get_backlink()
                                 ];
         $this->_view("manage",$data);
+    }
+
+    public function addEdit($task,$id = "0"){
+
+        $deck_model = new DeckModel;
+        $cardgroup_model = new CardgroupModel;
+
+        // 01/06 Validation Rules and Default Value 
+        $data = ["task" => $task ];
+
+        $data["deck_sort"]  = "";           $data["deck_name"]  = "";   
+        $data["deck_description"]  = "";
+
+        $data["deck_command1_col"]  = "";   $data["deck_command2_col"]  = "";   
+        $data["deck_command3_col"]  = "";   $data["deck_command4_col"]  = "";
+
+        $data["deck_answer1_col"]  = "";    $data["deck_answer2_col"]  = "";
+        $data["deck_answer3_col"]  = "";    
+        
+        $data["deck_choice1a_col"]  = "";   $data["deck_choice1b_col"]  = "";
+        $data["deck_choice1c_col"]  = "";   $data["deck_choice1d_col"]  = "";
+
+        $data["deck_choice2a_col"]  = "";   $data["deck_choice2b_col"]  = "";
+        $data["deck_choice2c_col"]  = "";   $data["deck_choice2d_col"]  = "";
+
+        $data["deck_choice3a_col"]  = "";   $data["deck_choice3b_col"]  = "";        
+        $data["deck_choice3c_col"]  = "";   $data["deck_choice3d_col"]  = "";        
+
+        $data["deck_choice4a_col"]  = "";   $data["deck_choice4b_col"]  = "";        
+        $data["deck_choice4c_col"]  = "";   $data["deck_choice4d_col"]  = "";  
+
+        $arr_cardgroup = $cardgroup_model->get_all_row();
+
+        $validattion_rules = 	[ 
+                                    "deck_sort" => "required",
+                                    "deck_sort" => "required",
+                                    "deck_name" => "required",
+                                    "deck_description" => "required",
+                                    "deck_command1_col" => "required",
+                                    "deck_choice1a_col" => "required"
+                                ];             
+
+        // 02/06 Update data
+        if( ($this->request->getMethod() === "post") && $data["task"] === "edit" &&
+             $this->validate($validattion_rules) 
+          ){
+
+            $detail = [
+                        "deck_sort"         =>  trim($this->request->getPost("deck_sort")),
+                        "deck_name"         =>  trim($this->request->getPost("deck_name")),
+                        "deck_description"  =>  trim($this->request->getPost("deck_description")),
+                
+                        "deck_command1_col" =>  trim($this->request->getPost("deck_command1_col")),
+                        "deck_command2_col" =>  trim($this->request->getPost("deck_command2_col")),
+                        "deck_command3_col" =>  trim($this->request->getPost("deck_command3_col")),
+                        "deck_command4_col" =>  trim($this->request->getPost("deck_command4_col")),
+                
+                        "deck_answer1_col"  =>  trim($this->request->getPost("deck_answer1_col")),
+                        "deck_answer2_col"  =>  trim($this->request->getPost("deck_answer2_col")),
+                        "deck_answer3_col"  =>  trim($this->request->getPost("deck_answer3_col")),
+                        
+                        "deck_choice1a_col" =>  trim($this->request->getPost("deck_choice1a_col")),
+                        "deck_choice1b_col" =>  trim($this->request->getPost("deck_choice1b_col")),
+                        "deck_choice1c_col" =>  trim($this->request->getPost("deck_choice1c_col")),
+                        "deck_choice1d_col" =>  trim($this->request->getPost("deck_choice1d_col")),
+
+                        "deck_choice2a_col" =>  trim($this->request->getPost("deck_choice2a_col")),
+                        "deck_choice2b_col" =>  trim($this->request->getPost("deck_choice2b_col")),
+                        "deck_choice2c_col" =>  trim($this->request->getPost("deck_choice2c_col")),
+                        "deck_choice2d_col" =>  trim($this->request->getPost("deck_choice2d_col")),
+                
+                        "deck_choice3a_col" =>  trim($this->request->getPost("deck_choice3a_col")),
+                        "deck_choice3b_col" =>  trim($this->request->getPost("deck_choice3b_col")),
+                        "deck_choice3c_col" =>  trim($this->request->getPost("deck_choice3c_col")),
+                        "deck_choice3d_col" =>  trim($this->request->getPost("deck_choice3d_col")),
+                
+                        "deck_choice4a_col" =>  trim($this->request->getPost("deck_choice4a_col")),
+                        "deck_choice4b_col" =>  trim($this->request->getPost("deck_choice4b_col")),
+                        "deck_choice4c_col" =>  trim($this->request->getPost("deck_choice4c_col")),
+                        "deck_choice4d_col" =>  trim($this->request->getPost("deck_choice4d_col")),
+
+                        "id_cardgroup"      =>  trim($this->request->getPost("id_cardgroup")),
+                    ];
+
+            $deck_model->update_by_id($id, $detail);
+            return redirect()->to(base_url(["Deck","manage"]));	
+        
+        // 03/06 Insert data
+        }elseif( ($this->request->getMethod() === "post") && ($data["task"] === "new") &&
+            $this->validate($validattion_rules) 
+          ){
+
+        
+        // 04/06 Show form with error
+        }elseif(($this->request->getMethod() === "post") ){
+
+            $data["deck_sort"]  = trim($this->request->getPost("deck_sort"));
+            $data["deck_name"]  = trim($this->request->getPost("deck_name"));
+            $data["deck_description"]  = trim($this->request->getPost("deck_description"));
+    
+            $data["deck_command1_col"]  = trim($this->request->getPost("deck_command1_col"));
+            $data["deck_command2_col"]  = trim($this->request->getPost("deck_command2_col"));
+            $data["deck_command3_col"]  = trim($this->request->getPost("deck_command3_col"));
+            $data["deck_command4_col"]  = trim($this->request->getPost("deck_command4_col"));
+    
+            $data["deck_answer1_col"]  = trim($this->request->getPost("deck_answer1_col"));
+            $data["deck_answer2_col"]  = trim($this->request->getPost("deck_answer2_col"));
+            $data["deck_answer3_col"]  = trim($this->request->getPost("deck_answer3_col"));
+            
+            $data["deck_choice1a_col"]  = trim($this->request->getPost("deck_choice1a_col"));
+            $data["deck_choice1b_col"]  = trim($this->request->getPost("deck_choice1b_col"));
+            $data["deck_choice1c_col"]  = trim($this->request->getPost("deck_choice1c_col"));
+            $data["deck_choice1d_col"]  = trim($this->request->getPost("deck_choice1d_col"));
+    
+            $data["deck_choice2a_col"]  = trim($this->request->getPost("deck_choice2a_col"));
+            $data["deck_choice2b_col"]  = trim($this->request->getPost("deck_choice2b_col"));
+            $data["deck_choice2c_col"]  = trim($this->request->getPost("deck_choice2c_col"));
+            $data["deck_choice2d_col"]  = trim($this->request->getPost("deck_choice2d_col"));
+    
+            $data["deck_choice3a_col"]  = trim($this->request->getPost("deck_choice3a_col"));
+            $data["deck_choice3b_col"]  = trim($this->request->getPost("deck_choice3b_col"));
+            $data["deck_choice3c_col"]  = trim($this->request->getPost("deck_choice3c_col"));
+            $data["deck_choice3d_col"]  = trim($this->request->getPost("deck_choice3d_col"));
+    
+            $data["deck_choice4a_col"]  = trim($this->request->getPost("deck_choice4a_col"));
+            $data["deck_choice4b_col"]  = trim($this->request->getPost("deck_choice4b_col"));
+            $data["deck_choice4c_col"]  = trim($this->request->getPost("deck_choice4c_col"));
+            $data["deck_choice4d_col"]  = trim($this->request->getPost("deck_choice4d_col"));
+
+            $data["deck_sort_error"] = $this->validator->getError('deck_sort');
+            $data["deck_name_error"] = $this->validator->getError('deck_name');
+            $data["deck_description_error"] = $this->validator->getError('deck_description');
+            $data["deck_command1_col_error"] = $this->validator->getError('deck_command1_col');
+            $data["deck_choice1a_col_error"] = $this->validator->getError('deck_choice1a_col');
+
+            $data["arr_cardgroup"] = [];
+            foreach( $arr_cardgroup as $cardgroup ){
+                $cardgroup->checked_text = "";
+                array_push($data["arr_cardgroup"],$cardgroup);
+            }
+
+            $data["page_title"] = 	"แก้ไขชุดบัตรคำ ";
+            $data["page_link"] 	= 	[	"กลับ ",
+                                        $this->_get_backlink()
+                                    ];
+            $this->_view("addEdit",$data);            
+
+        // 05/06 Show form to edit
+        }elseif( $data["task"] === "edit"){
+
+            $deck = $deck_model->get_by_id($id);
+
+            $data["deck_sort"]  = $deck->deck_sort;
+            $data["deck_name"]  = $deck->deck_name;
+            $data["deck_description"]  = $deck->deck_description;
+    
+            $data["deck_command1_col"]  = $deck->deck_command1_col;   
+            $data["deck_command2_col"]  = $deck->deck_command2_col;   
+            $data["deck_command3_col"]  = $deck->deck_command3_col;   
+            $data["deck_command4_col"]  = $deck->deck_command4_col;
+    
+            $data["deck_answer1_col"]  = $deck->deck_answer1_col;    
+            $data["deck_answer2_col"]  = $deck->deck_answer2_col;
+            $data["deck_answer3_col"]  = $deck->deck_answer3_col;    
+            
+            $data["deck_choice1a_col"]  = $deck->deck_choice1a_col;   
+            $data["deck_choice1b_col"]  = $deck->deck_choice1b_col;
+            $data["deck_choice1c_col"]  = $deck->deck_choice1c_col;   
+            $data["deck_choice1d_col"]  = $deck->deck_choice1d_col;
+    
+            $data["deck_choice2a_col"]  = $deck->deck_choice2a_col;   
+            $data["deck_choice2b_col"]  = $deck->deck_choice2b_col;
+            $data["deck_choice2c_col"]  = $deck->deck_choice2c_col;   
+            $data["deck_choice2d_col"]  = $deck->deck_choice2d_col;
+    
+            $data["deck_choice3a_col"]  = $deck->deck_choice3a_col;   
+            $data["deck_choice3b_col"]  = $deck->deck_choice3b_col;        
+            $data["deck_choice3c_col"]  = $deck->deck_choice3c_col;   
+            $data["deck_choice3d_col"]  = $deck->deck_choice3d_col;        
+    
+            $data["deck_choice4a_col"]  = $deck->deck_choice4a_col;   
+            $data["deck_choice4b_col"]  = $deck->deck_choice4b_col;        
+            $data["deck_choice4c_col"]  = $deck->deck_choice4c_col;   
+            $data["deck_choice4d_col"]  = $deck->deck_choice4d_col;  
+    
+            $data["arr_cardgroup"] = [];
+            foreach( $arr_cardgroup as $cardgroup ){
+                if( $cardgroup->cardgroup_id == $deck->id_cardgroup ){
+                    $cardgroup->checked_text = " selected ";
+                }else{
+                    $cardgroup->checked_text = "";
+                }
+                array_push($data["arr_cardgroup"],$cardgroup);
+            }
+
+            $data["page_title"] = 	"แก้ไขชุดบัตรคำ ";
+            $data["page_link"] 	= 	[	"กลับ ",
+                                        $this->_get_backlink()
+                                    ];
+            $this->_view("addEdit",$data);            
+            
+        // 06/06 Show new form
+        }elseif( $data["task"] === "new" ){
+
+
+        }                
+
     }
 
 
