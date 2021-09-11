@@ -357,6 +357,23 @@ class Deck extends MyController
 
         $this->_view("myDeck",$data);
 
+    }
+
+    public function manage(){
+
+        if( ($data["user"] = $this->_get_loggedin_user())
+        && $data["user"]->user_level  === "3" )
+        {
+        }else{
+            $this->_needToBeAdmin();
+            return;
+        }
+
+        $data["page_title"] = 	"จัดการบัตรคำ";        
+        $data["page_link"] 	= 	[	"กลับ ",
+                                    $this->_get_backlink()
+                                ];
+        $this->_view("manage",$data);
 
 
     }
