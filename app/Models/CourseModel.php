@@ -15,17 +15,6 @@ class CourseModel extends MyModel
         $this->primaryKey = $this->table."_id";
     }
 
-    // return URL text
-    public function get_icon_url($course_obj){
-
-        if(file_exists(ASSETPATH."/course/".$course_obj->course_code."/course_thumbnail.jpg")){
-            return base_url(["asset","course",$course_obj->course_code,"course_thumbnail.jpg"]);    
-
-        }else{
-            return base_url(["asset","course","course_thumbnail.jpg"]);    
-        }
-    }
-
     // return Object Or FALSE
     public function get_by_cardgroup_id($cardgroup_id){
 
