@@ -90,7 +90,7 @@
                         <a href="<?php echo base_url(["Lesson","show","3"]);?>"> 
                             <div>
                                     <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
-                                        src="<?php echo base_url( ["asset","site_image","banner.jpg" ] );?>">
+                                        src="<?php echo $lesson->thumnail_url;?>">
 
                             </div>
                             <div style="padding:5px">

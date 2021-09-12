@@ -10,7 +10,7 @@ use App\Models\CardModel;
 use App\Models\PracticeModel;
 use App\Models\UserModel;
 use App\Models\LessonModel;
-use App\Models\MediaModel;
+
 class Course extends MyController
 {
 
@@ -65,7 +65,6 @@ class Course extends MyController
         $util_model = new UtilModel;
         $user_model = new UserModel;
         $lesson_model = new LessonModel;
-        $media_model = new MediaModel;
 
         $data = [];
         if( ( $data["user"] = $this->_get_loggedin_user()) && 
@@ -129,8 +128,14 @@ class Course extends MyController
                                             4
                                         );
         // Show Lesson
+        $arr_lesson = $lesson_model->get_by_course_id($course_id);
 
-        $data["arr_lesson"] = $lesson_model->get_by_course_id($course_id);
+        $data["arr_lesson"] = [];
+        foreach($arr_lesson as $lesson){
+            $lesson->thumnail_url = $lesson_model->get_thumbnail_url($data["course"]->course_picture02);
+            //$lesson->thumnail_url = "http://127.0.0.1/khmersren03/asset/site_image/banner.jpg";
+            array_push($data["arr_lesson"],$lesson);
+        }
 
         $num_row_of_lesson = floor( count($data["arr_lesson"]) / 3) + 1 ;
         $data["arr_lesson_to_show"] = $util_model->saparate_array_to_row(
