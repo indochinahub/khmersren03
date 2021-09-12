@@ -25,12 +25,12 @@
                 <?php if( $row[1] !== false ){ ?>
                     <div class="row2icon_icon" style="background-color:black">
                         <div>
-                            <a href="<?php echo base_Url(["Course","show", $row[0]->course_id]);?>">
+                            <a href="<?php echo base_Url(["Course","show", $row[1]->course_id]);?>">
                                 <img src="<?php echo $row[1]->icon_url;?>" width="100%">
                             </a>
                         </div>
                         <div style="padding:5px">
-                            <a href="<?php echo base_Url(["Course","show", $row[0]->course_id]);?>">
+                            <a href="<?php echo base_Url(["Course","show", $row[1]->course_id]);?>">
                                 <strong><?php echo $row[1]->course_code;?></strong><br>
                                 <?php echo $row[1]->course_name;?>
                             </a>
