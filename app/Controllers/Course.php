@@ -10,6 +10,7 @@ use App\Models\CardModel;
 use App\Models\PracticeModel;
 use App\Models\UserModel;
 use App\Models\LessonModel;
+use App\Models\MediaModel;
 
 class Course extends MyController
 {
@@ -332,8 +333,8 @@ class Course extends MyController
 
         $arr_course = $util_model->sort_array_of_object_by_the_property( 
                             $arr_course, 
-                            "id_coursetype", 
-                            $order_by ="asc");
+                            "course_id", 
+                            $order_by ="desc");
 
         $data["arr_course"] = [];
         foreach( $arr_course as $course){

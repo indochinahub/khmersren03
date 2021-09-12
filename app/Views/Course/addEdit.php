@@ -51,7 +51,7 @@
                 <select class="custom-select" name="id_coursetype">
                     <?php foreach( $arr_coursetype as $coursetype){ ?>
                         <option value="<?php echo $coursetype->coursetype_id;?>" <?php echo $coursetype->selected_text;?>>
-                            <?php echo $coursetype->coursetype_name;?>
+                            <?php echo $coursetype->coursetype_id.":".$coursetype->coursetype_name;?>
                         </option>                        
                     <?php } ?>                    
                 </select>

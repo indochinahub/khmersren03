@@ -18,7 +18,7 @@
         <div class="box__body box__body--info">
             <div class="two_flex_column">
                     <div>
-                        <strong><?php echo $course->course_code;?></strong><br>
+                        <strong><?php echo $course->course_id.":".$course->course_code;?></strong><br>
                         <?php echo $course->course_name;?><br>
                         Type :: <?php echo $course->coursetype_name;?>
                     </div>
