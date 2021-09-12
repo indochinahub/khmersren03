@@ -19,6 +19,17 @@ class LessonModel extends MyModel
         return $this->get_where($where_clause);
     }
 
+    //return url
+    public function get_thumbnail_url($file_name){
+
+        if($file_name){
+            return base_url( ["asset","media","course_media",$file_name]);
+        }else{
+            return base_url( ["asset","media","course_media","default_unread_lesson_thumbnail.jpg"]);
+        }
+
+    }
+
 
 }
 
