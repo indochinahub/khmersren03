@@ -77,82 +77,41 @@
 
 <div class="box">
 
-    <div class="box__body box__body--info">
-        <div class="icon_row">
-
-            <div class="course_icon">
-                <div>    
-                    <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
-                </div>
-                <div>
-                    Description
-                </div>
-            </div>
-
-
-            <div class="course_icon">
-                <div>    
-                    <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
-                </div>
-                <div>
-                    Description
-                </div>
-            </div>            
-
-        </div>
-    </div>
-
-    <div class="box__body box__body--info">
-        
-            <div class="icon_row">
-                <div class="course_icon">
-                    <div class="course_icon-thumbnail">
-                        <a href="http://127.0.0.1/khmersren03/Course/show/1">
-                            <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
-                        </a>
-                    </div>
-                    <div class="course_icon-title" style="">
-                        <a href="http://127.0.0.1/khmersren03/Course/show/1">
-                            <strong>T001</strong><br>
-                            Test Courses++                            </a>
-                    </div>		
-                </div>		
-                
-                                        <div class="course_icon">
-                        <div class="course_icon-thumbnail">
-                            <a href="http://127.0.0.1/khmersren03/Course/show/62">
-                                <img src="http://i3.ytimg.com/vi/fMqw8Meirtw/hqdefault.jpg" width="100%">
-                            </a>
-                        </div>
-                        <div class="course_icon-title" style="">
-                            <a href="http://127.0.0.1/khmersren03/Course/show/62">
-                                <strong>code</strong><br>
-                                name                                </a>
-                        </div>		
-                    </div>		
-                
-            </div>
-        
-    </div>
-    
-</div>
-
-<div class="box">
     <div class="box__head box__head--info">
         บทเรียน
     </div>
-    
-    <?php foreach( $arr_lesson as $lesson){ ?>
-        <div class="box__body box__body--info">
-            <div class="two_flex_column" style="margin-bottom:5px;">
-                <div>
-                    <?php echo $lesson->lesson_title;?>
-                </div>
-                <div>
-                    <a href="<?php echo base_url(["Lesson","show",$lesson->lesson_id]);?>" class="btn btn-primary">ไป</a>
-                </div>
-            </div>
+
+    <?php foreach( $arr_lesson_to_show as $row_of_lesson ){ ?>
+
+        <div class="row3icon">
+
+
+            <?php foreach( $row_of_lesson as $lesson ){ ?>
+            
+                <?php if($lesson){ ?>
+                
+                    <div class="row3icon_icon">
+                        <a href="<?php echo base_url(["Lesson","show","3"]);?>"> 
+                            <div>
+                                    <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
+                                        src="<?php echo base_url( ["asset","site_image","banner.jpg" ] );?>">
+
+                            </div>
+                            <div style="padding:5px">
+                                <?php echo $lesson->lesson_title;?>
+                            </div>
+                        </a>                        
+                    </div>
+
+                <?php }else{ ?>
+                    <div class="row3icon_icon">
+                    </div>
+                <?php } ?>
+
+            <?php }?>                                    
+
         </div>
+
     <?php } ?>
 
     <div class="box__body box__body--warning">

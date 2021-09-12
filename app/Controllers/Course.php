@@ -126,9 +126,17 @@ class Course extends MyController
                                             1,
                                             4
                                         );
-
         // Show Lesson
+
         $data["arr_lesson"] = $lesson_model->get_by_course_id($course_id);
+
+        $num_row_of_lesson = floor( count($data["arr_lesson"]) / 3) + 1 ;
+        $data["arr_lesson_to_show"] = $util_model->saparate_array_to_row(
+                                            $data["arr_lesson"],
+                                            $num_row_of_lesson,
+                                            3
+                                        );        
+
 
         // View Section
         $data["page_title"] = 	"วิชา ".$data["course"]->course_code." ".$data["course"]->course_name;
