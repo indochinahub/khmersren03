@@ -98,4 +98,20 @@ class CourseModelTest extends CIUnitTestCase
         $this->assertSame($result,$expectedResult);
     }
 
+    //return url
+    public function test_get_thumbnail_url(){
+
+        $result1 = $this->course_model->get_thumbnail_url($picture_name = "000011.jpg");
+        $result2 = $this->course_model->get_thumbnail_url($picture_name = "");
+
+        $result             =   [ 
+                                    $result1,
+                                ];
+        $expectedResult     =   [ 
+                                    "http://127.0.0.1/khmersren03/asset/media/course_media/000011.jpg",
+                                ];
+        $this->assertSame($result,$expectedResult);            
+    }
+
+
 }
