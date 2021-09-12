@@ -81,9 +81,11 @@ class CourseModelTest extends CIUnitTestCase
 
         $result             =   [ 
                                     $result1,
+                                    $result2,
                                 ];
         $expectedResult     =   [ 
                                     "http://127.0.0.1/khmersren03/asset/media/course_media/000011.jpg",
+                                    "http://127.0.0.1/khmersren03/asset/media/course_media/default_thumbnail.jpg"
                                 ];
         $this->assertSame($result,$expectedResult);            
     }
