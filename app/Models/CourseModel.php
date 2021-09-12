@@ -52,10 +52,10 @@ class CourseModel extends MyModel
     }
 
     //return url
-    public function get_thumbnail_url($picture_name){
+    public function get_thumbnail_url($file_name){
 
-        if($picture_name){
-            return base_url( ["asset","media","course_media",$picture_name]);
+        if($file_name){
+            return base_url( ["asset","media","course_media",$file_name]);
         }else{
             return base_url( ["asset","media","course_media","default_thumbnail.jpg"]);
         }

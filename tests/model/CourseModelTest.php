@@ -76,8 +76,8 @@ class CourseModelTest extends CIUnitTestCase
     //return url
     public function test_get_thumbnail_url(){
 
-        $result1 = $this->course_model->get_thumbnail_url($picture_name = "000011.jpg");
-        $result2 = $this->course_model->get_thumbnail_url($picture_name = "");
+        $result1 = $this->course_model->get_thumbnail_url($file_name = "000011.jpg");
+        $result2 = $this->course_model->get_thumbnail_url($file_name = "");
 
         $result             =   [ 
                                     $result1,
