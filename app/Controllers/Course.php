@@ -10,6 +10,7 @@ use App\Models\CardModel;
 use App\Models\PracticeModel;
 use App\Models\UserModel;
 use App\Models\LessonModel;
+use App\Models\MediaModel;
 class Course extends MyController
 {
 
@@ -22,7 +23,7 @@ class Course extends MyController
         $arr_course_origin = $course_model->get_all_row();
         $arr_course = [];
         foreach( $arr_course_origin as $course){
-            $course->icon_url = $course_model->get_icon_url($course);
+            $course->icon_url = $course_model->get_thumbnail_url($course->course_picture01);
             array_push($arr_course,$course);
         }
 
@@ -64,6 +65,7 @@ class Course extends MyController
         $util_model = new UtilModel;
         $user_model = new UserModel;
         $lesson_model = new LessonModel;
+        $media_model = new MediaModel;
 
         $data = [];
         if( ( $data["user"] = $this->_get_loggedin_user()) && 
@@ -136,8 +138,6 @@ class Course extends MyController
                                             $num_row_of_lesson,
                                             3
                                         );        
-
-
         // View Section
         $data["page_title"] = 	"วิชา ".$data["course"]->course_code." ".$data["course"]->course_name;
         $data["page_link"] 	= 	[ "All Courses", base_url(["Course","showAll"])];	        
@@ -159,6 +159,7 @@ class Course extends MyController
         }
 
         // 01/06 Validation Rules and Default Value 
+        $data["display_media_part"] = false;
         $validattion_rules = [ 
                                 "course_sort"       => "required",
                                 "course_code"       => "required|min_length[4]|max_length[15]",
@@ -237,6 +238,7 @@ class Course extends MyController
 
         // 05/06 Show form to edit
         }elseif( $task === "edit"){
+            $data["display_media_part"] = true;
 
             $course = $course_model->get_by_id($id);
 
@@ -258,6 +260,10 @@ class Course extends MyController
                 }
                 array_push($data["arr_coursetype"],$coursetype);
             }
+
+            $media_model            = new MediaModel( $course, "course");
+            $data["arr_picture"]    = $media_model->get_arr_picture();
+            $data["first_vacant_picture"] = $media_model->get_first_vacant_picture_slot("picture");
 
             $data["page_title"] = 	"แก้ไขวิชา ";
             $data["page_link"] 	= 	[ "กลับ", $this->_get_backlink() ];
