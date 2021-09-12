@@ -57,7 +57,7 @@ class CourseModel extends MyModel
         if($file_name){
             return base_url( ["asset","media","course_media",$file_name]);
         }else{
-            return base_url( ["asset","media","course_media","default_thumbnail.jpg"]);
+            return base_url( ["asset","media","course_media","default_course_thumbnail.jpg"]);
         }
 
     }
