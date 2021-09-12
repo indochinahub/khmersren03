@@ -31,7 +31,7 @@
                     <?php foreach( $arr_course as $course ){ ?>
                         <option value="<?php echo $course->course_id;?>"  <?php echo $course->selected_text;?> >
                         
-                        <?php echo $course->course_code."::".$course->course_name;?>
+                        <?php echo $course->course_id.":".$course->course_code."::".$course->course_name;?>
                         </option>
                     <?php } ?>
 

@@ -87,7 +87,7 @@
                 <?php if($lesson){ ?>
                 
                     <div class="row3icon_icon">
-                        <a href="<?php echo base_url(["Lesson","show","3"]);?>"> 
+                        <a href="<?php echo base_url(["Lesson","show",$lesson->lesson_id]);?>"> 
                             <div>
                                     <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
                                         src="<?php echo $lesson->thumnail_url;?>">
