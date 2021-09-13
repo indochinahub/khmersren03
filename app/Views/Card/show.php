@@ -203,39 +203,41 @@
 
 </div>
 
-<div class="box">
-    <div class="box__head box__head--info">
-        สมาชิกที่ใช้งานบัตรคำนี้
+<?php if( $arr_user_to_show ){ ?>
+    <div class="box">
+        <div class="box__head box__head--info">
+            สมาชิกที่ใช้งานบัตรคำนี้
+        </div>
+
+            <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
+                
+                <?php if( $row_of_user !== [false,false,false,false] ){ ?>
+
+                    <div class="row4icon">
+                                                        
+                        <?php foreach( $row_of_user as $user ){ ?>
+
+                            <?php if($user){ ?>
+                                <div class="row4icon_icon">
+                                    <a href="<?php echo base_url(["User","myProfile",$user->user_id]);?>"> 
+                                        <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
+                                        src="<?php echo $user->avarta_url;?>">
+                                    </a>
+                                </div>
+                            <?php }else{ ?>
+                                <div class="row4icon_icon">
+                                </div>                        
+                            <?php } ?>                        
+
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+
+            <?php } ?>  
+
+
     </div>
-
-        <?php foreach( $arr_user_to_show as $row_of_user ){ ?>
-            
-            <?php if( $row_of_user !== [false,false,false,false] ){ ?>
-
-                <div class="row4icon">
-                                                    
-                    <?php foreach( $row_of_user as $user ){ ?>
-
-                        <?php if($user){ ?>
-                            <div class="row4icon_icon">
-                                <a href="<?php echo base_url(["User","myProfile",$user->user_id]);?>"> 
-                                    <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top" 
-                                    src="<?php echo $user->avarta_url;?>">
-                                </a>
-                            </div>
-                        <?php }else{ ?>
-                            <div class="row4icon_icon">
-                            </div>                        
-                        <?php } ?>                        
-
-                    <?php } ?>
-                </div>
-            <?php } ?>
-
-        <?php } ?>  
-
-
-</div>
+<?php } ?>
 
 <?php if( $page === "b" ){ ?>
 
@@ -319,3 +321,12 @@
     </div>
 
 <?php } ?> 
+
+
+
+<div class="box">
+    <div class="box__head box__head--info">header</div>
+    <div class="box__body box__body--info">bodysuccess body</div>
+</div>
+
+
