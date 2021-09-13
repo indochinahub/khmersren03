@@ -108,7 +108,7 @@
                             <div>
                             </div>
                             <div>
-                                <a href="<?php echo base_url(["Media","deleteYoutube","lesson", $lesson->lesson_id, $youtube->media_order ]);?>" class="btn btn-warning">ลบ</a>
+                                <a href="<?php echo base_url(["Media","deleteYoutube","lesson", $lesson_id, $youtube->media_order ]);?>" class="btn btn-warning">ลบ</a>
                             </div>
                         </div>
 
