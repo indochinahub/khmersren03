@@ -14,6 +14,7 @@ use App\Models\UserModel;
 use App\Models\PostModel;
 use App\Models\MediaModel;
 use App\Models\PostcategoryModel;
+use App\Models\LessonModel;
 
 
 class Card extends MyController
@@ -29,6 +30,7 @@ class Card extends MyController
         $cardcomment_model = new CardcommentModel;
         $user_model = new UserModel;
         $post_model = new PostModel;
+        $lesson_model = new LessonModel;
         $postcategory_model = new PostcategoryModel;
     
         // Do something in general
@@ -292,6 +294,20 @@ class Card extends MyController
         }else{
             $data["show_post"] = false;
             $card_model->update_by_id($card_id,["id_post"=>null]);
+        }
+
+        // Show related Lesson
+        if( $data["card"]->id_lesson && $data["lesson"] = $lesson_model->get_by_id($data["card"]->id_lesson)) {
+            $data["show_lesson"] = true;
+
+            $data["lesson"]->lesson_edittime = $datetime_model->get_thai_datetime_from_sql_timestamp($data["lesson"]->lesson_edittime);
+            $media_model                    = new MediaModel( $data["lesson"], "lesson");
+            $data["lesson"]->lesson_content = $media_model->replace_media_tag_with_html($data["lesson"]->lesson_content);
+
+        }else{
+            $data["show_lesson"] = false;
+            $card_model->update_by_id($card_id,["id_lesson"=>null]);
+
         }
 
         // View Section

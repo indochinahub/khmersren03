@@ -322,7 +322,6 @@
 
 <?php } ?> 
 
-
 <?php if( $show_post === true){ ?>
     <div class="box">
         <div class="box__head box__head--info">
@@ -378,3 +377,38 @@
     </div>
 <?php } ?>
 
+<?php if( $show_lesson === true){ ?>
+    <div class="box">
+        <div class="box__head box__head--info">
+            บทเรียนที่เกี่ยวข้อง
+        </div>
+
+        <div class="box__body box__body--info">
+
+            <div>
+                <h5><?php echo $lesson->lesson_title;?></h5>
+                <h6 style="margin-top:5px">
+                    [ <?php echo $lesson->lesson_edittime;?> ]
+                </h6>
+            </div>
+
+            <?php if( $lesson->lesson_content ){ ?>
+
+                <div style="margin-bottom:15px">
+                    <?php echo $lesson->lesson_content;?>
+                </div>
+                
+            <?php } ?>        
+
+            <div class="two_flex_column">
+                <div>
+                    ไปวิชา <a href="<?php echo base_url(["Course","show",$course->course_id]);?>">
+                        <strong><?php echo $course->course_code." :: ".$course->course_name;?></strong>
+                    </a>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
