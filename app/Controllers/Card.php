@@ -11,6 +11,9 @@ use App\Models\PracticeModel;
 use App\Models\DatetimeModel;
 use App\Models\CardcommentModel;
 use App\Models\UserModel;
+use App\Models\PostModel;
+use App\Models\MediaModel;
+use App\Models\PostcategoryModel;
 
 
 class Card extends MyController
@@ -25,6 +28,8 @@ class Card extends MyController
         $util_model = new UtilModel;
         $cardcomment_model = new CardcommentModel;
         $user_model = new UserModel;
+        $post_model = new PostModel;
+        $postcategory_model = new PostcategoryModel;
     
         // Do something in general
         if( $data["user"] = $this->_get_loggedin_user() ){
@@ -270,6 +275,23 @@ class Card extends MyController
             $cardcomment->cardcomment_createtime = $datetime_model->get_thai_datetime_from_sql_timestamp($cardcomment->cardcomment_createtime);
             array_push( $data["arr_cardcomment"], $cardcomment );
 
+        }
+
+        // Show related Post
+        if( $data["card"]->id_post && $data["post"] = $post_model->get_by_id($data["card"]->id_post)) {
+            $data["show_post"] = true;
+
+            $media_model                    = new MediaModel( $data["post"], "post");
+            $data["post"]->post_intro       = $media_model->replace_media_tag_with_html($data["post"]->post_intro);
+            $data["post"]->post_content     = $media_model->replace_media_tag_with_html($data["post"]->post_content);
+            $data["post_owner"]             = $user_model->get_by_post_id($data["post"]->post_id);
+            $data["postcategory"]           = $postcategory_model->get_by_post_id($data["post"]->post_id);
+            $data["postcategory_num_card"]  = $post_model->get_num_by_postcategory_id($data["post"]->id_postcategory);
+            $data["post_createddate"]       = $datetime_model->get_thai_datetime_from_sql_timestamp(
+                                                $data["post"]->post_createtime );
+        }else{
+            $data["show_post"] = false;
+            $card_model->update_by_id($card_id,["id_post"=>null]);
         }
 
         // View Section

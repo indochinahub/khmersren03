@@ -323,10 +323,58 @@
 <?php } ?> 
 
 
+<?php if( $show_post === true){ ?>
+    <div class="box">
+        <div class="box__head box__head--info">
+            บทความที่เกี่ยวข้อง
+        </div>
+        <div class="box__body box__body--info">
 
-<div class="box">
-    <div class="box__head box__head--info">header</div>
-    <div class="box__body box__body--info">bodysuccess body</div>
-</div>
+            <div>
+                <h5><?php echo $post->post_title;?></h5>
+                <h6 style="margin-top:5px">
+                    [ <?php echo $post->post_createtime;?>
+                        โดย 
+                        <a href="<?php echo base_url( ["User","myProfile", $post_owner->user_id]);?>">
+                            <?php echo $post_owner->displayname;?>
+                        </a>]
+                </h6>
+            </div>
 
+            <div style="margin-bottom:15px">
+                <?php echo $post->post_intro;?>
+            </div>
+
+            <?php if( $post->post_intro ){ ?>
+            
+                <div style="margin-bottom:15px">
+                    <?php echo $post->post_content;?>
+                </div>
+                
+            <?php } ?>        
+
+            <div class="two_flex_column">
+                <div>
+                    <a href="<?php echo base_url( ["Post","showBy","Category", $postcategory->postcategory_id] );?>">
+                        <strong>#<?php echo $postcategory->postcategory_title;?></strong>
+                    </a>
+                    [ <?php echo $postcategory_num_card;?> ]
+                </div>
+                <div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+<?php } ?>
 
