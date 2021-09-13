@@ -73,7 +73,12 @@ class CardModel extends MyModel
         $util_model = new UtilModel;
         $practice_model = new PracticeModel;
 
-        $arr_card       = $this->get_by_deck_id($deck_id);
+        $arr_card   = $this->get_by_deck_id($deck_id);
+        $arr_card   = $util_model->sort_array_of_object_by_the_property( 
+                                    $arr_card, 
+                                    "card_sort", 
+                                    $order_by ="asc"
+                                    );
         $arr_card_id    = $util_model->get_property_value_Of_many_objects_as_array(
                                     $arr_card,
                                     "card_id"
