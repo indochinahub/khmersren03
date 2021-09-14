@@ -94,8 +94,6 @@ class Card extends MyController
                                         $data["deck"],
                                         $data["key_of_choices"]
                                     );
-
-    
         // Answers Section
         $data["arr_answer"]  = $card_model->get_card_answer(
                                         $data["card"], 
@@ -123,7 +121,8 @@ class Card extends MyController
             $detail =   [       "id_deck"=>$deck_id,
                                 "id_card"=>$card_id,
                                 "id_user"=>$data["user"]->user_id,
-                                "practice_nextvisittime"=>$next_midnight_sql_timestamp
+                                "practice_nextvisittime"=>$next_midnight_sql_timestamp,
+                                "practice_timespent"=>20,
                         ];
             $practice_id = $practice_model->insert($detail);
 
