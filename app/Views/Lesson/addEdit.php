@@ -60,7 +60,7 @@
                             <div>
                             </div>
                             <div>
-                                <a href="<?php echo base_url(["Media","deletePicture","lesson", $lesson->lesson_id, $picture->media_order ]);?>" class="btn btn-warning">ลบ</a>
+                                <a href="<?php echo base_url(["Media","deletePicture","lesson", $lesson_id, $picture->media_order ]);?>" class="btn btn-warning">ลบ</a>
                             </div>
                         </div>
 
