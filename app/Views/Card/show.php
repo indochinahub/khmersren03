@@ -12,7 +12,38 @@
                 }
         ?>
     </div>
+</div>    
 
+<?php if( $arr_answer[0] || $arr_answer[1] || $arr_answer[2] ){ ?>
+    <div class="accordion" id="accordionExample">
+        <div class="box">
+            <div class="box__head box__head--warning" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-block text-center" type="button" data-toggle="collapse" 
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                    style="color:white;font-size:1rem">
+                        [ คลิ๊กเพื่อตรวจคำตอบ ]
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="box__body box__body--warning">
+                    <?php   foreach( $arr_answer as $key=>$answer ){ 
+                                if( $answer && $key === 0 ){ 
+                                    echo $answer->html;
+                                }elseif( $answer ){
+                                    echo "<br>".$answer->html;
+                                }
+                            } 
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<div class="box">
     <div class="box__head box__head--info">
         ตัวเลือก
     </div>
@@ -58,34 +89,6 @@
     <?php } ?>
 <div>
 
-<?php if( $arr_answer[0] || $arr_answer[1] || $arr_answer[2] ){ ?>
-    <div class="accordion" id="accordionExample">
-        <div class="box">
-            <div class="box__head box__head--warning" id="headingOne">
-                <h2 class="mb-0">
-                    <button class="btn btn-block text-center" type="button" data-toggle="collapse" 
-                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
-                    style="color:white;font-size:1rem">
-                        [ คลิ๊กเพื่อตรวจคำตอบ ]
-                    </button>
-                </h2>
-            </div>
-
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="box__body box__body--warning">
-                    <?php   foreach( $arr_answer as $key=>$answer ){ 
-                                if( $answer && $key === 0 ){ 
-                                    echo $answer->html;
-                                }elseif( $answer ){
-                                    echo "<br>".$answer->html;
-                                }
-                            } 
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
 
 <?php if( $page === "b" && ($selected_choice === 0)){ ?>
 
