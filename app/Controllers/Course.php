@@ -22,6 +22,11 @@ class Course extends MyController
         $util_model = new UtilModel();
 
         $arr_course_origin = $course_model->get_all_row();
+        $arr_course_origin = $util_model->sort_array_of_object_by_the_property( 
+                                    $arr_course_origin, 
+                                    "course_sort", 
+                                    $order_by ="asc"
+                                );
         $arr_course = [];
         foreach( $arr_course_origin as $course){
             $course->icon_url = $course_model->get_thumbnail_url($course->course_picture01);
