@@ -4,7 +4,7 @@
 
         <form action="<?php echo base_url(["User","login"]);?>" method="post">
             <div class="form-group">
-                <label for="username">Email</label>
+                <label for="username">Username</label>
                 <input type="text" class="form-control" name="username" id="username" value="">
                 <?php if( isset($username_error) && $username_error != "" ){ ?>
                     <div class="form-error">[<?php echo $username_error;?>]</div>
