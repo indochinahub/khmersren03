@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-class CoursetypeModel extends MyModel
+class CourseTypeModel extends MyModel
 {
-
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
-        $this->table = "coursetype";
-        $this->primaryKey = $this->table."_id";
+        $this->table      = "coursetype";
+        $this->primaryKey = $this->table . "_id";
     }
-
 }
-
-
