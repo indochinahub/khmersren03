@@ -88,19 +88,14 @@
             </div>
 
             <div class="row3icon_icon">
-                <a href="<?php echo base_url(["Post", "showBy", "User", $user->user_id]); ?>">
-
                     <div>
                         <img class="card-img-top" src="<?php echo base_url(["asset", "site_image", "03_mypost.png"]); ?>">
                     </div>
                     <div style="text-align:center">
-                        บทความของฉัน
+                        บทความของฉันxxx
                     </div>
-                </a>
             </div>
-
         </div>
-
 
         <div class="row3icon">
 
