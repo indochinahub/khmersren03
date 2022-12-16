@@ -331,38 +331,4 @@
 
     </div>
 
-    <div class="box__head box__head--info">
-        ผู้ใช้ที่เกี่ยวข้องกับ <?php if ($if_user_view_own_profile === true) {echo "ฉัน";} else {echo $member->displayname;}?>
-    </div>
-
-    <?php foreach ($arr_user_to_show as $row_of_user) {?>
-
-        <div class="row4icon">
-
-            <?php foreach ($row_of_user as $user) {?>
-
-                <div class="row4icon_icon">
-                        <a href="<?php echo base_url(["User", "myProfile", $user->user_id]); ?>">
-                            <img style="border-radius:5%;border-style:solid;border-width:2px;border-color:black;" class="card-img-top"
-                            src="<?php echo $user->avarta_url; ?>">
-                        </a>
-                </div>
-
-            <?php }?>
-        </div>
-
-    <?php }?>
-
-    <div class="box__body box__body--warning">
-
-        <div class="two_flex_column">
-            <div>
-                <h5>ดูผู้ที่เกี่ยวข้องกับ  <?php if ($if_user_view_own_profile === true) {echo "ฉัน";} else {echo $member->displayname;}?> ทั้งหมด</h5>
-            </div>
-            <div>
-                <a href="<?php echo base_url(["Follow", "myFollow", $member->user_id]); ?>" class="btn btn-primary">ไป</a>
-            </div>
-        </div>
-
-    </div>
 </div>
