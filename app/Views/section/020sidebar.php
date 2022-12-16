@@ -30,10 +30,6 @@
                             <a href="<?php echo base_url(["User", "login"]); ?>"><i class="fas fa-angle-double-right"></i> เข้าสู่ระบบ</a>
                         </li>
 
-                        <li>
-                            <a href="<?php echo base_url(["Apply", "register"]); ?>"><i class="fas fa-angle-double-right"></i> ลงทะเบียน</a>
-                        </li>
-
                     <?php } else {?>
 
                         <div class="sidebar_section">เมนูส่วนตัว</div>
