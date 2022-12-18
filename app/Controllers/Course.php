@@ -108,21 +108,6 @@ class Course extends MyController
             $data["arr_deck"] = [];
         }
 
-        // Display User Visited
-        $arr_visited_user = $user_model->get_last_visit_user_of_course($course_id, $num = 4);
-
-        $data["arr_user_to_show"] = [];
-        foreach ($arr_visited_user as $user) {
-            $user->displayname = $user_model->get_user_displayname($user);
-            $user->avarta_url  = $user_model->get_avarta_url($user);
-            array_push($data["arr_user_to_show"], $user);
-        }
-
-        $data["arr_user_to_show"] = $util_model->saparate_array_to_row(
-            $data["arr_user_to_show"],
-            1,
-            4
-        );
         // Show Lesson
         $arr_lesson = $lesson_model->get_by_course_id($course_id);
 
