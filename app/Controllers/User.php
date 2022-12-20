@@ -111,16 +111,6 @@ class User extends MyController
             $data["if_user_view_own_profile"] = false;
         }
 
-        // Follow Part
-        if ($data["user"] && ($data["if_user_view_own_profile"] === false)) {
-            $data["relation_text"] = $follow_model->get_my_relation_with_other(
-                $data["user"]->user_id,
-                $data["member"]->user_id
-            );
-            $data["other_displayname"]             = $user_model->get_user_displayname($data["member"]);
-            $data["num_unread_message_with_other"] = $message_model->get_num_unread_message($data["user"]->user_id, $data["member"]->user_id);
-        }
-
         // Statistic Section
         $data["today_date"] = $datetime_model->get_thai_date_from_sql_timestamp(
             $datetime_model->unix_timestamp_to_sql_timestamp(time())
